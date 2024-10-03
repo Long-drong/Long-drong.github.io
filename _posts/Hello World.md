@@ -1,9 +1,9 @@
 ---
 layout:     post
 title:      Hello World
-subtitle:   KVO底层原理及其实现
+subtitle:   first blog
 date:       2024-10-03
-author:     BY
+author:     Qinglong
 header-img: img/post-bg-cook.jpg
 catalog: true
 tags:
