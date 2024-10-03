@@ -7,7 +7,7 @@ author:     Qinglong
 header-img: img/post-bg-cook.jpg
 catalog: true
 tags:
-    - NONO
+    - None
 ---
 ---
 
