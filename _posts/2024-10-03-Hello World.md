@@ -4,7 +4,7 @@ title:      Hello World
 subtitle:   first blog
 date:       2024-10-03
 author:     Qinglong
-header-img: img/post-tree.jpg
+header-img: img/post_tree.jpg
 catalog: true
 tags:
     - None
