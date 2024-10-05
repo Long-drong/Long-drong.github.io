@@ -60,7 +60,7 @@ kramdown:
 
 # Gitalk
 gitalk:
-  enable: true    #是否开启Gitalk评论
+  enable: false    #是否开启Gitalk评论
   clientID: Ov23lieeukH1wS5IERor                          #生成的clientID
   clientSecret: 9c585b27ed8db97dfa70ac8e9e3e8accff19c9f4    #生成的clientSecret
   repo: Long-drong.github.io    #仓库名称
