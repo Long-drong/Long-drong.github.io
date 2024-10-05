@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Hello World
-subtitle:   first blog
+subtitle:   1st blog
 date:       2024-10-03
 author:     Qinglong
 header-img: img/post_tree.jpg
