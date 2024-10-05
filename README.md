@@ -3,7 +3,7 @@
 >总是要有一个记录的！
 
 >
-### [查看博客戳这里 👆](http://Long-drgon.github.io)
+### [查看博客戳这里 👆](https://Long-drong.github.io/)
 
 本站原主题,由[柏荧](https://github.com/qiubaiying/qiubaiying.github.io)提供,感谢柏荧大神；
 
