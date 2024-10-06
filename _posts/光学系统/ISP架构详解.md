@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      ISP架构详解
-subtitle:   5th blog
-date:       2024-10-04
+subtitle:   2nd blog
+date:       2024-10-05
 author:     Qinglong
 header-img: img/post_light.jpg
 catalog: true
