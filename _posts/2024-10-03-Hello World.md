@@ -4,7 +4,7 @@ title:      Hello World
 subtitle:   1st blog
 date:       2024-10-03
 author:     Qinglong
-header-img: ./img/post-bg-2015.jpg
+header-img: ![post_pixel.jpg](https://s2.loli.net/2024/10/26/7uxpDn35TzZ1gIs.jpg)
 catalog: true
 tags:
     - None
