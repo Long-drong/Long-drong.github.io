@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Start</title>
+    <url>/2024/12/13/Start/</url>
+    <content><![CDATA[<h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><h4 id="Install-Git"><a href="#Install-Git" class="headerlink" title="Install Git"></a>Install Git</h4><p>Windows: Download &amp; install <a href="!https://git-scm.com/downloads/win">git</a>.<br>Mac: Install it with Homebrew, MacPorts or installer.</p>
+<h4 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h4><p>Node.js 为大多数平台提供了官方的<a href="!https://nodejs.org/zh-cn/download/prebuilt-installer">安装程序</a>。<br>参考<a href="!https://blog.csdn.net/Nicolecocol/article/details/136788200">链接</a>。</p>
+<h4 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h4><p>使用 npm 安装 Hexo</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<p>验证是否安装成功  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo version</span><br></pre></td></tr></table></figure>
+<p>简易安装方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo</span><br></pre></td></tr></table></figure>
+<p>参考<a href="!https://hexo.io/zh-cn/docs/index.html">链接</a></p>
+<h4 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h4><p>1, 使用git下载第二个文件夹到本地文件夹,例如：file_floder</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/***</span><br></pre></td></tr></table></figure>
+<p>建议使用github <a href="!https://github.com/apps/desktop">desktop</a>,便于下载与上传文件。</p>
+<p>2，打开文件夹，在source&#x2F;post&#x2F; 里新建 new.md 文件，编辑内容即可。<br>建议使用vs code或者 notepad 打开文件夹。</p>
+<p>3，编译，预览，上传<br>在 file_floder 打开cmd或者power shell;<br>第一步：清楚历史编译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>第二步：编译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p>第三步：执行操作，本地浏览器打开 <a href="http://localhost:4000/">http://localhost:4000/</a> 预览 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>上传到github， 通过 <a href="https://long-drong.github.io/">https://Long-drong.github.io/</a> 可查看博客。 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Test</tag>
+        <tag>使用说明</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/12/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
