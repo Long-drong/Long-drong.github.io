@@ -10,6 +10,27 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello hexo</title>
+    <url>/2024/12/22/hello-hexo/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Start</title>
     <url>/2024/12/13/Start/</url>
     <content><![CDATA[<h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><h4 id="Install-Git"><a href="#Install-Git" class="headerlink" title="Install Git"></a>Install Git</h4><p>Windows: Download &amp; install <a href="!https://git-scm.com/downloads/win">git</a>.<br>Mac: Install it with Homebrew, MacPorts or installer.</p>
@@ -44,24 +65,19 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello hexo</title>
-    <url>/2024/12/22/hello-hexo/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>双边滤波器</title>
+    <url>/2024/12/22/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="双边滤波器"><a href="#双边滤波器" class="headerlink" title="双边滤波器"></a>双边滤波器</h2><p>双边滤波（Bilateral Filtering）是一种非线性的图像处理方法，主要用于图像的平滑同时保持边缘清晰。与传统的低通滤波器（如均值滤波或高斯滤波）不同，双边滤波不仅考虑了空间上的邻近性，还考虑了像素值的相似性，这使得它能够在去除噪声的同时较好地保留图像的边界和细节。</p>
+<p>双边滤波可以这样理解，在高斯滤波的基础上添加了像素值的权重项，既要考虑距离因素，也要考虑像素值差异的影响。将像素值权重表示为，空间距离权重表示为。  </p>
+<p>$$<br> Stashed changes<br>G_{p i x&#x3D;} \exp \left(-\frac{\left|I_{p}-I_{q}\right|^{2}}{2 \sigma_{p i x}^{2}}\right)<br>$$</p>
+<p>$$<br>G_{d i s&#x3D;} \exp \left(-\frac{\left|p-q\right|^{2}}{2 \sigma_{d i s }^{2}}\right)<br>$$</p>
+<p>BF滤波器可表示为：<br><img src="https://s2.loli.net/2024/10/06/zoGkt8dVaWBDPNx.png" alt="gongshi2.png"></p>
+<p>其中Wq 为滤波窗口内每个像素值的权重和，用于权重的归一化；<br><img src="https://s2.loli.net/2024/10/06/HQOjSIKqzBG5h1F.png" alt="gongshi3.png"></p>
+<p>实现过程:<br>1.确定滤波窗口：选择一个中心像素，并确定其邻域范围，这个范围通常是一个 N×N的窗口。<br>2.计算权重：对于窗口内的每一个像素，计算其空间高斯权重和值高斯权重，并将两者相乘得到最终的权重。<br>3.归一化权重：为了保证滤波后像素值的有效性，需要对所有权重进行归一化处理。<br>4.应用滤波：将窗口内所有像素值与其对应的权重相乘，然后求和，最后除以归一化因子 ，得到中心像素的新值。<br>5.遍历整个图像：重复步骤1至4，直到所有像素都被处理完毕。  </p>
+<p>双边滤波由于其复杂性，在实际应用中可能会比简单的滤波器运行得更慢，但它能更好地保持图像的结构和细节。在计算机视觉和图像处理领域，双边滤波被广泛应用于去噪、边缘保护、纹理分离等任务。  </p>
 ]]></content>
       <tags>
-        <tag>hexo</tag>
+        <tag>图像处理</tag>
       </tags>
   </entry>
   <entry>
@@ -95,16 +111,33 @@
       </tags>
   </entry>
   <entry>
-    <title>双边滤波器</title>
-    <url>/2024/12/22/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/</url>
-    <content><![CDATA[<h2 id="双边滤波器"><a href="#双边滤波器" class="headerlink" title="双边滤波器"></a>双边滤波器</h2><p>双边滤波（Bilateral Filtering）是一种非线性的图像处理方法，主要用于图像的平滑同时保持边缘清晰。与传统的低通滤波器（如均值滤波或高斯滤波）不同，双边滤波不仅考虑了空间上的邻近性，还考虑了像素值的相似性，这使得它能够在去除噪声的同时较好地保留图像的边界和细节。</p>
-<p>双边滤波可以这样理解，在高斯滤波的基础上添加了像素值的权重项，既要考虑距离因素，也要考虑像素值差异的影响。将像素值权重表示为，空间距离权重表示为。  </p>
-<p>$$<br> Stashed changes<br>G_{p i x&#x3D;} \exp \left(-\frac{\left|I_{p}-I_{q}\right|^{2}}{2 \sigma_{p i x}^{2}}\right)<br>$$</p>
-<p>$$<br>G_{d i s&#x3D;} \exp \left(-\frac{\left|p-q\right|^{2}}{2 \sigma_{d i s }^{2}}\right)<br>$$</p>
-<p>BF滤波器可表示为：<br><img src="https://s2.loli.net/2024/10/06/zoGkt8dVaWBDPNx.png" alt="gongshi2.png"></p>
-<p>其中Wq 为滤波窗口内每个像素值的权重和，用于权重的归一化；<br><img src="https://s2.loli.net/2024/10/06/HQOjSIKqzBG5h1F.png" alt="gongshi3.png"></p>
-<p>实现过程:<br>1.确定滤波窗口：选择一个中心像素，并确定其邻域范围，这个范围通常是一个 N×N的窗口。<br>2.计算权重：对于窗口内的每一个像素，计算其空间高斯权重和值高斯权重，并将两者相乘得到最终的权重。<br>3.归一化权重：为了保证滤波后像素值的有效性，需要对所有权重进行归一化处理。<br>4.应用滤波：将窗口内所有像素值与其对应的权重相乘，然后求和，最后除以归一化因子 ，得到中心像素的新值。<br>5.遍历整个图像：重复步骤1至4，直到所有像素都被处理完毕。  </p>
-<p>双边滤波由于其复杂性，在实际应用中可能会比简单的滤波器运行得更慢，但它能更好地保持图像的结构和细节。在计算机视觉和图像处理领域，双边滤波被广泛应用于去噪、边缘保护、纹理分离等任务。  </p>
+    <title>空域滤波算法</title>
+    <url>/2024/12/22/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%A9%BA%E5%9F%9F%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="空域滤波算法"><a href="#空域滤波算法" class="headerlink" title="空域滤波算法"></a>空域滤波算法</h2><p>空域滤波算法是图像处理中用于去除噪声的一类方法，它们直接在图像的像素坐标系中操作，通过分析图像中像素与周围像素的关系来去除噪声。以下是几种常见的空域滤波算法的原理描述及其在MATLAB中的实现代码。</p>
+<h3 id="1-均值滤波"><a href="#1-均值滤波" class="headerlink" title="1. 均值滤波"></a>1. 均值滤波</h3><p>均值滤波是一种简单的线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值的平均值来实现降噪。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;average&#x27;, [5 5]); % 创建5x5的均值滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+<h3 id="2-中值滤波"><a href="#2-中值滤波" class="headerlink" title="2. 中值滤波"></a>2. 中值滤波</h3><p>中值滤波是一种非线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值排序后的中值来实现降噪。这种方法对椒盐噪声特别有效。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">filtered_img = medfilt2(img); % 应用中值滤波</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-高斯滤波"><a href="#3-高斯滤波" class="headerlink" title="3. 高斯滤波"></a>3. 高斯滤波</h3><p>高斯滤波通过应用二维高斯函数作为滤波器核来平滑图像，适合去除高斯噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的高斯滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+<h3 id="4-双边滤波"><a href="#4-双边滤波" class="headerlink" title="4. 双边滤波"></a>4. 双边滤波</h3><p>双边滤波是一种非线性空间滤波方法，它不仅考虑像素点的空间邻近性，还考虑像素值的相似性。这种滤波器在保持边缘清晰的同时去除噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的空间滤波器核</span><br><span class="line">filtered_img = imfilter(img, h, &#x27;replicate&#x27;); % 应用双边滤波</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图像纹理基础知识</title>
+    <url>/2024/12/22/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E7%BA%B9%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>纹理是物体表面固有的一种特性，所以图像中的区域常体现出纹理性质。纹理可以认为是灰度（颜色）在空间以一定的形式变化而产生的团（模式）。纹理与尺度有密切的关系，一般仅在一定的尺度上可以观察到，对纹理的分析需要在恰当的尺度上进行。纹理还具有区域性质的特点，通常被看做对局部区域中像素之间关系的一种度量，对于单个像素来说讨论纹理是没有意义的。一把情况下目前常用的纹理分析方法中有以下三种：统计法，结构法，频谱法。</p>
+<h3 id="1-纹理描述的统计方法"><a href="#1-纹理描述的统计方法" class="headerlink" title="1. 纹理描述的统计方法"></a>1. 纹理描述的统计方法</h3><p>最简单的统计法借助于灰度直方图的矩来描述纹理，比如直方图的二阶矩是灰度对比度的度量，可以用于描述直方图的相对平滑程度；三阶矩表示了直方图的偏度；四阶矩表示的直方图的相对平坦型等等。但是仅借助灰度直方图的矩来描述纹理没能利用像素相对位置的空间信息，为了利用这些信息，我们可以建立区域的灰度共生矩阵。</p>
+<h4 id="1-1-灰度共生矩阵"><a href="#1-1-灰度共生矩阵" class="headerlink" title="1.1 灰度共生矩阵"></a>1.1 灰度共生矩阵</h4><p>设 S 为目标区域 R 中具有特定空间联系（可由位置算子确定）的象素对的集合，共生矩阵 P 中的元素（ #代表数量）</p>
+<p>分子：具有某种空间关系、灰度值分别为g1和g2的象素对的个数。分母：象素对的总和个数<br>上面提到了一个概念，位置算子，位置算子其实就是象素对的特定空间联系，比如向右1个象素和向下1个象素。共生矩阵的大小一般为k x k矩阵（k为所求图像的灰度级数）。举个例子如下：<br><img src="https://s2.loli.net/2024/10/27/HfkV538KWRPDETu.png" alt="12.png"><br>上图a为3个灰度级的图象（ g1 &#x3D; 0， g2 &#x3D; 1， g3 &#x3D; 2），位置算子为：向右1个象素和向下1个象素，b图按照位置算子计算得到的灰度共生矩阵，c图为共生矩阵归一化的结果。然而，为了更好的对图像分析，一般常用由共生矩阵产生的纹理描述符，比如：二阶矩，对应图像的均匀性或平滑性；熵，给出图像内容随机性的度量；对比度，反应紧邻像素间的反差等。</p>
+<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><ol>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzNDM2OTMzOQ==&chksm=e8f63ec3df81b7d588d7eabd04bcad1aec840449c4eb265a4e0068b00496f6cbf62295bcbdc3&idx=1&mid=2247485079&scene=21&sn=ca11aeccee0a4856aae00a1bdf1502a0#wechat_redirect">纹理图像分析的基本方法简述</a></li>
+</ol>
 ]]></content>
       <tags>
         <tag>图像处理</tag>
@@ -129,39 +162,6 @@
 <p>结构示意图如下：</p>
 <p><img src="https://s2.loli.net/2024/10/06/53bfFpQYrWEetkH.png" alt="Image_denoise_class.png">
    </p>
-]]></content>
-      <tags>
-        <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图像纹理基础知识</title>
-    <url>/2024/12/22/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E7%BA%B9%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>纹理是物体表面固有的一种特性，所以图像中的区域常体现出纹理性质。纹理可以认为是灰度（颜色）在空间以一定的形式变化而产生的团（模式）。纹理与尺度有密切的关系，一般仅在一定的尺度上可以观察到，对纹理的分析需要在恰当的尺度上进行。纹理还具有区域性质的特点，通常被看做对局部区域中像素之间关系的一种度量，对于单个像素来说讨论纹理是没有意义的。一把情况下目前常用的纹理分析方法中有以下三种：统计法，结构法，频谱法。</p>
-<h3 id="1-纹理描述的统计方法"><a href="#1-纹理描述的统计方法" class="headerlink" title="1. 纹理描述的统计方法"></a>1. 纹理描述的统计方法</h3><p>最简单的统计法借助于灰度直方图的矩来描述纹理，比如直方图的二阶矩是灰度对比度的度量，可以用于描述直方图的相对平滑程度；三阶矩表示了直方图的偏度；四阶矩表示的直方图的相对平坦型等等。但是仅借助灰度直方图的矩来描述纹理没能利用像素相对位置的空间信息，为了利用这些信息，我们可以建立区域的灰度共生矩阵。</p>
-<h4 id="1-1-灰度共生矩阵"><a href="#1-1-灰度共生矩阵" class="headerlink" title="1.1 灰度共生矩阵"></a>1.1 灰度共生矩阵</h4><p>设 S 为目标区域 R 中具有特定空间联系（可由位置算子确定）的象素对的集合，共生矩阵 P 中的元素（ #代表数量）</p>
-<p>分子：具有某种空间关系、灰度值分别为g1和g2的象素对的个数。分母：象素对的总和个数<br>上面提到了一个概念，位置算子，位置算子其实就是象素对的特定空间联系，比如向右1个象素和向下1个象素。共生矩阵的大小一般为k x k矩阵（k为所求图像的灰度级数）。举个例子如下：<br><img src="https://s2.loli.net/2024/10/27/HfkV538KWRPDETu.png" alt="12.png"><br>上图a为3个灰度级的图象（ g1 &#x3D; 0， g2 &#x3D; 1， g3 &#x3D; 2），位置算子为：向右1个象素和向下1个象素，b图按照位置算子计算得到的灰度共生矩阵，c图为共生矩阵归一化的结果。然而，为了更好的对图像分析，一般常用由共生矩阵产生的纹理描述符，比如：二阶矩，对应图像的均匀性或平滑性；熵，给出图像内容随机性的度量；对比度，反应紧邻像素间的反差等。</p>
-<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><ol>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzNDM2OTMzOQ==&chksm=e8f63ec3df81b7d588d7eabd04bcad1aec840449c4eb265a4e0068b00496f6cbf62295bcbdc3&idx=1&mid=2247485079&scene=21&sn=ca11aeccee0a4856aae00a1bdf1502a0#wechat_redirect">纹理图像分析的基本方法简述</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>图像处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>空域滤波算法</title>
-    <url>/2024/12/22/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%A9%BA%E5%9F%9F%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="空域滤波算法"><a href="#空域滤波算法" class="headerlink" title="空域滤波算法"></a>空域滤波算法</h2><p>空域滤波算法是图像处理中用于去除噪声的一类方法，它们直接在图像的像素坐标系中操作，通过分析图像中像素与周围像素的关系来去除噪声。以下是几种常见的空域滤波算法的原理描述及其在MATLAB中的实现代码。</p>
-<h3 id="1-均值滤波"><a href="#1-均值滤波" class="headerlink" title="1. 均值滤波"></a>1. 均值滤波</h3><p>均值滤波是一种简单的线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值的平均值来实现降噪。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;average&#x27;, [5 5]); % 创建5x5的均值滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
-<h3 id="2-中值滤波"><a href="#2-中值滤波" class="headerlink" title="2. 中值滤波"></a>2. 中值滤波</h3><p>中值滤波是一种非线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值排序后的中值来实现降噪。这种方法对椒盐噪声特别有效。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">filtered_img = medfilt2(img); % 应用中值滤波</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-高斯滤波"><a href="#3-高斯滤波" class="headerlink" title="3. 高斯滤波"></a>3. 高斯滤波</h3><p>高斯滤波通过应用二维高斯函数作为滤波器核来平滑图像，适合去除高斯噪声。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的高斯滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
-<h3 id="4-双边滤波"><a href="#4-双边滤波" class="headerlink" title="4. 双边滤波"></a>4. 双边滤波</h3><p>双边滤波是一种非线性空间滤波方法，它不仅考虑像素点的空间邻近性，还考虑像素值的相似性。这种滤波器在保持边缘清晰的同时去除噪声。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的空间滤波器核</span><br><span class="line">filtered_img = imfilter(img, h, &#x27;replicate&#x27;); % 应用双边滤波</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>图像处理</tag>
