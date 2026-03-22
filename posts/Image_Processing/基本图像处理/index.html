@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/long.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图像处理的基本分类图像去噪、修复、视频超分辨率、滤镜、后聚集、增强，Demosaic，HDR，NR、SR、分割、识别等图像增强相关算法。    图像去噪：去除图像中的噪声（如随机像素值变化），以提高图像质量。 图像修复：恢复受损或缺失的部分，使图像看起来完整且自然。   视频超分辨率：将低分辨率视频转换为高分辨率视频，以提高清晰度和细节水平。   滤镜：对图像进行各种视觉效果处理，例如色彩校正、模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本图像处理">
+<meta property="og:url" content="https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="🌈青龙小栈">
+<meta property="og:description" content="图像处理的基本分类图像去噪、修复、视频超分辨率、滤镜、后聚集、增强，Demosaic，HDR，NR、SR、分割、识别等图像增强相关算法。    图像去噪：去除图像中的噪声（如随机像素值变化），以提高图像质量。 图像修复：恢复受损或缺失的部分，使图像看起来完整且自然。   视频超分辨率：将低分辨率视频转换为高分辨率视频，以提高清晰度和细节水平。   滤镜：对图像进行各种视觉效果处理，例如色彩校正、模">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-22T11:14:02.973Z">
+<meta property="article:author" content="Qing Long">
+<meta property="article:tag" content="Image_Processing">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/","path":"posts/Image_Processing/基本图像处理/","title":"基本图像处理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基本图像处理 | 🌈青龙小栈</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">🌈青龙小栈</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">图像处理的基本分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E5%9F%9F%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">空域滤波算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2"><span class="nav-number">2.1.</span> <span class="nav-text">1. 均值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2"><span class="nav-number">2.2.</span> <span class="nav-text">2. 中值滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2"><span class="nav-number">2.3.</span> <span class="nav-text">3. 高斯滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2"><span class="nav-number">2.4.</span> <span class="nav-text">4. 双边滤波</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qing Long"
+      src="/images/avs.png">
+  <p class="site-author-name" itemprop="name">Qing Long</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基本图像处理 | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基本图像处理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-22 11:14:02" itemprop="dateModified" datetime="2026-03-22T11:14:02+00:00">2026-03-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="图像处理的基本分类"><a href="#图像处理的基本分类" class="headerlink" title="图像处理的基本分类"></a>图像处理的基本分类</h2><p>图像去噪、修复、视频超分辨率、滤镜、后聚集、增强，Demosaic，HDR，NR、SR、分割、识别等图像增强相关算法。   </p>
+<p>图像去噪：去除图像中的噪声（如随机像素值变化），以提高图像质量。 <br>图像修复：恢复受损或缺失的部分，使图像看起来完整且自然。  </p>
+<p>视频超分辨率：将低分辨率视频转换为高分辨率视频，以提高清晰度和细节水平。  </p>
+<p>滤镜：对图像进行各种视觉效果处理，例如色彩校正、模糊、锐化等。  </p>
+<p>后聚焦：模拟相机重新对焦的效果，允许用户选择图像中的焦点区域。  </p>
+<p>增强：改善图像的整体外观，使其更具吸引力或更容易阅读。  </p>
+<p>Demosaicing：用于从单色传感器数据生成全彩色图像的过程。  </p>
+<p>HDR（高动态范围）：合并多个曝光图像以创建包含宽广亮度范围的单一图像。  </p>
+<p>NR（噪声减少）：降低图像中的噪声，以获得更平滑的结果。  </p>
+<p>SR（超级分辨率）：提高图像分辨率，增加细节和清晰度。  </p>
+<p>分割：将图像分割成不同的对象或区域，以便于分析或编辑。  </p>
+<p>识别：自动检测和识别图像中的物体、人物或其他特征。</p>
+<h2 id="空域滤波算法"><a href="#空域滤波算法" class="headerlink" title="空域滤波算法"></a>空域滤波算法</h2><p>空域滤波算法是图像处理中用于去除噪声的一类方法，它们直接在图像的像素坐标系中操作，通过分析图像中像素与周围像素的关系来去除噪声。以下是几种常见的空域滤波算法的原理描述及其在MATLAB中的实现代码。</p>
+<h3 id="1-均值滤波"><a href="#1-均值滤波" class="headerlink" title="1. 均值滤波"></a>1. 均值滤波</h3><p>均值滤波是一种简单的线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值的平均值来实现降噪。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;average&#x27;, [5 5]); % 创建5x5的均值滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-中值滤波"><a href="#2-中值滤波" class="headerlink" title="2. 中值滤波"></a>2. 中值滤波</h3><p>中值滤波是一种非线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值排序后的中值来实现降噪。这种方法对椒盐噪声特别有效。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">filtered_img = medfilt2(img); % 应用中值滤波</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-高斯滤波"><a href="#3-高斯滤波" class="headerlink" title="3. 高斯滤波"></a>3. 高斯滤波</h3><p>高斯滤波通过应用二维高斯函数作为滤波器核来平滑图像，适合去除高斯噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的高斯滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-双边滤波"><a href="#4-双边滤波" class="headerlink" title="4. 双边滤波"></a>4. 双边滤波</h3><p>双边滤波是一种非线性空间滤波方法，它不仅考虑像素点的空间邻近性，还考虑像素值的相似性。这种滤波器在保持边缘清晰的同时去除噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的空间滤波器核</span><br><span class="line">filtered_img = imfilter(img, h, &#x27;replicate&#x27;); % 应用双边滤波</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Image-Processing/" rel="tag"><i class="fa fa-tag"></i> Image_Processing</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/" rel="prev" title="电磁波谱">
+                  <i class="fa fa-angle-left"></i> 电磁波谱
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/Deep_Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%8E%BB%E5%99%AA%E8%AE%A1%E5%88%92/" rel="next" title="深度学习去噪计划">
+                  深度学习去噪计划 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qing Long</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
