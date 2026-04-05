@@ -167,18 +167,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-03-30 06:53:07" itemprop="dateCreated datePublished" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
+      <time title="创建时间：2026-04-05 05:24:19" itemprop="dateCreated datePublished" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -258,6 +258,90 @@
           <h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。<br>$ npm install -g hexo-cli</p>
 <h3 id="进阶安装和使用"><a href="#进阶安装和使用" class="headerlink" title="进阶安装和使用"></a>进阶安装和使用</h3><p>对于熟悉 npm 的进阶用户，可以仅局部安装 hexo 包。<br> $ npm install hexo</p>
 <p>建议永远安装 最新版本 的 Hexo，以及 推荐的 Node.js 版本。<br><img src="/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/img_01.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/gongshi2.png/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/gongshi2.png/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/" class="post-title-link" itemprop="url">双边滤波器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-05 05:24:19" itemprop="dateCreated datePublished" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/gongshi2-png/" itemprop="url" rel="index"><span itemprop="name">gongshi2.png</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="双边滤波器"><a href="#双边滤波器" class="headerlink" title="双边滤波器"></a>双边滤波器</h1><h2 id="双边滤波器-1"><a href="#双边滤波器-1" class="headerlink" title="双边滤波器"></a>双边滤波器</h2><p>双边滤波（Bilateral Filtering）是一种非线性的图像处理方法，主要用于图像的平滑同时保持边缘清晰。与传统的低通滤波器（如均值滤波或高斯滤波）不同，双边滤波不仅考虑了空间上的邻近性，还考虑了像素值的相似性，这使得它能够在去除噪声的同时较好地保留图像的边界和细节。</p>
+<p>双边滤波可以这样理解，在高斯滤波的基础上添加了像素值的权重项，既要考虑距离因素，也要考虑像素值差异的影响。将像素值权重表示为，空间距离权重表示为。</p>
+<p>$$G_{p i x&#x3D;} \exp \left(-\frac{\left|I_{p}-I_{q}\right|^{2}}{2 \sigma_{p i x}^{2}}\right)$$$$G_{d i s&#x3D;} \exp \left(-\frac{\left|p-q\right|^{2}}{2 \sigma_{d i s }^{2}}\right)$$</p>
+<p>BF滤波器可表示为：<br>!(images&#x2F;img_1.png)</p>
+<p>其中Wq 为滤波窗口内每个像素值的权重和，用于权重的归一化； <img src="/images/img_2.png" alt="gongshi3.png"></p>
+<p>实现过程:<br>1.确定滤波窗口：选择一个中心像素，并确定其邻域范围，这个范围通常是一个 N×N的窗口。<br>2.计算权重：对于窗口内的每一个像素，计算其空间高斯权重和值高斯权重，并将两者相乘得到最终的权重。<br>3.归一化权重：为了保证滤波后像素值的有效性，需要对所有权重进行归一化处理。<br>4.应用滤波：将窗口内所有像素值与其对应的权重相乘，然后求和，最后除以归一化因子 ，得到中心像素的新值。<br>5.遍历整个图像：重复步骤1至4，直到所有像素都被处理完毕。</p>
+<p>双边滤波由于其复杂性，在实际应用中可能会比简单的滤波器运行得更慢，但它能更好地保持图像的结构和细节。在计算机视觉和图像处理领域，双边滤波被广泛应用于去噪、边缘保护、纹理分离等任务。</p>
 
       
     </div>
@@ -313,7 +397,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-03-30 06:53:07" itemprop="dateCreated datePublished" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
+      <time title="创建时间：2026-04-05 05:24:19" itemprop="dateCreated datePublished" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,84 +420,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>膨胀和腐蚀运算的问题：边缘形状发生了变化，膨胀发生了扩张，腐蚀发生了收缩 目标物体变形，对识别时的特征提取会造成影响解决方法：开操作:<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_1.png">B对A的开操作就是先B对A腐蚀，紧接着用B对结果进行膨胀<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_2.png">先腐蚀再膨胀的结果并不是恢复原状，而是会消除黏连部分，同时不影响其他部分的形状. 平滑物体的轮廓，断开较窄的狭颈并消除较细的突出。<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_3.png"><img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_4.png">先膨胀再腐蚀的结果并不是恢复原状，而是填充小的裂缝、孔隙，且不影响形状. 平滑物体的轮廓，弥合较窄的间断和细小的沟壑，消除小的孔洞，填充轮廓中的断痕。 效果：<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_5.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/ISP%E5%88%9D%E6%8E%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Image_Processing/ISP%E5%88%9D%E6%8E%A2/" class="post-title-link" itemprop="url">ISP初探</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-03-30 06:53:07" itemprop="dateCreated datePublished" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>凡是在图像领域工作的人，都会经常听到ISP (Image Signal Process, 图像信号处理)，知道ISP对图像质量非常重要。比如华为和小米竞争手机拍照和录像效果，主要的竞争领域就是ISP；做AI (Artificial Intelligence, 人工智能) 的人也知道，如果ISP不给力，后续的AI处理效果会受到影响。<img src="/posts/Image_Processing/ISP%E5%88%9D%E6%8E%A2/img_1.png"></p>
 
       
     </div>
@@ -469,7 +475,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-03-30 06:53:07" itemprop="dateCreated datePublished" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
+      <time title="创建时间：2026-04-05 05:24:19" itemprop="dateCreated datePublished" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -492,6 +498,84 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><br>1. 边缘判别插值简介在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png">边缘判别方法在基础插值方法的基础上不仅考虑了空间相关性和光谱相关性，还考虑了边缘效应。边缘判别法通过指定策略判断边缘的方向去控制G通道插值时的邻域采样选择使得插值沿着边缘方向进行，避免了边缘两侧成分的混叠。主要的插值策略依靠双线性插值和色差恒定法，对于伪彩色、拉链效应有着明显的改善。2. 边缘判别插值算法详解2.1 梯度矫正线性插值法参考论文：Malvar-He-Cutler Linear Image Demosaicking基础的色差和色比方法将G通道看作亮度成分， R、B通道看成色度成分。由于G通道的采样是R、B通道的两倍，所以G通道能代表图像中大部分高频信息。R、B通道作为色度成分变化比较缓慢，因此插值后的G分量图像能够更准确地反映图像中的轮廓。通常先在双线性插值的基础上对G通道进行重建，然后再利用色差或者色比恒定的假设重建R、B通道。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_2.png">以一个R像素位置为例（图中标记+号的位置），可以看到当计算这个位置G像素的插值时，色差和色比法会丢弃这个位置的R值仅对邻域的G值做平均，但很明显它是有价值的信息。在梯度矫正线性插值法中，引入了R这一点的观测信息控制边缘处的叠加分量以进行梯度修正，将R值与R邻域的双线性插值估计进行比较。如果它与估计值不同，这可能意味着在这个像素处有一个剧烈的亮度变化（即处于边缘位置）。具体来说，作者提出了一组矫正计算公式，假设在一个像素点上已知A通道需要插值C通道，那么插值结果为：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_3.png">可以看到C通道的插值结果不仅由C通道邻域的加权平均表示，还由A通道在该点的边缘响应的增益分量控制，该分量为A通道与水平和垂直方向最近的4个A通道的差乘一个增益系数表示。类似于对于边缘部分的插值结果进行了一个锐化的过程。设定三通道对应的增益系数为α、β、r，作者通过kodak数据集进行大量测试得到一组经验性系数α&#x3D;0.5、β&#x3D;0.625、r&#x3D;0.75，最终表示为各通道之间的5X5插值滤波核如下：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_4.png">目前大家熟知的图像画质评测软件Imatest中，demosaic算法就是用的这篇论文。2.2 Adam-Hamilton梯度自适应插值参考论文：Self-similarity driven color demosaicking从2.2开始会介绍严格意义上通过边缘方向进行插值的方法，在介绍亚当-汉密尔顿插值算法前，首先介绍一阶微分和二阶微分的边缘插值。一阶微分边缘敏感性插值算法通过亮度分量(G通道)确定各像素位置可能的边缘方向，通过计算出水平和竖直方向的梯度判断插值方向，具体流程如下：(1) 在G通道缺失值的像素位置（i，j）处用G通道邻域像素计算水平和垂直方向梯度：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_5.png">(2) 定义阈值T，表示水平和垂直梯度分量的均值，对G通道进行插值：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_6.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/ISP%E5%88%9D%E6%8E%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/ISP%E5%88%9D%E6%8E%A2/" class="post-title-link" itemprop="url">ISP初探</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-05 05:24:19" itemprop="dateCreated datePublished" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>凡是在图像领域工作的人，都会经常听到ISP (Image Signal Process, 图像信号处理)，知道ISP对图像质量非常重要。比如华为和小米竞争手机拍照和录像效果，主要的竞争领域就是ISP；做AI (Artificial Intelligence, 人工智能) 的人也知道，如果ISP不给力，后续的AI处理效果会受到影响。<img src="/posts/Image_Processing/ISP%E5%88%9D%E6%8E%A2/img_1.png"></p>
 
       
     </div>
@@ -547,7 +631,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-03-30 06:53:07" itemprop="dateCreated datePublished" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
+      <time title="创建时间：2026-04-05 05:24:19" itemprop="dateCreated datePublished" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -632,7 +716,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-30 06:53:07" itemprop="dateModified" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
+      <time title="修改时间：2026-04-05 05:24:19" itemprop="dateModified" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -655,205 +739,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h2><p>这是一个记录个人学习笔记的内容。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">基本图像处理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-30 06:53:07" itemprop="dateModified" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="图像处理的基本分类"><a href="#图像处理的基本分类" class="headerlink" title="图像处理的基本分类"></a>图像处理的基本分类</h2><p>图像去噪、修复、视频超分辨率、滤镜、后聚集、增强，Demosaic，HDR，NR、SR、分割、识别等图像增强相关算法。   </p>
-<p>图像去噪：去除图像中的噪声（如随机像素值变化），以提高图像质量。 <br>图像修复：恢复受损或缺失的部分，使图像看起来完整且自然。  </p>
-<p>视频超分辨率：将低分辨率视频转换为高分辨率视频，以提高清晰度和细节水平。  </p>
-<p>滤镜：对图像进行各种视觉效果处理，例如色彩校正、模糊、锐化等。  </p>
-<p>后聚焦：模拟相机重新对焦的效果，允许用户选择图像中的焦点区域。  </p>
-<p>增强：改善图像的整体外观，使其更具吸引力或更容易阅读。  </p>
-<p>Demosaicing：用于从单色传感器数据生成全彩色图像的过程。  </p>
-<p>HDR（高动态范围）：合并多个曝光图像以创建包含宽广亮度范围的单一图像。  </p>
-<p>NR（噪声减少）：降低图像中的噪声，以获得更平滑的结果。  </p>
-<p>SR（超级分辨率）：提高图像分辨率，增加细节和清晰度。  </p>
-<p>分割：将图像分割成不同的对象或区域，以便于分析或编辑。  </p>
-<p>识别：自动检测和识别图像中的物体、人物或其他特征。</p>
-<h2 id="空域滤波算法"><a href="#空域滤波算法" class="headerlink" title="空域滤波算法"></a>空域滤波算法</h2><p>空域滤波算法是图像处理中用于去除噪声的一类方法，它们直接在图像的像素坐标系中操作，通过分析图像中像素与周围像素的关系来去除噪声。以下是几种常见的空域滤波算法的原理描述及其在MATLAB中的实现代码。</p>
-<h3 id="1-均值滤波"><a href="#1-均值滤波" class="headerlink" title="1. 均值滤波"></a>1. 均值滤波</h3><p>均值滤波是一种简单的线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值的平均值来实现降噪。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;average&#x27;, [5 5]); % 创建5x5的均值滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-中值滤波"><a href="#2-中值滤波" class="headerlink" title="2. 中值滤波"></a>2. 中值滤波</h3><p>中值滤波是一种非线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值排序后的中值来实现降噪。这种方法对椒盐噪声特别有效。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">filtered_img = medfilt2(img); % 应用中值滤波</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-高斯滤波"><a href="#3-高斯滤波" class="headerlink" title="3. 高斯滤波"></a>3. 高斯滤波</h3><p>高斯滤波通过应用二维高斯函数作为滤波器核来平滑图像，适合去除高斯噪声。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的高斯滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-双边滤波"><a href="#4-双边滤波" class="headerlink" title="4. 双边滤波"></a>4. 双边滤波</h3><p>双边滤波是一种非线性空间滤波方法，它不仅考虑像素点的空间邻近性，还考虑像素值的相似性。这种滤波器在保持边缘清晰的同时去除噪声。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的空间滤波器核</span><br><span class="line">filtered_img = imfilter(img, h, &#x27;replicate&#x27;); % 应用双边滤波</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/" class="post-title-link" itemprop="url">电磁波谱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-30 06:53:07" itemprop="dateModified" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>以电磁波谱辐射为基础的图像我们最为熟悉，特别是X射线和可见光谱波段的图像。电磁波可以定义为以各种波长传播的正弦波，或是无质量的粒子流，每个粒子以波的形式传播并以光的速度运动。每个无质量的粒子包含一定的能量(或一束能量)，每束能量称为一个光子。如果光谱波段根据光子能量进行分组，则可以得到下图所示的光谱，其范围从伽马射线(最高能量10<sup>6</sup> )到无线电波(最低能量10<sup>-9</sup>）)。</p>
-<p><img src="/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/img_01.png" alt="电磁波谱示意图"></p>
-<h3 id="伽马射线"><a href="#伽马射线" class="headerlink" title="伽马射线"></a>伽马射线</h3><p>伽马射线成像的主要用途包括核医学和天文观测。在核医学中，这种方法将放射性同位素注射到人体内，当这种物质衰变时，就会放射出伽马射线，然后用伽马射线检测仪收集到的放射线来产生图像。</p>
-<h3 id="X射线成像"><a href="#X射线成像" class="headerlink" title="X射线成像"></a>X射线成像</h3><p>X射线最早用于成像的电磁辐射源之一。最熟悉的X射线应用是医学诊断，但是X射线还被广泛用于工业和其他领域，图天文学。用于医学和工业成像的X射线是由X射线管产生的，X射线管是带有阴极和阳极的真空管。阴极加热释放自由电子，这些电子以很高的速度向阳极流动，当电子撞击一个原子核时，能量被释放并形成X射线辐射。</p>
-<h3 id="紫外波段成像"><a href="#紫外波段成像" class="headerlink" title="紫外波段成像"></a>紫外波段成像</h3><p>紫外“光”的应用多种多样，包括平板印刷术、工业检测、显微镜方法、激光、生物成像和天文观测等。</p>
-<h3 id="可见光及红外波段成像"><a href="#可见光及红外波段成像" class="headerlink" title="可见光及红外波段成像"></a>可见光及红外波段成像</h3><p>由于电磁波谱可见光波段在所有波段中使我们最熟悉的，因此，这一波段的成像应用远远超过其他波段应用领域。红外波段常与可见光相结合成像。</p>
-<h3 id="微波波段成像"><a href="#微波波段成像" class="headerlink" title="微波波段成像"></a>微波波段成像</h3><p>微波波段成像的典型应用就是雷达。成像雷达的独特之处是在任何范围和时间内，不考虑空气、周围光照条件的收集数据能力。某些雷达可以穿透云层，在一定条件下还可以穿透植被、冰层和极其干燥的沙漠。成像雷达的工作原理就像一台闪光照相机，它自己提供照明（微波脉冲）去照亮地面上的一个区域，并得到一幅快照图像。与照相机镜头不同，雷达使用天线和数字计算机记录图像。在雷达图像中，能看到的只是反射到雷达天线的微波能量。</p>
-<h3 id="无线电波段成像"><a href="#无线电波段成像" class="headerlink" title="无线电波段成像"></a>无线电波段成像</h3><p>无线电波段成像主要用于医学和天文学。在医学中，无线电波用于核磁共振成像（MRI）。该技术是把病人放在强磁场中，并让无线电短脉冲通过病人的身体，每个脉冲将导致病人的组织发射的无线电响应脉冲，这些信号发生的位置和强度由计算机确定，从而产生病人的一幅二维剖面图像。</p>
 
       
     </div>
@@ -916,7 +801,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-30 06:53:07" itemprop="dateModified" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
+      <time title="修改时间：2026-04-05 05:24:19" itemprop="dateModified" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1139,7 +1024,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Others/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%94/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -1157,7 +1042,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Others/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%94/" class="post-title-link" itemprop="url">日常随笔1</a>
+          <a href="/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">基本图像处理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1175,7 +1060,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-30 06:53:07" itemprop="dateModified" datetime="2026-03-30T06:53:07+00:00">2026-03-30</time>
+      <time title="修改时间：2026-04-05 05:24:19" itemprop="dateModified" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1183,7 +1068,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
         </span>
     </span>
 
@@ -1197,7 +1082,121 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>日常随笔1</p>
+          <h2 id="图像处理的基本分类"><a href="#图像处理的基本分类" class="headerlink" title="图像处理的基本分类"></a>图像处理的基本分类</h2><p>图像去噪、修复、视频超分辨率、滤镜、后聚集、增强，Demosaic，HDR，NR、SR、分割、识别等图像增强相关算法。   </p>
+<p>图像去噪：去除图像中的噪声（如随机像素值变化），以提高图像质量。 <br>图像修复：恢复受损或缺失的部分，使图像看起来完整且自然。  </p>
+<p>视频超分辨率：将低分辨率视频转换为高分辨率视频，以提高清晰度和细节水平。  </p>
+<p>滤镜：对图像进行各种视觉效果处理，例如色彩校正、模糊、锐化等。  </p>
+<p>后聚焦：模拟相机重新对焦的效果，允许用户选择图像中的焦点区域。  </p>
+<p>增强：改善图像的整体外观，使其更具吸引力或更容易阅读。  </p>
+<p>Demosaicing：用于从单色传感器数据生成全彩色图像的过程。  </p>
+<p>HDR（高动态范围）：合并多个曝光图像以创建包含宽广亮度范围的单一图像。  </p>
+<p>NR（噪声减少）：降低图像中的噪声，以获得更平滑的结果。  </p>
+<p>SR（超级分辨率）：提高图像分辨率，增加细节和清晰度。  </p>
+<p>分割：将图像分割成不同的对象或区域，以便于分析或编辑。  </p>
+<p>识别：自动检测和识别图像中的物体、人物或其他特征。</p>
+<h2 id="空域滤波算法"><a href="#空域滤波算法" class="headerlink" title="空域滤波算法"></a>空域滤波算法</h2><p>空域滤波算法是图像处理中用于去除噪声的一类方法，它们直接在图像的像素坐标系中操作，通过分析图像中像素与周围像素的关系来去除噪声。以下是几种常见的空域滤波算法的原理描述及其在MATLAB中的实现代码。</p>
+<h3 id="1-均值滤波"><a href="#1-均值滤波" class="headerlink" title="1. 均值滤波"></a>1. 均值滤波</h3><p>均值滤波是一种简单的线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值的平均值来实现降噪。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;average&#x27;, [5 5]); % 创建5x5的均值滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-中值滤波"><a href="#2-中值滤波" class="headerlink" title="2. 中值滤波"></a>2. 中值滤波</h3><p>中值滤波是一种非线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值排序后的中值来实现降噪。这种方法对椒盐噪声特别有效。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">filtered_img = medfilt2(img); % 应用中值滤波</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-高斯滤波"><a href="#3-高斯滤波" class="headerlink" title="3. 高斯滤波"></a>3. 高斯滤波</h3><p>高斯滤波通过应用二维高斯函数作为滤波器核来平滑图像，适合去除高斯噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的高斯滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-双边滤波"><a href="#4-双边滤波" class="headerlink" title="4. 双边滤波"></a>4. 双边滤波</h3><p>双边滤波是一种非线性空间滤波方法，它不仅考虑像素点的空间邻近性，还考虑像素值的相似性。这种滤波器在保持边缘清晰的同时去除噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的空间滤波器核</span><br><span class="line">filtered_img = imfilter(img, h, &#x27;replicate&#x27;); % 应用双边滤波</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/" class="post-title-link" itemprop="url">电磁波谱</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-04-05 05:24:19" itemprop="dateModified" datetime="2026-04-05T05:24:19+00:00">2026-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>以电磁波谱辐射为基础的图像我们最为熟悉，特别是X射线和可见光谱波段的图像。电磁波可以定义为以各种波长传播的正弦波，或是无质量的粒子流，每个粒子以波的形式传播并以光的速度运动。每个无质量的粒子包含一定的能量(或一束能量)，每束能量称为一个光子。如果光谱波段根据光子能量进行分组，则可以得到下图所示的光谱，其范围从伽马射线(最高能量10<sup>6</sup> )到无线电波(最低能量10<sup>-9</sup>）)。</p>
+<p><img src="/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/img_01.png" alt="电磁波谱示意图"></p>
+<h3 id="伽马射线"><a href="#伽马射线" class="headerlink" title="伽马射线"></a>伽马射线</h3><p>伽马射线成像的主要用途包括核医学和天文观测。在核医学中，这种方法将放射性同位素注射到人体内，当这种物质衰变时，就会放射出伽马射线，然后用伽马射线检测仪收集到的放射线来产生图像。</p>
+<h3 id="X射线成像"><a href="#X射线成像" class="headerlink" title="X射线成像"></a>X射线成像</h3><p>X射线最早用于成像的电磁辐射源之一。最熟悉的X射线应用是医学诊断，但是X射线还被广泛用于工业和其他领域，图天文学。用于医学和工业成像的X射线是由X射线管产生的，X射线管是带有阴极和阳极的真空管。阴极加热释放自由电子，这些电子以很高的速度向阳极流动，当电子撞击一个原子核时，能量被释放并形成X射线辐射。</p>
+<h3 id="紫外波段成像"><a href="#紫外波段成像" class="headerlink" title="紫外波段成像"></a>紫外波段成像</h3><p>紫外“光”的应用多种多样，包括平板印刷术、工业检测、显微镜方法、激光、生物成像和天文观测等。</p>
+<h3 id="可见光及红外波段成像"><a href="#可见光及红外波段成像" class="headerlink" title="可见光及红外波段成像"></a>可见光及红外波段成像</h3><p>由于电磁波谱可见光波段在所有波段中使我们最熟悉的，因此，这一波段的成像应用远远超过其他波段应用领域。红外波段常与可见光相结合成像。</p>
+<h3 id="微波波段成像"><a href="#微波波段成像" class="headerlink" title="微波波段成像"></a>微波波段成像</h3><p>微波波段成像的典型应用就是雷达。成像雷达的独特之处是在任何范围和时间内，不考虑空气、周围光照条件的收集数据能力。某些雷达可以穿透云层，在一定条件下还可以穿透植被、冰层和极其干燥的沙漠。成像雷达的工作原理就像一台闪光照相机，它自己提供照明（微波脉冲）去照亮地面上的一个区域，并得到一幅快照图像。与照相机镜头不同，雷达使用天线和数字计算机记录图像。在雷达图像中，能看到的只是反射到雷达天线的微波能量。</p>
+<h3 id="无线电波段成像"><a href="#无线电波段成像" class="headerlink" title="无线电波段成像"></a>无线电波段成像</h3><p>无线电波段成像主要用于医学和天文学。在医学中，无线电波用于核磁共振成像（MRI）。该技术是把病人放在强磁场中，并让无线电短脉冲通过病人的身体，每个脉冲将导致病人的组织发射的无线电响应脉冲，这些信号发生的位置和强度由计算机确定，从而产生病人的一幅二维剖面图像。</p>
 
       
     </div>
