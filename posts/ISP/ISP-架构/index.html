@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/long.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介 ISP是Image signal Processor的简写，也叫图像信号处理器。 DSP是Digital Signal Processor 的缩写，也就是数字信号处理器。 ISP一般用来处理Image Sensor（图像传感器）的输出数据，如做AEC（自动曝光控制）、AGC（自动增益控制）、AWB（自动白平衡）、色彩校正、Lens Shading、Gamma 校正、祛除坏点、Auto Bla">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ISP-架构">
+<meta property="og:url" content="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="🌈青龙小栈">
+<meta property="og:description" content="简介 ISP是Image signal Processor的简写，也叫图像信号处理器。 DSP是Digital Signal Processor 的缩写，也就是数字信号处理器。 ISP一般用来处理Image Sensor（图像传感器）的输出数据，如做AEC（自动曝光控制）、AGC（自动增益控制）、AWB（自动白平衡）、色彩校正、Lens Shading、Gamma 校正、祛除坏点、Auto Bla">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/ISP-%E6%9E%B6%E6%9E%84_ISP%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/gamma_curve.png">
+<meta property="article:published_time" content="2026-03-30T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-06T02:27:58.539Z">
+<meta property="article:author" content="Qing Long">
+<meta property="article:tag" content="ISP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/ISP-%E6%9E%B6%E6%9E%84_ISP%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg">
+
+
+<link rel="canonical" href="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/","path":"posts/ISP/ISP-架构/","title":"ISP-架构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ISP-架构 | 🌈青龙小栈</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">🌈青龙小栈</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ISP%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">ISP处理流程</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qing Long"
+      src="/images/avs.png">
+  <p class="site-author-name" itemprop="name">Qing Long</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ISP-架构 | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ISP-架构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-04-06 02:27:58" itemprop="dateModified" datetime="2026-04-06T02:27:58+00:00">2026-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ISP/" itemprop="url" rel="index"><span itemprop="name">ISP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>ISP是Image signal Processor的简写，也叫图像信号处理器。</li>
+<li>DSP是Digital Signal Processor 的缩写，也就是<a target="_blank" rel="noopener" href="https://gitcode.com/open-source-toolkit/e4d36?utm_source=highlight_word_gitcode&word=%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86">数字信号处理器</a>。</li>
+<li>ISP一般用来处理Image Sensor（图像传感器）的输出数据，如做AEC（自动曝光控制）、AGC（自动增益控制）、AWB（自动白平衡）、色彩校正、Lens Shading、Gamma 校正、祛除坏点、Auto Black Level、Auto White Level等等功能的处理。</li>
+</ul>
+<h4 id="ISP处理流程"><a href="#ISP处理流程" class="headerlink" title="ISP处理流程"></a>ISP处理流程</h4><p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/ISP-%E6%9E%B6%E6%9E%84_ISP%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg"></p>
+<p>图像产生过程：景物通过 Lens 生成的光学图像投射到 sensor 表面上， 经过光电转换为模拟电信号， 消噪声后经过 A&#x2F;D 转换后变为数字图像信号， 再送到数字信号处理芯片（ DSP） 中加工处理。</p>
+<p>所以，从 sensor 端过来的图像是 Bayer 图像，经过黑电平补偿 （black level compensation）、镜头矫正（lens shading correction）、坏像素矫正（bad pixel correction）、颜色插值 （demosaic）、Bayer 噪声去除、 白平衡（awb） 矫正、 色彩矫正（color correction）、gamma 矫正、色彩空间转换（RGB 转换为 YUV）、在YUV 色彩空间上彩噪去除与边缘加强、色彩与对比度加强，中间还要进行自动曝光控制等， 然后输出 YUV（或者RGB） 格式的数据， 再通过 I&#x2F;O 接口传输到 CPU 中处理。</p>
+<p><strong>1.Bayer（拜耳滤波器得到彩色）</strong><br>图像在将实际的景物转换为图像数据时， 通常是将传感器分别接收红、 绿、 蓝三个分量的信息， 然后将红、 绿、 蓝三个分量的信息合成彩色图像。 该方案需要三块滤镜， 这样价格昂贵，且不好制造， 因为三块滤镜都必须保证每一个像素点都对齐。 通过在黑白 cmos 图像传感器的基础上， 增加彩色滤波结构和彩色信息处理模块就可以获得图像的彩色信息， 再对该彩色信息进行处理， 就可以获得色彩逼真的彩色图像。通常把彩色图像传感器表面覆盖的滤波称为彩色滤波阵列（<strong>Color Filter Arrays</strong>，CFA）。<br>目前最常用的滤镜阵列是棋盘格式的， 已经有很多种类的， 其中绝大多数的摄像产品采用的是原色贝尔模板彩色滤波阵列（Bayer Pattern CFA）。R、G、B 分别表示透红色、透绿色和透蓝色的滤镜阵列单元。由于人的视觉对绿色最为敏感，所以在 Bayer CFA 中G分量是 R和B 的二倍，在每个像素点上只能获取一种色彩分量的信息，然后根据该色彩分量的信息通过插值算法得到全色彩图像。</p>
+<p><strong>2.BLC(Black level Correction)（黑电平补偿）</strong><br>a.暗电流 物理器件不可能是理想的， 由于杂质、 受热等其他原因的影响， 即使没有光照射到象素，象素单元也会产生电荷， 这些电荷产生了暗电流。 而且， 暗电流与光照产生的电荷很难进行区分。</p>
+<p>b.Black Level Black Level 是用来定义图像数据为0时对应的信号电平。由于暗电流的影响， 传感器出来的实际原始数据并不是我们需要的黑平衡（数据不为0）。所以，为减少暗电流对图像信号的影响，可以采用的有效的方法是从已获得的图像信号中减去参考暗电流信号。一般情况下， 在传感器中，实际像素要比有效像素多， 如下图所示， 像素区头几行作为不感光区（ 实际上，这部分区域也做了RGB 的 color filter），用于自动黑电平校正，其平均值作为校正值， 然后在下面区域的像素都减去此矫正值，那么就可以将黑电平矫正过来了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R&#x27;=R-R_offset  %需要注意统一bit位数</span><br><span class="line">Gr&#x27;=Gr-Gr_offset</span><br><span class="line">Gb&#x27;=Gb-Gb_offset</span><br><span class="line">B&#x27;=B-B_offset </span><br></pre></td></tr></table></figure>
+
+<p>做了black level 矫正与没做black level 矫正的对比，没做black level矫正的图片会比较亮，影响图像的对比度。</p>
+<p><strong>3.LSC(Lens Shading Correction)（镜头矫正）</strong><br>由于镜头本身的物理性质， 造成图像四周亮度相对中心亮度逐渐降低，以及，由于图像光照在透过镜头照射到 pixel 上时，边角处的焦点夹角大于中心焦点夹角，造成边角失光。表现在图像上的效果就是亮度从图像中心到四周逐渐衰减， 且离图像中心越远亮度越暗。 为了补偿四周的亮度， 需要进行 Lens Shading 的矫正。</p>
+<p>Lens Shading 的矫正的方法是根据一定的算法计算每个像素对应的亮度矫正值，从而补偿周边衰减的亮度。<br>矫正方法有二次项矫正、 四次项矫正。</p>
+<p><strong>4.BPC(Bad Pixel Correction)（坏点矫正）</strong><br>a.坏点 坏点为全黑环境下输出图像中的白点，高亮环境下输出图像中的黑点。</p>
+<p>b.坏点修复方法 一般情况下， RGB 信号应与景物亮度呈线性响应关系， 但由于 Senor 部分 pixel 不良导致输出的信号不正常， 出现白点或黑点。</p>
+<p>坏点修复方法通常有两种： 一种是自动检测坏点并自动修复， 另一种是建立坏点像素链表进行固定位置的坏像素点修复， 这种方式是 OTP 的方式。</p>
+<p><strong>5.Bayer Denoise（去噪声）</strong><br>使用 cmos sensor获取图像，光照程度和传感器问题是生成图像中大量噪声的主要因素。同时， 当信号经过ADC 时， 又会引入其他一些噪声。 这些噪声会使图像整体变得模糊， 而且丢失很多细节， 所以需要对图像进行去噪处理空间去噪传统的方法有均值滤波、 高斯滤波等。</p>
+<p>但是， 一般的高斯滤波在进行采样时主要考虑了像素间的空间距离关系， 并没有考虑像素值之间的相似程度， 因此这样得到的模糊结果通常是整张图片一团模糊。 所以， 一般采用非线性去噪算法， 例如双边滤波器， 在采样时不仅考虑像素在空间距离上的关系， 同时加入了像素间的相似程度考虑， 因而可以保持原始图像的大体分块， 进而保持边缘。</p>
+<ul>
+<li>先进行Bayer denoise，再进行Demosaic；原因是 在Raw域未经过demosaic, 此时的噪声模型较为简单； 进过Demosaic后， 会导致原本各通道分布均匀的噪声，在不同的Gain值下变得不再均匀，导致噪声模型复杂化。</li>
+</ul>
+<p><strong>6.Demosaic颜色插值 （去马赛克）</strong><br>当光线通过 Bayer型 CFA（Color Filter Arrays） 阵列之后， 单色光线打在传感器上，每个像素都为单色光，从而理想的Bayer 图是一个较为昏暗的马赛克图。</p>
+<p>首先需要说明的就是demosaiced并不是和字面的意思一样是为了去除电影中的一些打马赛克的图像，而是数字图像处理中用来从不完整的color samples插值生成完整的color samples的方法(因为bayer pattern看起来像一个个马赛克，因此称为去马赛克)。在sensor端通常需要使用CFA滤镜来得到Bayer pattern，而在后面的处理中需要把bayer pattern变成完整的RGB444(真彩色)图像。在ISP中需要有这么一个模块来做。</p>
+<p>在传统的ISP中有很多算法可以来做这个插值，包括最近邻域法，bilinear 插值，cubic 插值等。</p>
+<ul>
+<li>常用的demosiac方法的汇总介绍，当前采用的是 <strong>梯度矫正线性插值法</strong><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/686883055">Image-Demosaic</a></li>
+</ul>
+<p><strong>7.AWB(Automatic White Balance)（自动白平衡）</strong><br>白平衡的基本原理是在任意环境下， 把白色物体还原成白色物体， 也就是通过找到图像中的白块， 然后调整R&#x2F;G&#x2F;B 的比例， 如下关系：</p>
+<p>R′&#x3D;R∗RGain<br>G′&#x3D;G∗GGain<br>B′&#x3D;B∗BGain<br>R′&#x3D;G′&#x3D;B′<br>AWB 算法通常包括的步骤如下：<br>(1)色温统计： 根据图像统计出色温；<br>(2)计算通道增益： 计算出R 和B 通道的增益；<br>(3)进行偏色的矫正： 根据给出的增益， 算出偏色图像的矫正。</p>
+<p><strong>8.Color Correction（颜色矫正）</strong><br>由于人类眼睛可见光的频谱响应度和半导体传感器频谱响应度之间存在差别，还有透镜等的影响， 得到的RGB 值颜色会存在偏差， 因此必须对颜色进行校正， 通常的做法是通过一个3x3 的颜色变化矩阵来进行颜色矫正。</p>
+<p><strong>9.Gamma Correction（伽马矫正）</strong><br>人眼对外界光源的感光值与输入光强不是呈线性关系的， 而是呈指数型关系的。 在低照度下，人眼更容易分辨出亮度的变化， 随着照度的增加，人眼不易分辨出亮度的变化。而摄像机感光与输入光强呈线性关系， 为方便人眼辨识图像， 需要将摄像机采集的图像进行gamma 矫正。<br>Gamma 矫正是对输入图像灰度值进行的非线性操作， 使输出图像灰度值与输入图像灰度值呈指数关系：<br>out &#x3D; Vin ^ gamma</p>
+<p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/gamma_curve.png" alt="ISP架构Gamma曲线"></p>
+<p>这个指数就是 gamma， 横坐标是输入灰度值， 纵坐标是输出灰度值， 蓝色曲线是 gamma 值小于 1 时的输入输出关系， 红色曲线是 gamma 值大于 1 时的输入输出关系。 可以观察到， 当 gamma 值小于 1 时(蓝色曲线)， 图像的整体亮度值得到提升， 同时低灰度处的对比度得到增加， 更利于分辩低灰度值时的图像细节。</p>
+<p><strong>10.色彩空间转换</strong><br>YUV 是一种基本色彩空间， 人眼对亮度改变的敏感性远比对色彩变化大很多， 因此， 对于人眼而言， 亮度分量Y 要比色度分量U、V 重要得多。 所以， 可以适当地抛弃部分U、V分量， 达到压缩数据的目的。 YCbCr 其实是YUV 经过缩放和偏移的改动版，Y 表示亮度，Cr、Cb 表示色彩的色差，RGB信号亮度值之间的差异，分别是红色和蓝色的分量。 在YUV 家族中，YCbCr 是在计算机系统中应用最多的成员， 其应用领域很广泛，JPEG、MPEG 均采用此格式。 一般人们所讲的YUV 大多是指YCbCr。 YCbCr有许多取样格式，如 4∶4∶4，4∶2∶2， 4∶1∶1和 4∶2∶0。<br>Cb：反映的是RGB输入信号蓝色部分与RGB信号亮度值之间的差异。<br>Cr：反映了RGB输入信号红色部分与RGB信号亮度值之间的差异。</p>
+<p>在以下两个公式中RGB和YCbCr各分量的值的范围均为0-255。</p>
+<p>RGB转换为Ycbcr公式：</p>
+<p>Y &#x3D; 0.257R+0.564G+0.098B+16<br>Cb &#x3D; -0.148R-0.291G+0.439B+128<br>Cr &#x3D; 0.439R-0.368G-0.071*B+128</p>
+<p>YCbCr转换为RGB公式：</p>
+<p>R &#x3D; 1.164(Y-16)+1.596(Cr-128)<br>G &#x3D; 1.164(Y-16)-0.392(Cb-128)-0.813(Cr-128)<br>B &#x3D;1.164(Y-16)+2.017*(Cb-128)</p>
+<p>色彩空间转换这个模块， 是将RGB 转换为 YUV444， 然后在YUV 色彩空间上进行后续的彩色噪声去除、 边缘增强等， 也为后续输出转换为jpeg 图片提供方便。</p>
+<p><strong>11.Color Denoise</strong><br>为了抑制图像的彩色噪声， 一般采用低通滤波器进行处理。 例如使用M×N的高斯低通滤波器在色度通道上进行处理。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ISP/" rel="tag"><i class="fa fa-tag"></i> ISP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/" rel="prev" title="ISP-绿平衡">
+                  <i class="fa fa-angle-left"></i> ISP-绿平衡
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/Image_Processing/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/" rel="next" title="双边滤波器">
+                  双边滤波器 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qing Long</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
