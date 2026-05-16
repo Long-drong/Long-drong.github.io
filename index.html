@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-04-06 02:43:50" itemprop="dateCreated datePublished" datetime="2026-04-06T02:43:50+00:00">2026-04-06</time>
+      <time title="创建时间：2026-05-16 01:57:45" itemprop="dateCreated datePublished" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -258,6 +258,90 @@
           <h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。<br>$ npm install -g hexo-cli</p>
 <h3 id="进阶安装和使用"><a href="#进阶安装和使用" class="headerlink" title="进阶安装和使用"></a>进阶安装和使用</h3><p>对于熟悉 npm 的进阶用户，可以仅局部安装 hexo 包。<br> $ npm install hexo</p>
 <p>建议永远安装 最新版本 的 Hexo，以及 推荐的 Node.js 版本。<br><img src="/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/img_01.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/ISP/ISP%E5%88%9D%E6%8E%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/" class="post-title-link" itemprop="url">ISP初探</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-05-16 01:57:45" itemprop="dateCreated datePublished" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ISP/" itemprop="url" rel="index"><span itemprop="name">ISP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>凡是在图像领域工作的人，都会经常听到ISP (Image Signal Process, 图像信号处理)，知道ISP对图像质量非常重要。比如华为和小米竞争手机拍照和录像效果，主要的竞争领域就是ISP；做AI (Artificial Intelligence, 人工智能) 的人也知道，如果ISP不给力，后续的AI处理效果会受到影响。<img src="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/img_1.png"></p>
+<h3 id="ISP模块参数调整"><a href="#ISP模块参数调整" class="headerlink" title="ISP模块参数调整"></a>ISP模块参数调整</h3><p>在ISP图像调试中，调整的依据主要包括以下几个方面：</p>
+<h4 id="图像质量要求："><a href="#图像质量要求：" class="headerlink" title="图像质量要求："></a>图像质量要求：</h4><p>不同的应用场景对图像质量的要求不同，例如在低光环境下拍摄时，需要优先考虑降噪和亮度调整，以确保图像清晰可见。</p>
+<h4 id="处理流程："><a href="#处理流程：" class="headerlink" title="处理流程："></a>处理流程：</h4><p>通常的处理流程是先进行亮度调整；<br>然后进行降噪和锐化；<br>最后进行颜色调整。<br>这是因为亮度调整可以为后续处理提供基础，而降噪可以消除影响锐化和颜色调整的噪声，从而提高最终图像的质量。</p>
+<h4 id="人眼感知："><a href="#人眼感知：" class="headerlink" title="人眼感知："></a>人眼感知：</h4><p>人眼对亮度和对比度的敏感度较高，因此在图像处理时，首先调整亮度可以更好地满足人眼的视觉需求。</p>
+<h4 id="技术标准："><a href="#技术标准：" class="headerlink" title="技术标准："></a>技术标准：</h4><p>在图像处理领域，通常会参考行业标准和技术文献，以确保处理流程的科学性和有效性。例如，使用标准色卡进行颜色校正，确保颜色的准确性和一致性。</p>
+<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/york-zhou/p/18055197">深入了解ISP-Sensor</a></p>
 
       
     </div>
@@ -313,7 +397,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-04-06 02:43:50" itemprop="dateCreated datePublished" datetime="2026-04-06T02:43:50+00:00">2026-04-06</time>
+      <time title="创建时间：2026-05-16 01:57:45" itemprop="dateCreated datePublished" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -446,90 +530,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/ISP/ISP%E5%88%9D%E6%8E%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/" class="post-title-link" itemprop="url">ISP初探</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-04-06 02:43:50" itemprop="dateCreated datePublished" datetime="2026-04-06T02:43:50+00:00">2026-04-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ISP/" itemprop="url" rel="index"><span itemprop="name">ISP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>凡是在图像领域工作的人，都会经常听到ISP (Image Signal Process, 图像信号处理)，知道ISP对图像质量非常重要。比如华为和小米竞争手机拍照和录像效果，主要的竞争领域就是ISP；做AI (Artificial Intelligence, 人工智能) 的人也知道，如果ISP不给力，后续的AI处理效果会受到影响。<img src="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/img_1.png"></p>
-<h3 id="ISP模块参数调整"><a href="#ISP模块参数调整" class="headerlink" title="ISP模块参数调整"></a>ISP模块参数调整</h3><p>在ISP图像调试中，调整的依据主要包括以下几个方面：</p>
-<h4 id="图像质量要求："><a href="#图像质量要求：" class="headerlink" title="图像质量要求："></a>图像质量要求：</h4><p>不同的应用场景对图像质量的要求不同，例如在低光环境下拍摄时，需要优先考虑降噪和亮度调整，以确保图像清晰可见。</p>
-<h4 id="处理流程："><a href="#处理流程：" class="headerlink" title="处理流程："></a>处理流程：</h4><p>通常的处理流程是先进行亮度调整；<br>然后进行降噪和锐化；<br>最后进行颜色调整。<br>这是因为亮度调整可以为后续处理提供基础，而降噪可以消除影响锐化和颜色调整的噪声，从而提高最终图像的质量。</p>
-<h4 id="人眼感知："><a href="#人眼感知：" class="headerlink" title="人眼感知："></a>人眼感知：</h4><p>人眼对亮度和对比度的敏感度较高，因此在图像处理时，首先调整亮度可以更好地满足人眼的视觉需求。</p>
-<h4 id="技术标准："><a href="#技术标准：" class="headerlink" title="技术标准："></a>技术标准：</h4><p>在图像处理领域，通常会参考行业标准和技术文献，以确保处理流程的科学性和有效性。例如，使用标准色卡进行颜色校正，确保颜色的准确性和一致性。</p>
-<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/york-zhou/p/18055197">深入了解ISP-Sensor</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/zemax%E4%B8%8Ematlab%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -558,9 +558,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-04-06 00:00:00 / 修改时间：02:43:50" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
+      <time title="创建时间：2026-04-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-05-16 01:57:45" itemprop="dateModified" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -639,9 +645,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-04-06 00:00:00 / 修改时间：02:43:50" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
+      <time title="创建时间：2026-04-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-05-16 01:57:45" itemprop="dateModified" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -746,9 +758,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-04-06 00:00:00 / 修改时间：02:43:50" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
+      <time title="创建时间：2026-04-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-05-16 01:57:45" itemprop="dateModified" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -855,7 +873,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-06 02:43:50" itemprop="dateModified" datetime="2026-04-06T02:43:50+00:00">2026-04-06</time>
+      <time title="修改时间：2026-05-16 01:57:45" itemprop="dateModified" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -946,7 +964,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-06 02:43:50" itemprop="dateModified" datetime="2026-04-06T02:43:50+00:00">2026-04-06</time>
+      <time title="修改时间：2026-05-16 01:57:45" itemprop="dateModified" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1074,7 +1092,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-06 02:43:50" itemprop="dateModified" datetime="2026-04-06T02:43:50+00:00">2026-04-06</time>
+      <time title="修改时间：2026-05-16 01:57:45" itemprop="dateModified" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1123,7 +1141,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -1141,7 +1159,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/" class="post-title-link" itemprop="url">demosaic算法之边缘判别插值</a>
+          <a href="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/" class="post-title-link" itemprop="url">ISP-绿平衡</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1159,7 +1177,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-04-06 02:43:50" itemprop="dateModified" datetime="2026-04-06T02:43:50+00:00">2026-04-06</time>
+      <time title="修改时间：2026-05-16 01:57:45" itemprop="dateModified" datetime="2026-05-16T01:57:45+00:00">2026-05-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1181,7 +1199,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><br>1. 边缘判别插值简介在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png">边缘判别方法在基础插值方法的基础上不仅考虑了空间相关性和光谱相关性，还考虑了边缘效应。边缘判别法通过指定策略判断边缘的方向去控制G通道插值时的邻域采样选择使得插值沿着边缘方向进行，避免了边缘两侧成分的混叠。主要的插值策略依靠双线性插值和色差恒定法，对于伪彩色、拉链效应有着明显的改善。2. 边缘判别插值算法详解2.1 梯度矫正线性插值法参考论文：Malvar-He-Cutler Linear Image Demosaicking基础的色差和色比方法将G通道看作亮度成分， R、B通道看成色度成分。由于G通道的采样是R、B通道的两倍，所以G通道能代表图像中大部分高频信息。R、B通道作为色度成分变化比较缓慢，因此插值后的G分量图像能够更准确地反映图像中的轮廓。通常先在双线性插值的基础上对G通道进行重建，然后再利用色差或者色比恒定的假设重建R、B通道。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_2.png">以一个R像素位置为例（图中标记+号的位置），可以看到当计算这个位置G像素的插值时，色差和色比法会丢弃这个位置的R值仅对邻域的G值做平均，但很明显它是有价值的信息。在梯度矫正线性插值法中，引入了R这一点的观测信息控制边缘处的叠加分量以进行梯度修正，将R值与R邻域的双线性插值估计进行比较。如果它与估计值不同，这可能意味着在这个像素处有一个剧烈的亮度变化（即处于边缘位置）。具体来说，作者提出了一组矫正计算公式，假设在一个像素点上已知A通道需要插值C通道，那么插值结果为：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_3.png">可以看到C通道的插值结果不仅由C通道邻域的加权平均表示，还由A通道在该点的边缘响应的增益分量控制，该分量为A通道与水平和垂直方向最近的4个A通道的差乘一个增益系数表示。类似于对于边缘部分的插值结果进行了一个锐化的过程。设定三通道对应的增益系数为α、β、r，作者通过kodak数据集进行大量测试得到一组经验性系数α&#x3D;0.5、β&#x3D;0.625、r&#x3D;0.75，最终表示为各通道之间的5X5插值滤波核如下：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_4.png">目前大家熟知的图像画质评测软件Imatest中，demosaic算法就是用的这篇论文。2.2 Adam-Hamilton梯度自适应插值参考论文：Self-similarity driven color demosaicking从2.2开始会介绍严格意义上通过边缘方向进行插值的方法，在介绍亚当-汉密尔顿插值算法前，首先介绍一阶微分和二阶微分的边缘插值。一阶微分边缘敏感性插值算法通过亮度分量(G通道)确定各像素位置可能的边缘方向，通过计算出水平和竖直方向的梯度判断插值方向，具体流程如下：(1) 在G通道缺失值的像素位置（i，j）处用G通道邻域像素计算水平和垂直方向梯度：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_5.png">(2) 定义阈值T，表示水平和垂直梯度分量的均值，对G通道进行插值：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_6.png"></p>
+          <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png">绿失衡的来源在大多数数字成像系统中，传感器使用Bayer阵列捕获原始图像数据。由于人眼对绿色光最敏感，Bayer阵列中的绿色像素占总像素数量的一半。理想情况下，这些绿色像素对光线的响应应当是均匀的，但在实际传感器中，绿色像素可能由于光线不均或工艺缺陷等原因导致像素响应不一致。举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png">绿平衡算法那如何通过ISP的处理，去规避绿失衡现象的影响呢？最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加&#x2F;减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png">在ISP中绿平衡 (Green Balance) 是一个重要模块，通常以均值算法及其衍生形式实现，主要用于优化图像中的绿色像素值的均匀性和准确性，以确保最终的图像质量。通过绿平衡的优化，ISP能够修复Sensor的绿失衡，生成更自然、细腻的图像，有效提升用户的视觉体验。</p>
 
       
     </div>
