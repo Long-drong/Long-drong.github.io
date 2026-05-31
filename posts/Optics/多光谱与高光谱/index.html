@@ -20,34 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="1. 边缘判别插值简介在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。边缘判别方法在基础插值方法的基础上不仅考虑了空间相关性和光谱相关性，还考虑了边缘效应。边缘判别法通过指定策略判断边缘的">
+    <meta name="description" content="传统光谱分析，都是通过待测物自发光或者与光源的相互作用而进行分析的物体的，从空间维度上看，传统光谱分析大多是针对一个单点位置。而图像光谱测量则是结合了光谱技术和成像技术，将光谱分辨能力和图形分辨能力相结合，造就了空间维度上的面光谱分析，也就是现在的多光谱成像和高光谱成像技术。 **光谱（Spectrum） ：**是复色光经过色散系统（如棱镜、光栅）分光后，被色散分离成的单色光，通过成像系统，投射在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="demosaic算法之边缘判别插值">
-<meta property="og:url" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/index.html">
+<meta property="og:title" content="多光谱与高光谱">
+<meta property="og:url" content="https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/index.html">
 <meta property="og:site_name" content="🌈青龙小栈">
-<meta property="og:description" content="1. 边缘判别插值简介在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。边缘判别方法在基础插值方法的基础上不仅考虑了空间相关性和光谱相关性，还考虑了边缘效应。边缘判别法通过指定策略判断边缘的">
+<meta property="og:description" content="传统光谱分析，都是通过待测物自发光或者与光源的相互作用而进行分析的物体的，从空间维度上看，传统光谱分析大多是针对一个单点位置。而图像光谱测量则是结合了光谱技术和成像技术，将光谱分辨能力和图形分辨能力相结合，造就了空间维度上的面光谱分析，也就是现在的多光谱成像和高光谱成像技术。 **光谱（Spectrum） ：**是复色光经过色散系统（如棱镜、光栅）分光后，被色散分离成的单色光，通过成像系统，投射在">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_2.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_3.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_4.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_5.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_6.png">
-<meta property="article:published_time" content="2026-03-30T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-31T03:38:30.984Z">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_4.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_6.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_7.png">
+<meta property="article:published_time" content="2026-05-31T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-31T03:38:30.990Z">
 <meta property="article:author" content="Qing Long">
-<meta property="article:tag" content="Image_Processing">
+<meta property="article:tag" content="Optics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png">
+<meta name="twitter:image" content="https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_4.png">
 
 
-<link rel="canonical" href="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/">
+<link rel="canonical" href="https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/","path":"posts/Image_Processing/demosaic算法之边缘判别插值/","title":"demosaic算法之边缘判别插值"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/","path":"posts/Optics/多光谱与高光谱/","title":"多光谱与高光谱"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>demosaic算法之边缘判别插值 | 🌈青龙小栈</title>
+<title>多光谱与高光谱 | 🌈青龙小栈</title>
   
 
 
@@ -217,7 +214,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -230,12 +227,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="demosaic算法之边缘判别插值 | 🌈青龙小栈">
+      <meta itemprop="name" content="多光谱与高光谱 | 🌈青龙小栈">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          demosaic算法之边缘判别插值
+          多光谱与高光谱
         </h1>
 
         <div class="post-meta-container">
@@ -245,15 +242,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-05-31 03:38:30" itemprop="dateModified" datetime="2026-05-31T03:38:30+00:00">2026-05-31</time>
+      <time title="创建时间：2026-05-31 00:00:00 / 修改时间：03:38:30" itemprop="dateCreated datePublished" datetime="2026-05-31T00:00:00+00:00">2026-05-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,7 +252,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+          <a href="/categories/Optics/" itemprop="url" rel="index"><span itemprop="name">Optics</span></a>
         </span>
     </span>
 
@@ -274,7 +265,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><br>1. 边缘判别插值简介在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png">边缘判别方法在基础插值方法的基础上不仅考虑了空间相关性和光谱相关性，还考虑了边缘效应。边缘判别法通过指定策略判断边缘的方向去控制G通道插值时的邻域采样选择使得插值沿着边缘方向进行，避免了边缘两侧成分的混叠。主要的插值策略依靠双线性插值和色差恒定法，对于伪彩色、拉链效应有着明显的改善。2. 边缘判别插值算法详解2.1 梯度矫正线性插值法参考论文：Malvar-He-Cutler Linear Image Demosaicking基础的色差和色比方法将G通道看作亮度成分， R、B通道看成色度成分。由于G通道的采样是R、B通道的两倍，所以G通道能代表图像中大部分高频信息。R、B通道作为色度成分变化比较缓慢，因此插值后的G分量图像能够更准确地反映图像中的轮廓。通常先在双线性插值的基础上对G通道进行重建，然后再利用色差或者色比恒定的假设重建R、B通道。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_2.png">以一个R像素位置为例（图中标记+号的位置），可以看到当计算这个位置G像素的插值时，色差和色比法会丢弃这个位置的R值仅对邻域的G值做平均，但很明显它是有价值的信息。在梯度矫正线性插值法中，引入了R这一点的观测信息控制边缘处的叠加分量以进行梯度修正，将R值与R邻域的双线性插值估计进行比较。如果它与估计值不同，这可能意味着在这个像素处有一个剧烈的亮度变化（即处于边缘位置）。具体来说，作者提出了一组矫正计算公式，假设在一个像素点上已知A通道需要插值C通道，那么插值结果为：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_3.png">可以看到C通道的插值结果不仅由C通道邻域的加权平均表示，还由A通道在该点的边缘响应的增益分量控制，该分量为A通道与水平和垂直方向最近的4个A通道的差乘一个增益系数表示。类似于对于边缘部分的插值结果进行了一个锐化的过程。设定三通道对应的增益系数为α、β、r，作者通过kodak数据集进行大量测试得到一组经验性系数α&#x3D;0.5、β&#x3D;0.625、r&#x3D;0.75，最终表示为各通道之间的5X5插值滤波核如下：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_4.png">目前大家熟知的图像画质评测软件Imatest中，demosaic算法就是用的这篇论文。2.2 Adam-Hamilton梯度自适应插值参考论文：Self-similarity driven color demosaicking从2.2开始会介绍严格意义上通过边缘方向进行插值的方法，在介绍亚当-汉密尔顿插值算法前，首先介绍一阶微分和二阶微分的边缘插值。一阶微分边缘敏感性插值算法通过亮度分量(G通道)确定各像素位置可能的边缘方向，通过计算出水平和竖直方向的梯度判断插值方向，具体流程如下：(1) 在G通道缺失值的像素位置（i，j）处用G通道邻域像素计算水平和垂直方向梯度：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_5.png">(2) 定义阈值T，表示水平和垂直梯度分量的均值，对G通道进行插值：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_6.png"></p>
+    <div class="post-body" itemprop="articleBody"><p>传统光谱分析，都是通过待测物自发光或者与光源的相互作用而进行分析的物体的，从空间维度上看，传统光谱分析大多是针对一个单点位置。而图像光谱测量则是结合了光谱技术和成像技术，将光谱分辨能力和图形分辨能力相结合，造就了空间维度上的面光谱分析，也就是现在的多光谱成像和高光谱成像技术。</p>
+<p>**光谱（Spectrum） ：**是复色光经过色散系统（如棱镜、光栅）分光后，被色散分离成的单色光，通过成像系统，投射在探测器上成为按波长（或频率）大小依次排列的图案，既称为光学频谱。</p>
+<p>**<em>多光谱技术（Multispectral）：</em>**是指能同时获取多个光学频谱波段（通常大于等于3个），并在可见光的基础上向红外光和紫外光两个方向扩展的光谱探测技术。常见实现方法是通过各种滤光片或分光器与多种感光胶片的组合，使其在同一时刻分别接收同一目标在不同窄光谱波段范围内辐射或反射的光信号，得到目标在几张不同光谱带的照片。</p>
+<p>身边最常见的多光谱照片是彩色相机拍摄的照片，如下图，从频谱上看，其包含了红色（1），绿色（2）和蓝色（3）三个光学频谱波段的信息。如果在相机或者探测器上，增加更多的频带如频带（4）和（5），就可以获得一个含多个频带的多光谱照片了。</p>
+<p><img src="/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_4.png"></p>
+<p>**<em>高光谱成像（Hypespectral）</em>：**是一种可以捕获和分析一片空间区域内逐点上光谱的精细技术，由于可以检测到单个对象不同空间位置上的独特光谱“特征”因此可以检测到在视觉上无法区分的</p>
+<p><img src="/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_6.png"></p>
+<p><img src="/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_7.png" alt="高光谱，多光谱，超光谱的示意图"></p>
+<p>高光谱成像仪的使用原理：</p>
+<p>高光谱成像主要用于测量光与物质相互作用后的反射光，因此也是一种表面测量技术。Headwall的Hyperspec®HSI属于线扫描设备，可通过称为仪器狭缝的狭长入光口观察场景。狭缝一次捕获一行场景，并通过传感器获取对应一行场景中每个点的光谱信息。通过将仪器狭缝瞄准到感兴趣的区域，或将移动物体扫过仪器的前面（例如，装有产品的传送带），进而可以对整个场景进行成像，并获取整个场景内逐个点的光谱信息。</p>
 
     </div>
 
@@ -284,20 +284,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Image-Processing/" rel="tag"><i class="fa fa-tag"></i> Image_Processing</a>
+              <a href="/tags/Optics/" rel="tag"><i class="fa fa-tag"></i> Optics</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/Deep_Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%8E%BB%E5%99%AA%E8%AE%A1%E5%88%92/" rel="prev" title="深度学习去噪计划">
-                  <i class="fa fa-angle-left"></i> 深度学习去噪计划
+                <a href="/posts/Others/%E7%AE%A1%E7%90%86/" rel="prev" title="管理">
+                  <i class="fa fa-angle-left"></i> 管理
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/" rel="next" title="形态学操作-开闭运算">
-                  形态学操作-开闭运算 <i class="fa fa-angle-right"></i>
+                <a href="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/" rel="next" title="ISP初探">
+                  ISP初探 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
