@@ -167,18 +167,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/PaperRead/first_paper/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -222,7 +222,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/PaperRead/first_paper/" class="post-title-link" itemprop="url">first_paper</a>
+          <a href="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">平面干涉仪设计</a>
         </h2>
 
         <div class="post-meta-container">
@@ -233,14 +233,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
+      <time title="创建时间：2026-04-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-31 13:48:08" itemprop="dateModified" datetime="2026-07-31T13:48:08+00:00">2026-07-31</time>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PaperRead/" itemprop="url" rel="index"><span itemprop="name">PaperRead</span></a>
+          <a href="/categories/Optics/" itemprop="url" rel="index"><span itemprop="name">Optics</span></a>
         </span>
     </span>
 
@@ -262,7 +262,29 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>这是一个测试的文件夹，当前为空</p>
+          <h1 id="平面干涉仪设计"><a href="#平面干涉仪设计" class="headerlink" title="平面干涉仪设计"></a>平面干涉仪设计</h1><h3 id="1-zemax设计方法"><a href="#1-zemax设计方法" class="headerlink" title="1.zemax设计方法"></a>1.zemax设计方法</h3><p>基于菲索干涉的基本原理，仿真平面干涉仪器；</p>
+<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F.png"></p>
+<p>点光源经过准直透镜， 分束镜， 经过参考面反射产生参考光，待测物体产生反射光，两者在分束镜上同时反射到探测器上，此时两束光有一定的光程差，存在干涉，于探测器产生干涉条纹。 </p>
+<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_%E6%96%90%E7%B4%A2%E7%90%83%E9%9D%A2%E5%B9%B2%E6%B6%89.png"></p>
+<h3 id="2-仿真测试"><a href="#2-仿真测试" class="headerlink" title="2.仿真测试"></a>2.仿真测试</h3><p>一、仿真测试目标：<br>1、实现斐索平面干涉仪的光学系统设计；<br>2、通过探测器检测图案，计算待测物表面的PV值，测试精度达到λ&#x2F;20;</p>
+<p>二、仿真测试流程：<br>1、调制光学系统下各部件参数，使得探测器成像结果相对较好，减少光学系统对后期图像提取的干扰；<br>2、提取图像探测器图像,进行图像预处理，减少背景噪声的干扰；<br>3、基于光的波动性，通过四步相移法，解包裹，恢复待测物体表面形貌计算PV值。</p>
+<p>三、仿真原理：<br>理想情况下，等厚干涉形成的是平行的等间距的条纹；光程差每变化λ&#x2F;2 的距离，条纹平移一个周期；</p>
+<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F2.png"></p>
+<p>干涉在本质上可以看作两束光能量的重新分布，分布遵循余弦函数。这种形态是由条纹之间的相位差决定，相位差由光程差决定；<br>当待测面存在瑕疵，突起，导致光程差呈现非线性变化，条纹就会发生弯曲；同时相位差也会发生对应变化。</p>
+<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F3.png"></p>
+<p>四、移相干涉的原理：<br>移相干涉测量过程中，干涉图像中的条纹分布是由参考光束和测试光束叠加形成的干涉场导致，干涉场的光强信息与干涉图中像素点的灰度信息相关，其分布函数公式可表示为： </p>
+<figure class="image"><img style="aspect-ratio:369/20;" src="平面干涉仪设计_zemax-公式1.png" width="369" height="20"></figure>
+![](平面干涉仪设计_zemax-公式1.png)
+  
+<p>其中：A(x,y)是干涉图的背景光强，B(x,y)是调制度，φ(x,y)是待测物的波面初始相位信息，δ_i 是移相量，(x,y)是干涉图中像素点的坐标信息。<br>参考镜和被测镜间的面形差P(x,y)与位相分布的关系可表示为公式</p>
+<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F2.png"></p>
+<p>λ为激光器波长（本文为He-Ne激光器——632.8nm），在移相干涉测量技术中，测量单位为λ。当通过解相算法处理干涉图组的像素数据，可计算出I_i (x,y)，并进一步得到面形信息φ(x,y)以完成检测工作。</p>
+<p>四步移相法可以有效计算出理想移相图组的相位分布。先获取无移相的干涉图像，再进行三次移相间隔为π&#x2F;2的移相，每次移相完成采集1帧图像，共得到4帧相位相差π&#x2F;2的干涉图像，其图像光强信息分别为：</p>
+<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F3.png"></p>
+<p>将上面4个式子进行公式变换消去A和B可得到和四帧图像像素信息的关系式：</p>
+<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F4.png"></p>
+<p>四步移相算法求解速度快，适合对理想干涉图组进行求解。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaitianbao/article/details/116115786">枝切法</a></p>
 
       
     </div>
@@ -289,7 +311,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Scripts/Compare_file/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -307,7 +329,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Scripts/Compare_file/" class="post-title-link" itemprop="url">Compaer_file</a>
+          <a href="/posts/Image_Processing/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/" class="post-title-link" itemprop="url">双边滤波器</a>
         </h2>
 
         <div class="post-meta-container">
@@ -318,14 +340,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
+      <time title="创建时间：2026-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-05T00:00:00+00:00">2026-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-31 13:48:08" itemprop="dateModified" datetime="2026-07-31T13:48:08+00:00">2026-07-31</time>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -333,7 +355,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Scripts/" itemprop="url" rel="index"><span itemprop="name">Scripts</span></a>
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
         </span>
     </span>
 
@@ -347,7 +369,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="用于比较16进制的文本文件"><a href="#用于比较16进制的文本文件" class="headerlink" title="用于比较16进制的文本文件"></a>用于比较16进制的文本文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;windows.h&gt;</span><br><span class="line">#include &lt;stdint.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_PATH_LEN 1024</span><br><span class="line">#define MAX_FILES 500</span><br><span class="line">#define MAX_EXT_LEN 10</span><br><span class="line"></span><br><span class="line">// 函数前置声明</span><br><span class="line">void UpdateCounts(int diff, int thr1, int thr2, int thr3, int thr4, int* counts);</span><br><span class="line">void PrintChannelStats(FILE* output, const char* channel, int* counts, int thr1, int thr2, int thr3, int thr4, int output_mode);</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    char path[MAX_PATH_LEN];</span><br><span class="line">    int dataCount;</span><br><span class="line">    uint64_t* data;</span><br><span class="line">&#125; BinaryFile;</span><br><span class="line"></span><br><span class="line">// 获取文件列表</span><br><span class="line">int GetFiles(const char* folder, const char* ext, BinaryFile* files) &#123;</span><br><span class="line">    char searchPath[MAX_PATH_LEN];</span><br><span class="line">    snprintf(searchPath, MAX_PATH_LEN, &quot;%s\\*.%s&quot;, folder, ext);</span><br><span class="line"></span><br><span class="line">    WIN32_FIND_DATAA findData;</span><br><span class="line">    HANDLE hFind = FindFirstFileA(searchPath, &amp;findData);</span><br><span class="line">    if (hFind == INVALID_HANDLE_VALUE) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int count = 0;</span><br><span class="line">    do &#123;</span><br><span class="line">        if (!(findData.dwFileAttributes &amp; FILE_ATTRIBUTE_DIRECTORY)) &#123;</span><br><span class="line">            snprintf(files[count].path, MAX_PATH_LEN, &quot;%s\\%s&quot;, folder, findData.cFileName);</span><br><span class="line">            count++;</span><br><span class="line">            if (count &gt;= MAX_FILES) break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; while (FindNextFileA(hFind, &amp;findData));</span><br><span class="line"></span><br><span class="line">    FindClose(hFind);</span><br><span class="line">    return count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 读取二进制文件内容</span><br><span class="line">int ReadBinaryFile(BinaryFile* file) &#123;</span><br><span class="line">    FILE* fp = fopen(file-&gt;path, &quot;rb&quot;);</span><br><span class="line">    if (!fp) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取文件大小</span><br><span class="line">    fseek(fp, 0, SEEK_END);</span><br><span class="line">    long fileSize = ftell(fp);</span><br><span class="line">    rewind(fp);</span><br><span class="line"></span><br><span class="line">    // 检查是否为64位的整数倍</span><br><span class="line">    if (fileSize % 8 != 0) &#123;</span><br><span class="line">        fclose(fp);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    file-&gt;dataCount = fileSize / 8;</span><br><span class="line">    file-&gt;data = (uint64_t*)malloc(fileSize);</span><br><span class="line">    if (!file-&gt;data) &#123;</span><br><span class="line">        fclose(fp);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (fread(file-&gt;data, 8, file-&gt;dataCount, fp) != file-&gt;dataCount) &#123;</span><br><span class="line">        free(file-&gt;data);</span><br><span class="line">        fclose(fp);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fclose(fp);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 提取RGB分量</span><br><span class="line">void ExtractRGB(uint64_t value, uint16_t* r, uint16_t* g, uint16_t* b) &#123;</span><br><span class="line">    *r = (value &gt;&gt; 32) &amp; 0xFFFF;  // 47:32</span><br><span class="line">    *g = (value &gt;&gt; 16) &amp; 0xFFFF;  // 31:16</span><br><span class="line">    *b = value &amp; 0xFFFF;          // 15:0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 更新统计计数</span><br><span class="line">void UpdateCounts(int diff, int thr1, int thr2, int thr3, int thr4, int* counts) &#123;</span><br><span class="line">    if (diff == 0) counts[0]++;</span><br><span class="line">    else if (diff &lt;= thr1) counts[1]++;</span><br><span class="line">    else if (diff &lt;= thr2) counts[2]++;</span><br><span class="line">    else if (diff &lt;= thr3) counts[3]++;</span><br><span class="line">    else if (diff &lt;= thr4) counts[4]++;</span><br><span class="line">    else counts[5]++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 打印通道统计到文件</span><br><span class="line">void PrintChannelStats(FILE* output, const char* channel, int* counts, </span><br><span class="line">                      int thr1, int thr2, int thr3, int thr4, int output_mode) &#123;</span><br><span class="line">    if (output_mode ==0) &#123;</span><br><span class="line">        fprintf(output, &quot;%s Channel:\n&quot;, channel);</span><br><span class="line">        fprintf(output, &quot;  Num[0]= %d; &quot;, counts[0]);</span><br><span class="line">        fprintf(output, &quot;  Num[1 to %d]= %d; &quot;, thr1, counts[1]);</span><br><span class="line">        fprintf(output, &quot;  Num[%d to %d]= %d; &quot;, thr1+1, thr2, counts[2]);</span><br><span class="line">        fprintf(output, &quot;  Num[%d to %d]= %d; &quot;, thr2+1, thr3, counts[3]);</span><br><span class="line">        fprintf(output, &quot;  Num[%d to %d]= %d; &quot;, thr3+1, thr4, counts[4]);</span><br><span class="line">        fprintf(output, &quot;  Num[&gt; %d]= %d\n&quot;, thr4, counts[5]);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        //printf(&quot;Num= %d\n&quot;, counts[6]);</span><br><span class="line">        double ratio0= counts[0] ;</span><br><span class="line">        ratio0 = ratio0 / counts[6];</span><br><span class="line">        double ratio1= counts[1] ;</span><br><span class="line">        ratio1 = ratio1 / counts[6];</span><br><span class="line">        double ratio2= counts[2] ;</span><br><span class="line">        ratio2 = ratio2 / counts[6];</span><br><span class="line">        double ratio3= counts[3] ;</span><br><span class="line">        ratio3 = ratio3 / counts[6];</span><br><span class="line">        double ratio4= counts[4] ;</span><br><span class="line">        ratio4 = ratio4 / counts[6];</span><br><span class="line">        double ratio5= counts[5] ;</span><br><span class="line">        ratio5 = ratio5 / counts[6];</span><br><span class="line">        fprintf(output, &quot;%s Channel:\n&quot;, channel);</span><br><span class="line">        fprintf(output, &quot;  Num[0]= %.4f; &quot;, ratio0);</span><br><span class="line">        fprintf(output, &quot;  Num[1 to %d]= %.4f; &quot;, thr1, ratio1);</span><br><span class="line">        fprintf(output, &quot;  Num[%d to %d]= %.4f; &quot;, thr1+1, thr2, ratio2);</span><br><span class="line">        fprintf(output, &quot;  Num[%d to %d]= %.4f; &quot;, thr2+1, thr3, ratio3);</span><br><span class="line">        fprintf(output, &quot;  Num[%d to %d]= %.4f; &quot;, thr3+1, thr4, ratio4);</span><br><span class="line">        fprintf(output, &quot;  Num[&gt; %d]= %.4f\n&quot;, thr4, ratio5);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 比较文件并统计差值分布</span><br><span class="line">void CompareFiles(FILE* output, const BinaryFile* fileA, const BinaryFile* fileB, const char* extension,</span><br><span class="line">                 int thr1, int thr2, int thr3, int thr4, int output_mode) &#123;</span><br><span class="line">    int r_counts[7] = &#123;0&#125;;</span><br><span class="line">    int g_counts[7] = &#123;0&#125;;</span><br><span class="line">    int b_counts[7] = &#123;0&#125;;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; fileA-&gt;dataCount; i++) &#123;</span><br><span class="line">    //for (int i = 0; i &lt; 5012928; i++) &#123;</span><br><span class="line">        uint16_t a_r, a_g, a_b;</span><br><span class="line">        uint16_t b_r, b_g, b_b;</span><br><span class="line">        </span><br><span class="line">        ExtractRGB(fileA-&gt;data[i], &amp;a_r, &amp;a_g, &amp;a_b);</span><br><span class="line">        ExtractRGB(fileB-&gt;data[i], &amp;b_r, &amp;b_g, &amp;b_b);</span><br><span class="line"></span><br><span class="line">        // 计算差值并统计</span><br><span class="line">        UpdateCounts(abs((int)a_r - (int)b_r), thr1, thr2, thr3, thr4, r_counts);</span><br><span class="line">        UpdateCounts(abs((int)a_g - (int)b_g), thr1, thr2, thr3, thr4, g_counts);</span><br><span class="line">        UpdateCounts(abs((int)a_b - (int)b_b), thr1, thr2, thr3, thr4, b_counts);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    r_counts[6] = fileA-&gt;dataCount;</span><br><span class="line">    g_counts[6] = fileA-&gt;dataCount;</span><br><span class="line">    b_counts[6] = fileA-&gt;dataCount;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">    // 打印结果到文件</span><br><span class="line">    fprintf(output, &quot;\nFile: %s vs %s\n&quot;, fileA-&gt;path, fileB-&gt;path);</span><br><span class="line">    if(extension)&#123;</span><br><span class="line">        if (strcmp(extension,&quot;raw&quot;) == 0)&#123;</span><br><span class="line">            PrintChannelStats(output, &quot;Raw&quot;, b_counts, thr1, thr2, thr3, thr4, output_mode);</span><br><span class="line">        &#125; else if (strcmp(extension,&quot;rgb&quot;) == 0)&#123;</span><br><span class="line">            PrintChannelStats(output, &quot;Red&quot;, r_counts, thr1, thr2, thr3, thr4, output_mode);</span><br><span class="line">            PrintChannelStats(output, &quot;Green&quot;, g_counts, thr1, thr2, thr3, thr4, output_mode);</span><br><span class="line">            PrintChannelStats(output, &quot;Blue&quot;, b_counts, thr1, thr2, thr3, thr4, output_mode);</span><br><span class="line">        &#125; else if (strcmp(extension,&quot;yuv&quot;) == 0)&#123;</span><br><span class="line">            PrintChannelStats(output, &quot;Y&quot;, g_counts, thr1, thr2, thr3, thr4, output_mode);</span><br><span class="line">            PrintChannelStats(output, &quot;C&quot;, b_counts, thr1, thr2, thr3, thr4, output_mode);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            printf(&quot;不支持文件拓展名：%s/n&quot;, extension);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[]) &#123;</span><br><span class="line">    if (argc &lt; 10) &#123;</span><br><span class="line">        printf(&quot;Usage: %s folderA folderB extension thr1 thr2 thr3 thr4 output.txt\n&quot;, argv[0]);</span><br><span class="line">        printf(&quot;Example: %s A B rgb 5 10 20 50 result.txt 0 \n&quot;);</span><br><span class="line">        //argv[9]=0 打印区间范围内点的个数，argv[9]=0 打印区间范围内点的占比</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const char* folderA = argv[1];</span><br><span class="line">    const char* folderB = argv[2];</span><br><span class="line">    const char* extension = argv[3];</span><br><span class="line">    int thr1 = atoi(argv[4]);</span><br><span class="line">    int thr2 = atoi(argv[5]);</span><br><span class="line">    int thr3 = atoi(argv[6]);</span><br><span class="line">    int thr4 = atoi(argv[7]);</span><br><span class="line">    const char* outputFilename = argv[8];</span><br><span class="line">    int output_mode=atoi(argv[9]);</span><br><span class="line"></span><br><span class="line">    // 验证阈值</span><br><span class="line">    if (thr1 &gt;= thr2 || thr2 &gt;= thr3 || thr3 &gt;= thr4) &#123;</span><br><span class="line">        printf(&quot;Error: Thresholds must be in increasing order\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 打开输出文件</span><br><span class="line">    FILE* outputFile = fopen(outputFilename, &quot;w&quot;);</span><br><span class="line">    if (!outputFile) &#123;</span><br><span class="line">        printf(&quot;Error: Cannot open output file %s\n&quot;, outputFilename);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取文件列表</span><br><span class="line">    BinaryFile filesA[MAX_FILES], filesB[MAX_FILES];</span><br><span class="line">    int countA = GetFiles(folderA, extension, filesA);</span><br><span class="line">    int countB = GetFiles(folderB, extension, filesB);</span><br><span class="line"></span><br><span class="line">    if (countA == 0 || countB == 0) &#123;</span><br><span class="line">        fprintf(outputFile, &quot;Error: No matching files found\n&quot;);</span><br><span class="line">        fclose(outputFile);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (countA != countB) &#123;</span><br><span class="line">        fprintf(outputFile, &quot;Error: Different number of files (%d in A, %d in B)\n&quot;, countA, countB);</span><br><span class="line">        fclose(outputFile);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 在输出文件中写入参数信息</span><br><span class="line">    fprintf(outputFile, &quot;Comparison Parameters:\n&quot;);</span><br><span class="line">    </span><br><span class="line">    fprintf(outputFile, &quot;Folder A: %s\n&quot;, folderA);</span><br><span class="line">    fprintf(outputFile, &quot;Folder B: %s\n&quot;, folderB);</span><br><span class="line">    fprintf(outputFile, &quot;File Extension: .%s\n&quot;, extension);</span><br><span class="line">    fprintf(outputFile, &quot;Thresholds: %d, %d, %d, %d\n\n&quot;, thr1, thr2, thr3, thr4);</span><br><span class="line"></span><br><span class="line">    // 读取并比较文件</span><br><span class="line">    for (int i = 0; i &lt; countA; i++) &#123;</span><br><span class="line">        if (ReadBinaryFile(&amp;filesA[i]) || ReadBinaryFile(&amp;filesB[i])) &#123;</span><br><span class="line">            fprintf(outputFile, &quot;Error reading files: %s or %s\n&quot;, filesA[i].path, filesB[i].path);</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (filesA[i].dataCount != filesB[i].dataCount) &#123;</span><br><span class="line">            fprintf(outputFile, &quot;Error: Data count mismatch in files %s and %s (%d != %d)\n&quot;, </span><br><span class="line">                   filesA[i].path, filesB[i].path, filesA[i].dataCount, filesB[i].dataCount);</span><br><span class="line">            free(filesA[i].data);</span><br><span class="line">            free(filesB[i].data);</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        CompareFiles(outputFile, &amp;filesA[i], &amp;filesB[i], extension, thr1, thr2, thr3, thr4, output_mode);</span><br><span class="line"></span><br><span class="line">        free(filesA[i].data);</span><br><span class="line">        free(filesB[i].data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fclose(outputFile);</span><br><span class="line">    printf(&quot;Comparison completed. Results saved to %s\n&quot;, outputFilename);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="双边滤波器"><a href="#双边滤波器" class="headerlink" title="双边滤波器"></a>双边滤波器</h1><p>双边滤波（Bilateral Filtering）是一种非线性的图像处理方法，主要用于图像的平滑同时保持边缘清晰。与传统的低通滤波器（如均值滤波或高斯滤波）不同，双边滤波不仅考虑了空间上的邻近性，还考虑了像素值的相似性，这使得它能够在去除噪声的同时较好地保留图像的边界和细节。</p>
+<p>双边滤波可以这样理解，在高斯滤波的基础上添加了像素值的权重项，既要考虑距离因素，也要考虑像素值差异的影响。将像素值权重表示为，空间距离权重表示为。</p>
+<p>$$G_{p i x&#x3D;} \exp \left(-\frac{\left|I_{p}-I_{q}\right|^{2}}{2 \sigma_{p i x}^{2}}\right)$$$$G_{d i s&#x3D;} \exp \left(-\frac{\left|p-q\right|^{2}}{2 \sigma_{d i s }^{2}}\right)$$</p>
+<p>BF滤波器可表示为：<br><img src="/posts/Image_Processing/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/img_1.png"></p>
+<p>其中Wq 为滤波窗口内每个像素值的权重和，用于权重的归一化； <img src="/posts/Image_Processing/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/img_2.png"></p>
+<p>实现过程:<br>1.确定滤波窗口：选择一个中心像素，并确定其邻域范围，这个范围通常是一个 N×N的窗口。<br>2.计算权重：对于窗口内的每一个像素，计算其空间高斯权重和值高斯权重，并将两者相乘得到最终的权重。<br>3.归一化权重：为了保证滤波后像素值的有效性，需要对所有权重进行归一化处理。<br>4.应用滤波：将窗口内所有像素值与其对应的权重相乘，然后求和，最后除以归一化因子 ，得到中心像素的新值。<br>5.遍历整个图像：重复步骤1至4，直到所有像素都被处理完毕。</p>
+<p>双边滤波由于其复杂性，在实际应用中可能会比简单的滤波器运行得更慢，但它能更好地保持图像的结构和细节。在计算机视觉和图像处理领域，双边滤波被广泛应用于去噪、边缘保护、纹理分离等任务。</p>
+
       
     </div>
 
@@ -373,7 +402,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/%E5%B7%A5%E5%85%B7%E9%93%BE%E6%8E%A5/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -391,7 +420,475 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Tools/%E5%B7%A5%E5%85%B7%E9%93%BE%E6%8E%A5/" class="post-title-link" itemprop="url">工具链接</a>
+          <a href="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">ISP-架构</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ISP/" itemprop="url" rel="index"><span itemprop="name">ISP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>ISP是Image signal Processor的简写，也叫图像信号处理器。</li>
+<li>DSP是Digital Signal Processor 的缩写，也就是<a target="_blank" rel="noopener" href="https://gitcode.com/open-source-toolkit/e4d36?utm_source=highlight_word_gitcode&word=%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86">数字信号处理器</a>。</li>
+<li>ISP一般用来处理Image Sensor（图像传感器）的输出数据，如做AEC（自动曝光控制）、AGC（自动增益控制）、AWB（自动白平衡）、色彩校正、Lens Shading、Gamma 校正、祛除坏点、Auto Black Level、Auto White Level等等功能的处理。</li>
+</ul>
+<h4 id="ISP处理流程"><a href="#ISP处理流程" class="headerlink" title="ISP处理流程"></a>ISP处理流程</h4><p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/ISP-%E6%9E%B6%E6%9E%84_ISP%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg"></p>
+<p>图像产生过程：景物通过 Lens 生成的光学图像投射到 sensor 表面上， 经过光电转换为模拟电信号， 消噪声后经过 A&#x2F;D 转换后变为数字图像信号， 再送到数字信号处理芯片（ DSP） 中加工处理。</p>
+<p>所以，从 sensor 端过来的图像是 Bayer 图像，经过黑电平补偿 （black level compensation）、镜头矫正（lens shading correction）、坏像素矫正（bad pixel correction）、颜色插值 （demosaic）、Bayer 噪声去除、 白平衡（awb） 矫正、 色彩矫正（color correction）、gamma 矫正、色彩空间转换（RGB 转换为 YUV）、在YUV 色彩空间上彩噪去除与边缘加强、色彩与对比度加强，中间还要进行自动曝光控制等， 然后输出 YUV（或者RGB） 格式的数据， 再通过 I&#x2F;O 接口传输到 CPU 中处理。</p>
+<p><strong>1.Bayer（拜耳滤波器得到彩色）</strong><br>图像在将实际的景物转换为图像数据时， 通常是将传感器分别接收红、 绿、 蓝三个分量的信息， 然后将红、 绿、 蓝三个分量的信息合成彩色图像。 该方案需要三块滤镜， 这样价格昂贵，且不好制造， 因为三块滤镜都必须保证每一个像素点都对齐。 通过在黑白 cmos 图像传感器的基础上， 增加彩色滤波结构和彩色信息处理模块就可以获得图像的彩色信息， 再对该彩色信息进行处理， 就可以获得色彩逼真的彩色图像。通常把彩色图像传感器表面覆盖的滤波称为彩色滤波阵列（<strong>Color Filter Arrays</strong>，CFA）。<br>目前最常用的滤镜阵列是棋盘格式的， 已经有很多种类的， 其中绝大多数的摄像产品采用的是原色贝尔模板彩色滤波阵列（Bayer Pattern CFA）。R、G、B 分别表示透红色、透绿色和透蓝色的滤镜阵列单元。由于人的视觉对绿色最为敏感，所以在 Bayer CFA 中G分量是 R和B 的二倍，在每个像素点上只能获取一种色彩分量的信息，然后根据该色彩分量的信息通过插值算法得到全色彩图像。</p>
+<p><strong>2.BLC(Black level Correction)（黑电平补偿）</strong><br>a.暗电流 物理器件不可能是理想的， 由于杂质、 受热等其他原因的影响， 即使没有光照射到象素，象素单元也会产生电荷， 这些电荷产生了暗电流。 而且， 暗电流与光照产生的电荷很难进行区分。</p>
+<p>b.Black Level Black Level 是用来定义图像数据为0时对应的信号电平。由于暗电流的影响， 传感器出来的实际原始数据并不是我们需要的黑平衡（数据不为0）。所以，为减少暗电流对图像信号的影响，可以采用的有效的方法是从已获得的图像信号中减去参考暗电流信号。一般情况下， 在传感器中，实际像素要比有效像素多， 如下图所示， 像素区头几行作为不感光区（ 实际上，这部分区域也做了RGB 的 color filter），用于自动黑电平校正，其平均值作为校正值， 然后在下面区域的像素都减去此矫正值，那么就可以将黑电平矫正过来了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R&#x27;=R-R_offset  %需要注意统一bit位数</span><br><span class="line">Gr&#x27;=Gr-Gr_offset</span><br><span class="line">Gb&#x27;=Gb-Gb_offset</span><br><span class="line">B&#x27;=B-B_offset </span><br></pre></td></tr></table></figure>
+
+<p>做了black level 矫正与没做black level 矫正的对比，没做black level矫正的图片会比较亮，影响图像的对比度。</p>
+<p><strong>3.LSC(Lens Shading Correction)（镜头矫正）</strong><br>由于镜头本身的物理性质， 造成图像四周亮度相对中心亮度逐渐降低，以及，由于图像光照在透过镜头照射到 pixel 上时，边角处的焦点夹角大于中心焦点夹角，造成边角失光。表现在图像上的效果就是亮度从图像中心到四周逐渐衰减， 且离图像中心越远亮度越暗。 为了补偿四周的亮度， 需要进行 Lens Shading 的矫正。</p>
+<p>Lens Shading 的矫正的方法是根据一定的算法计算每个像素对应的亮度矫正值，从而补偿周边衰减的亮度。<br>矫正方法有二次项矫正、 四次项矫正。</p>
+<p><strong>4.BPC(Bad Pixel Correction)（坏点矫正）</strong><br>a.坏点 坏点为全黑环境下输出图像中的白点，高亮环境下输出图像中的黑点。</p>
+<p>b.坏点修复方法 一般情况下， RGB 信号应与景物亮度呈线性响应关系， 但由于 Senor 部分 pixel 不良导致输出的信号不正常， 出现白点或黑点。</p>
+<p>坏点修复方法通常有两种： 一种是自动检测坏点并自动修复， 另一种是建立坏点像素链表进行固定位置的坏像素点修复， 这种方式是 OTP 的方式。</p>
+<p><strong>5.Bayer Denoise（去噪声）</strong><br>使用 cmos sensor获取图像，光照程度和传感器问题是生成图像中大量噪声的主要因素。同时， 当信号经过ADC 时， 又会引入其他一些噪声。 这些噪声会使图像整体变得模糊， 而且丢失很多细节， 所以需要对图像进行去噪处理空间去噪传统的方法有均值滤波、 高斯滤波等。</p>
+<p>但是， 一般的高斯滤波在进行采样时主要考虑了像素间的空间距离关系， 并没有考虑像素值之间的相似程度， 因此这样得到的模糊结果通常是整张图片一团模糊。 所以， 一般采用非线性去噪算法， 例如双边滤波器， 在采样时不仅考虑像素在空间距离上的关系， 同时加入了像素间的相似程度考虑， 因而可以保持原始图像的大体分块， 进而保持边缘。</p>
+<ul>
+<li>先进行Bayer denoise，再进行Demosaic；原因是 在Raw域未经过demosaic, 此时的噪声模型较为简单； 进过Demosaic后， 会导致原本各通道分布均匀的噪声，在不同的Gain值下变得不再均匀，导致噪声模型复杂化。</li>
+</ul>
+<p><strong>6.Demosaic颜色插值 （去马赛克）</strong><br>当光线通过 Bayer型 CFA（Color Filter Arrays） 阵列之后， 单色光线打在传感器上，每个像素都为单色光，从而理想的Bayer 图是一个较为昏暗的马赛克图。</p>
+<p>首先需要说明的就是demosaiced并不是和字面的意思一样是为了去除电影中的一些打马赛克的图像，而是数字图像处理中用来从不完整的color samples插值生成完整的color samples的方法(因为bayer pattern看起来像一个个马赛克，因此称为去马赛克)。在sensor端通常需要使用CFA滤镜来得到Bayer pattern，而在后面的处理中需要把bayer pattern变成完整的RGB444(真彩色)图像。在ISP中需要有这么一个模块来做。</p>
+<p>在传统的ISP中有很多算法可以来做这个插值，包括最近邻域法，bilinear 插值，cubic 插值等。</p>
+<ul>
+<li>常用的demosiac方法的汇总介绍，当前采用的是 <strong>梯度矫正线性插值法</strong><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/686883055">Image-Demosaic</a></li>
+</ul>
+<p><strong>7.AWB(Automatic White Balance)（自动白平衡）</strong><br>白平衡的基本原理是在任意环境下， 把白色物体还原成白色物体， 也就是通过找到图像中的白块， 然后调整R&#x2F;G&#x2F;B 的比例， 如下关系：</p>
+<p>R′&#x3D;R∗RGain<br>G′&#x3D;G∗GGain<br>B′&#x3D;B∗BGain<br>R′&#x3D;G′&#x3D;B′<br>AWB 算法通常包括的步骤如下：<br>(1)色温统计： 根据图像统计出色温；<br>(2)计算通道增益： 计算出R 和B 通道的增益；<br>(3)进行偏色的矫正： 根据给出的增益， 算出偏色图像的矫正。</p>
+<p><strong>8.Color Correction（颜色矫正）</strong><br>由于人类眼睛可见光的频谱响应度和半导体传感器频谱响应度之间存在差别，还有透镜等的影响， 得到的RGB 值颜色会存在偏差， 因此必须对颜色进行校正， 通常的做法是通过一个3x3 的颜色变化矩阵来进行颜色矫正。</p>
+<p><strong>9.Gamma Correction（伽马矫正）</strong><br>人眼对外界光源的感光值与输入光强不是呈线性关系的， 而是呈指数型关系的。 在低照度下，人眼更容易分辨出亮度的变化， 随着照度的增加，人眼不易分辨出亮度的变化。而摄像机感光与输入光强呈线性关系， 为方便人眼辨识图像， 需要将摄像机采集的图像进行gamma 矫正。<br>Gamma 矫正是对输入图像灰度值进行的非线性操作， 使输出图像灰度值与输入图像灰度值呈指数关系：<br>out &#x3D; Vin ^ gamma</p>
+<p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/gamma_curve.png" alt="ISP架构Gamma曲线"></p>
+<p>这个指数就是 gamma， 横坐标是输入灰度值， 纵坐标是输出灰度值， 蓝色曲线是 gamma 值小于 1 时的输入输出关系， 红色曲线是 gamma 值大于 1 时的输入输出关系。 可以观察到， 当 gamma 值小于 1 时(蓝色曲线)， 图像的整体亮度值得到提升， 同时低灰度处的对比度得到增加， 更利于分辩低灰度值时的图像细节。</p>
+<p><strong>10.色彩空间转换</strong><br>YUV 是一种基本色彩空间， 人眼对亮度改变的敏感性远比对色彩变化大很多， 因此， 对于人眼而言， 亮度分量Y 要比色度分量U、V 重要得多。 所以， 可以适当地抛弃部分U、V分量， 达到压缩数据的目的。 YCbCr 其实是YUV 经过缩放和偏移的改动版，Y 表示亮度，Cr、Cb 表示色彩的色差，RGB信号亮度值之间的差异，分别是红色和蓝色的分量。 在YUV 家族中，YCbCr 是在计算机系统中应用最多的成员， 其应用领域很广泛，JPEG、MPEG 均采用此格式。 一般人们所讲的YUV 大多是指YCbCr。 YCbCr有许多取样格式，如 4∶4∶4，4∶2∶2， 4∶1∶1和 4∶2∶0。<br>Cb：反映的是RGB输入信号蓝色部分与RGB信号亮度值之间的差异。<br>Cr：反映了RGB输入信号红色部分与RGB信号亮度值之间的差异。</p>
+<p>在以下两个公式中RGB和YCbCr各分量的值的范围均为0-255。</p>
+<p>RGB转换为Ycbcr公式：</p>
+<p>Y &#x3D; 0.257R+0.564G+0.098B+16<br>Cb &#x3D; -0.148R-0.291G+0.439B+128<br>Cr &#x3D; 0.439R-0.368G-0.071*B+128</p>
+<p>YCbCr转换为RGB公式：</p>
+<p>R &#x3D; 1.164(Y-16)+1.596(Cr-128)<br>G &#x3D; 1.164(Y-16)-0.392(Cb-128)-0.813(Cr-128)<br>B &#x3D;1.164(Y-16)+2.017*(Cb-128)</p>
+<p>色彩空间转换这个模块， 是将RGB 转换为 YUV444， 然后在YUV 色彩空间上进行后续的彩色噪声去除、 边缘增强等， 也为后续输出转换为jpeg 图片提供方便。</p>
+<p><strong>11.Color Denoise</strong><br>为了抑制图像的彩色噪声， 一般采用低通滤波器进行处理。 例如使用M×N的高斯低通滤波器在色度通道上进行处理。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/" class="post-title-link" itemprop="url">ISP-绿平衡</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ISP/" itemprop="url" rel="index"><span itemprop="name">ISP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png">绿失衡的来源在大多数数字成像系统中，传感器使用Bayer阵列捕获原始图像数据。由于人眼对绿色光最敏感，Bayer阵列中的绿色像素占总像素数量的一半。理想情况下，这些绿色像素对光线的响应应当是均匀的，但在实际传感器中，绿色像素可能由于光线不均或工艺缺陷等原因导致像素响应不一致。举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png">绿平衡算法那如何通过ISP的处理，去规避绿失衡现象的影响呢？最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加&#x2F;减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png">在ISP中绿平衡 (Green Balance) 是一个重要模块，通常以均值算法及其衍生形式实现，主要用于优化图像中的绿色像素值的均匀性和准确性，以确保最终的图像质量。通过绿平衡的优化，ISP能够修复Sensor的绿失衡，生成更自然、细腻的图像，有效提升用户的视觉体验。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/" class="post-title-link" itemprop="url">ISP-绿平衡</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png">绿失衡的来源在大多数数字成像系统中，传感器使用Bayer阵列捕获原始图像数据。由于人眼对绿色光最敏感，Bayer阵列中的绿色像素占总像素数量的一半。理想情况下，这些绿色像素对光线的响应应当是均匀的，但在实际传感器中，绿色像素可能由于光线不均或工艺缺陷等原因导致像素响应不一致。举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png">绿平衡算法那如何通过ISP的处理，去规避绿失衡现象的影响呢？最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加&#x2F;减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png">在ISP中绿平衡 (Green Balance) 是一个重要模块，通常以均值算法及其衍生形式实现，主要用于优化图像中的绿色像素值的均匀性和准确性，以确保最终的图像质量。通过绿平衡的优化，ISP能够修复Sensor的绿失衡，生成更自然、细腻的图像，有效提升用户的视觉体验。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/" class="post-title-link" itemprop="url">demosaic算法之边缘判别插值</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><br>1. 边缘判别插值简介在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png">边缘判别方法在基础插值方法的基础上不仅考虑了空间相关性和光谱相关性，还考虑了边缘效应。边缘判别法通过指定策略判断边缘的方向去控制G通道插值时的邻域采样选择使得插值沿着边缘方向进行，避免了边缘两侧成分的混叠。主要的插值策略依靠双线性插值和色差恒定法，对于伪彩色、拉链效应有着明显的改善。2. 边缘判别插值算法详解2.1 梯度矫正线性插值法参考论文：Malvar-He-Cutler Linear Image Demosaicking基础的色差和色比方法将G通道看作亮度成分， R、B通道看成色度成分。由于G通道的采样是R、B通道的两倍，所以G通道能代表图像中大部分高频信息。R、B通道作为色度成分变化比较缓慢，因此插值后的G分量图像能够更准确地反映图像中的轮廓。通常先在双线性插值的基础上对G通道进行重建，然后再利用色差或者色比恒定的假设重建R、B通道。<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_2.png">以一个R像素位置为例（图中标记+号的位置），可以看到当计算这个位置G像素的插值时，色差和色比法会丢弃这个位置的R值仅对邻域的G值做平均，但很明显它是有价值的信息。在梯度矫正线性插值法中，引入了R这一点的观测信息控制边缘处的叠加分量以进行梯度修正，将R值与R邻域的双线性插值估计进行比较。如果它与估计值不同，这可能意味着在这个像素处有一个剧烈的亮度变化（即处于边缘位置）。具体来说，作者提出了一组矫正计算公式，假设在一个像素点上已知A通道需要插值C通道，那么插值结果为：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_3.png">可以看到C通道的插值结果不仅由C通道邻域的加权平均表示，还由A通道在该点的边缘响应的增益分量控制，该分量为A通道与水平和垂直方向最近的4个A通道的差乘一个增益系数表示。类似于对于边缘部分的插值结果进行了一个锐化的过程。设定三通道对应的增益系数为α、β、r，作者通过kodak数据集进行大量测试得到一组经验性系数α&#x3D;0.5、β&#x3D;0.625、r&#x3D;0.75，最终表示为各通道之间的5X5插值滤波核如下：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_4.png">目前大家熟知的图像画质评测软件Imatest中，demosaic算法就是用的这篇论文。2.2 Adam-Hamilton梯度自适应插值参考论文：Self-similarity driven color demosaicking从2.2开始会介绍严格意义上通过边缘方向进行插值的方法，在介绍亚当-汉密尔顿插值算法前，首先介绍一阶微分和二阶微分的边缘插值。一阶微分边缘敏感性插值算法通过亮度分量(G通道)确定各像素位置可能的边缘方向，通过计算出水平和竖直方向的梯度判断插值方向，具体流程如下：(1) 在G通道缺失值的像素位置（i，j）处用G通道邻域像素计算水平和垂直方向梯度：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_5.png">(2) 定义阈值T，表示水平和垂直梯度分量的均值，对G通道进行插值：<img src="/posts/Image_Processing/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_6.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">形态学操作-开闭运算</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>膨胀和腐蚀运算的问题：边缘形状发生了变化，膨胀发生了扩张，腐蚀发生了收缩 目标物体变形，对识别时的特征提取会造成影响解决方法：开操作:<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_1.png">B对A的开操作就是先B对A腐蚀，紧接着用B对结果进行膨胀<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_2.png">先腐蚀再膨胀的结果并不是恢复原状，而是会消除黏连部分，同时不影响其他部分的形状. 平滑物体的轮廓，断开较窄的狭颈并消除较细的突出。<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_3.png"><img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_4.png">先膨胀再腐蚀的结果并不是恢复原状，而是填充小的裂缝、孔隙，且不影响形状. 平滑物体的轮廓，弥合较窄的间断和细小的沟壑，消除小的孔洞，填充轮廓中的断痕。 效果：<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_5.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Deep_Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%8E%BB%E5%99%AA%E8%AE%A1%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Deep_Learning/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%8E%BB%E5%99%AA%E8%AE%A1%E5%88%92/" class="post-title-link" itemprop="url">深度学习去噪计划</a>
         </h2>
 
         <div class="post-meta-container">
@@ -409,7 +906,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-31 13:48:08" itemprop="dateModified" datetime="2026-07-31T13:48:08+00:00">2026-07-31</time>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -417,7 +914,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep_Learning</span></a>
         </span>
     </span>
 
@@ -431,7 +928,380 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="颜色计算网页"><a href="#颜色计算网页" class="headerlink" title="颜色计算网页"></a>颜色计算网页</h2><p>用于查询 色册， 颜色计算， 颜色转换，<a target="_blank" rel="noopener" href="https://www.colortell.com/colortool">链接地址</a></p>
+          <p>以下是一个分阶段的深度学习图像去噪学习计划，结合理论学习和实践项目，并提供参考资料推荐。计划分为三个阶段：基础知识学习、简单工程复现、进阶项目实战。</p>
+<hr>
+<h3 id="第一阶段：基础知识学习（2-4周）"><a href="#第一阶段：基础知识学习（2-4周）" class="headerlink" title="第一阶段：基础知识学习（2-4周）"></a><strong>第一阶段：基础知识学习（2-4周）</strong></h3><h4 id="目标"><a href="#目标" class="headerlink" title="目标"></a><strong>目标</strong></h4><ol>
+<li>掌握图像去噪的基本概念和传统方法。</li>
+<li>理解深度学习在图像去噪中的核心思想。</li>
+<li>熟悉常用工具和框架（如PyTorch&#x2F;TensorFlow）。</li>
+</ol>
+<h4 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a><strong>学习内容</strong></h4><ol>
+<li><strong>图像去噪基础</strong><ul>
+<li>传统去噪方法：均值滤波、高斯滤波、非局部均值（NLM）、小波变换等。</li>
+<li>噪声类型：高斯噪声、椒盐噪声、泊松噪声等。</li>
+<li>评价指标：PSNR、SSIM、MSE。</li>
+<li><strong>参考资料</strong>：<ul>
+<li>书籍：《Digital Image Processing》 by Rafael C. Gonzalez（第3章和第5章）。</li>
+<li>论文：<a target="_blank" rel="noopener" href="https://www.ipol.im/pub/art/2011/bcm_nlm/">Non-Local Means Denoising (2005)</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>深度学习基础</strong><ul>
+<li>卷积神经网络（CNN）基础：卷积层、池化层、激活函数。</li>
+<li>自编码器（Autoencoder）、残差学习（ResNet）。</li>
+<li>损失函数：MSE、L1 Loss、SSIM Loss。</li>
+<li><strong>参考资料</strong>：<ul>
+<li>书籍：《Deep Learning》 by Ian Goodfellow（第6章、第9章）。</li>
+<li>博客：<a target="_blank" rel="noopener" href="https://towardsdatascience.com/autoencoders-bits-and-bytes-of-deep-learning-eaba376f23ad">Understanding Autoencoders (Towards Data Science)</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>经典深度学习去噪模型</strong><ul>
+<li>DnCNN（深度残差去噪网络）、RED-Net（残差编码-解码网络）。</li>
+<li><strong>参考资料</strong>：<ul>
+<li>论文：<ul>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7839189">DnCNN (2017)</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2016/papers/Mao_Image_Restoration_Using_CVPR_2016_paper.pdf">RED-Net (2016)</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第二阶段：简单工程复现（4-6周）"><a href="#第二阶段：简单工程复现（4-6周）" class="headerlink" title="第二阶段：简单工程复现（4-6周）"></a><strong>第二阶段：简单工程复现（4-6周）</strong></h3><h4 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a><strong>目标</strong></h4><ol>
+<li>复现经典深度学习去噪模型（如DnCNN）。</li>
+<li>熟悉数据预处理、模型训练和评估流程。</li>
+<li>掌握基础调参技巧。</li>
+</ol>
+<h4 id="实践项目"><a href="#实践项目" class="headerlink" title="实践项目"></a><strong>实践项目</strong></h4><ol>
+<li><strong>复现DnCNN</strong><ul>
+<li>数据集：使用公开数据集（如BSD68、Set12）或合成噪声数据（添加高斯噪声）。</li>
+<li>代码参考：<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/SaoYan/DnCNN-PyTorch">DnCNN-PyTorch (GitHub)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cszn/DnCNN">Official DnCNN (Matlab)</a>。</li>
+</ul>
+</li>
+<li>任务：<ol>
+<li>生成合成噪声数据（添加σ&#x3D;25的高斯噪声）。</li>
+<li>实现DnCNN模型，训练并测试PSNR&#x2F;SSIM。</li>
+<li>对比不同噪声水平下的性能。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>复现其他基础模型</strong><ul>
+<li>RED-Net、U-Net改进版。</li>
+<li>代码参考：<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/titu1994/RED-Net">RED-Net (GitHub)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zhixuhao/unet">U-Net for Denoising</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="学习重点"><a href="#学习重点" class="headerlink" title="学习重点"></a><strong>学习重点</strong></h4><ul>
+<li>数据加载与增强（如随机裁剪、旋转）。</li>
+<li>模型调试（学习率调整、梯度消失&#x2F;爆炸）。</li>
+<li>可视化中间特征图和去噪结果。</li>
+</ul>
+<hr>
+<h3 id="第三阶段：进阶项目实战（6-8周）"><a href="#第三阶段：进阶项目实战（6-8周）" class="headerlink" title="第三阶段：进阶项目实战（6-8周）"></a><strong>第三阶段：进阶项目实战（6-8周）</strong></h3><h4 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a><strong>目标</strong></h4><ol>
+<li>掌握复杂模型（如GAN、Transformer）在去噪中的应用。</li>
+<li>解决真实场景噪声问题（非高斯噪声、低光照噪声）。</li>
+<li>学习模型压缩与加速技巧。</li>
+</ol>
+<h4 id="项目方向"><a href="#项目方向" class="headerlink" title="项目方向"></a><strong>项目方向</strong></h4><ol>
+<li><strong>基于GAN的去噪模型</strong><ul>
+<li>模型：DeblurGAN、CycleGAN。</li>
+<li>论文：<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1711.07064">DeblurGAN (2018)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1809.04184">Cycle-in-Cycle GAN (2018)</a>。</li>
+</ul>
+</li>
+<li>数据集：SIDD（真实噪声）、RENOIR。</li>
+</ul>
+</li>
+<li><strong>基于Transformer的模型</strong><ul>
+<li>模型：IPT、SwinIR。</li>
+<li>论文：<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.00364">IPT (2021)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.10257">SwinIR (2021)</a>。</li>
+</ul>
+</li>
+<li>代码参考：<a target="_blank" rel="noopener" href="https://github.com/JingyunLiang/SwinIR">SwinIR (GitHub)</a>。</li>
+</ul>
+</li>
+<li><strong>真实噪声处理</strong><ul>
+<li>学习真实噪声建模（信号依赖噪声、混合噪声）。</li>
+<li>论文：<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1807.04686">CBDNet (2019)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1904.07396">RIDNet (2019)</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>自监督&#x2F;无监督去噪</strong><ul>
+<li>模型：Noise2Noise、Noise2Void。</li>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1803.04189">Noise2Noise (2018)</a>。</li>
+</ul>
+</li>
+</ol>
+<h4 id="学习重点-1"><a href="#学习重点-1" class="headerlink" title="学习重点"></a><strong>学习重点</strong></h4><ul>
+<li>多任务学习（联合去噪与超分辨率）。</li>
+<li>模型轻量化（知识蒸馏、量化）。</li>
+<li>真实场景数据集的构建与处理。</li>
+</ul>
+<hr>
+<h3 id="参考资料汇总"><a href="#参考资料汇总" class="headerlink" title="参考资料汇总"></a><strong>参考资料汇总</strong></h3><h4 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a><strong>书籍</strong></h4><ol>
+<li>《Deep Learning for Image Processing》 by Jason Brownlee（实践导向）。</li>
+<li>《Hands-On Image Generation with TensorFlow》 by Soon Yau Cheong（代码示例丰富）。</li>
+</ol>
+<h4 id="论文"><a href="#论文" class="headerlink" title="论文"></a><strong>论文</strong></h4><ul>
+<li>基础模型：<ul>
+<li>DnCNN、RED-Net、U-Net。</li>
+</ul>
+</li>
+<li>进阶模型：<ul>
+<li>DeblurGAN、SwinIR、Noise2Noise。</li>
+</ul>
+</li>
+<li>真实噪声：<ul>
+<li>CBDNet、RIDNet。</li>
+</ul>
+</li>
+</ul>
+<h4 id="博客与教程"><a href="#博客与教程" class="headerlink" title="博客与教程"></a><strong>博客与教程</strong></h4><ol>
+<li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/image-denoising-with-deep-learning-1f8a9f1bf6f3">Image Denoising with Deep Learning (Towards Data Science)</a></li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html">PyTorch官方图像修复教程</a>。</li>
+</ol>
+<h4 id="代码库"><a href="#代码库" class="headerlink" title="代码库"></a><strong>代码库</strong></h4><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/cszn/KAIR">KAIR (PyTorch图像复原工具包)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/xinntao/BasicSR">BasicSR (通用图像复原库)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/wenbihan/denoising-zoo">Denoising Zoo (经典模型集合)</a>。</li>
+</ol>
+<hr>
+<h3 id="工具与数据集"><a href="#工具与数据集" class="headerlink" title="工具与数据集"></a><strong>工具与数据集</strong></h3><ol>
+<li><strong>工具</strong>：<ul>
+<li>PyTorch&#x2F;TensorFlow、OpenCV、PIL。</li>
+<li>可视化工具：TensorBoard、Matplotlib。</li>
+</ul>
+</li>
+<li><strong>数据集</strong>：<ul>
+<li>合成噪声：BSD68、Set12。</li>
+<li>真实噪声：SIDD、DND、RENOIR。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="建议学习路径"><a href="#建议学习路径" class="headerlink" title="建议学习路径"></a><strong>建议学习路径</strong></h3><ol>
+<li><strong>逐步深入</strong>：从DnCNN开始，逐步过渡到GAN&#x2F;Transformer。</li>
+<li><strong>重视实验</strong>：每个模型至少复现一次，并尝试改进（如修改损失函数、添加注意力机制）。</li>
+<li><strong>参与社区</strong>：关注GitHub趋势项目、arXiv最新论文（关键词：denoising, image restoration）。</li>
+</ol>
+<p>通过以上计划，你可以系统掌握深度学习图像去噪的核心技术，并在实践中积累经验。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">基本图像处理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="图像处理的基本分类"><a href="#图像处理的基本分类" class="headerlink" title="图像处理的基本分类"></a>图像处理的基本分类</h2><p>图像去噪、修复、视频超分辨率、滤镜、后聚集、增强，Demosaic，HDR，NR、SR、分割、识别等图像增强相关算法。   </p>
+<p>图像去噪：去除图像中的噪声（如随机像素值变化），以提高图像质量。 <br>图像修复：恢复受损或缺失的部分，使图像看起来完整且自然。  </p>
+<p>视频超分辨率：将低分辨率视频转换为高分辨率视频，以提高清晰度和细节水平。  </p>
+<p>滤镜：对图像进行各种视觉效果处理，例如色彩校正、模糊、锐化等。  </p>
+<p>后聚焦：模拟相机重新对焦的效果，允许用户选择图像中的焦点区域。  </p>
+<p>增强：改善图像的整体外观，使其更具吸引力或更容易阅读。  </p>
+<p>Demosaicing：用于从单色传感器数据生成全彩色图像的过程。  </p>
+<p>HDR（高动态范围）：合并多个曝光图像以创建包含宽广亮度范围的单一图像。  </p>
+<p>NR（噪声减少）：降低图像中的噪声，以获得更平滑的结果。  </p>
+<p>SR（超级分辨率）：提高图像分辨率，增加细节和清晰度。  </p>
+<p>分割：将图像分割成不同的对象或区域，以便于分析或编辑。  </p>
+<p>识别：自动检测和识别图像中的物体、人物或其他特征。</p>
+<h2 id="空域滤波算法"><a href="#空域滤波算法" class="headerlink" title="空域滤波算法"></a>空域滤波算法</h2><p>空域滤波算法是图像处理中用于去除噪声的一类方法，它们直接在图像的像素坐标系中操作，通过分析图像中像素与周围像素的关系来去除噪声。以下是几种常见的空域滤波算法的原理描述及其在MATLAB中的实现代码。</p>
+<h3 id="1-均值滤波"><a href="#1-均值滤波" class="headerlink" title="1. 均值滤波"></a>1. 均值滤波</h3><p>均值滤波是一种简单的线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值的平均值来实现降噪。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;average&#x27;, [5 5]); % 创建5x5的均值滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-中值滤波"><a href="#2-中值滤波" class="headerlink" title="2. 中值滤波"></a>2. 中值滤波</h3><p>中值滤波是一种非线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值排序后的中值来实现降噪。这种方法对椒盐噪声特别有效。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">filtered_img = medfilt2(img); % 应用中值滤波</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-高斯滤波"><a href="#3-高斯滤波" class="headerlink" title="3. 高斯滤波"></a>3. 高斯滤波</h3><p>高斯滤波通过应用二维高斯函数作为滤波器核来平滑图像，适合去除高斯噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的高斯滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-双边滤波"><a href="#4-双边滤波" class="headerlink" title="4. 双边滤波"></a>4. 双边滤波</h3><p>双边滤波是一种非线性空间滤波方法，它不仅考虑像素点的空间邻近性，还考虑像素值的相似性。这种滤波器在保持边缘清晰的同时去除噪声。MATLAB代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的空间滤波器核</span><br><span class="line">filtered_img = imfilter(img, h, &#x27;replicate&#x27;); % 应用双边滤波</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/" class="post-title-link" itemprop="url">电磁波谱</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>以电磁波谱辐射为基础的图像我们最为熟悉，特别是X射线和可见光谱波段的图像。电磁波可以定义为以各种波长传播的正弦波，或是无质量的粒子流，每个粒子以波的形式传播并以光的速度运动。每个无质量的粒子包含一定的能量(或一束能量)，每束能量称为一个光子。如果光谱波段根据光子能量进行分组，则可以得到下图所示的光谱，其范围从伽马射线(最高能量10<sup>6</sup> )到无线电波(最低能量10<sup>-9</sup>）)。</p>
+<p><img src="/posts/Image_Processing/%E7%94%B5%E7%A3%81%E6%B3%A2%E8%B0%B1/img_01.png" alt="电磁波谱示意图"></p>
+<h3 id="伽马射线"><a href="#伽马射线" class="headerlink" title="伽马射线"></a>伽马射线</h3><p>伽马射线成像的主要用途包括核医学和天文观测。在核医学中，这种方法将放射性同位素注射到人体内，当这种物质衰变时，就会放射出伽马射线，然后用伽马射线检测仪收集到的放射线来产生图像。</p>
+<h3 id="X射线成像"><a href="#X射线成像" class="headerlink" title="X射线成像"></a>X射线成像</h3><p>X射线最早用于成像的电磁辐射源之一。最熟悉的X射线应用是医学诊断，但是X射线还被广泛用于工业和其他领域，图天文学。用于医学和工业成像的X射线是由X射线管产生的，X射线管是带有阴极和阳极的真空管。阴极加热释放自由电子，这些电子以很高的速度向阳极流动，当电子撞击一个原子核时，能量被释放并形成X射线辐射。</p>
+<h3 id="紫外波段成像"><a href="#紫外波段成像" class="headerlink" title="紫外波段成像"></a>紫外波段成像</h3><p>紫外“光”的应用多种多样，包括平板印刷术、工业检测、显微镜方法、激光、生物成像和天文观测等。</p>
+<h3 id="可见光及红外波段成像"><a href="#可见光及红外波段成像" class="headerlink" title="可见光及红外波段成像"></a>可见光及红外波段成像</h3><p>由于电磁波谱可见光波段在所有波段中使我们最熟悉的，因此，这一波段的成像应用远远超过其他波段应用领域。红外波段常与可见光相结合成像。</p>
+<h3 id="微波波段成像"><a href="#微波波段成像" class="headerlink" title="微波波段成像"></a>微波波段成像</h3><p>微波波段成像的典型应用就是雷达。成像雷达的独特之处是在任何范围和时间内，不考虑空气、周围光照条件的收集数据能力。某些雷达可以穿透云层，在一定条件下还可以穿透植被、冰层和极其干燥的沙漠。成像雷达的工作原理就像一台闪光照相机，它自己提供照明（微波脉冲）去照亮地面上的一个区域，并得到一幅快照图像。与照相机镜头不同，雷达使用天线和数字计算机记录图像。在雷达图像中，能看到的只是反射到雷达天线的微波能量。</p>
+<h3 id="无线电波段成像"><a href="#无线电波段成像" class="headerlink" title="无线电波段成像"></a>无线电波段成像</h3><p>无线电波段成像主要用于医学和天文学。在医学中，无线电波用于核磁共振成像（MRI）。该技术是把病人放在强磁场中，并让无线电短脉冲通过病人的身体，每个脉冲将导致病人的组织发射的无线电响应脉冲，这些信号发生的位置和强度由计算机确定，从而产生病人的一幅二维剖面图像。</p>
 
       
     </div>
@@ -451,7 +1321,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

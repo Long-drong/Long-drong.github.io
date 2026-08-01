@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/long.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="在 MATLAB App Designer 中，默认情况下，运行中的 UITable 是不支持直接使用 Ctrl+V 一次性粘贴多行多列数据的。如果你直接按下粘贴键，可能没有任何反应，或者它只会被塞进你双击选中的那一个单元格里。 针对这个问题，有两个非常实用的解决方法：极速低代码方案（增加“粘贴”按钮），或者无感快捷键方案（绑定 Ctrl+V 键盘监听）。 方案一：增加一个“一键粘贴”按钮（极简、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="matalb app-UITable的复制黏贴">
+<meta property="og:url" content="https://long-drong.github.io/posts/Matalb/matalb%20app-UITable%E7%9A%84%E5%A4%8D%E5%88%B6%E9%BB%8F%E8%B4%B4/index.html">
+<meta property="og:site_name" content="🌈青龙小栈">
+<meta property="og:description" content="在 MATLAB App Designer 中，默认情况下，运行中的 UITable 是不支持直接使用 Ctrl+V 一次性粘贴多行多列数据的。如果你直接按下粘贴键，可能没有任何反应，或者它只会被塞进你双击选中的那一个单元格里。 针对这个问题，有两个非常实用的解决方法：极速低代码方案（增加“粘贴”按钮），或者无感快捷键方案（绑定 Ctrl+V 键盘监听）。 方案一：增加一个“一键粘贴”按钮（极简、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-29T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-01T06:09:34.967Z">
+<meta property="article:author" content="Qing Long">
+<meta property="article:tag" content="Matalb">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://long-drong.github.io/posts/Matalb/matalb%20app-UITable%E7%9A%84%E5%A4%8D%E5%88%B6%E9%BB%8F%E8%B4%B4/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Matalb/matalb%20app-UITable%E7%9A%84%E5%A4%8D%E5%88%B6%E9%BB%8F%E8%B4%B4/","path":"posts/Matalb/matalb app-UITable的复制黏贴/","title":"matalb app-UITable的复制黏贴"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>matalb app-UITable的复制黏贴 | 🌈青龙小栈</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">🌈青龙小栈</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E5%A2%9E%E5%8A%A0%E4%B8%80%E4%B8%AA%E2%80%9C%E4%B8%80%E9%94%AE%E7%B2%98%E8%B4%B4%E2%80%9D%E6%8C%89%E9%92%AE%EF%BC%88%E6%9E%81%E7%AE%80%E3%80%81%E6%9C%80%E6%8E%A8%E8%8D%90-%E2%AD%90%EF%B8%8F%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">方案一：增加一个“一键粘贴”按钮（极简、最推荐 ⭐️）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">代码实现：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E7%9C%9F%E6%AD%A3%E7%9A%84-Ctrl-V-%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%97%A0%E7%BC%9D%E7%B2%98%E8%B4%B4"><span class="nav-number">2.</span> <span class="nav-text">方案二：实现真正的 Ctrl + V 快捷键无缝粘贴</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">配置步骤：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qing Long"
+      src="/images/avs.png">
+  <p class="site-author-name" itemprop="name">Qing Long</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Matalb/matalb%20app-UITable%E7%9A%84%E5%A4%8D%E5%88%B6%E9%BB%8F%E8%B4%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="matalb app-UITable的复制黏贴 | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          matalb app-UITable的复制黏贴
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-29T00:00:00+00:00">2026-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Matalb/" itemprop="url" rel="index"><span itemprop="name">Matalb</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在 MATLAB App Designer 中，默认情况下，运行中的 <code>UITable</code> <strong>是不支持直接使用 <code>Ctrl+V</code> 一次性粘贴多行多列数据的</strong>。如果你直接按下粘贴键，可能没有任何反应，或者它只会被塞进你双击选中的那一个单元格里。</p>
+<p>针对这个问题，有两个非常实用的解决方法：<strong>极速低代码方案（增加“粘贴”按钮）</strong>，或者<strong>无感快捷键方案（绑定 Ctrl+V 键盘监听）</strong>。</p>
+<h3 id="方案一：增加一个“一键粘贴”按钮（极简、最推荐-⭐️）"><a href="#方案一：增加一个“一键粘贴”按钮（极简、最推荐-⭐️）" class="headerlink" title="方案一：增加一个“一键粘贴”按钮（极简、最推荐 ⭐️）"></a>方案一：增加一个“一键粘贴”按钮（极简、最推荐 ⭐️）</h3><p>这是最不容易出错、写起来也最快的办法。你只需要在界面上放一个普通的 <strong><code>Button</code>（按钮）</strong>，并把它的文本改成 <strong>“从剪贴板粘贴”</strong>，然后为它添加回调。</p>
+<p>当你从 Excel 或其他地方复制了一列或一个矩阵数据后，直接在 App 里点一下这个按钮，数据就会瞬间自动填充到 <code>UITable</code> 中：</p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><p>在按钮的 <code>ButtonPushed</code> 回调函数中写入以下代码：</p>
+<p>Matlab</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">% 按钮点击回调函数（写入 double 数组）</span><br><span class="line"></span><br><span class="line">function PasteButtonPushed(app, event)</span><br><span class="line"></span><br><span class="line">    % 1. 获取系统剪贴板中的文本数据</span><br><span class="line"></span><br><span class="line">    rawText = clipboard(&#x27;paste&#x27;);</span><br><span class="line"></span><br><span class="line">    if isempty(rawText)</span><br><span class="line"></span><br><span class="line">        uialert(app.UIFigure, &#x27;剪贴板为空，请先复制数据！&#x27;, &#x27;提示&#x27;);</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 2. 使用 str2num 直接将文本块一次性解析为 double 数组</span><br><span class="line"></span><br><span class="line">    % str2num 会自动处理换行和空格，将其转换为标准的数值矩阵/列向量</span><br><span class="line"></span><br><span class="line">    numArray = str2num(rawText); %#ok&amp;lt;ST2NM&amp;gt; (忽略 MATLAB 效率警告，此处 str2num 最适合解析不规则多行文本)</span><br><span class="line"></span><br><span class="line">    if isempty(numArray)</span><br><span class="line"></span><br><span class="line">        uialert(app.UIFigure, &#x27;剪贴板中的数据无法解析为数值数组！&#x27;, &#x27;格式错误&#x27;);</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 3. 确保它是一列（如果用户复制的是行向量，自动转置为列向量）</span><br><span class="line"></span><br><span class="line">    if isrow(numArray)</span><br><span class="line"></span><br><span class="line">        numArray = numArray&#x27;;</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 4. 直接把 double 数组赋给表格的 Data</span><br><span class="line"></span><br><span class="line">    app.UITable.Data = numArray;</span><br><span class="line"></span><br><span class="line">    % 5. 重新应用居中样式</span><br><span class="line"></span><br><span class="line">    s = uistyle(&#x27;HorizontalAlignment&#x27;, &#x27;center&#x27;);</span><br><span class="line"></span><br><span class="line">    addStyle(app.UITable, s, &#x27;table&#x27;, &#x27;&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h3 id="方案二：实现真正的-Ctrl-V-快捷键无缝粘贴"><a href="#方案二：实现真正的-Ctrl-V-快捷键无缝粘贴" class="headerlink" title="方案二：实现真正的 Ctrl + V 快捷键无缝粘贴"></a>方案二：实现真正的 <code>Ctrl + V</code> 快捷键无缝粘贴</h3><p>如果你不想点按钮，而是希望用户直接在 App 界面上按下 <code>Ctrl + V</code> 就能把数据贴进去，我们可以监听整个窗口（<code>UIFigure</code>）的按键事件。</p>
+<h4 id="配置步骤："><a href="#配置步骤：" class="headerlink" title="配置步骤："></a>配置步骤：</h4><ol>
+<li>在左侧组件浏览器（Component Browser）中，选中主窗口 <strong><code>app.UIFigure</code></strong>。<br>    <br>2.  在右侧属性面板切换到 <strong>Callbacks（回调）</strong> 页签。<br>    <br>3.  找到 <strong><code>KeyPressFcn</code></strong>，点击下拉菜单选择 <strong><code>Add KeyPressFcn callback</code></strong>。<br>    <br>4.  在生成的代码中，写入以下事件监听代码：</li>
+</ol>
+<p>Matlab</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">% UIFigure的键盘按下回调</span><br><span class="line">function UIFigureKeyPress(app, event)</span><br><span class="line">    % 检测用户是否按下了 Ctrl + V</span><br><span class="line">    if strcmp(event.Key, &#x27;v&#x27;) &amp;&amp; any(strcmp(event.Modifier, &#x27;control&#x27;))</span><br><span class="line">        </span><br><span class="line">        % 读取剪贴板数据</span><br><span class="line">        rawText = clipboard(&#x27;paste&#x27;);</span><br><span class="line">        if isempty(rawText), return; end</span><br><span class="line">        </span><br><span class="line">        % 解析行和列</span><br><span class="line">        rows = splitlines(strtrim(rawText));</span><br><span class="line">        tempData = cell(numel(rows), 1); % 假设你只有一列</span><br><span class="line">        </span><br><span class="line">        for i = 1:numel(rows)</span><br><span class="line">            val = str2double(rows&#123;i&#125;);</span><br><span class="line">            if isnan(val)</span><br><span class="line">                tempData&#123;i, 1&#125; = rows&#123;i&#125;;</span><br><span class="line">            else</span><br><span class="line">                tempData&#123;i, 1&#125; = val;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">        </span><br><span class="line">        % 自动填充到表格中</span><br><span class="line">        app.UITable.Data = tempData;</span><br><span class="line">        </span><br><span class="line">        % 重新应用居中样式</span><br><span class="line">        s = uistyle(&#x27;HorizontalAlignment&#x27;, &#x27;center&#x27;);</span><br><span class="line">        addStyle(app.UITable, s, &#x27;table&#x27;, &#x27;&#x27;);</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>方案一测试OK</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Matalb/" rel="tag"><i class="fa fa-tag"></i> Matalb</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%90%84%E9%A1%B9%E5%BC%82%E6%80%A7%E6%A3%80%E6%B5%8B%E5%9B%BE%E5%83%8Fmap%E5%9B%BE/" rel="prev" title="各项异性检测图像map图">
+                  <i class="fa fa-angle-left"></i> 各项异性检测图像map图
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%94/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%941/" rel="next" title="日常随笔1">
+                  日常随笔1 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qing Long</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/long.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图像预处理算法的好坏直接关系到后续图像处理的效果，如图像分割、目标识别、边缘提取等，为了获取高质量的数字图像，很多时候都需要对图像进行降噪处理，尽可能的保持原始信息完整性（即主要特征）的同时，又能够去除信号中无用的信息。 并且，降噪还引出了一个非常热门的研究方向，即美颜磨皮，这对于中国用户来说，是非常重要的计算机视觉领域，今天就来认真讲讲传统的图像降噪算法。 01 图像降噪算法分类 虽然各种图像降">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传统图像降噪方法综述">
+<meta property="og:url" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="🌈青龙小栈">
+<meta property="og:description" content="图像预处理算法的好坏直接关系到后续图像处理的效果，如图像分割、目标识别、边缘提取等，为了获取高质量的数字图像，很多时候都需要对图像进行降噪处理，尽可能的保持原始信息完整性（即主要特征）的同时，又能够去除信号中无用的信息。 并且，降噪还引出了一个非常热门的研究方向，即美颜磨皮，这对于中国用户来说，是非常重要的计算机视觉领域，今天就来认真讲讲传统的图像降噪算法。 01 图像降噪算法分类 虽然各种图像降">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_1.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_2.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_3.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_4.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_5.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_6.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_7.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_8.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_9.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_10.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_11.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_12.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_13.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_14.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_15.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_16.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_17.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_18.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_19.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_20.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_21.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_22.png">
+<meta property="article:published_time" content="2026-07-28T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-01T06:09:34.994Z">
+<meta property="article:author" content="Qing Long">
+<meta property="article:tag" content="图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_1.png">
+
+
+<link rel="canonical" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/","path":"posts/图像处理/传统图像降噪方法综述/","title":"传统图像降噪方法综述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>传统图像降噪方法综述 | 🌈青龙小栈</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">🌈青龙小栈</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qing Long"
+      src="/images/avs.png">
+  <p class="site-author-name" itemprop="name">Qing Long</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="传统图像降噪方法综述 | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          传统图像降噪方法综述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-01 06:09:34" itemprop="dateModified" datetime="2026-08-01T06:09:34+00:00">2026-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>图像预处理算法的好坏直接关系到后续图像处理的效果，如图像分割、目标识别、边缘提取等，为了获取高质量的数字图像，很多时候都需要对图像进行降噪处理，尽可能的保持原始信息完整性（即主要特征）的同时，又能够去除信号中无用的信息。</p>
+<p>并且，降噪还引出了一个非常热门的研究方向，即美颜磨皮，这对于中国用户来说，是非常重要的计算机视觉领域，今天就来认真讲讲传统的图像降噪算法。</p>
+<p><strong>01 图像降噪算法分类</strong></p>
+<p>虽然各种图像降噪算法犹如雨后春笋般不断新增，然而很多方法都存在一个通用的缺点，就是在降噪的同时往往会丢失图像的细节或边缘信息。</p>
+<p>一般的图像处理，微小的细节对图像降噪的后续处理程序影响不太明显，但是当处理对象为医学图像时，这样的小失误是不被允许的，因为在医疗诊断或治疗中，每一个微小的失误都会影响医师的治疗方法甚至威胁到患者的生命。这就要求更多的研究者来投入时间和精力研究新的降噪技术，以达到降噪并同时仍能保留足够细节信息的目的。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_1.png"></p>
+<p>目前常用的图像去噪算法大体上可非为两类，即<strong>空域像素特征去噪算法和变换域去噪算法</strong>。前者是直接地在图像空间中进行的处理，后者是间接地在图像变换域中进行处理。</p>
+<p>1.1 空域像素特征去噪算法</p>
+<p>首先说明一点就是在信号处理教科书中，虽然介绍过很多经典的图像去噪方法，但主要都是针对随机噪声的，对于sensor缺陷导致的一些脉冲噪声（impulse noise）这里我们不考虑。</p>
+<p>那么什么是随机噪声呢？相比于图像的真实信号来说随机噪声就是一种或高或低呈现出不确定变化的一种信号，如下图所示虚线代表真实信号，红蓝线表示的就是随机噪声信号，所有的随机噪声信号求和后结果为0。</p>
+<p>由于这个零和特点，目前几乎所有的空域降噪算法都是基于这个理论为出发点来进行降噪处理的。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_2.png"></p>
+<p>基于空域像素特征的方法，是通过<strong>分析在一定大小的窗口内，中心像素与其他相邻像素之间在灰度空间的直接联系</strong>，来获取新的中心像素值的方法，因此往往都会存在一个典型的输入参数，即滤波半径r。此滤波半径可能被用于在该局部窗口内计算像素的相似性，也可能是一些高斯或拉普拉斯算子的计算窗口。在邻域滤波方法里面，最具有代表性的滤波方法有以下几种：</p>
+<p><strong>(1) 算术均值滤波与高斯滤波</strong></p>
+<p>算术均值滤波用<strong>像素邻域的平均灰度</strong>来代替像素值，适用于脉冲噪声，因为脉冲噪声的灰度级一般与周围像素的灰度级不相关，而且亮度高出其他像素许多。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_3.png" alt="均值滤波器公式"></p>
+<ul>
+<li><p>均值滤波结果A’(i,j)随着L（滤波半径）取值的增大而变得越来越模糊，图像对比度越来越小。经过均值处理之后，噪声部分被弱化到周围像素点上，所得到的结果是噪声幅度减小，但是噪声点的颗粒面积同时变大，所以污染面积反而增大。为了解决这个问题，可以通过设定阈值，比较噪声和邻域像素灰度，只有当差值超过一定阈值时，才被认为是噪声。不过阈值的设置需要考虑图像的总体特性和噪声特性，进行统计分析。自适应均值滤波算法通过方向差分来寻找噪声像素，从而赋予噪声像素与非噪声像素不同的权重，并自适应地寻找最优窗口大小，优于一般的均值滤波方法。</p>
+</li>
+<li><p>高斯滤波矩阵的权值，随着与中心像素点的距离增加，而呈现高斯衰减的变换特性。这样的好处在于，离算子中心很远的像素点的作用很小，从而能在一定程度上保持图像的边缘特征。通过调节高斯平滑参数，可以在图像特征过分模糊和欠平滑之间取得折中。与均值滤波一样，高斯平滑滤波的尺度因子越大，结果越平滑，但由于其权重考虑了与中心像素的距离，因此是更优的对邻域像素进行加权的滤波算法。</p>
+</li>
+</ul>
+<p><strong>(2) 统计中值滤波</strong></p>
+<p>中值滤波首先确定一个滤波窗口及位置（通常含有奇数个像素），然后将窗口内的像素值按<strong>灰度大小进行排序</strong>，最后取其中位数代替原窗口中心的像素值（如下图）。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_4.png"></p>
+<p>但当噪声像素个数大于窗口像素总数的一半时，由于灰度排序的中间值仍为噪声像素灰度值，因为滤波效果很差。此时如果增加窗口尺寸，会使得原边缘像素被其他区域像素代替的几率增加，图像更容易变模糊，并且运算量也大大增加。</p>
+<p>无论是中值滤波还是加权滤波，两者受窗口的尺寸大小影响非常大。一种对中值滤波的改进是自适应中值滤波，它首先判断窗口内部的中心像素是否是一个脉冲，如果不是，则输出标准中值滤波的结果；如果是，则通过继续增大窗口滤波尺寸来寻找非脉冲的中值，因此该方法相比较原始的统计中值滤波器，在保持清晰度和细节方面更优。</p>
+<p><strong>(3)&nbsp;双边滤波</strong></p>
+<p>这是一种非线性的保边滤波方法，是<strong>结合图像的空间邻近度和像素值相似度</strong>的一种折中处理，同时考虑空域信息和灰度相似性，达到保边去噪的目的。具有简单、非迭代、局部的特点。双边滤波器之所以可以达到保边去噪的效果，是因为滤波器是由两个函数构成。一个函数是由几何空间距离决定滤波器系数。另一个由像素差值决定滤波器系数。双边滤波器中，输出像素的值g(i,j)依赖于邻域像素的值的加权组合：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_5.png"></p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_6.png"></p>
+<p>上图中权重系数w(i,j)取决于空域核和值域核的乘积。其中空域滤波器对空间上邻近的点进行加权平均，加权系数随着距离的增加而减少。值域滤波器则是对像素值相近的点进行加权平均，加权系数随着值差的增大而减少。</p>
+<p><strong>(4) 引导滤波（guided filter）</strong></p>
+<p>高斯滤波等线性滤波算法所用的核函数相对于待处理的图像是独立无关的，这里的独立无关也就意味着，对任意图像都是采用相同的操作。</p>
+<p>引导滤波就是在<strong>滤波过程中加入引导图像中的信息</strong>，这里的引导图可以是单独的图像也可以是输入图像，当引导图为输入图像时，引导滤波就成为了一个可以保持边缘的去噪滤波操作。我们来看一下具体算法原理：</p>
+<p>第一步：假设该引导滤波函数的输出与输入在一个二维窗口内满足线性关系，如下：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_7.png"></p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_8.png"></p>
+<p>其中，q是输出像素的值，即p去除噪声或者纹理之后的图像，ni表示噪声，I是输入图像的值，i和k是像素索引，a和b是当窗口中心位于k时该线性函数的系数。（当引导图为输入图像时，引导滤波就成为一个保持边缘的滤波操作，即 I&#x3D; p，对上示两边取梯度可得q’&#x3D;aI’，即当输入图I有梯度时，输出q也有类似的梯度，这也就可以解释为什么引导滤波有边缘保持特性了。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_9.png"></p>
+<p>第二步求出线性函数的系数，也就是线性回归，即希望拟合函数的输出值q与真实值p之间的差距最小，转化为下面但最优化问题，也就是让下式最小：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_10.png"></p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_11.png"></p>
+<p>在这里，μk和σk^2表示I在局部窗口wk中的均值和方差。&nbsp;|ω|是窗口内的所有像素数，pk表示p在窗口wk中的均值，ϵ就是规整化参数，当I&#x3D;p时，上面第二个公式即可简化为：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_12.png"></p>
+<ul>
+<li>如果ϵ&#x3D;0，显然a&#x3D;1, b&#x3D;0是E(a,b)为最小值的解，从上式可以看出，这时的滤波器没有任何作用，将输入原封不动的输出。<br>    <br>*   如果ϵ&gt;0，在像素强度变化小的区域（方差不大），即图像I在窗口wk中基本保持固定，此时有σ2k&lt;&lt;ϵ，于是有ak≈0和bk≈μk，即做了一个加权均值滤波，而在高方差区域，即表示图像I在窗口wk中变化比较大，此时我们有σ2k&gt;&gt;ϵ，于是有ak≈1和bk≈0，对图像的滤波效果很弱，有助于保持边缘。<br>    <br>*   在窗口大小不变的情况下，随着ϵ的增大，滤波效果越明显。</li>
+</ul>
+<p>第三步：在计算每个窗口的线性系数时，我们可以发现一个像素会被多个窗口包含，也就是说，每个像素都由多个线性函数所描述。因此，如之前所说，要具体求某一点的输出值qi时，只需将所有包含该点的线性函数值平均即可，如下：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_13.png"></p>
+<p>其中，输出值q又与两个均值有关，分别为a和b在窗口w中的均值，我们将上一步得到两个图像ak和bk都进行盒式滤波，得到两个新图：ai’和bi’。然后用ai’乘以引导图像Ii，再加上bi’，即得最终滤波之后的输出图像q。</p>
+<p><strong>(5) NLM（Non-Local means）算法</strong></p>
+<p>前面基于邻域像素的滤波方法，基本上只考虑了有限窗口范围内的像素灰度值信息，没有考虑该窗口范围内像素的统计信息如方差，也没有考虑整个图像的像素分布特性，和噪声的先验知识。</p>
+<p>针对其局限性，NLM算法被提出，该算法使用自然图像中普遍存在的冗余信息来去噪声。与常用的双线性滤波、中值滤波等利用图像局部信息来滤波不同的是，它<strong>利用了整幅图像来进行去噪</strong>，以图像块为单位在图像中寻找相似区域，再对这些区域求平均，能够比较好地去掉图像中存在的高斯噪声。这里我直接拿图来说可能会更能说明问题：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_14.png"></p>
+<p>如上图所示，其中p为去噪的点，从图中看出q1和q2的邻域与p相似，所以权重和比较大，而q3因为与q邻域相差比较大所以赋予的权重值就很小。NLM就是将一幅图像中所有点的权重都表示出来，那就得到下面这些权重图：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_15.png"></p>
+<p>上面权值图像中，左边是原图，中心的白色色块代表了像素 &nbsp;块邻域，右边是计算出来的权重图，权重范围从0（黑色）到1（白色）。</p>
+<p>这个块邻域在整幅图像中移动，计算图像中其他区域跟这个块的相似度，相似度越高，得到的权重越大。最后将这些相似的像素值根据归一化之后的权重加权求和，得到的就是去噪之后的图像了。</p>
+<p>由于原始NLM方法需要用图像中所有的像素来估计每一个像素的值，因此计算量非常大，研究者不断对该方法进行了几点改进。(a) 采用一定的搜索窗口代替所有的像素，使用相似度阈值，对于相似度低于某一阈值的像素，不加入到权重的计算(即不考虑其相对影响，这些都可以降低计算复杂度。(b)使用块之间的显著特征，如纹理特征等代替灰度值的欧氏距离来计算相似度，在计算上更加有优势，应用上也更加灵活。</p>
+<p>1.2 变换域去噪算法</p>
+<p>空域去噪都是从空间的角度去思考如何去噪，也就是所谓的spatial noise reduction，这条路子能想的方法也都做得差不多了，于是有人就换个角度想问题，就有了变换域做去噪的方法。通过数学变换，在变换域上把信号和噪声分离，然后把噪声过滤掉，剩下的就是信号。如下图没有噪声的信号就比较顺滑没有杂质。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_16.png"></p>
+<p>而下图中含有噪声的信号就会显得参差不齐，毛刺较多。而如果我们可以将噪声变换一个域后设定一个阈值将高于阈值的部分去掉，再反变换后剩下的就是干净的信号了。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_17.png"></p>
+<p>因此图像变换域去噪算法的基本思想其实就是<strong>首先进行某种变换，将图像从空间域转换到变换域</strong>，然后从频率上把噪声分为高中低频噪声，用这种变换域的方法就可以把不同频率的噪声分离，之后进行反变换将图像从变换域转换到原始空间域，最终达到去除图像噪声的目的。</p>
+<p>图像从空间域转换到变换域的方法很多，其中最具代表性的有傅里叶变换、离散余弦变换、小波变换以及多尺度几何分析方法等。</p>
+<p>其中基于小波萎缩法是目前研究最为广泛的方法，小波萎缩法又分成如下两类：第1类是阈值萎缩，由于阈值萎缩主要基于如下事实，即比较大的小波系数一般都是以实际信号为主，而比较小的系数则很大程度是噪声。因此可通过设定合适的阈值，首先将小于阈值的系数置零，而保留大于阈值的小波系数；然后经过阈值函数映射得到估计系数；最后对估计系数进行逆变换，就可以实现去噪和重建；而另外一种萎缩方法则不同，它是通过判断系数被噪声污染的程度，并为这种程度引入各种度量方法(例如概率和隶属度等)，进而确定萎缩的比例，所以这种萎缩方法又被称为比例萎缩。</p>
+<p>1.3 BM3D去噪算法</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_18.png"></p>
+<p>空域中NLM算法和变换域中小波萎缩法效果都很好，一个很自然的想法就是是否可以将两者相结合呢？是的，BM3D就是融合了spatial denoise和tranform denoise，从而可以得到最高的峰值信噪比。它先吸取了NLM中的计算相似块的方法，然后又融合了小波变换域去噪的方法。我们来看一下具体算法流程如下图：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_19.png"></p>
+<p>BM3D算法总共有两大步骤，分为基础估计（Step1）和最终估计（Step2）。在这两大步中，分别又有三小步：相似块分组，协同滤波和聚合。</p>
+<p>Stpe1：基础估计</p>
+<p>(1) 相似块分组：首先在噪声图像中选择一些大小的参照块（考虑到算法复杂度，不用每个像素点都选参照块，通常隔3个像素为一个步长进行选取，复杂度降到1&#x2F;9），在参照块的周围适当大小区域内进行搜索，寻找若干个差异度最小的块，并把这些块整合成一个3维的矩阵。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_20.png"></p>
+<p>(2) 协同滤波：形成若干个三维的矩阵之后，首先将每个三维矩阵中的二维的块（即噪声图中的某个块）进行二维变换，可采用小波变换或DCT变换等。二维变换结束后，在矩阵的第三个维度进行一维变换，变换完成后对三维矩阵进行硬阈值处理，将小于阈值的系数置0，然后通过在第三维的一维反变换和二维反变换得到处理后的图像块。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_21.png"></p>
+<p>(3) 聚合：此时，每个二维块都是对去噪图像的估计。这一步分别将这些块融合到原来的位置，每个像素的灰度值通过每个对应位置的块的值加权平均，权重取决于置0的个数和噪声强度。</p>
+<p>Step2：最终估计</p>
+<p>具体的步骤从流程图可看出和Step1基本一样，不同的有两处：</p>
+<p>一处是聚合过程将会得到两个三维数组：噪声图形成的三维矩阵和基础估计结果的三维矩阵。</p>
+<p>另一处是协同滤波中用维纳滤波（Wiener Filtering）代替了硬阈值处理。</p>
+<p><strong>02滤波器抑制噪声比较</strong></p>
+<p>对图像进行滤波去噪的算法其实就是一个加权平均的运算过程，滤波后图像中的每个像素点都是由其原图像中该点邻域内多个像素点值得加权平均，不同的滤波器最根本的差异就是权值不同。另外根据噪声的不同，滤波效果也各有不同。</p>
+<ul>
+<li>均值滤波处理会噪声部分被弱化到周围像素点上，所得到的结果是噪声幅度减小，但是噪声点的颗粒面积同时变大，所以污染面积反而增大。  </li>
+<li>高斯滤波器用像素邻域的加权均值来代替该点的像素值，而每一邻域像素点权值是随该点与中心点的距离单调增减的．这一性质是很重要的，因为边缘是一种图像局部特征，如果平滑运算对离算子中心很远的像素点仍然有很大作用，则平滑运算会使图像失真，因此缺点是权重完全取决于图像像素之间欧氏距离，与图像的内容没有关系。</li>
+</ul>
+<ul>
+<li><p>中值滤波适用于椒盐噪声和脉冲噪声。因为对于受脉冲噪声和椒盐噪声污染的图像，相应位置的图像灰度发生了跳变，是不连续的，而此处的中值滤波正是一种非线性滤波方法，对这些类型的随机噪声，它比相同尺寸的线性平滑滤波器引起的模糊更少，能较好的保持边缘，但会使图像中的小目标丢失，因此对点、线和尖顶多的图像不宜采用中值滤波。</p>
+</li>
+<li><p>双边滤波器的好处是可以做边缘保存，一般过去用的维纳滤波或者高斯滤波去降噪，都会较明显地模糊边缘，对于高频细节的保护效果并不明显。双边滤波顾名思义比高斯滤波多了一个高斯方差，它是基于空间分布的高斯滤波函数，所以在边缘附近，离的较远的像素不会太多的影响到边缘上的像素值，这样就保证了边缘附近像素值的保存。但是由于保存了过多的高频信息，对于彩色图像里的高频噪声，双边滤波器不能够干净的滤掉，只能够对于低频信息进行较好的滤波因此，双边滤波器即平滑滤波了图像，又保持的图像边缘。虽然去噪效果很明显，但很多细节被去除，只有整体形状被保留，不过美颜相机磨皮恰恰就需要这种算法（如下图美女磨皮后的效果）。</p>
+</li>
+</ul>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_22.png"></p>
+<ul>
+<li><p>引导滤波不像高斯滤波等线性滤波算法所用的核函数相对于待处理的图像是独立无关的，而是在滤波过程中加入了引导图像中（去噪时用的就是图像本身）的信息，所以引导滤波本质上就是通过一张引导图I，对初始图像p（输入图像）进行滤波处理，使得最后的输出图像大体上与初始图像P相似，但是纹理部分与引导图I相似。在滤波效果上，引导滤波和双边滤波差不多，在一些细节上，引导滤波较好。 </p>
+</li>
+<li><p>引导滤波最大的优势在于能够保持线性复杂度，每个像素虽然由多个窗口包含，求某一点像素值的具体输出值时，只需将包含该点所有的线性函数值平均即可，而双边滤波不是线性复杂度在于他考虑了每个点的几何差距与强度差距两个因素，当处理图像较大时，运算量很明显会增大很多。</p>
+</li>
+<li><p>非局部算法获得的信噪比比双边滤波略高，有时候还不如双边滤波。但是，非局部滤波是一种基于快的匹配度来计算滤波权值的，所以能获得比较好的视觉效果。然而，它的计算复杂度实在是太高了。最原始非局部均值算法是在整个图片中进行块搜索，根据块的匹配度来计算权值。实际执行过程，都会把搜索区域限定在一个局部的搜索窗口中。</p>
+</li>
+<li><p><strong>BM3D算法是目前传统算法中效果最好的去噪算法</strong>，相比于NLM噪声更少，图像细节恢复更多，但算法复杂度实在太高，除非解决计算性能问题，不然至少工业界是无法容忍几分钟的处理时间进行降噪处理。</p>
+</li>
+</ul>
+<p><strong>03 总结</strong></p>
+<p>图像去噪难点在于区别高频信号（如纹理、边缘）和噪声，去噪常用思想是利用图像的相似性。空域去噪是认为相近的点相似，通过平滑可以降低随机性的噪声，效果较好的去噪方法大多是多种方法结合，既能很好地保持边缘信息，又能去除图像中的噪声，比如将中值滤波和小波滤波结合起来进行滤波。</p>
+<p>基本上传统的去噪算法都是从噪音图像中找出规律后再进行相对应的去噪处理。那么如果从有噪音的图片本身无法找到规律，我们是否也可以借助其他类似但又没有噪音的图片，来总结图片具有的固有属性呢？</p>
+<p>深度学习方法是数据驱动的方法，在仿真图像去噪上，数据（也就是干净图像）是非常充足的，所以当前深度学习方法在高斯白噪声假设条件下的滤波问题中已经达到甚至超过BM3D算法。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 图像处理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/Image%20Process/NLM%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" rel="prev" title="NLM优化方案">
+                  <i class="fa fa-angle-left"></i> NLM优化方案
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" rel="next" title="LCI的实现原理">
+                  LCI的实现原理 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qing Long</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
