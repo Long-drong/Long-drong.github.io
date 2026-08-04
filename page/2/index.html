@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -222,7 +222,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/" class="post-title-link" itemprop="url">传统图像降噪方法综述</a>
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">LCI原理解析</a>
         </h2>
 
         <div class="post-meta-container">
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
         </span>
     </span>
 
@@ -262,117 +262,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>图像预处理算法的好坏直接关系到后续图像处理的效果，如图像分割、目标识别、边缘提取等，为了获取高质量的数字图像，很多时候都需要对图像进行降噪处理，尽可能的保持原始信息完整性（即主要特征）的同时，又能够去除信号中无用的信息。</p>
-<p>并且，降噪还引出了一个非常热门的研究方向，即美颜磨皮，这对于中国用户来说，是非常重要的计算机视觉领域，今天就来认真讲讲传统的图像降噪算法。</p>
-<p><strong>01 图像降噪算法分类</strong></p>
-<p>虽然各种图像降噪算法犹如雨后春笋般不断新增，然而很多方法都存在一个通用的缺点，就是在降噪的同时往往会丢失图像的细节或边缘信息。</p>
-<p>一般的图像处理，微小的细节对图像降噪的后续处理程序影响不太明显，但是当处理对象为医学图像时，这样的小失误是不被允许的，因为在医疗诊断或治疗中，每一个微小的失误都会影响医师的治疗方法甚至威胁到患者的生命。这就要求更多的研究者来投入时间和精力研究新的降噪技术，以达到降噪并同时仍能保留足够细节信息的目的。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_1.png"></p>
-<p>目前常用的图像去噪算法大体上可非为两类，即<strong>空域像素特征去噪算法和变换域去噪算法</strong>。前者是直接地在图像空间中进行的处理，后者是间接地在图像变换域中进行处理。</p>
-<p>1.1 空域像素特征去噪算法</p>
-<p>首先说明一点就是在信号处理教科书中，虽然介绍过很多经典的图像去噪方法，但主要都是针对随机噪声的，对于sensor缺陷导致的一些脉冲噪声（impulse noise）这里我们不考虑。</p>
-<p>那么什么是随机噪声呢？相比于图像的真实信号来说随机噪声就是一种或高或低呈现出不确定变化的一种信号，如下图所示虚线代表真实信号，红蓝线表示的就是随机噪声信号，所有的随机噪声信号求和后结果为0。</p>
-<p>由于这个零和特点，目前几乎所有的空域降噪算法都是基于这个理论为出发点来进行降噪处理的。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_2.png"></p>
-<p>基于空域像素特征的方法，是通过<strong>分析在一定大小的窗口内，中心像素与其他相邻像素之间在灰度空间的直接联系</strong>，来获取新的中心像素值的方法，因此往往都会存在一个典型的输入参数，即滤波半径r。此滤波半径可能被用于在该局部窗口内计算像素的相似性，也可能是一些高斯或拉普拉斯算子的计算窗口。在邻域滤波方法里面，最具有代表性的滤波方法有以下几种：</p>
-<p><strong>(1) 算术均值滤波与高斯滤波</strong></p>
-<p>算术均值滤波用<strong>像素邻域的平均灰度</strong>来代替像素值，适用于脉冲噪声，因为脉冲噪声的灰度级一般与周围像素的灰度级不相关，而且亮度高出其他像素许多。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_3.png" alt="均值滤波器公式"></p>
-<ul>
-<li><p>均值滤波结果A’(i,j)随着L（滤波半径）取值的增大而变得越来越模糊，图像对比度越来越小。经过均值处理之后，噪声部分被弱化到周围像素点上，所得到的结果是噪声幅度减小，但是噪声点的颗粒面积同时变大，所以污染面积反而增大。为了解决这个问题，可以通过设定阈值，比较噪声和邻域像素灰度，只有当差值超过一定阈值时，才被认为是噪声。不过阈值的设置需要考虑图像的总体特性和噪声特性，进行统计分析。自适应均值滤波算法通过方向差分来寻找噪声像素，从而赋予噪声像素与非噪声像素不同的权重，并自适应地寻找最优窗口大小，优于一般的均值滤波方法。</p>
-</li>
-<li><p>高斯滤波矩阵的权值，随着与中心像素点的距离增加，而呈现高斯衰减的变换特性。这样的好处在于，离算子中心很远的像素点的作用很小，从而能在一定程度上保持图像的边缘特征。通过调节高斯平滑参数，可以在图像特征过分模糊和欠平滑之间取得折中。与均值滤波一样，高斯平滑滤波的尺度因子越大，结果越平滑，但由于其权重考虑了与中心像素的距离，因此是更优的对邻域像素进行加权的滤波算法。</p>
-</li>
-</ul>
-<p><strong>(2) 统计中值滤波</strong></p>
-<p>中值滤波首先确定一个滤波窗口及位置（通常含有奇数个像素），然后将窗口内的像素值按<strong>灰度大小进行排序</strong>，最后取其中位数代替原窗口中心的像素值（如下图）。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_4.png"></p>
-<p>但当噪声像素个数大于窗口像素总数的一半时，由于灰度排序的中间值仍为噪声像素灰度值，因为滤波效果很差。此时如果增加窗口尺寸，会使得原边缘像素被其他区域像素代替的几率增加，图像更容易变模糊，并且运算量也大大增加。</p>
-<p>无论是中值滤波还是加权滤波，两者受窗口的尺寸大小影响非常大。一种对中值滤波的改进是自适应中值滤波，它首先判断窗口内部的中心像素是否是一个脉冲，如果不是，则输出标准中值滤波的结果；如果是，则通过继续增大窗口滤波尺寸来寻找非脉冲的中值，因此该方法相比较原始的统计中值滤波器，在保持清晰度和细节方面更优。</p>
-<p><strong>(3)&nbsp;双边滤波</strong></p>
-<p>这是一种非线性的保边滤波方法，是<strong>结合图像的空间邻近度和像素值相似度</strong>的一种折中处理，同时考虑空域信息和灰度相似性，达到保边去噪的目的。具有简单、非迭代、局部的特点。双边滤波器之所以可以达到保边去噪的效果，是因为滤波器是由两个函数构成。一个函数是由几何空间距离决定滤波器系数。另一个由像素差值决定滤波器系数。双边滤波器中，输出像素的值g(i,j)依赖于邻域像素的值的加权组合：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_5.png"></p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_6.png"></p>
-<p>上图中权重系数w(i,j)取决于空域核和值域核的乘积。其中空域滤波器对空间上邻近的点进行加权平均，加权系数随着距离的增加而减少。值域滤波器则是对像素值相近的点进行加权平均，加权系数随着值差的增大而减少。</p>
-<p><strong>(4) 引导滤波（guided filter）</strong></p>
-<p>高斯滤波等线性滤波算法所用的核函数相对于待处理的图像是独立无关的，这里的独立无关也就意味着，对任意图像都是采用相同的操作。</p>
-<p>引导滤波就是在<strong>滤波过程中加入引导图像中的信息</strong>，这里的引导图可以是单独的图像也可以是输入图像，当引导图为输入图像时，引导滤波就成为了一个可以保持边缘的去噪滤波操作。我们来看一下具体算法原理：</p>
-<p>第一步：假设该引导滤波函数的输出与输入在一个二维窗口内满足线性关系，如下：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_7.png"></p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_8.png"></p>
-<p>其中，q是输出像素的值，即p去除噪声或者纹理之后的图像，ni表示噪声，I是输入图像的值，i和k是像素索引，a和b是当窗口中心位于k时该线性函数的系数。（当引导图为输入图像时，引导滤波就成为一个保持边缘的滤波操作，即 I&#x3D; p，对上示两边取梯度可得q’&#x3D;aI’，即当输入图I有梯度时，输出q也有类似的梯度，这也就可以解释为什么引导滤波有边缘保持特性了。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_9.png"></p>
-<p>第二步求出线性函数的系数，也就是线性回归，即希望拟合函数的输出值q与真实值p之间的差距最小，转化为下面但最优化问题，也就是让下式最小：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_10.png"></p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_11.png"></p>
-<p>在这里，μk和σk^2表示I在局部窗口wk中的均值和方差。&nbsp;|ω|是窗口内的所有像素数，pk表示p在窗口wk中的均值，ϵ就是规整化参数，当I&#x3D;p时，上面第二个公式即可简化为：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_12.png"></p>
-<ul>
-<li>如果ϵ&#x3D;0，显然a&#x3D;1, b&#x3D;0是E(a,b)为最小值的解，从上式可以看出，这时的滤波器没有任何作用，将输入原封不动的输出。<br>    <br>*   如果ϵ&gt;0，在像素强度变化小的区域（方差不大），即图像I在窗口wk中基本保持固定，此时有σ2k&lt;&lt;ϵ，于是有ak≈0和bk≈μk，即做了一个加权均值滤波，而在高方差区域，即表示图像I在窗口wk中变化比较大，此时我们有σ2k&gt;&gt;ϵ，于是有ak≈1和bk≈0，对图像的滤波效果很弱，有助于保持边缘。<br>    <br>*   在窗口大小不变的情况下，随着ϵ的增大，滤波效果越明显。</li>
-</ul>
-<p>第三步：在计算每个窗口的线性系数时，我们可以发现一个像素会被多个窗口包含，也就是说，每个像素都由多个线性函数所描述。因此，如之前所说，要具体求某一点的输出值qi时，只需将所有包含该点的线性函数值平均即可，如下：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_13.png"></p>
-<p>其中，输出值q又与两个均值有关，分别为a和b在窗口w中的均值，我们将上一步得到两个图像ak和bk都进行盒式滤波，得到两个新图：ai’和bi’。然后用ai’乘以引导图像Ii，再加上bi’，即得最终滤波之后的输出图像q。</p>
-<p><strong>(5) NLM（Non-Local means）算法</strong></p>
-<p>前面基于邻域像素的滤波方法，基本上只考虑了有限窗口范围内的像素灰度值信息，没有考虑该窗口范围内像素的统计信息如方差，也没有考虑整个图像的像素分布特性，和噪声的先验知识。</p>
-<p>针对其局限性，NLM算法被提出，该算法使用自然图像中普遍存在的冗余信息来去噪声。与常用的双线性滤波、中值滤波等利用图像局部信息来滤波不同的是，它<strong>利用了整幅图像来进行去噪</strong>，以图像块为单位在图像中寻找相似区域，再对这些区域求平均，能够比较好地去掉图像中存在的高斯噪声。这里我直接拿图来说可能会更能说明问题：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_14.png"></p>
-<p>如上图所示，其中p为去噪的点，从图中看出q1和q2的邻域与p相似，所以权重和比较大，而q3因为与q邻域相差比较大所以赋予的权重值就很小。NLM就是将一幅图像中所有点的权重都表示出来，那就得到下面这些权重图：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_15.png"></p>
-<p>上面权值图像中，左边是原图，中心的白色色块代表了像素 &nbsp;块邻域，右边是计算出来的权重图，权重范围从0（黑色）到1（白色）。</p>
-<p>这个块邻域在整幅图像中移动，计算图像中其他区域跟这个块的相似度，相似度越高，得到的权重越大。最后将这些相似的像素值根据归一化之后的权重加权求和，得到的就是去噪之后的图像了。</p>
-<p>由于原始NLM方法需要用图像中所有的像素来估计每一个像素的值，因此计算量非常大，研究者不断对该方法进行了几点改进。(a) 采用一定的搜索窗口代替所有的像素，使用相似度阈值，对于相似度低于某一阈值的像素，不加入到权重的计算(即不考虑其相对影响，这些都可以降低计算复杂度。(b)使用块之间的显著特征，如纹理特征等代替灰度值的欧氏距离来计算相似度，在计算上更加有优势，应用上也更加灵活。</p>
-<p>1.2 变换域去噪算法</p>
-<p>空域去噪都是从空间的角度去思考如何去噪，也就是所谓的spatial noise reduction，这条路子能想的方法也都做得差不多了，于是有人就换个角度想问题，就有了变换域做去噪的方法。通过数学变换，在变换域上把信号和噪声分离，然后把噪声过滤掉，剩下的就是信号。如下图没有噪声的信号就比较顺滑没有杂质。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_16.png"></p>
-<p>而下图中含有噪声的信号就会显得参差不齐，毛刺较多。而如果我们可以将噪声变换一个域后设定一个阈值将高于阈值的部分去掉，再反变换后剩下的就是干净的信号了。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_17.png"></p>
-<p>因此图像变换域去噪算法的基本思想其实就是<strong>首先进行某种变换，将图像从空间域转换到变换域</strong>，然后从频率上把噪声分为高中低频噪声，用这种变换域的方法就可以把不同频率的噪声分离，之后进行反变换将图像从变换域转换到原始空间域，最终达到去除图像噪声的目的。</p>
-<p>图像从空间域转换到变换域的方法很多，其中最具代表性的有傅里叶变换、离散余弦变换、小波变换以及多尺度几何分析方法等。</p>
-<p>其中基于小波萎缩法是目前研究最为广泛的方法，小波萎缩法又分成如下两类：第1类是阈值萎缩，由于阈值萎缩主要基于如下事实，即比较大的小波系数一般都是以实际信号为主，而比较小的系数则很大程度是噪声。因此可通过设定合适的阈值，首先将小于阈值的系数置零，而保留大于阈值的小波系数；然后经过阈值函数映射得到估计系数；最后对估计系数进行逆变换，就可以实现去噪和重建；而另外一种萎缩方法则不同，它是通过判断系数被噪声污染的程度，并为这种程度引入各种度量方法(例如概率和隶属度等)，进而确定萎缩的比例，所以这种萎缩方法又被称为比例萎缩。</p>
-<p>1.3 BM3D去噪算法</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_18.png"></p>
-<p>空域中NLM算法和变换域中小波萎缩法效果都很好，一个很自然的想法就是是否可以将两者相结合呢？是的，BM3D就是融合了spatial denoise和tranform denoise，从而可以得到最高的峰值信噪比。它先吸取了NLM中的计算相似块的方法，然后又融合了小波变换域去噪的方法。我们来看一下具体算法流程如下图：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_19.png"></p>
-<p>BM3D算法总共有两大步骤，分为基础估计（Step1）和最终估计（Step2）。在这两大步中，分别又有三小步：相似块分组，协同滤波和聚合。</p>
-<p>Stpe1：基础估计</p>
-<p>(1) 相似块分组：首先在噪声图像中选择一些大小的参照块（考虑到算法复杂度，不用每个像素点都选参照块，通常隔3个像素为一个步长进行选取，复杂度降到1&#x2F;9），在参照块的周围适当大小区域内进行搜索，寻找若干个差异度最小的块，并把这些块整合成一个3维的矩阵。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_20.png"></p>
-<p>(2) 协同滤波：形成若干个三维的矩阵之后，首先将每个三维矩阵中的二维的块（即噪声图中的某个块）进行二维变换，可采用小波变换或DCT变换等。二维变换结束后，在矩阵的第三个维度进行一维变换，变换完成后对三维矩阵进行硬阈值处理，将小于阈值的系数置0，然后通过在第三维的一维反变换和二维反变换得到处理后的图像块。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_21.png"></p>
-<p>(3) 聚合：此时，每个二维块都是对去噪图像的估计。这一步分别将这些块融合到原来的位置，每个像素的灰度值通过每个对应位置的块的值加权平均，权重取决于置0的个数和噪声强度。</p>
-<p>Step2：最终估计</p>
-<p>具体的步骤从流程图可看出和Step1基本一样，不同的有两处：</p>
-<p>一处是聚合过程将会得到两个三维数组：噪声图形成的三维矩阵和基础估计结果的三维矩阵。</p>
-<p>另一处是协同滤波中用维纳滤波（Wiener Filtering）代替了硬阈值处理。</p>
-<p><strong>02滤波器抑制噪声比较</strong></p>
-<p>对图像进行滤波去噪的算法其实就是一个加权平均的运算过程，滤波后图像中的每个像素点都是由其原图像中该点邻域内多个像素点值得加权平均，不同的滤波器最根本的差异就是权值不同。另外根据噪声的不同，滤波效果也各有不同。</p>
-<ul>
-<li>均值滤波处理会噪声部分被弱化到周围像素点上，所得到的结果是噪声幅度减小，但是噪声点的颗粒面积同时变大，所以污染面积反而增大。  </li>
-<li>高斯滤波器用像素邻域的加权均值来代替该点的像素值，而每一邻域像素点权值是随该点与中心点的距离单调增减的．这一性质是很重要的，因为边缘是一种图像局部特征，如果平滑运算对离算子中心很远的像素点仍然有很大作用，则平滑运算会使图像失真，因此缺点是权重完全取决于图像像素之间欧氏距离，与图像的内容没有关系。</li>
-</ul>
-<ul>
-<li><p>中值滤波适用于椒盐噪声和脉冲噪声。因为对于受脉冲噪声和椒盐噪声污染的图像，相应位置的图像灰度发生了跳变，是不连续的，而此处的中值滤波正是一种非线性滤波方法，对这些类型的随机噪声，它比相同尺寸的线性平滑滤波器引起的模糊更少，能较好的保持边缘，但会使图像中的小目标丢失，因此对点、线和尖顶多的图像不宜采用中值滤波。</p>
-</li>
-<li><p>双边滤波器的好处是可以做边缘保存，一般过去用的维纳滤波或者高斯滤波去降噪，都会较明显地模糊边缘，对于高频细节的保护效果并不明显。双边滤波顾名思义比高斯滤波多了一个高斯方差，它是基于空间分布的高斯滤波函数，所以在边缘附近，离的较远的像素不会太多的影响到边缘上的像素值，这样就保证了边缘附近像素值的保存。但是由于保存了过多的高频信息，对于彩色图像里的高频噪声，双边滤波器不能够干净的滤掉，只能够对于低频信息进行较好的滤波因此，双边滤波器即平滑滤波了图像，又保持的图像边缘。虽然去噪效果很明显，但很多细节被去除，只有整体形状被保留，不过美颜相机磨皮恰恰就需要这种算法（如下图美女磨皮后的效果）。</p>
-</li>
-</ul>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/img_22.png"></p>
-<ul>
-<li><p>引导滤波不像高斯滤波等线性滤波算法所用的核函数相对于待处理的图像是独立无关的，而是在滤波过程中加入了引导图像中（去噪时用的就是图像本身）的信息，所以引导滤波本质上就是通过一张引导图I，对初始图像p（输入图像）进行滤波处理，使得最后的输出图像大体上与初始图像P相似，但是纹理部分与引导图I相似。在滤波效果上，引导滤波和双边滤波差不多，在一些细节上，引导滤波较好。 </p>
-</li>
-<li><p>引导滤波最大的优势在于能够保持线性复杂度，每个像素虽然由多个窗口包含，求某一点像素值的具体输出值时，只需将包含该点所有的线性函数值平均即可，而双边滤波不是线性复杂度在于他考虑了每个点的几何差距与强度差距两个因素，当处理图像较大时，运算量很明显会增大很多。</p>
-</li>
-<li><p>非局部算法获得的信噪比比双边滤波略高，有时候还不如双边滤波。但是，非局部滤波是一种基于快的匹配度来计算滤波权值的，所以能获得比较好的视觉效果。然而，它的计算复杂度实在是太高了。最原始非局部均值算法是在整个图片中进行块搜索，根据块的匹配度来计算权值。实际执行过程，都会把搜索区域限定在一个局部的搜索窗口中。</p>
-</li>
-<li><p><strong>BM3D算法是目前传统算法中效果最好的去噪算法</strong>，相比于NLM噪声更少，图像细节恢复更多，但算法复杂度实在太高，除非解决计算性能问题，不然至少工业界是无法容忍几分钟的处理时间进行降噪处理。</p>
-</li>
-</ul>
-<p><strong>03 总结</strong></p>
-<p>图像去噪难点在于区别高频信号（如纹理、边缘）和噪声，去噪常用思想是利用图像的相似性。空域去噪是认为相近的点相似，通过平滑可以降低随机性的噪声，效果较好的去噪方法大多是多种方法结合，既能很好地保持边缘信息，又能去除图像中的噪声，比如将中值滤波和小波滤波结合起来进行滤波。</p>
-<p>基本上传统的去噪算法都是从噪音图像中找出规律后再进行相对应的去噪处理。那么如果从有噪音的图片本身无法找到规律，我们是否也可以借助其他类似但又没有噪音的图片，来总结图片具有的固有属性呢？</p>
-<p>深度学习方法是数据驱动的方法，在仿真图像去噪上，数据（也就是干净图像）是非常充足的，所以当前深度学习方法在高斯白噪声假设条件下的滤波问题中已经达到甚至超过BM3D算法。</p>
-
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -398,7 +296,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tool/python%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -416,7 +314,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Tool/python%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99/" class="post-title-link" itemprop="url">python工具编写</a>
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LCI的实现原理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -434,7 +332,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -442,7 +340,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
         </span>
     </span>
 
@@ -456,72 +354,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><p>1、色差计算工具的编写</p>
-<ul>
-<li><p>虚拟环境创建</p>
-<ul>
-<li><p>python -m venv temp_env</p>
-</li>
-<li><p>temp_env\Scripts\activate   #退出虚拟环境 deactive</p>
-</li>
-</ul>
-</li>
-<li><p>安装需求库</p>
-<ul>
-<li><p>pip install colormath  #计算色差的</p>
-</li>
-<li><p>pip install numpy&#x3D;&#x3D;1.19.5</p>
-</li>
-<li><p>pip install pyside6  #UI界面工具</p>
-</li>
-<li><p>pip install pyinstaller  #程序打包工具</p>
-</li>
-</ul>
-</li>
-<li><p>编写主程序代码</p>
-<ul>
-<li><pre><code>
-from PySide6.QtWidgets import QApplication, QMainWindow
-
-from CEI2000 import Ui_Dialog
-
-class MainWindow(QMainWindow):
-
-    def __init__(self):
-
-        super(MainWindow, self).__init__()
-
-        self.ui = Ui_Dialog()  # UI类的实例化
-
-        self.ui.setupUi(self)
-
-if __name__ == &#39;__main__&#39;:
-
-    app = QApplication([])  # 启动一个应用
-
-    window = MainWindow()  # 实例化主窗口
-
-    window.show()  # 展示主窗口
-
-    app.exec()  # 避免程序执行到这一行后直接退出
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 执行命令</span><br><span class="line"></span><br><span class="line">	- ```</span><br><span class="line"></span><br><span class="line">	  pyi-makespec --onefile --windowed --name Colordiff main.py</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>配置 Colordiff.spec</p>
-</li>
-</ul>
-</li>
-<li><p>执行命令</p>
-<ul>
-<li>pyinstaller Colordiff.spec</li>
-</ul>
-</li>
-</ul>
-
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -583,7 +424,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -675,7 +516,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -767,7 +608,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -855,7 +696,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -949,7 +790,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1119,7 +960,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1212,7 +1053,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1265,7 +1106,7 @@ if __name__ == &#39;__main__&#39;:
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/zemax%E4%B8%8Ematlab%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/%E5%85%89%E5%AD%A6%E6%95%B0%E5%AD%97%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BB%BA%E7%AB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -1283,7 +1124,7 @@ if __name__ == &#39;__main__&#39;:
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Optics/zemax%E4%B8%8Ematlab%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">zemax与matlab常用的交互命令</a>
+          <a href="/posts/Optics/%E5%85%89%E5%AD%A6%E6%95%B0%E5%AD%97%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BB%BA%E7%AB%8B/" class="post-title-link" itemprop="url">光学数字仿真模型的建立</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1301,7 +1142,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-04 06:14:39" itemprop="dateModified" datetime="2026-08-04T06:14:39+00:00">2026-08-04</time>
+      <time title="修改时间：2026-08-04 06:29:36" itemprop="dateModified" datetime="2026-08-04T06:29:36+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1323,10 +1164,36 @@ if __name__ == &#39;__main__&#39;:
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>1、ZEMAX中-&gt;编程-&gt;MATLAB-&gt;交互拓展,生成 MATLABZOSConnection.m ， 并点击”交互拓展“</p>
-<p>2、matlab中切换路径到存储MATLABZOSConnection.m；</p>
-<p>3、Matlab中的调试，常用的一些命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">%%在zemax交互拓展，与matlab进行来连接,定义变量app_inf</span><br><span class="line">app_inf=MATLABZOSConnection;</span><br><span class="line">%一些常用命令</span><br><span class="line">%app_inf.CloseApplication(); %关闭应用程序</span><br><span class="line">app_inf.LicenseStatus %检查授权版本</span><br><span class="line">app_inf.Mode %检查授权模式</span><br><span class="line">sample_dir = app_inf.SamplesDir; %获取实例文件夹完整路径</span><br><span class="line">%%</span><br><span class="line">%%获取PrimarySysterm属性，PrimarySysterm提供对当前加载的 zemax文件的访问权限</span><br><span class="line">%.LDE用于镜头数据编辑器(Lens Data Editor)</span><br><span class="line">% .MCE用于多重结构编辑器(Multi Configuration Editor)</span><br><span class="line">% .MFE用于评价函数编辑器(Merit Function Editor)</span><br><span class="line">% .TDE用于公差数据编辑器(Tolerance Data Editor)</span><br><span class="line">% .NCE用于非序列编辑器(Non-Seqential Editor)</span><br><span class="line">% 还可以使用 .Analysis 对分析进行访问和使用 .Tools 对工具进行访问。</span><br><span class="line">app_Pri=app_inf.PrimarySystem;</span><br><span class="line">% 一些关于TheSystem（PrimarySysterm）进行的实用操作如下所示：</span><br><span class="line">% app_Pri.MakeNonSequential(); %转换至非序列模式(Non-sequential Mode)： </span><br><span class="line">% app_Pri.MakeSequential(); %转换至序列模式(Sequential Mode)： </span><br><span class="line">% 加载.ZMX文件： </span><br><span class="line">% testFile = System.String.Concat(sampleDir, &#x27;\Sequential\Objectives\Double Gauss 28 degree field.zmx&#x27;);</span><br><span class="line">% app_Pri.LoadFile(testFile, false);</span><br><span class="line">% app_Pri.Save();  %保存已存在的系统(.ZMX)： </span><br><span class="line">% TheSystem.SaveAs(copyFile); %将当前系统保存为一个新的文件： </span><br><span class="line">% TheSystem.New(false); %创建新的（默认的）镜头数据文件(LENS.ZMX)：</span><br><span class="line">% TheSystem.Close(false); %关闭当前已打开的系统且不保存： </span><br><span class="line">%%</span><br><span class="line">%TheSystemData 包含系统所有的基本数据，可以对系统选项(System Explorer)进行设置。</span><br><span class="line">% 可以对孔径(Aperture)、视场(Fields)、波长(Wavelengths)、环境(Environment)、光线瞄准(RayAiming)，</span><br><span class="line">% 非序列数据(NonSequentialData)、偏振(Polarization) 等特性进行访问。 </span><br><span class="line">TheSystemData=app_Pri.SystemData;</span><br><span class="line">%TheSystemData常用的操作</span><br><span class="line">%设置系统孔径类型为入瞳直径（Entrance Pupil Diameter）</span><br><span class="line">%TheSystemData.Aperture.ApertureType=ZOSAPI.SystemData.ZemaxApertureType.EntrancePupilDiameter;</span><br><span class="line">% TheSystemData.Aperture.ApertureValue=20; % 更改数值设置：</span><br><span class="line">% sysTitleNotes = TheSystem.SystemData.TitleNotes;% 更改字符设置：</span><br><span class="line">% 设置膜层文件并重新载入： </span><br><span class="line">% sysFiles = TheSystem.SystemData.Files; sysFiles.CoatingFile = &#x27;COATING.DAT&#x27;;TheSystem.SystemData.Files.ReloadFiles();</span><br><span class="line">% sysTitleNotes.Title = &#x27;Add here the title&#x27;; % 添加标题： </span><br><span class="line">% TheSystemData.Aperture.AFocalImageSpace = true; % 勾选或不勾选复选框。True代表着勾选这个选项，False代表不勾选：</span><br><span class="line">%%</span><br><span class="line">% 如下为一些可改变视场和波长的实用选项：</span><br><span class="line">% sysField = app_Pri.SystemData.Fields; % 访问视场：</span><br><span class="line">% sysWave= app_Pri.SystemData.Wavelengths; % 访问波长：</span><br><span class="line">% NewField_2 = sysField.AddField(0,5.0,1.0); % 添加新的视场X=0,Y=5.0，视场权重为1.0：</span><br><span class="line">% NewWave_2 = sysWave.AddWavelength(0.6328,1.0); % 添加新的波长0.6328mm，权重为1.0：</span><br><span class="line">% 将视场1 的值改为X=1,Y=2.0，视场权重为0.5：</span><br><span class="line">% field1 = sysField.GetField(1); field1.X = 1.0; field1.Y = 2.0; field1.Weight = 0.5;</span><br><span class="line">% TheSystemData.Wavelengths.GetWavelength(1).Wavelength = 0.55; % 将波长1改为0.55mm：</span><br><span class="line">% TheSystemData.Wavelengths.GetWavelength(1).MakePrimary(); % 设置波长1 为主波长：</span><br><span class="line">% 将视场类型 (Field Type) 改为物高 (Object Height)：</span><br><span class="line">% sysField.SetFieldType(ZOSAPI.SystemData.FieldType.ObjectHeight);</span><br><span class="line">% 将归一化 (Normalization) 改为径向(Radial)： </span><br><span class="line">% sysField.Normalization= ZOSAPI.SystemData.FieldNormalizationType.Radial;</span><br><span class="line">% 使用视场向导 (Field Wizard) 从0到10添加3个等效的Y视场，</span><br><span class="line">% 最后三个参数 (1,true, false)表示：从第1行开始，分别检查覆盖 (Overwrite) 是否选中和使用拾取 (Use pickups) 是否取消选中。</span><br><span class="line">% sysField.ApplyFieldWizard(ZOSAPI.SystemData.FieldPattern.EqualAreaY,3,10,0,0,1,true,false);</span><br><span class="line">% 使用正交算法 (Quadrature) 从0.486mm到0.656mm范围内定义6个波长：</span><br><span class="line">% TheSystemData.Wavelengths.GaussianQuadrature(0.486,0.656,ZOSAPI.SystemData.QuadratureSteps.S6);</span><br><span class="line">% 使用预置 (Preset) 选项定义波长：</span><br><span class="line">% TheSystemData.Wavelengths.SelectWavelengthPreset(ZOSAPI.SystemData.WavelengthPreset.FdC_Visible);</span><br><span class="line">% num_fields=TheSystem.SystemData.Fields.NumberOfFields;% 读取视场的数目： </span><br><span class="line">%%</span><br><span class="line">%分析（the analyess）</span><br><span class="line">TheAnalyeses=app_Pri.Analyses;</span><br><span class="line">     </span><br><span class="line">    %TheSystem.Analyses.New_Analysis(ZOSAPI.Analysis.AnalysisIDM AnalysisType)  %执行一次分析： </span><br><span class="line">    % TheRayFan = TheSystem.Analyses.New_Analysis(ZOSAPI.Analysis.AnalysisIDM.RayFan);% 执行一次光线光扇图分析：</span><br><span class="line">    TheRayFan_Settings = TheRayFan.GetSettings(); %获取设置： </span><br><span class="line">        %更改获取的应用设置</span><br><span class="line">        TheRayFan_Settings.NumberOfRays = 100; %更改光线数目： </span><br><span class="line">       TheRayFan_Settings.Wavelength.SetWavelengthNumber(0); %改变波长</span><br><span class="line">    %使用 ModifySettings 更改还未应用的设置：</span><br><span class="line">    % analysisSettings.SaveTo(cfgFile);   </span><br><span class="line">    % analysisSettings.ModifySettings(cfgFile, &#x27;SHA_ROTX&#x27;, &#x27;90&#x27;);   </span><br><span class="line">    % analysisSettings.LoadFrom(cfgFile);   </span><br><span class="line">    % System.IO.File.Delete(cfgFile); </span><br><span class="line">    TheRayFan.ApplyAndWaitForCompletion(); %应用设置： </span><br><span class="line">    TheRayFan_Results = TheRayFan.GetResults(); %获取结果：</span><br><span class="line">%%</span><br><span class="line">%编辑器，如何使用编辑器</span><br><span class="line">%编辑器包括镜头数据编辑器(LDE,表面信息)、非序列元件编辑器(NCE 物体信息)、评价函数编辑器(MFE)、</span><br><span class="line">%多重结构编辑器(MCE)、公差数据编辑器(TDE)。</span><br><span class="line">TheLDE = app_Pri.LDE;</span><br><span class="line">    %常见功能</span><br><span class="line">    TheLDE.AddSurface(); %添加新表面</span><br><span class="line">    TheLDE.InsertNewSurfaceAt(1);%在特定表面前插入新表面</span><br><span class="line">    TheLDE.RemoveSurfaceAt(1,3); %删除一个或多个指定表面</span><br><span class="line">    TheLDE.CopySurfaces(1,3,3); %将指定数量（第二个数3）的表面从一个位置（第一个数1）复制粘贴到另一个位置（第三个数3）</span><br><span class="line">    TheLDE.GetSurfaceAt(1); %访问特定的表面： </span><br><span class="line">%更改表面类型</span><br><span class="line">surf1_type=surf1.GetSurfaceTypeSettings(ZOSAPI.Editors.LDE.SurfaceType.EvenAspheric); surf1.ChangeType(surf1_type);</span><br><span class="line">% 获取或设置半径(Radius)、厚度(Thickness)、半口径(SemiDiameter)、延伸区(ChipZone), 圆锥系数(Conic)、热膨胀系数(TCE)、</span><br><span class="line">% 标注(Comment)、材料(Material)、膜层(Coating)的值: </span><br><span class="line">surf1.Comment=  &#x27;Add comment here&#x27;; </span><br><span class="line">%添加求解(Solve):</span><br><span class="line">solve_MarginalRayHeight= surf1.ThicknessCell.CreateSolveType(ZOSAPI.Editors.SolveType.MarginalRayHeight); </span><br><span class="line">solve_MarginalRayHeight.PupilZone=0.5;</span><br><span class="line">surf1.ThicknessCell.SetSolveData(solve_MarginalRayHeight);</span><br><span class="line">surf1.RadiusCell.MakeSolveVariable();</span><br><span class="line">%改变参数的值：</span><br><span class="line">par2= surf1.GetSurfaceCell(ZOSAPI.Editors.LDE.SurfaceColumn.Par2); par2.DoubleValue= 0.0005;</span><br><span class="line">%将孔径属性改为圆形孔径(Circular Aperture)：</span><br><span class="line">aperdata=surf1.ApertureData;</span><br><span class="line">circular_aper=aperdata.CreateApertureTypeSettings(ZOSAPI.Editors.LDE.SurfaceApertureTypes.CircularAperture);</span><br><span class="line">circular_aper.MaximumRadius=0.5;</span><br><span class="line">aperdata.ChangeApertureTypeSettings(circular_aper);</span><br><span class="line">RunTool_ConvertLocalToGlobalCoordinates(int, int, int) %访问编辑器工具栏的工具</span><br><span class="line">%%</span><br><span class="line">%访问光学系统的系统工具（System tools）</span><br><span class="line">app_Pri.Tools;</span><br><span class="line">%基本执行语句， 打开工具-&gt;定义设置-&gt;运行工具</span><br><span class="line">% testFile = System.String.Concat(sampleDir, &#x27;\Sequential\Objectives\Cooke 40 degree field.zar&#x27;);</span><br><span class="line">% testFolder = System.String.Concat(sampleDir, &#x27;\test\&#x27;);</span><br><span class="line">% loadZAR=TheSystem.Tools.OpenRestoreZAR();</span><br><span class="line">% loadZAR.SetFileName(testFile);</span><br><span class="line">% loadZAR.SetOutputFolder(testFolder);</span><br><span class="line">% loadZAR.SetFilesAllOverwrite();</span><br><span class="line">% loadZAR.RunAndWaitForCompletion();</span><br><span class="line">% loadZAR.Close();</span><br><span class="line">%一些常用工具</span><br><span class="line">creatZAR=app_Pri.Tools.OpenCreateZAR(); %创建存储文档</span><br><span class="line">ToolExportCAD = app_Pri.Tools.OpenExportCAD(); %将当前透镜数据输出为CAD文件；</span><br><span class="line">convertNSmode = app_Pri.Tools.OpenConvertToNSCGroup(); %将文件转为非序列文件；</span><br><span class="line">quickFocus = app_Pri.Tools.OpenQuickFocus(); %执行快速聚焦；</span><br><span class="line">app_Pri.Tools.RemoveAllVariables(); %移除所有变量</span><br><span class="line">LocalOpt = app_Pri.Tools.OpenLocalOptimization(); %执行一次局部优化</span><br><span class="line">raytrace = app_Pri.Tools.OpenBatchRayTrace(); %运行一次批量光线追迹(Batch ray trace)</span><br><span class="line">tol = app_Pri.Tools.OpenTolerancing(); %打开公差分析 (Tolerancing)</span><br><span class="line">MFcalculator=app_Pri.Tools.OpenMeritFunctionCalculator(); %计算评价函数 (Merit Function)</span><br><span class="line">SpotCalculator= app_Pri.Tools.OpenRMSSpotRadiusCalculator(); %计算光斑半径 (Spot Radius)</span><br><span class="line">NSCRayTrace = app_Pri.Tools.OpenNSCRayTrace(); %执行光线追迹(RayTrace)， 非序列模式（NSC）</span><br><span class="line">OpenRayDatabaseReader() % 从光线数据库(RayDataBase) 中读取数据</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>MATLAB可以与Zemax进行配合，实现光学模型的建立和联合仿真。Zemax是一款专业级的光学设计与分析软件，而MATLAB则提供强大的数值计算、数据分析和编程环境。两者结合使用，可以充分发挥各自的优势，实现复杂的光学系统建模与仿真任务。以下是如何配合使用MATLAB和Zemax进行光学模型建立的方式：</p>
+<ol>
+<li>使用Zemax进行光学设计：<ul>
+<li>在Zemax环境中，利用其内置的光学元件库、优化算法和分析工具，进行光学系统的详细设计和优化。</li>
+<li>设计完成后，保存光学模型（.ZMX文件）以及相关的分析结果（如MTF、PSF、波前误差等）。</li>
+</ul>
+</li>
+<li>通过ZOS-API（Zemax Optical System Application Programming Interface）与MATLAB交互：<ul>
+<li>ZOS-API是Zemax提供的编程接口，允许用户使用其他编程语言（如MATLAB）直接操控Zemax软件，进行光学模型的读取、修改、分析和结果提取。</li>
+<li>在MATLAB中安装并配置ZOS-API，通过编写MATLAB脚本调用ZOS-API函数与Zemax进行通信。</li>
+</ul>
+</li>
+<li>MATLAB中调用Zemax进行模型建立与分析：<ul>
+<li>使用ZOS-API的MATLAB接口函数，加载已保存的.ZMX文件到MATLAB环境中，作为MATLAB仿真中的光学模型。</li>
+<li>在MATLAB中编写脚本，通过ZOS-API发送指令给Zemax，进行光学模型的参数修改、光线追迹、性能分析等操作。</li>
+<li>从Zemax中提取所需的分析结果（如像差、MTF、PSF等），保存在MATLAB变量中，供进一步的计算和数据分析使用。</li>
+</ul>
+</li>
+<li>在MATLAB中进行高级分析与控制逻辑仿真：<ul>
+<li>利用MATLAB的高级分析工具（如Signal Processing Toolbox、Statistics and Machine Learning Toolbox等）对Zemax返回的光学性能数据进行深入分析。</li>
+<li>在MATLAB的Simulink环境中设计和仿真光学系统的控制逻辑（如自动对焦、波前校正等），并与Zemax模型进行交互，实现闭环控制仿真。</li>
+</ul>
+</li>
+<li>结合其他MATLAB功能进行扩展：<ul>
+<li>结合MATLAB的其他功能，如数据可视化（使用Plotting Tools）、多物理场仿真（如Simscape）、外部数据接口（如Data Acquisition Toolbox）等，进一步丰富和扩展光学模型的仿真功能。</li>
+</ul>
+</li>
+</ol>
+<p>通过上述方式，MATLAB可以与Zemax紧密配合，实现光学模型的建立、分析和高级仿真。这种结合充分利用了Zemax的专业光学设计能力与MATLAB的强大编程和分析环境，适用于复杂的光学系统设计、优化和控制问题。请注意，使用ZOS-API需要具备相应的授权，并熟悉MATLAB编程。具体的编程细节和功能实现应参考ZOS-API的官方文档和示例代码。</p>
+
       
     </div>
 
