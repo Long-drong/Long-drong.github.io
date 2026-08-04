@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_3.png">
 <meta property="og:image" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_4.png">
 <meta property="article:published_time" content="2026-08-04T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-04T06:29:36.772Z">
+<meta property="article:modified_time" content="2026-08-04T08:13:58.775Z">
 <meta property="article:author" content="Qing Long">
 <meta property="article:tag" content="Matalb">
 <meta name="twitter:card" content="summary">
@@ -245,7 +245,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-08-04 00:00:00 / 修改时间：06:29:36" itemprop="dateCreated datePublished" datetime="2026-08-04T00:00:00+00:00">2026-08-04</time>
+      <time title="创建时间：2026-08-04 00:00:00 / 修改时间：08:13:58" itemprop="dateCreated datePublished" datetime="2026-08-04T00:00:00+00:00">2026-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,79 +275,8 @@
 <p><img src="/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_3.png"></p>
 <p><img src="/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_4.png"></p>
 <p>参考代码见下：</p>
-<p>‘’’</p>
-<p>function [ ZI ] &#x3D; interpolation( I,zmf )</p>
-<p>%% ———————-双线性插值法处理图像—————————</p>
-<p>% Input：</p>
-<p>%       I：图像文件名或矩阵（整数值（0~255））</p>
-<p>%       zmf：缩放因子，即缩放的倍数</p>
-<p>% Output：</p>
-<p>%       对矩阵I进行zmf倍的缩放并显示</p>
-<p>%% 命令行中输入以下命令运行即可：</p>
-<p>%  interpolation(‘flower2.png’, 4);</p>
-<p>%% Step1 对数据进行预处理</p>
-<p>if ~exist(‘I’,’var’) || isempty(I)</p>
-<pre><code>error(&#39;输入图像I未定义或为空！&#39;);
-</code></pre>
-<p>end</p>
-<p>if ~exist(‘zmf’,’var’) || isempty(zmf) || numel(zmf) ~&#x3D; 1</p>
-<pre><code> error(&#39;位移矢量zmf未定义或为空或zmf中的元素超过2！&#39;);
-</code></pre>
-<p>end</p>
-<p>if ischar(I)</p>
-<pre><code>[I,M] = imread(I);
-</code></pre>
-<p>end</p>
-<p>if zmf &lt;&#x3D; 0</p>
-<pre><code> error(&#39;缩放倍数zmf的值应该大于0！&#39;);
-</code></pre>
-<p>end</p>
-<p>%% Step2 通过原始图像和缩放因子得到新图像的大小，并创建新图像。</p>
-<p>[IH,IW,ID] &#x3D; size(I);</p>
-<p>ZIH &#x3D; round(IH*zmf);     % 计算缩放后的图像高度，最近取整</p>
-<p>ZIW &#x3D; round(IW*zmf);     % 计算缩放后的图像宽度，最近取整</p>
-<p>ZI &#x3D; zeros(ZIH,ZIW,ID);  % 创建新图像</p>
-<p>%% Step3 扩展矩阵I边缘</p>
-<p>%双线性插值是用待求值点周围四个点的值来计算的，当新图像上的像素点映射到原图像的边界时，边界扩展保证了计算能正确进行，而不会溢出。</p>
-<p>IT &#x3D; zeros(IH+2,IW+2,ID);</p>
-<p>IT(2:IH+1,2:IW+1,:) &#x3D; I;</p>
-<p>IT(1,2:IW+1,:)&#x3D;I(1,:,:);</p>
-<p>IT(IH+2,2:IW+1,:)&#x3D;I(IH,:,:);</p>
-<p>IT(2:IH+1,1,:)&#x3D;I(:,1,:);</p>
-<p>IT(2:IH+1,IW+2,:)&#x3D;I(:,IW,:);</p>
-<p>IT(1,1,:) &#x3D; I(1,1,:);</p>
-<p>IT(1,IW+2,:) &#x3D; I(1,IW,:);</p>
-<p>IT(IH+2,1,:) &#x3D; I(IH,1,:);</p>
-<p>IT(IH+2,IW+2,:) &#x3D; I(IH,IW,:);</p>
-<p>%% Step4 由新图像的某个像素（zi，zj）映射到原始图像(ii，jj)处，并插值。</p>
-<p>for zj &#x3D; 1:ZIW         % 对图像进行按列逐元素扫描</p>
-<pre><code>for zi = 1:ZIH
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function [ ZI ] = interpolation( I,zmf )</span><br><span class="line"></span><br><span class="line">%% ----------------------双线性插值法处理图像---------------------------</span><br><span class="line"></span><br><span class="line">% Input：</span><br><span class="line"></span><br><span class="line">%       I：图像文件名或矩阵（整数值（0~255））</span><br><span class="line"></span><br><span class="line">%       zmf：缩放因子，即缩放的倍数</span><br><span class="line"></span><br><span class="line">% Output：</span><br><span class="line"></span><br><span class="line">%       对矩阵I进行zmf倍的缩放并显示</span><br><span class="line"></span><br><span class="line">%% 命令行中输入以下命令运行即可：</span><br><span class="line"></span><br><span class="line">%  interpolation(&#x27;flower2.png&#x27;, 4);</span><br><span class="line"></span><br><span class="line">%% Step1 对数据进行预处理</span><br><span class="line"></span><br><span class="line">if ~exist(&#x27;I&#x27;,&#x27;var&#x27;) || isempty(I)</span><br><span class="line"></span><br><span class="line">    error(&#x27;输入图像I未定义或为空！&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if ~exist(&#x27;zmf&#x27;,&#x27;var&#x27;) || isempty(zmf) || numel(zmf) ~= 1</span><br><span class="line"></span><br><span class="line">     error(&#x27;位移矢量zmf未定义或为空或zmf中的元素超过2！&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if ischar(I)</span><br><span class="line"></span><br><span class="line">    [I,M] = imread(I);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if zmf &amp;lt;= 0</span><br><span class="line"></span><br><span class="line">     error(&#x27;缩放倍数zmf的值应该大于0！&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">%% Step2 通过原始图像和缩放因子得到新图像的大小，并创建新图像。</span><br><span class="line"></span><br><span class="line">[IH,IW,ID] = size(I);</span><br><span class="line"></span><br><span class="line">ZIH = round(IH*zmf);     % 计算缩放后的图像高度，最近取整</span><br><span class="line"></span><br><span class="line">ZIW = round(IW*zmf);     % 计算缩放后的图像宽度，最近取整</span><br><span class="line"></span><br><span class="line">ZI = zeros(ZIH,ZIW,ID);  % 创建新图像</span><br><span class="line"></span><br><span class="line">%% Step3 扩展矩阵I边缘</span><br><span class="line"></span><br><span class="line">%双线性插值是用待求值点周围四个点的值来计算的，当新图像上的像素点映射到原图像的边界时，边界扩展保证了计算能正确进行，而不会溢出。</span><br><span class="line"></span><br><span class="line">IT = zeros(IH+2,IW+2,ID);</span><br><span class="line"></span><br><span class="line">IT(2:IH+1,2:IW+1,:) = I;</span><br><span class="line"></span><br><span class="line">IT(1,2:IW+1,:)=I(1,:,:);</span><br><span class="line"></span><br><span class="line">IT(IH+2,2:IW+1,:)=I(IH,:,:);</span><br><span class="line"></span><br><span class="line">IT(2:IH+1,1,:)=I(:,1,:);</span><br><span class="line"></span><br><span class="line">IT(2:IH+1,IW+2,:)=I(:,IW,:);</span><br><span class="line"></span><br><span class="line">IT(1,1,:) = I(1,1,:);</span><br><span class="line"></span><br><span class="line">IT(1,IW+2,:) = I(1,IW,:);</span><br><span class="line"></span><br><span class="line">IT(IH+2,1,:) = I(IH,1,:);</span><br><span class="line"></span><br><span class="line">IT(IH+2,IW+2,:) = I(IH,IW,:);</span><br><span class="line"></span><br><span class="line">%% Step4 由新图像的某个像素（zi，zj）映射到原始图像(ii，jj)处，并插值。</span><br><span class="line"></span><br><span class="line">for zj = 1:ZIW         % 对图像进行按列逐元素扫描</span><br><span class="line"></span><br><span class="line">    for zi = 1:ZIH</span><br><span class="line"></span><br><span class="line">        ii = (zi-1)/zmf; jj = (zj-1)/zmf;</span><br><span class="line"></span><br><span class="line">        i = floor(ii); j = floor(jj);    % 向下取整</span><br><span class="line"></span><br><span class="line">        u = ii - i; v = jj - j;</span><br><span class="line"></span><br><span class="line">        i = i + 1; j = j + 1;</span><br><span class="line"></span><br><span class="line">        ZI(zi,zj,:) = (1-u)*(1-v)*IT(i,j,:) + (1-u)*v*IT(i,j+1,:) + u*(1-v)*IT(i+1,j,:) + u*v*IT(i+1,j+1,:);</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">ZI = uint8(ZI);</span><br><span class="line"></span><br><span class="line">%% 显示处理前后的图像</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line"></span><br><span class="line">imshow(I,M);</span><br><span class="line"></span><br><span class="line">axis on;</span><br><span class="line"></span><br><span class="line">title([&#x27;original image（&#x27;,num2str(IH),&#x27;*&#x27;,num2str(IW),&#x27;*&#x27;,num2str(ID),&#x27;)&#x27;]);</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line"></span><br><span class="line">imshow(ZI,M);</span><br><span class="line"></span><br><span class="line">axis on;</span><br><span class="line"></span><br><span class="line">title([&#x27;interpolated resultant image（&#x27;,num2str(ZIH),&#x27;*&#x27;,num2str(ZIW),&#x27;*&#x27;,num2str(ID)&#x27;,&#x27;)&#x27;]);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    ii = (zi-1)/zmf; jj = (zj-1)/zmf;
-
-    i = floor(ii); j = floor(jj);    % 向下取整
-
-    u = ii - i; v = jj - j;
-
-    i = i + 1; j = j + 1;
-
-    ZI(zi,zj,:) = (1-u)*(1-v)*IT(i,j,:) + (1-u)*v*IT(i,j+1,:) + u*(1-v)*IT(i+1,j,:) + u*v*IT(i+1,j+1,:);
-
-end
-</code></pre>
-<p>end</p>
-<p>ZI &#x3D; uint8(ZI);</p>
-<p>%% 显示处理前后的图像</p>
-<p>figure;</p>
-<p>imshow(I,M);</p>
-<p>axis on;</p>
-<p>title([‘original image（’,num2str(IH),’<em>‘,num2str(IW),’</em>‘,num2str(ID),’)’]);</p>
-<p>figure;</p>
-<p>imshow(ZI,M);</p>
-<p>axis on;</p>
-<p>title([‘interpolated resultant image（’,num2str(ZIH),’<em>‘,num2str(ZIW),’</em>‘,num2str(ID)’,’)’]);</p>
-<p>end</p>
-<p>‘’’</p>
 <p>[内容来源] (<a target="_blank" rel="noopener" href="https://www.cnblogs.com/mickeyyang/p/13262493.html">https://www.cnblogs.com/mickeyyang/p/13262493.html</a>)</p>
 
     </div>
