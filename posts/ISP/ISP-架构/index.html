@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/ISP-%E6%9E%B6%E6%9E%84_ISP%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg">
 <meta property="og:image" content="https://long-drong.github.io/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/gamma_curve.png">
 <meta property="article:published_time" content="2026-03-30T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-05T12:42:13.387Z">
+<meta property="article:modified_time" content="2026-08-05T13:14:24.309Z">
 <meta property="article:author" content="Qing Long">
 <meta property="article:tag" content="ISP">
 <meta name="twitter:card" content="summary">
@@ -176,18 +176,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -250,7 +250,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 12:42:13" itemprop="dateModified" datetime="2026-08-05T12:42:13+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 13:14:24" itemprop="dateModified" datetime="2026-08-05T13:14:24+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -302,7 +302,8 @@
 <li>常用的demosiac方法的汇总介绍，当前采用的是 <strong>梯度矫正线性插值法</strong><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/686883055">Image-Demosaic</a></li>
 </ul>
 <p><strong>7.AWB(Automatic White Balance)（自动白平衡）</strong><br>白平衡的基本原理是在任意环境下， 把白色物体还原成白色物体， 也就是通过找到图像中的白块， 然后调整R&#x2F;G&#x2F;B 的比例， 如下关系：</p>
-<p>R′&#x3D;R∗RGain<br>G′&#x3D;G∗GGain<br>B′&#x3D;B∗BGain<br>R′&#x3D;G′&#x3D;B′<br>AWB 算法通常包括的步骤如下：<br>(1)色温统计： 根据图像统计出色温；<br>(2)计算通道增益： 计算出R 和B 通道的增益；<br>(3)进行偏色的矫正： 根据给出的增益， 算出偏色图像的矫正。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R′=R∗RGain  </span><br><span class="line">G′=G∗GGain  </span><br><span class="line">B′=B∗BGain  </span><br><span class="line">R′=G′=B′  </span><br></pre></td></tr></table></figure>
+<p>AWB 算法通常包括的步骤如下：<br>(1)色温统计： 根据图像统计出色温；<br>(2)计算通道增益： 计算出R 和B 通道的增益；<br>(3)进行偏色的矫正： 根据给出的增益， 算出偏色图像的矫正。</p>
 <p><strong>8.Color Correction（颜色矫正）</strong><br>由于人类眼睛可见光的频谱响应度和半导体传感器频谱响应度之间存在差别，还有透镜等的影响， 得到的RGB 值颜色会存在偏差， 因此必须对颜色进行校正， 通常的做法是通过一个3x3 的颜色变化矩阵来进行颜色矫正。</p>
 <p><strong>9.Gamma Correction（伽马矫正）</strong><br>人眼对外界光源的感光值与输入光强不是呈线性关系的， 而是呈指数型关系的。 在低照度下，人眼更容易分辨出亮度的变化， 随着照度的增加，人眼不易分辨出亮度的变化。而摄像机感光与输入光强呈线性关系， 为方便人眼辨识图像， 需要将摄像机采集的图像进行gamma 矫正。<br>Gamma 矫正是对输入图像灰度值进行的非线性操作， 使输出图像灰度值与输入图像灰度值呈指数关系：<br>out &#x3D; Vin ^ gamma</p>
 <p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/gamma_curve.png" alt="ISP架构Gamma曲线"></p>
@@ -336,7 +337,7 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/Image_Processing/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/" rel="next" title="双边滤波器">
+                <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/" rel="next" title="双边滤波器">
                   双边滤波器 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
