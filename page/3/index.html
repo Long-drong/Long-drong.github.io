@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/zemax%E4%B8%8Ematlab%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Optics/zemax%E4%B8%8Ematlab%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">zemax与matlab常用的交互命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Optics/" itemprop="url" rel="index"><span itemprop="name">Optics</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>1、ZEMAX中-&gt;编程-&gt;MATLAB-&gt;交互拓展,生成 MATLABZOSConnection.m ， 并点击”交互拓展“</p>
+<p>2、matlab中切换路径到存储MATLABZOSConnection.m；</p>
+<p>3、Matlab中的调试，常用的一些命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">%%在zemax交互拓展，与matlab进行来连接,定义变量app_inf</span><br><span class="line">app_inf=MATLABZOSConnection;</span><br><span class="line">%一些常用命令</span><br><span class="line">%app_inf.CloseApplication(); %关闭应用程序</span><br><span class="line">app_inf.LicenseStatus %检查授权版本</span><br><span class="line">app_inf.Mode %检查授权模式</span><br><span class="line">sample_dir = app_inf.SamplesDir; %获取实例文件夹完整路径</span><br><span class="line">%%</span><br><span class="line">%%获取PrimarySysterm属性，PrimarySysterm提供对当前加载的 zemax文件的访问权限</span><br><span class="line">%.LDE用于镜头数据编辑器(Lens Data Editor)</span><br><span class="line">% .MCE用于多重结构编辑器(Multi Configuration Editor)</span><br><span class="line">% .MFE用于评价函数编辑器(Merit Function Editor)</span><br><span class="line">% .TDE用于公差数据编辑器(Tolerance Data Editor)</span><br><span class="line">% .NCE用于非序列编辑器(Non-Seqential Editor)</span><br><span class="line">% 还可以使用 .Analysis 对分析进行访问和使用 .Tools 对工具进行访问。</span><br><span class="line">app_Pri=app_inf.PrimarySystem;</span><br><span class="line">% 一些关于TheSystem（PrimarySysterm）进行的实用操作如下所示：</span><br><span class="line">% app_Pri.MakeNonSequential(); %转换至非序列模式(Non-sequential Mode)： </span><br><span class="line">% app_Pri.MakeSequential(); %转换至序列模式(Sequential Mode)： </span><br><span class="line">% 加载.ZMX文件： </span><br><span class="line">% testFile = System.String.Concat(sampleDir, &#x27;\Sequential\Objectives\Double Gauss 28 degree field.zmx&#x27;);</span><br><span class="line">% app_Pri.LoadFile(testFile, false);</span><br><span class="line">% app_Pri.Save();  %保存已存在的系统(.ZMX)： </span><br><span class="line">% TheSystem.SaveAs(copyFile); %将当前系统保存为一个新的文件： </span><br><span class="line">% TheSystem.New(false); %创建新的（默认的）镜头数据文件(LENS.ZMX)：</span><br><span class="line">% TheSystem.Close(false); %关闭当前已打开的系统且不保存： </span><br><span class="line">%%</span><br><span class="line">%TheSystemData 包含系统所有的基本数据，可以对系统选项(System Explorer)进行设置。</span><br><span class="line">% 可以对孔径(Aperture)、视场(Fields)、波长(Wavelengths)、环境(Environment)、光线瞄准(RayAiming)，</span><br><span class="line">% 非序列数据(NonSequentialData)、偏振(Polarization) 等特性进行访问。 </span><br><span class="line">TheSystemData=app_Pri.SystemData;</span><br><span class="line">%TheSystemData常用的操作</span><br><span class="line">%设置系统孔径类型为入瞳直径（Entrance Pupil Diameter）</span><br><span class="line">%TheSystemData.Aperture.ApertureType=ZOSAPI.SystemData.ZemaxApertureType.EntrancePupilDiameter;</span><br><span class="line">% TheSystemData.Aperture.ApertureValue=20; % 更改数值设置：</span><br><span class="line">% sysTitleNotes = TheSystem.SystemData.TitleNotes;% 更改字符设置：</span><br><span class="line">% 设置膜层文件并重新载入： </span><br><span class="line">% sysFiles = TheSystem.SystemData.Files; sysFiles.CoatingFile = &#x27;COATING.DAT&#x27;;TheSystem.SystemData.Files.ReloadFiles();</span><br><span class="line">% sysTitleNotes.Title = &#x27;Add here the title&#x27;; % 添加标题： </span><br><span class="line">% TheSystemData.Aperture.AFocalImageSpace = true; % 勾选或不勾选复选框。True代表着勾选这个选项，False代表不勾选：</span><br><span class="line">%%</span><br><span class="line">% 如下为一些可改变视场和波长的实用选项：</span><br><span class="line">% sysField = app_Pri.SystemData.Fields; % 访问视场：</span><br><span class="line">% sysWave= app_Pri.SystemData.Wavelengths; % 访问波长：</span><br><span class="line">% NewField_2 = sysField.AddField(0,5.0,1.0); % 添加新的视场X=0,Y=5.0，视场权重为1.0：</span><br><span class="line">% NewWave_2 = sysWave.AddWavelength(0.6328,1.0); % 添加新的波长0.6328mm，权重为1.0：</span><br><span class="line">% 将视场1 的值改为X=1,Y=2.0，视场权重为0.5：</span><br><span class="line">% field1 = sysField.GetField(1); field1.X = 1.0; field1.Y = 2.0; field1.Weight = 0.5;</span><br><span class="line">% TheSystemData.Wavelengths.GetWavelength(1).Wavelength = 0.55; % 将波长1改为0.55mm：</span><br><span class="line">% TheSystemData.Wavelengths.GetWavelength(1).MakePrimary(); % 设置波长1 为主波长：</span><br><span class="line">% 将视场类型 (Field Type) 改为物高 (Object Height)：</span><br><span class="line">% sysField.SetFieldType(ZOSAPI.SystemData.FieldType.ObjectHeight);</span><br><span class="line">% 将归一化 (Normalization) 改为径向(Radial)： </span><br><span class="line">% sysField.Normalization= ZOSAPI.SystemData.FieldNormalizationType.Radial;</span><br><span class="line">% 使用视场向导 (Field Wizard) 从0到10添加3个等效的Y视场，</span><br><span class="line">% 最后三个参数 (1,true, false)表示：从第1行开始，分别检查覆盖 (Overwrite) 是否选中和使用拾取 (Use pickups) 是否取消选中。</span><br><span class="line">% sysField.ApplyFieldWizard(ZOSAPI.SystemData.FieldPattern.EqualAreaY,3,10,0,0,1,true,false);</span><br><span class="line">% 使用正交算法 (Quadrature) 从0.486mm到0.656mm范围内定义6个波长：</span><br><span class="line">% TheSystemData.Wavelengths.GaussianQuadrature(0.486,0.656,ZOSAPI.SystemData.QuadratureSteps.S6);</span><br><span class="line">% 使用预置 (Preset) 选项定义波长：</span><br><span class="line">% TheSystemData.Wavelengths.SelectWavelengthPreset(ZOSAPI.SystemData.WavelengthPreset.FdC_Visible);</span><br><span class="line">% num_fields=TheSystem.SystemData.Fields.NumberOfFields;% 读取视场的数目： </span><br><span class="line">%%</span><br><span class="line">%分析（the analyess）</span><br><span class="line">TheAnalyeses=app_Pri.Analyses;</span><br><span class="line">     </span><br><span class="line">    %TheSystem.Analyses.New_Analysis(ZOSAPI.Analysis.AnalysisIDM AnalysisType)  %执行一次分析： </span><br><span class="line">    % TheRayFan = TheSystem.Analyses.New_Analysis(ZOSAPI.Analysis.AnalysisIDM.RayFan);% 执行一次光线光扇图分析：</span><br><span class="line">    TheRayFan_Settings = TheRayFan.GetSettings(); %获取设置： </span><br><span class="line">        %更改获取的应用设置</span><br><span class="line">        TheRayFan_Settings.NumberOfRays = 100; %更改光线数目： </span><br><span class="line">       TheRayFan_Settings.Wavelength.SetWavelengthNumber(0); %改变波长</span><br><span class="line">    %使用 ModifySettings 更改还未应用的设置：</span><br><span class="line">    % analysisSettings.SaveTo(cfgFile);   </span><br><span class="line">    % analysisSettings.ModifySettings(cfgFile, &#x27;SHA_ROTX&#x27;, &#x27;90&#x27;);   </span><br><span class="line">    % analysisSettings.LoadFrom(cfgFile);   </span><br><span class="line">    % System.IO.File.Delete(cfgFile); </span><br><span class="line">    TheRayFan.ApplyAndWaitForCompletion(); %应用设置： </span><br><span class="line">    TheRayFan_Results = TheRayFan.GetResults(); %获取结果：</span><br><span class="line">%%</span><br><span class="line">%编辑器，如何使用编辑器</span><br><span class="line">%编辑器包括镜头数据编辑器(LDE,表面信息)、非序列元件编辑器(NCE 物体信息)、评价函数编辑器(MFE)、</span><br><span class="line">%多重结构编辑器(MCE)、公差数据编辑器(TDE)。</span><br><span class="line">TheLDE = app_Pri.LDE;</span><br><span class="line">    %常见功能</span><br><span class="line">    TheLDE.AddSurface(); %添加新表面</span><br><span class="line">    TheLDE.InsertNewSurfaceAt(1);%在特定表面前插入新表面</span><br><span class="line">    TheLDE.RemoveSurfaceAt(1,3); %删除一个或多个指定表面</span><br><span class="line">    TheLDE.CopySurfaces(1,3,3); %将指定数量（第二个数3）的表面从一个位置（第一个数1）复制粘贴到另一个位置（第三个数3）</span><br><span class="line">    TheLDE.GetSurfaceAt(1); %访问特定的表面： </span><br><span class="line">%更改表面类型</span><br><span class="line">surf1_type=surf1.GetSurfaceTypeSettings(ZOSAPI.Editors.LDE.SurfaceType.EvenAspheric); surf1.ChangeType(surf1_type);</span><br><span class="line">% 获取或设置半径(Radius)、厚度(Thickness)、半口径(SemiDiameter)、延伸区(ChipZone), 圆锥系数(Conic)、热膨胀系数(TCE)、</span><br><span class="line">% 标注(Comment)、材料(Material)、膜层(Coating)的值: </span><br><span class="line">surf1.Comment=  &#x27;Add comment here&#x27;; </span><br><span class="line">%添加求解(Solve):</span><br><span class="line">solve_MarginalRayHeight= surf1.ThicknessCell.CreateSolveType(ZOSAPI.Editors.SolveType.MarginalRayHeight); </span><br><span class="line">solve_MarginalRayHeight.PupilZone=0.5;</span><br><span class="line">surf1.ThicknessCell.SetSolveData(solve_MarginalRayHeight);</span><br><span class="line">surf1.RadiusCell.MakeSolveVariable();</span><br><span class="line">%改变参数的值：</span><br><span class="line">par2= surf1.GetSurfaceCell(ZOSAPI.Editors.LDE.SurfaceColumn.Par2); par2.DoubleValue= 0.0005;</span><br><span class="line">%将孔径属性改为圆形孔径(Circular Aperture)：</span><br><span class="line">aperdata=surf1.ApertureData;</span><br><span class="line">circular_aper=aperdata.CreateApertureTypeSettings(ZOSAPI.Editors.LDE.SurfaceApertureTypes.CircularAperture);</span><br><span class="line">circular_aper.MaximumRadius=0.5;</span><br><span class="line">aperdata.ChangeApertureTypeSettings(circular_aper);</span><br><span class="line">RunTool_ConvertLocalToGlobalCoordinates(int, int, int) %访问编辑器工具栏的工具</span><br><span class="line">%%</span><br><span class="line">%访问光学系统的系统工具（System tools）</span><br><span class="line">app_Pri.Tools;</span><br><span class="line">%基本执行语句， 打开工具-&gt;定义设置-&gt;运行工具</span><br><span class="line">% testFile = System.String.Concat(sampleDir, &#x27;\Sequential\Objectives\Cooke 40 degree field.zar&#x27;);</span><br><span class="line">% testFolder = System.String.Concat(sampleDir, &#x27;\test\&#x27;);</span><br><span class="line">% loadZAR=TheSystem.Tools.OpenRestoreZAR();</span><br><span class="line">% loadZAR.SetFileName(testFile);</span><br><span class="line">% loadZAR.SetOutputFolder(testFolder);</span><br><span class="line">% loadZAR.SetFilesAllOverwrite();</span><br><span class="line">% loadZAR.RunAndWaitForCompletion();</span><br><span class="line">% loadZAR.Close();</span><br><span class="line">%一些常用工具</span><br><span class="line">creatZAR=app_Pri.Tools.OpenCreateZAR(); %创建存储文档</span><br><span class="line">ToolExportCAD = app_Pri.Tools.OpenExportCAD(); %将当前透镜数据输出为CAD文件；</span><br><span class="line">convertNSmode = app_Pri.Tools.OpenConvertToNSCGroup(); %将文件转为非序列文件；</span><br><span class="line">quickFocus = app_Pri.Tools.OpenQuickFocus(); %执行快速聚焦；</span><br><span class="line">app_Pri.Tools.RemoveAllVariables(); %移除所有变量</span><br><span class="line">LocalOpt = app_Pri.Tools.OpenLocalOptimization(); %执行一次局部优化</span><br><span class="line">raytrace = app_Pri.Tools.OpenBatchRayTrace(); %运行一次批量光线追迹(Batch ray trace)</span><br><span class="line">tol = app_Pri.Tools.OpenTolerancing(); %打开公差分析 (Tolerancing)</span><br><span class="line">MFcalculator=app_Pri.Tools.OpenMeritFunctionCalculator(); %计算评价函数 (Merit Function)</span><br><span class="line">SpotCalculator= app_Pri.Tools.OpenRMSSpotRadiusCalculator(); %计算光斑半径 (Spot Radius)</span><br><span class="line">NSCRayTrace = app_Pri.Tools.OpenNSCRayTrace(); %执行光线追迹(RayTrace)， 非序列模式（NSC）</span><br><span class="line">OpenRayDatabaseReader() % 从光线数据库(RayDataBase) 中读取数据</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -240,7 +327,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -353,7 +440,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -460,7 +547,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -551,7 +638,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -679,7 +766,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -702,91 +789,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png">绿失衡的来源在大多数数字成像系统中，传感器使用Bayer阵列捕获原始图像数据。由于人眼对绿色光最敏感，Bayer阵列中的绿色像素占总像素数量的一半。理想情况下，这些绿色像素对光线的响应应当是均匀的，但在实际传感器中，绿色像素可能由于光线不均或工艺缺陷等原因导致像素响应不一致。举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png">绿平衡算法那如何通过ISP的处理，去规避绿失衡现象的影响呢？最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加&#x2F;减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png">在ISP中绿平衡 (Green Balance) 是一个重要模块，通常以均值算法及其衍生形式实现，主要用于优化图像中的绿色像素值的均匀性和准确性，以确保最终的图像质量。通过绿平衡的优化，ISP能够修复Sensor的绿失衡，生成更自然、细腻的图像，有效提升用户的视觉体验。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/" class="post-title-link" itemprop="url">ISP-绿平衡</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png">绿失衡的来源在大多数数字成像系统中，传感器使用Bayer阵列捕获原始图像数据。由于人眼对绿色光最敏感，Bayer阵列中的绿色像素占总像素数量的一半。理想情况下，这些绿色像素对光线的响应应当是均匀的，但在实际传感器中，绿色像素可能由于光线不均或工艺缺陷等原因导致像素响应不一致。举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png">绿平衡算法那如何通过ISP的处理，去规避绿失衡现象的影响呢？最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加&#x2F;减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png">在ISP中绿平衡 (Green Balance) 是一个重要模块，通常以均值算法及其衍生形式实现，主要用于优化图像中的绿色像素值的均匀性和准确性，以确保最终的图像质量。通过绿平衡的优化，ISP能够修复Sensor的绿失衡，生成更自然、细腻的图像，有效提升用户的视觉体验。</p>
 
       
     </div>
@@ -849,7 +851,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -934,7 +936,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -957,6 +959,91 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>膨胀和腐蚀运算的问题：边缘形状发生了变化，膨胀发生了扩张，腐蚀发生了收缩 目标物体变形，对识别时的特征提取会造成影响解决方法：开操作:<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_1.png">B对A的开操作就是先B对A腐蚀，紧接着用B对结果进行膨胀<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_2.png">先腐蚀再膨胀的结果并不是恢复原状，而是会消除黏连部分，同时不影响其他部分的形状. 平滑物体的轮廓，断开较窄的狭颈并消除较细的突出。<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_3.png"><img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_4.png">先膨胀再腐蚀的结果并不是恢复原状，而是填充小的裂缝、孔隙，且不影响形状. 平滑物体的轮廓，弥合较窄的间断和细小的沟壑，消除小的孔洞，填充轮廓中的断痕。 效果：<img src="/posts/Image_Processing/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_5.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/" class="post-title-link" itemprop="url">ISP-绿平衡</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-03-30T00:00:00+00:00">2026-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png">绿失衡的来源在大多数数字成像系统中，传感器使用Bayer阵列捕获原始图像数据。由于人眼对绿色光最敏感，Bayer阵列中的绿色像素占总像素数量的一半。理想情况下，这些绿色像素对光线的响应应当是均匀的，但在实际传感器中，绿色像素可能由于光线不均或工艺缺陷等原因导致像素响应不一致。举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png">绿平衡算法那如何通过ISP的处理，去规避绿失衡现象的影响呢？最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加&#x2F;减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/Image_Processing/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png">在ISP中绿平衡 (Green Balance) 是一个重要模块，通常以均值算法及其衍生形式实现，主要用于优化图像中的绿色像素值的均匀性和准确性，以确保最终的图像质量。通过绿平衡的优化，ISP能够修复Sensor的绿失衡，生成更自然、细腻的图像，有效提升用户的视觉体验。</p>
 
       
     </div>
@@ -1019,7 +1106,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
+      <time title="修改时间：2026-08-05 08:31:36" itemprop="dateModified" datetime="2026-08-05T08:31:36+00:00">2026-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1217,113 +1304,6 @@
 </ol>
 <p>通过以上计划，你可以系统掌握深度学习图像去噪的核心技术，并在实践中积累经验。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Image_Processing/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">基本图像处理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-21T00:00:00+00:00">2023-05-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-05 05:32:02" itemprop="dateModified" datetime="2026-08-05T05:32:02+00:00">2026-08-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image_Processing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="图像处理的基本分类"><a href="#图像处理的基本分类" class="headerlink" title="图像处理的基本分类"></a>图像处理的基本分类</h2><p>图像去噪、修复、视频超分辨率、滤镜、后聚集、增强，Demosaic，HDR，NR、SR、分割、识别等图像增强相关算法。   </p>
-<p>图像去噪：去除图像中的噪声（如随机像素值变化），以提高图像质量。 <br>图像修复：恢复受损或缺失的部分，使图像看起来完整且自然。  </p>
-<p>视频超分辨率：将低分辨率视频转换为高分辨率视频，以提高清晰度和细节水平。  </p>
-<p>滤镜：对图像进行各种视觉效果处理，例如色彩校正、模糊、锐化等。  </p>
-<p>后聚焦：模拟相机重新对焦的效果，允许用户选择图像中的焦点区域。  </p>
-<p>增强：改善图像的整体外观，使其更具吸引力或更容易阅读。  </p>
-<p>Demosaicing：用于从单色传感器数据生成全彩色图像的过程。  </p>
-<p>HDR（高动态范围）：合并多个曝光图像以创建包含宽广亮度范围的单一图像。  </p>
-<p>NR（噪声减少）：降低图像中的噪声，以获得更平滑的结果。  </p>
-<p>SR（超级分辨率）：提高图像分辨率，增加细节和清晰度。  </p>
-<p>分割：将图像分割成不同的对象或区域，以便于分析或编辑。  </p>
-<p>识别：自动检测和识别图像中的物体、人物或其他特征。</p>
-<h2 id="空域滤波算法"><a href="#空域滤波算法" class="headerlink" title="空域滤波算法"></a>空域滤波算法</h2><p>空域滤波算法是图像处理中用于去除噪声的一类方法，它们直接在图像的像素坐标系中操作，通过分析图像中像素与周围像素的关系来去除噪声。以下是几种常见的空域滤波算法的原理描述及其在MATLAB中的实现代码。</p>
-<h3 id="1-均值滤波"><a href="#1-均值滤波" class="headerlink" title="1. 均值滤波"></a>1. 均值滤波</h3><p>均值滤波是一种简单的线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值的平均值来实现降噪。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;average&#x27;, [5 5]); % 创建5x5的均值滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-中值滤波"><a href="#2-中值滤波" class="headerlink" title="2. 中值滤波"></a>2. 中值滤波</h3><p>中值滤波是一种非线性滤波方法，它通过替换图像中每个像素点的值为其邻域内所有像素值排序后的中值来实现降噪。这种方法对椒盐噪声特别有效。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">filtered_img = medfilt2(img); % 应用中值滤波</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-高斯滤波"><a href="#3-高斯滤波" class="headerlink" title="3. 高斯滤波"></a>3. 高斯滤波</h3><p>高斯滤波通过应用二维高斯函数作为滤波器核来平滑图像，适合去除高斯噪声。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的高斯滤波器核</span><br><span class="line">filtered_img = imfilter(img, h); % 应用滤波器</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-双边滤波"><a href="#4-双边滤波" class="headerlink" title="4. 双边滤波"></a>4. 双边滤波</h3><p>双边滤波是一种非线性空间滤波方法，它不仅考虑像素点的空间邻近性，还考虑像素值的相似性。这种滤波器在保持边缘清晰的同时去除噪声。MATLAB代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img = imread(&#x27;lena.png&#x27;); % 读取图像</span><br><span class="line">h = fspecial(&#x27;gaussian&#x27;, [5 5], 2); % 创建5x5的空间滤波器核</span><br><span class="line">filtered_img = imfilter(img, h, &#x27;replicate&#x27;); % 应用双边滤波</span><br></pre></td></tr></table></figure>
       
     </div>
 
