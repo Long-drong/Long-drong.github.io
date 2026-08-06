@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-06 10:43:42" itemprop="dateCreated datePublished" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 11:21:44" itemprop="dateCreated datePublished" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,7 +395,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-06 10:43:42" itemprop="dateCreated datePublished" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 11:21:44" itemprop="dateCreated datePublished" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -475,7 +475,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-06 10:43:42" itemprop="dateCreated datePublished" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 11:21:44" itemprop="dateCreated datePublished" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -560,7 +560,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：10:43:42" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：11:21:44" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -653,6 +653,143 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/SVN%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Tools/SVN%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">SVN常用命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：11:21:44" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>SVN主要用于代码的管理维护，主要包括 checkout（检出）、Commit(提交)、Update(更新)、Showlog(显示日志)。</p>
+</li>
+<li><p>1，checkout(检出)</p>
+</li>
+<li><p>在新文件夹下，导入url里的文件，右键使用svn checkout, 第一次需要验证账号与密码</p>
+</li>
+<li></li>
+<li><p>在linux下使用</p>
+</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">svn co svn://svnbucket.com/xxx/xxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+<li><p>2，更新文件</p>
+</li>
+<li><p>进入需要更新的文件夹下，右键选择 svn update;</p>
+</li>
+<li><p><img src="/../assets/image_1725502879776_0.png" alt="image.png"></p>
+</li>
+<li></li>
+<li><p>若需要更新到特定版本(从上次的log进行查看)， update to revision</p>
+</li>
+<li><p>在linux下使用：</p>
+</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">svn update  #跟新到最新版本</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">svn update -r xxx  #跟新到xxx版本</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+<li><p>3，提交文件</p>
+</li>
+<li><p>若新增文件，先使用add添加到svn路径中，再使用svn commit进行提交，需注明log修改了什么文件，及为什么修改；（上传文件前，先将本地文件update最新，再覆盖上传，防止冲突）；</p>
+</li>
+<li><p>在linux下使用：</p>
+</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">svn add *. #添加当前目录下所有文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">svn commit -m &quot;提交描述&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+<li><p>4，和之前版本比较，确认修改内容</p>
+</li>
+<li><p>可以在show log里选择文件和之前的某个版本进行比较， compare with previous revision；</p>
+</li>
+<li><p>也可以选择某一版本和正在使用的版本进行比较；</p>
+</li>
+<li><p>在linux下的使用，</p>
+</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">svn diff /path/to/file-or-dir -r xxx  # 本地文件跟指定版本号比较差异</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+<li><p>5，清理缓存</p>
+</li>
+<li><p>当执行SVN出现报错时， 一般执行svn cleanup清楚本地的一些缓存或未执行完成的命令。即可解决</p>
+</li>
+<li><p>6，branch与tag的创建，merge合并暂时不需要。</p>
+</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -683,7 +820,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：10:43:42" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：11:21:44" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -796,7 +933,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 10:43:42" itemprop="dateModified" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -896,7 +1033,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 10:43:42" itemprop="dateModified" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -992,7 +1129,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 10:43:42" itemprop="dateModified" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1080,7 +1217,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 10:43:42" itemprop="dateModified" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1116,120 +1253,6 @@
 <p>Matlab</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">% UIFigure的键盘按下回调</span><br><span class="line">function UIFigureKeyPress(app, event)</span><br><span class="line">    % 检测用户是否按下了 Ctrl + V</span><br><span class="line">    if strcmp(event.Key, &#x27;v&#x27;) &amp;&amp; any(strcmp(event.Modifier, &#x27;control&#x27;))</span><br><span class="line">        </span><br><span class="line">        % 读取剪贴板数据</span><br><span class="line">        rawText = clipboard(&#x27;paste&#x27;);</span><br><span class="line">        if isempty(rawText), return; end</span><br><span class="line">        </span><br><span class="line">        % 解析行和列</span><br><span class="line">        rows = splitlines(strtrim(rawText));</span><br><span class="line">        tempData = cell(numel(rows), 1); % 假设你只有一列</span><br><span class="line">        </span><br><span class="line">        for i = 1:numel(rows)</span><br><span class="line">            val = str2double(rows&#123;i&#125;);</span><br><span class="line">            if isnan(val)</span><br><span class="line">                tempData&#123;i, 1&#125; = rows&#123;i&#125;;</span><br><span class="line">            else</span><br><span class="line">                tempData&#123;i, 1&#125; = val;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">        </span><br><span class="line">        % 自动填充到表格中</span><br><span class="line">        app.UITable.Data = tempData;</span><br><span class="line">        </span><br><span class="line">        % 重新应用居中样式</span><br><span class="line">        s = uistyle(&#x27;HorizontalAlignment&#x27;, &#x27;center&#x27;);</span><br><span class="line">        addStyle(app.UITable, s, &#x27;table&#x27;, &#x27;&#x27;);</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <p>方案一测试OK</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%90%84%E9%A1%B9%E5%BC%82%E6%80%A7%E6%A3%80%E6%B5%8B%E5%9B%BE%E5%83%8Fmap%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%90%84%E9%A1%B9%E5%BC%82%E6%80%A7%E6%A3%80%E6%B5%8B%E5%9B%BE%E5%83%8Fmap%E5%9B%BE/" class="post-title-link" itemprop="url">各项异性检测图像map图</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-29T00:00:00+00:00">2026-07-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 10:43:42" itemprop="dateModified" datetime="2026-08-06T10:43:42+00:00">2026-08-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>“各向异性（Anisotropy）”往往比单纯用梯度幅值更精准、更抗噪！</p>
-<p>理由如下：</p>
-<ol>
-<li><strong>梯度幅值（Gradient Magnitude）容易被噪声误判</strong>： 噪声在图像平坦区会导致梯度突然变大，产生假边缘，导致 ϕ(G) 误判，去噪不彻底。<br>    <br>2.  <strong>各向异性描述的是“结构一致性”</strong>：<br>    <br>    *   <strong>平坦区 &#x2F; 纯噪声区</strong>：各个方向的变化率差不多，表现为<strong>各向同性（Isotropic，各向异性指标趋近于 0）</strong>。<br>        <br>    *   <strong>真实边缘 &#x2F; 纹理区</strong>：沿着边缘方向灰度变化极小，垂直于边缘方向灰度变化极大，表现为<strong>高各向异性（Anisotropic，各向异性指标趋近于 1）</strong>。</li>
-</ol>
-<p>因此，<strong>利用各向异性度量（Anisotropy Measure）作为 Map 图，可以完美抵御平坦区的噪声干扰，只在真正的线条&#x2F;边缘处保留 NLM 的结构识别能力</strong>。</p>
-<h3 id="一、-如何计算各向异性-Map？（基于结构张量）"><a href="#一、-如何计算各向异性-Map？（基于结构张量）" class="headerlink" title="一、 如何计算各向异性 Map？（基于结构张量）"></a>一、 如何计算各向异性 Map？（基于结构张量）</h3><p>计算局部各向异性最经典、稳健的方法是利用<strong>结构张量（Structure Tensor &#x2F; Second Moment Matrix）</strong>：</p>
-<ol>
-<li><strong>计算图像梯度</strong>：Jx​=∂x∂I​,Jy​=∂y∂I​</li>
-<li><strong>构建结构张量矩阵</strong>（对梯度外积进行高斯高斯滤波平滑以抵御噪声）：   <br>   $S &#x3D; \begin{bmatrix} J_{xx} &amp; J_{xy} \ J_{xy} &amp; J_{yy} \end{bmatrix}$<br></li>
-<li><strong>求解特征值 λ1​,λ2​ (λ1​≥λ2​≥0)</strong>：<br>  *   λ1​ 代表最大变化率方向的能量；</li>
-</ol>
-<p><br>  *   λ2​ 代表最小变化率方向的能量。</p>
-<ol start="4">
-<li><strong>计算各向异性指标 A</strong>： 常用的各向异性度量函数有：<br>    <br>    $A &#x3D; \frac{\lambda_1 - \lambda_2}{\lambda_1 + \lambda_2 + \epsilon}$​<br>    <br>    &gt; <strong>物理意义</strong>：<br>     <br>    &gt; *   <strong>平坦区或噪声区</strong>：λ1​≈λ2​→A≈0 （各向同性，Patch diff 缩放归零，退化为均值&#x2F;高斯，去噪极强）。<br>        <br>    &gt; *   <strong>单向强边缘&#x2F;纹理</strong>：λ1​≫λ2​→A≈1 （高各向异性，Patch diff 保持不变，开启 NLM 边缘保护）。<br></li>
-</ol>
-<h3 id="二、-将各向异性-Map-代入-NLM-的-Patch-差异"><a href="#二、-将各向异性-Map-代入-NLM-的-Patch-差异" class="headerlink" title="二、 将各向异性 Map 代入 NLM 的 Patch 差异"></a>二、 将各向异性 Map 代入 NLM 的 Patch 差异</h3><p>用各向异性指标 A(x,y)∈[0,1] 替换原来的 ϕ(G)，直接调控 Patch 的原始差异：</p>
-<p>$D_{adj}(i,j) &#x3D; A(i) \cdot D_{raw}(i,j)$</p>
-<ul>
-<li><strong>当 A(i)→0（平坦区&#x2F;噪声）</strong>：Dadj​→0，所有 Patch 权重 exp(0)=1，退化为均值滤波。<br>    <br>*   <strong>当 A(i)→1（真实边缘）</strong>：Dadj​→Draw​，恢复标准 NLM 灰度匹配。</li>
-</ul>
-<h3 id="三、-MATLAB-实现代码"><a href="#三、-MATLAB-实现代码" class="headerlink" title="三、 MATLAB 实现代码"></a>三、 MATLAB 实现代码</h3><p>以下是在 MATLAB 中利用结构张量计算各向异性 Map 并调控 Patch 距离的核心代码：</p>
-<p>Matlab</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">function phi_map = compute_anisotropy_map(img, sigma_tensor)</span><br><span class="line">    % img: 输入图像 (double 格式 [0,1])</span><br><span class="line">    % sigma_tensor: 结构张量的高斯平滑半径 (推荐 1.0 ~ 2.0，用于抗噪)</span><br><span class="line">    if nargin &lt; 2</span><br><span class="line">        sigma_tensor = 1.5;</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 1. 计算图像梯度</span><br><span class="line">    [Ix, Iy] = imgradientxy(img, &#x27;CentralDifference&#x27;);</span><br><span class="line"></span><br><span class="line">    % 2. 构建结构张量的三个分量并进行高斯平滑 (抑制噪声的关键步骤)</span><br><span class="line">    Jxx = imgaussfilt(Ix.^2, sigma_tensor);</span><br><span class="line">    Jyy = imgaussfilt(Iy.^2, sigma_tensor);</span><br><span class="line">    Jxy = imgaussfilt(Ix.*Iy, sigma_tensor);</span><br><span class="line"></span><br><span class="line">    % 3. 解析求解 2x2 对称矩阵的两个特征值 lambda1 和 lambda2</span><br><span class="line">    % 行列式与迹公式：</span><br><span class="line">    % trace = Jxx + Jyy</span><br><span class="line">    % det = Jxx*Jyy - Jxy^2</span><br><span class="line">    % lambda = (trace ± sqrt(trace^2 - 4*det)) / 2</span><br><span class="line">    </span><br><span class="line">    trace_S = Jxx + Jyy;</span><br><span class="line">    det_S = Jxx .* Jyy - Jxy.^2;</span><br><span class="line">    </span><br><span class="line">    % 防止开方出现负微小值</span><br><span class="line">    delta = max(0, trace_S.^2 - 4 * det_S); </span><br><span class="line">    </span><br><span class="line">    lambda1 = 0.5 * (trace_S + sqrt(delta));</span><br><span class="line">    lambda2 = 0.5 * (trace_S - sqrt(delta));</span><br><span class="line"></span><br><span class="line">    % 4. 计算各向异性 Map A = (lambda1 - lambda2) / (lambda1 + lambda2 + eps)</span><br><span class="line">    eps_val = 1e-5; % 防止除以零</span><br><span class="line">    A = (lambda1 - lambda2) ./ (lambda1 + lambda2 + eps_val);</span><br><span class="line"></span><br><span class="line">    % 5. 可选：用 Sigmoid/指数平滑映射，增强对比度</span><br><span class="line">    % 使得弱结构区更彻底趋近于 0，强结构区趋近于 1</span><br><span class="line">    phi_map = A.^2; % 进一步压制低各向异性的噪声区</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h3 id="效果对比演示："><a href="#效果对比演示：" class="headerlink" title="效果对比演示："></a>效果对比演示：</h3><p>你可以在 MATLAB 中运行以下代码直观对比：</p>
-<p>Matlab</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">img = im2double(imread(&#x27;cameraman.tif&#x27;));</span><br><span class="line">noisy_img = imnoise(img, &#x27;gaussian&#x27;, 0, 0.005); % 加噪</span><br><span class="line"></span><br><span class="line">% 1. 普通梯度幅值 Map</span><br><span class="line">[gx, gy] = imgradientxy(noisy_img);</span><br><span class="line">G = sqrt(gx.^2 + gy.^2);</span><br><span class="line"></span><br><span class="line">% 2. 各向异性 Map</span><br><span class="line">A_map = compute_anisotropy_map(noisy_img, 1.5);</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line">subplot(1,3,1); imshow(noisy_img); title(&#x27;含噪图像&#x27;);</span><br><span class="line">subplot(1,3,2); imshow(G, []); title(&#x27;梯度幅值 Map (噪声很亮，容易误判)&#x27;);</span><br><span class="line">subplot(1,3,3); imshow(A_map, []); title(&#x27;各向异性 Map (噪声被抑制，仅保留边缘)&#x27;);</span><br><span class="line">colormap(gca, &#x27;jet&#x27;); colorbar;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>在梯度图里，平坦区会有大量由噪声引起的亮点；但在各向异性图里，平坦区几乎全蓝（接近 0），只有真正的长线条边缘才会发红（接近 1）</strong>。</p>
 
       
     </div>
