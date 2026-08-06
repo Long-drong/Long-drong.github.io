@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,104 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Matalb/matalb%20app-UITable%E7%9A%84%E5%A4%8D%E5%88%B6%E9%BB%8F%E8%B4%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Matalb/matalb%20app-UITable%E7%9A%84%E5%A4%8D%E5%88%B6%E9%BB%8F%E8%B4%B4/" class="post-title-link" itemprop="url">matalb app-UITable的复制黏贴</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-29T00:00:00+00:00">2026-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Matalb/" itemprop="url" rel="index"><span itemprop="name">Matalb</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在 MATLAB App Designer 中，默认情况下，运行中的 <code>UITable</code> <strong>是不支持直接使用 <code>Ctrl+V</code> 一次性粘贴多行多列数据的</strong>。如果你直接按下粘贴键，可能没有任何反应，或者它只会被塞进你双击选中的那一个单元格里。</p>
+<p>针对这个问题，有两个非常实用的解决方法：<strong>极速低代码方案（增加“粘贴”按钮）</strong>，或者<strong>无感快捷键方案（绑定 Ctrl+V 键盘监听）</strong>。</p>
+<h3 id="方案一：增加一个“一键粘贴”按钮（极简、最推荐-⭐️）"><a href="#方案一：增加一个“一键粘贴”按钮（极简、最推荐-⭐️）" class="headerlink" title="方案一：增加一个“一键粘贴”按钮（极简、最推荐 ⭐️）"></a>方案一：增加一个“一键粘贴”按钮（极简、最推荐 ⭐️）</h3><p>这是最不容易出错、写起来也最快的办法。你只需要在界面上放一个普通的 <strong><code>Button</code>（按钮）</strong>，并把它的文本改成 <strong>“从剪贴板粘贴”</strong>，然后为它添加回调。</p>
+<p>当你从 Excel 或其他地方复制了一列或一个矩阵数据后，直接在 App 里点一下这个按钮，数据就会瞬间自动填充到 <code>UITable</code> 中：</p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><p>在按钮的 <code>ButtonPushed</code> 回调函数中写入以下代码：</p>
+<p>Matlab</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">% 按钮点击回调函数（写入 double 数组）</span><br><span class="line"></span><br><span class="line">function PasteButtonPushed(app, event)</span><br><span class="line"></span><br><span class="line">    % 1. 获取系统剪贴板中的文本数据</span><br><span class="line"></span><br><span class="line">    rawText = clipboard(&#x27;paste&#x27;);</span><br><span class="line"></span><br><span class="line">    if isempty(rawText)</span><br><span class="line"></span><br><span class="line">        uialert(app.UIFigure, &#x27;剪贴板为空，请先复制数据！&#x27;, &#x27;提示&#x27;);</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 2. 使用 str2num 直接将文本块一次性解析为 double 数组</span><br><span class="line"></span><br><span class="line">    % str2num 会自动处理换行和空格，将其转换为标准的数值矩阵/列向量</span><br><span class="line"></span><br><span class="line">    numArray = str2num(rawText); %#ok&amp;lt;ST2NM&amp;gt; (忽略 MATLAB 效率警告，此处 str2num 最适合解析不规则多行文本)</span><br><span class="line"></span><br><span class="line">    if isempty(numArray)</span><br><span class="line"></span><br><span class="line">        uialert(app.UIFigure, &#x27;剪贴板中的数据无法解析为数值数组！&#x27;, &#x27;格式错误&#x27;);</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 3. 确保它是一列（如果用户复制的是行向量，自动转置为列向量）</span><br><span class="line"></span><br><span class="line">    if isrow(numArray)</span><br><span class="line"></span><br><span class="line">        numArray = numArray&#x27;;</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 4. 直接把 double 数组赋给表格的 Data</span><br><span class="line"></span><br><span class="line">    app.UITable.Data = numArray;</span><br><span class="line"></span><br><span class="line">    % 5. 重新应用居中样式</span><br><span class="line"></span><br><span class="line">    s = uistyle(&#x27;HorizontalAlignment&#x27;, &#x27;center&#x27;);</span><br><span class="line"></span><br><span class="line">    addStyle(app.UITable, s, &#x27;table&#x27;, &#x27;&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h3 id="方案二：实现真正的-Ctrl-V-快捷键无缝粘贴"><a href="#方案二：实现真正的-Ctrl-V-快捷键无缝粘贴" class="headerlink" title="方案二：实现真正的 Ctrl + V 快捷键无缝粘贴"></a>方案二：实现真正的 <code>Ctrl + V</code> 快捷键无缝粘贴</h3><p>如果你不想点按钮，而是希望用户直接在 App 界面上按下 <code>Ctrl + V</code> 就能把数据贴进去，我们可以监听整个窗口（<code>UIFigure</code>）的按键事件。</p>
+<h4 id="配置步骤："><a href="#配置步骤：" class="headerlink" title="配置步骤："></a>配置步骤：</h4><ol>
+<li>在左侧组件浏览器（Component Browser）中，选中主窗口 <strong><code>app.UIFigure</code></strong>。<br>    <br>2.  在右侧属性面板切换到 <strong>Callbacks（回调）</strong> 页签。<br>    <br>3.  找到 <strong><code>KeyPressFcn</code></strong>，点击下拉菜单选择 <strong><code>Add KeyPressFcn callback</code></strong>。<br>    <br>4.  在生成的代码中，写入以下事件监听代码：</li>
+</ol>
+<p>Matlab</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">% UIFigure的键盘按下回调</span><br><span class="line">function UIFigureKeyPress(app, event)</span><br><span class="line">    % 检测用户是否按下了 Ctrl + V</span><br><span class="line">    if strcmp(event.Key, &#x27;v&#x27;) &amp;&amp; any(strcmp(event.Modifier, &#x27;control&#x27;))</span><br><span class="line">        </span><br><span class="line">        % 读取剪贴板数据</span><br><span class="line">        rawText = clipboard(&#x27;paste&#x27;);</span><br><span class="line">        if isempty(rawText), return; end</span><br><span class="line">        </span><br><span class="line">        % 解析行和列</span><br><span class="line">        rows = splitlines(strtrim(rawText));</span><br><span class="line">        tempData = cell(numel(rows), 1); % 假设你只有一列</span><br><span class="line">        </span><br><span class="line">        for i = 1:numel(rows)</span><br><span class="line">            val = str2double(rows&#123;i&#125;);</span><br><span class="line">            if isnan(val)</span><br><span class="line">                tempData&#123;i, 1&#125; = rows&#123;i&#125;;</span><br><span class="line">            else</span><br><span class="line">                tempData&#123;i, 1&#125; = val;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">        </span><br><span class="line">        % 自动填充到表格中</span><br><span class="line">        app.UITable.Data = tempData;</span><br><span class="line">        </span><br><span class="line">        % 重新应用居中样式</span><br><span class="line">        s = uistyle(&#x27;HorizontalAlignment&#x27;, &#x27;center&#x27;);</span><br><span class="line">        addStyle(app.UITable, s, &#x27;table&#x27;, &#x27;&#x27;);</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>方案一测试OK</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -240,7 +338,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -354,7 +452,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -455,7 +553,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -604,7 +702,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -696,7 +794,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -788,7 +886,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -982,7 +1080,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1074,7 +1172,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1166,7 +1264,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-06 11:24:54" itemprop="dateModified" datetime="2026-08-06T11:24:54+00:00">2026-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1198,99 +1296,6 @@ if __name__ == &#39;__main__&#39;:
 <p><img src="/posts/Optics/%E5%A4%9A%E5%85%89%E8%B0%B1%E4%B8%8E%E9%AB%98%E5%85%89%E8%B0%B1/img_7.png" alt="高光谱，多光谱，超光谱的示意图"></p>
 <p>高光谱成像仪的使用原理：</p>
 <p>高光谱成像主要用于测量光与物质相互作用后的反射光，因此也是一种表面测量技术。Headwall的Hyperspec®HSI属于线扫描设备，可通过称为仪器狭缝的狭长入光口观察场景。狭缝一次捕获一行场景，并通过传感器获取对应一行场景中每个点的光谱信息。通过将仪器狭缝瞄准到感兴趣的区域，或将移动物体扫过仪器的前面（例如，装有产品的传送带），进而可以对整个场景进行成像，并获取整个场景内逐个点的光谱信息。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/matlab%E4%B8%ADexe%E6%89%93%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Tools/matlab%E4%B8%ADexe%E6%89%93%E5%8C%85/" class="post-title-link" itemprop="url">matlab中exe打包</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-05-23 00:00:00" itemprop="dateCreated datePublished" datetime="2026-05-23T00:00:00+00:00">2026-05-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:21:44" itemprop="dateModified" datetime="2026-08-06T11:21:44+00:00">2026-08-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="matlab配置runtime"><a href="#matlab配置runtime" class="headerlink" title="matlab配置runtime"></a>matlab配置runtime</h1><p>命令行输入 mcrinstaller查看是否有runtime  <br>出现下图即为有runtime，可以跳过后续部分，直接看matlab打包exe.</p>
-<h1 id="获取版本号"><a href="#获取版本号" class="headerlink" title="获取版本号"></a>获取版本号</h1><p>命令行输入 version获取matlab版本号.</p>
-<h1 id="获取runtime的zip文件"><a href="#获取runtime的zip文件" class="headerlink" title="获取runtime的zip文件"></a>获取runtime的zip文件</h1><p>方式1：官网下载对应版本runtime  <br>地址：<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/products/compiler/matlab-runtime.html">https://ww2.mathworks.cn/products/compiler/matlab-runtime.html</a></p>
-<p>方式2：  <br>1、命令行输入 compiler.runtime.download  <br>2、ctrl+c停止后会给出下载地址，使用浏览器下载.</p>
-<p>方式3：</p>
-<p>在‘mathworks中国’查找安装包.</p>
-<h1 id="matlab打包exe"><a href="#matlab打包exe" class="headerlink" title="matlab打包exe"></a>matlab打包exe</h1><p><img src="/posts/Tools/matlab%E4%B8%ADexe%E6%89%93%E5%8C%85/img_10.png" alt="步骤1"></p>
-<p><img src="/posts/Tools/matlab%E4%B8%ADexe%E6%89%93%E5%8C%85/img_11.png" alt="步骤2"></p>
-<p>&nbsp; 1、添加主文件，2、打包runtime环境 3、exe名字 4、依赖脚本文件配置完之后，点击右上角的package即可打包exe&nbsp;&nbsp;</p>
 
       
     </div>
