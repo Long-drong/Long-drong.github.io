@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-06 11:29:43" itemprop="dateCreated datePublished" datetime="2026-08-06T11:29:43+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-13 08:47:18" itemprop="dateCreated datePublished" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,7 +395,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-06 11:29:43" itemprop="dateCreated datePublished" datetime="2026-08-06T11:29:43+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-13 08:47:18" itemprop="dateCreated datePublished" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -475,7 +475,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-08-06 11:29:43" itemprop="dateCreated datePublished" datetime="2026-08-06T11:29:43+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-13 08:47:18" itemprop="dateCreated datePublished" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -530,6 +530,190 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E8%87%AA%E9%80%82%E5%BA%94%E5%B0%8F%E6%B3%A2%E9%98%88%E5%8E%BB%E5%99%AA-Adaptive%20Wavelet%20Thresholding%20for%20Image%20Denoising%20and%20Compression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E8%87%AA%E9%80%82%E5%BA%94%E5%B0%8F%E6%B3%A2%E9%98%88%E5%8E%BB%E5%99%AA-Adaptive%20Wavelet%20Thresholding%20for%20Image%20Denoising%20and%20Compression/" class="post-title-link" itemprop="url">自适应小波阈去噪-Adaptive Wavelet Thresholding for Image Denoising and Compression</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 00:00:00 / 修改时间：08:47:18" itemprop="dateCreated datePublished" datetime="2026-08-13T00:00:00+00:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这篇论文《Adaptive Wavelet Thresholding for Image Denoising and Compression》提出了一种自适应的小波阈值去噪方法，称为 <strong>BayesShrink</strong>。它通过贝叶斯框架和广义高斯分布（GGD）建模小波系数的统计特性，实现了对每个子带的自适应阈值选择。下面我为你详细讲解其算法原理和实现步骤。</p>
+<hr>
+<h2 id="一、核心思想"><a href="#一、核心思想" class="headerlink" title="一、核心思想"></a>一、核心思想</h2><p>图像去噪的目标是从带噪图像中恢复出原始图像：</p>
+<p>[</p>
+<p>g_{ij} &#x3D; f_{ij} + \epsilon_{ij}, \quad \epsilon_{ij} \sim N(0, \sigma^2)</p>
+<p>]</p>
+<p>在正交小波变换域中，带噪小波系数为：</p>
+<p>[</p>
+<p>Y &#x3D; X + V</p>
+<p>]</p>
+<p>其中 (X) 是原始信号的小波系数，(V) 是高斯噪声。<strong>阈值去噪</strong>的核心是：对小波系数进行非线性处理，保留大系数（代表信号），将小系数（代表噪声）置零。</p>
+<p>BayesShrink 的核心贡献是：<strong>为每个子带推导出一个接近最优的闭式阈值</strong>。</p>
+<hr>
+<h2 id="二、BayesShrink-阈值的推导"><a href="#二、BayesShrink-阈值的推导" class="headerlink" title="二、BayesShrink 阈值的推导"></a>二、BayesShrink 阈值的推导</h2><h3 id="1-假设小波系数服从-GGD"><a href="#1-假设小波系数服从-GGD" class="headerlink" title="1. 假设小波系数服从 GGD"></a>1. 假设小波系数服从 GGD</h3><p>广义高斯分布（GGD）定义为：</p>
+<p>[</p>
+<p>GG_{\sigma_X, \beta}(x) &#x3D; C(\sigma_X, \beta) \exp\left( -[\alpha(\sigma_X, \beta)|x|]^\beta \right)</p>
+<p>]</p>
+<p>其中 (\sigma_X) 是标准差，(\beta) 是形状参数（自然图像中通常 (\beta \in [0.5, 1])）。</p>
+<h3 id="2-贝叶斯风险最小化"><a href="#2-贝叶斯风险最小化" class="headerlink" title="2. 贝叶斯风险最小化"></a>2. 贝叶斯风险最小化</h3><p>定义软阈值函数：</p>
+<p>[</p>
+<p>\eta_T(y) &#x3D; \text{sgn}(y) \cdot \max(|y| - T, 0)</p>
+<p>]</p>
+<p>贝叶斯风险为：</p>
+<p>[</p>
+<p>r(T) &#x3D; E_X E_{Y|X} \left[ (\eta_T(Y) - X)^2 \right]</p>
+<p>]</p>
+<p>目标是找到最小化 (r(T)) 的 (T^*)。</p>
+<h3 id="3-近似闭式解"><a href="#3-近似闭式解" class="headerlink" title="3. 近似闭式解"></a>3. 近似闭式解</h3><p>通过数值计算发现，对于高斯（(\beta&#x3D;2)）和拉普拉斯（(\beta&#x3D;1)）先验，最优阈值可以近似为：</p>
+<p>[</p>
+<p>T_B &#x3D; \frac{\sigma^2}{\sigma_X}</p>
+<p>]</p>
+<p>对于 (\beta \in [0.5, 1])，该阈值的风险与最优阈值相差不超过 5%。因此，<strong>BayesShrink 阈值</strong>为：</p>
+<p>[</p>
+<p>\hat{T}_B &#x3D; \frac{\hat{\sigma}^2}{\hat{\sigma}_X}</p>
+<p>]</p>
+<hr>
+<h2 id="三、参数估计（数据驱动）"><a href="#三、参数估计（数据驱动）" class="headerlink" title="三、参数估计（数据驱动）"></a>三、参数估计（数据驱动）</h2><p>为了实现自适应，需要从观测数据中估计 (\sigma) 和 (\sigma_X)。</p>
+<h3 id="1-估计噪声标准差-sigma"><a href="#1-估计噪声标准差-sigma" class="headerlink" title="1. 估计噪声标准差 (\sigma)"></a>1. 估计噪声标准差 (\sigma)</h3><p>使用最细尺度子带 (HH_1) 的中位数估计：</p>
+<p>[</p>
+<p>\hat{\sigma} &#x3D; \frac{\text{Median}(|Y_{ij}|)}{0.6745}, \quad Y_{ij} \in HH_1</p>
+<p>]</p>
+<h3 id="2-估计信号标准差-sigma-X"><a href="#2-估计信号标准差-sigma-X" class="headerlink" title="2. 估计信号标准差 (\sigma_X)"></a>2. 估计信号标准差 (\sigma_X)</h3><p>由于 (Y &#x3D; X + V)，且两者独立，有：</p>
+<p>[</p>
+<p>\sigma_Y^2 &#x3D; \sigma_X^2 + \sigma^2</p>
+<p>]</p>
+<p>其中：</p>
+<p>[</p>
+<p>\hat{\sigma}<em>Y^2 &#x3D; \frac{1}{n^2} \sum</em>{i,j} Y_{ij}^2</p>
+<p>]</p>
+<p>因此：</p>
+<p>[</p>
+<p>\hat{\sigma}_X &#x3D; \sqrt{\max(\hat{\sigma}_Y^2 - \hat{\sigma}^2, 0)}</p>
+<p>]</p>
+<p>若 (\hat{\sigma}^2 \geq \hat{\sigma}_Y^2)，则 (\hat{\sigma}_X &#x3D; 0)，此时阈值设为无穷大（所有系数置零）。</p>
+<hr>
+<h2 id="四、阈值处理流程"><a href="#四、阈值处理流程" class="headerlink" title="四、阈值处理流程"></a>四、阈值处理流程</h2><ol>
+<li><p>对带噪图像进行正交小波变换（如 Daubechies 小波，8 个消失矩，4 层分解）。</p>
+</li>
+<li><p>对每个细节子带（(HH_k, HL_k, LH_k)）：</p>
+<ul>
+<li><p>估计 (\hat{\sigma}) 和 (\hat{\sigma}_X)</p>
+</li>
+<li><p>计算阈值 (\hat{T}_B &#x3D; \hat{\sigma}^2 &#x2F; \hat{\sigma}_X)</p>
+</li>
+<li><p>应用软阈值函数处理系数</p>
+</li>
+</ul>
+</li>
+<li><p>保留最低频子带 (LL_J) 不变。</p>
+</li>
+<li><p>执行逆小波变换，得到去噪图像。</p>
+</li>
+</ol>
+<hr>
+<h2 id="五、与-SureShrink-的比较"><a href="#五、与-SureShrink-的比较" class="headerlink" title="五、与 SureShrink 的比较"></a>五、与 SureShrink 的比较</h2><ul>
+<li><p><strong>SureShrink</strong>：基于 Stein 无偏风险估计（SURE），在某些子带可能选择过大的通用阈值（(\sigma\sqrt{2\log M})），导致过度平滑。</p>
+</li>
+<li><p><strong>BayesShrink</strong>：阈值仅依赖 (\sigma) 和 (\sigma_X)，不依赖子带大小，更适应图像特性。</p>
+</li>
+<li><p>实验表明，BayesShrink 的 MSE 通常比 SureShrink 低 1%~8%，并且接近 OracleShrink（已知原始图像的最优软阈值）的 5% 以内。</p>
+</li>
+</ul>
+<hr>
+<h2 id="六、扩展：结合压缩的去噪（MDLQ）"><a href="#六、扩展：结合压缩的去噪（MDLQ）" class="headerlink" title="六、扩展：结合压缩的去噪（MDLQ）"></a>六、扩展：结合压缩的去噪（MDLQ）</h2><p>论文还提出了一种基于最小描述长度（MDL）的量化方法，用于同时实现去噪和压缩：</p>
+<ul>
+<li><p>使用 BayesShrink 阈值作为量化器的“零区”</p>
+</li>
+<li><p>对非零系数进行均匀量化，量化参数（(m, \Delta)）通过 MDLQ 准则选择</p>
+</li>
+<li><p>MDLQ 平衡了失真和编码长度：</p>
+<p>[</p>
+<p>\text{MDLQ} &#x3D; \frac{1}{2\sigma^2 \log 2} \sum (Y_{ij} - \hat{X}^Q_{ij})^2 + L(\hat{X}^Q | m, \Delta)</p>
+<p>]</p>
+</li>
+<li><p>实验表明，压缩确实能去噪（尤其当 (\sigma) 较大时），但会引入量化噪声。</p>
+</li>
+</ul>
+<hr>
+<h2 id="七、总结：BayesShrink-的优势"><a href="#七、总结：BayesShrink-的优势" class="headerlink" title="七、总结：BayesShrink 的优势"></a>七、总结：BayesShrink 的优势</h2><p>| 特点 | 说明 |</p>
+<p>|——|——|</p>
+<p>| <strong>自适应</strong> | 每个子带独立估计阈值 |</p>
+<p>| <strong>闭式解</strong> | (T_B &#x3D; \sigma^2 &#x2F; \sigma_X)，计算高效 |</p>
+<p>| <strong>数据驱动</strong> | 参数完全从观测图像估计 |</p>
+<p>| <strong>近最优</strong> | 风险接近 OracleShrink |</p>
+<p>| <strong>鲁棒</strong> | 对 GGD 形状参数不敏感（(\beta \in [0.5,1])） |</p>
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/ISP/ISP-LSC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -558,9 +742,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：11:29:43" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-13 08:47:18" itemprop="dateModified" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -681,9 +871,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：11:29:43" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-13 08:47:18" itemprop="dateModified" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -781,113 +977,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/" class="post-title-link" itemprop="url">LBP纹理提取</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：11:29:43" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>LBP（Local Binary Pattern，局部二值模式）是一种用来描述图像局部纹理特征的算子；它具有旋转不变性和灰度不变性等显著的优点。它是首先由T. Ojala, M.Pietikäinen,和&nbsp;D. Harwood&nbsp;在1994年提出，用于纹理特征提取。而且，提取的特征是图像的局部的纹理特征；</p>
-<p><strong>1、LBP特征的描述</strong></p>
-<p>原始的LBP算子定义为在3*3的窗口内，以窗口中心像素为阈值，将相邻的8个像素的灰度值与其进行比较，若周围像素值大于中心像素值，则该像素点的位置被标记为1，否则为0。这样，3*3邻域内的8个点经比较可产生8位二进制数（通常转换为十进制数即LBP码，共256种），即得到该窗口中心像素点的LBP值，并用这个值来反映该区域的纹理信息。如下图所示：</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/img_1.png"></p>
-<p><strong>LBP的改进版本：</strong></p>
-<p>原始的LBP提出后，研究人员不断对其提出了各种改进和优化。</p>
-<p><strong>（1）圆形LBP算子：</strong></p>
-<p>基本的&nbsp;LBP算子的最大缺陷在于它只覆盖了一个固定半径范围内的小区域，这显然不能满足不同尺寸和频率纹理的需要。为了适应不同尺度的纹理特征，并达到灰度和旋转不变性的要求，Ojala等对&nbsp;LBP算子进行了改进，将&nbsp;3×3邻域扩展到任意邻域，并用圆形邻域代替了正方形邻域，改进后的&nbsp;LBP算子允许在半径为&nbsp;R&nbsp;的圆形邻域内有任意多个像素点。从而得到了诸如半径为R的圆形区域内含有P个采样点的LBP算子；</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/img_2.png"></p>
-<p><strong>（2）LBP旋转不变模式</strong></p>
-<p>从&nbsp;LBP&nbsp;的定义可以看出，LBP&nbsp;算子是灰度不变的，但却不是旋转不变的。图像的旋转就会得到不同的&nbsp;LBP值。</p>
-<p>Maenpaa等人又将&nbsp;LBP算子进行了扩展，提出了具有旋转不变性的&nbsp;LBP算子，即不断旋转圆形邻域得到一系列初始定义的&nbsp;LBP值，取其最小值作为该邻域的&nbsp;LBP值。</p>
-<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/img_3.png"></p>
-<p>上图给出了求取旋转不变的&nbsp;LBP&nbsp;的过程示意图，图中算子下方的数字表示该算子对应的&nbsp;LBP值，图中所示的&nbsp;8种&nbsp;LBP模式，经过旋转不变的处理，最终得到的具有旋转不变性的&nbsp;LBP值为&nbsp;15。也就是说，图中的&nbsp;8种&nbsp;LBP&nbsp;模式对应的旋转不变的&nbsp;LBP模式都是&nbsp;00001111。</p>
-<p><strong>（3）LBP等价模式</strong></p>
-<p>一个LBP算子可以产生不同的二进制模式，对于半径为R的圆形区域内含有P个采样点的LBP算子将会产生P2种模式。很显然，随着邻域集内采样点数的增加，二进制模式的种类是急剧增加的。例如：5×5邻域内20个采样点，有220＝1,048,576种二进制模式。如此多的二值模式无论对于纹理的提取还是对于纹理的识别、分类及信息的存取都是不利的。同时，过多的模式种类对于纹理的表达是不利的。例如，将LBP算子用于纹理分类或人脸识别时，常采用LBP模式的统计直方图来表达图像的信息，而较多的模式种类将使得数据量过大，且直方图过于稀疏。因此，需要对原始的LBP模式进行降维，使得数据量减少的情况下能最好的代表图像的信息。</p>
-<p>为了解决二进制模式过多的问题，提高统计性，Ojala提出了采用一种“等价模式”（Uniform Pattern）来对LBP算子的模式种类进行降维。Ojala等认为，在实际图像中，绝大多数LBP模式最多只包含两次从1到0或从0到1的跳变。因此，Ojala将“等价模式”定义为：当某个LBP所对应的循环二进制数从0到1或从1到0最多有两次跳变时，该LBP所对应的二进制就称为一个等价模式类。如00000000（0次跳变），00000111（只含一次从0到1的跳变），10001111（先由1跳到0，再由0跳到1，共两次跳变）都是等价模式类。除等价模式类以外的模式都归为另一类，称为混合模式类，例如10010111（共四次跳变）（这是我的个人理解，不知道对不对）。</p>
-<p>通过这样的改进，二进制模式的种类大大减少，而不会丢失任何信息。模式数量由原来的2P种减少为&nbsp;P ( P-1)+2种，其中P表示邻域集内的采样点数。对于3×3邻域内8个采样点来说，二进制模式由原始的256种减少为58种，这使得特征向量的维数更少，并且可以减少高频噪声带来的影响。</p>
-<p><strong>2、LBP特征用于检测的原理</strong></p>
-<p>显而易见的是，上述提取的LBP算子在每个像素点都可以得到一个LBP“编码”，那么，对一幅图像（记录的是每个像素点的灰度值）提取其原始的LBP算子之后，得到的原始LBP特征依然是“一幅图片”（记录的是每个像素点的LBP值）。</p>
-<p>LBP的应用中，如纹理分类、人脸分析等，一般都不将LBP图谱作为特征向量用于分类识别，而是采用LBP特征谱的统计直方图作为特征向量用于分类识别。</p>
-<p>因为，从上面的分析我们可以看出，这个“特征”跟位置信息是紧密相关的。直接对两幅图片提取这种“特征”，并进行判别分析的话，会因为“位置没有对准”而产生很大的误差。后来，研究人员发现，可以将一幅图片划分为若干的子区域，对每个子区域内的每个像素点都提取LBP特征，然后，在每个子区域内建立LBP特征的统计直方图。如此一来，每个子区域，就可以用一个统计直方图来进行描述；整个图片就由若干个统计直方图组成；</p>
-<p>例如：一幅100*100像素大小的图片，划分为10*10&#x3D;100个子区域（可以通过多种方式来划分区域），每个子区域的大小为10*10像素；在每个子区域内的每个像素点，提取其LBP特征，然后，建立统计直方图；这样，这幅图片就有10*10个子区域，也就有了10*10个统计直方图，利用这10*10个统计直方图，就可以描述这幅图片了。之后，我们利用各种相似性度量函数，就可以判断两幅图像之间的相似性了；</p>
-<p><strong>3、对LBP特征向量进行提取的步骤</strong></p>
-<p>（1）首先将检测窗口划分为16×16的小区域（cell）；</p>
-<p>（2）对于每个cell中的一个像素，将相邻的8个像素的灰度值与其进行比较，若周围像素值大于中心像素值，则该像素点的位置被标记为1，否则为0。这样，3*3邻域内的8个点经比较可产生8位二进制数，即得到该窗口中心像素点的LBP值；</p>
-<p>（3）然后计算每个cell的直方图，即每个数字（假定是十进制数LBP值）出现的频率；然后对该直方图进行归一化处理。</p>
-<p>（4）最后将得到的每个cell的统计直方图进行连接成为一个特征向量，也就是整幅图的LBP纹理特征向量；</p>
-<p>(参考链接)[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qw12/p/9539582.html]">https://www.cnblogs.com/qw12/p/9539582.html]</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/SVN%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,9 +1005,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-08-06 00:00:00 / 修改时间：11:29:43" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+      <time title="创建时间：2026-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-13 08:47:18" itemprop="dateModified" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1023,6 +1118,119 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/" class="post-title-link" itemprop="url">LBP纹理提取</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-06T00:00:00+00:00">2026-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-13 08:47:18" itemprop="dateModified" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>LBP（Local Binary Pattern，局部二值模式）是一种用来描述图像局部纹理特征的算子；它具有旋转不变性和灰度不变性等显著的优点。它是首先由T. Ojala, M.Pietikäinen,和&nbsp;D. Harwood&nbsp;在1994年提出，用于纹理特征提取。而且，提取的特征是图像的局部的纹理特征；</p>
+<p><strong>1、LBP特征的描述</strong></p>
+<p>原始的LBP算子定义为在3*3的窗口内，以窗口中心像素为阈值，将相邻的8个像素的灰度值与其进行比较，若周围像素值大于中心像素值，则该像素点的位置被标记为1，否则为0。这样，3*3邻域内的8个点经比较可产生8位二进制数（通常转换为十进制数即LBP码，共256种），即得到该窗口中心像素点的LBP值，并用这个值来反映该区域的纹理信息。如下图所示：</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/img_1.png"></p>
+<p><strong>LBP的改进版本：</strong></p>
+<p>原始的LBP提出后，研究人员不断对其提出了各种改进和优化。</p>
+<p><strong>（1）圆形LBP算子：</strong></p>
+<p>基本的&nbsp;LBP算子的最大缺陷在于它只覆盖了一个固定半径范围内的小区域，这显然不能满足不同尺寸和频率纹理的需要。为了适应不同尺度的纹理特征，并达到灰度和旋转不变性的要求，Ojala等对&nbsp;LBP算子进行了改进，将&nbsp;3×3邻域扩展到任意邻域，并用圆形邻域代替了正方形邻域，改进后的&nbsp;LBP算子允许在半径为&nbsp;R&nbsp;的圆形邻域内有任意多个像素点。从而得到了诸如半径为R的圆形区域内含有P个采样点的LBP算子；</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/img_2.png"></p>
+<p><strong>（2）LBP旋转不变模式</strong></p>
+<p>从&nbsp;LBP&nbsp;的定义可以看出，LBP&nbsp;算子是灰度不变的，但却不是旋转不变的。图像的旋转就会得到不同的&nbsp;LBP值。</p>
+<p>Maenpaa等人又将&nbsp;LBP算子进行了扩展，提出了具有旋转不变性的&nbsp;LBP算子，即不断旋转圆形邻域得到一系列初始定义的&nbsp;LBP值，取其最小值作为该邻域的&nbsp;LBP值。</p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/LBP%E7%BA%B9%E7%90%86%E6%8F%90%E5%8F%96/img_3.png"></p>
+<p>上图给出了求取旋转不变的&nbsp;LBP&nbsp;的过程示意图，图中算子下方的数字表示该算子对应的&nbsp;LBP值，图中所示的&nbsp;8种&nbsp;LBP模式，经过旋转不变的处理，最终得到的具有旋转不变性的&nbsp;LBP值为&nbsp;15。也就是说，图中的&nbsp;8种&nbsp;LBP&nbsp;模式对应的旋转不变的&nbsp;LBP模式都是&nbsp;00001111。</p>
+<p><strong>（3）LBP等价模式</strong></p>
+<p>一个LBP算子可以产生不同的二进制模式，对于半径为R的圆形区域内含有P个采样点的LBP算子将会产生P2种模式。很显然，随着邻域集内采样点数的增加，二进制模式的种类是急剧增加的。例如：5×5邻域内20个采样点，有220＝1,048,576种二进制模式。如此多的二值模式无论对于纹理的提取还是对于纹理的识别、分类及信息的存取都是不利的。同时，过多的模式种类对于纹理的表达是不利的。例如，将LBP算子用于纹理分类或人脸识别时，常采用LBP模式的统计直方图来表达图像的信息，而较多的模式种类将使得数据量过大，且直方图过于稀疏。因此，需要对原始的LBP模式进行降维，使得数据量减少的情况下能最好的代表图像的信息。</p>
+<p>为了解决二进制模式过多的问题，提高统计性，Ojala提出了采用一种“等价模式”（Uniform Pattern）来对LBP算子的模式种类进行降维。Ojala等认为，在实际图像中，绝大多数LBP模式最多只包含两次从1到0或从0到1的跳变。因此，Ojala将“等价模式”定义为：当某个LBP所对应的循环二进制数从0到1或从1到0最多有两次跳变时，该LBP所对应的二进制就称为一个等价模式类。如00000000（0次跳变），00000111（只含一次从0到1的跳变），10001111（先由1跳到0，再由0跳到1，共两次跳变）都是等价模式类。除等价模式类以外的模式都归为另一类，称为混合模式类，例如10010111（共四次跳变）（这是我的个人理解，不知道对不对）。</p>
+<p>通过这样的改进，二进制模式的种类大大减少，而不会丢失任何信息。模式数量由原来的2P种减少为&nbsp;P ( P-1)+2种，其中P表示邻域集内的采样点数。对于3×3邻域内8个采样点来说，二进制模式由原始的256种减少为58种，这使得特征向量的维数更少，并且可以减少高频噪声带来的影响。</p>
+<p><strong>2、LBP特征用于检测的原理</strong></p>
+<p>显而易见的是，上述提取的LBP算子在每个像素点都可以得到一个LBP“编码”，那么，对一幅图像（记录的是每个像素点的灰度值）提取其原始的LBP算子之后，得到的原始LBP特征依然是“一幅图片”（记录的是每个像素点的LBP值）。</p>
+<p>LBP的应用中，如纹理分类、人脸分析等，一般都不将LBP图谱作为特征向量用于分类识别，而是采用LBP特征谱的统计直方图作为特征向量用于分类识别。</p>
+<p>因为，从上面的分析我们可以看出，这个“特征”跟位置信息是紧密相关的。直接对两幅图片提取这种“特征”，并进行判别分析的话，会因为“位置没有对准”而产生很大的误差。后来，研究人员发现，可以将一幅图片划分为若干的子区域，对每个子区域内的每个像素点都提取LBP特征，然后，在每个子区域内建立LBP特征的统计直方图。如此一来，每个子区域，就可以用一个统计直方图来进行描述；整个图片就由若干个统计直方图组成；</p>
+<p>例如：一幅100*100像素大小的图片，划分为10*10&#x3D;100个子区域（可以通过多种方式来划分区域），每个子区域的大小为10*10像素；在每个子区域内的每个像素点，提取其LBP特征，然后，建立统计直方图；这样，这幅图片就有10*10个子区域，也就有了10*10个统计直方图，利用这10*10个统计直方图，就可以描述这幅图片了。之后，我们利用各种相似性度量函数，就可以判断两幅图像之间的相似性了；</p>
+<p><strong>3、对LBP特征向量进行提取的步骤</strong></p>
+<p>（1）首先将检测窗口划分为16×16的小区域（cell）；</p>
+<p>（2）对于每个cell中的一个像素，将相邻的8个像素的灰度值与其进行比较，若周围像素值大于中心像素值，则该像素点的位置被标记为1，否则为0。这样，3*3邻域内的8个点经比较可产生8位二进制数，即得到该窗口中心像素点的LBP值；</p>
+<p>（3）然后计算每个cell的直方图，即每个数字（假定是十进制数LBP值）出现的频率；然后对该直方图进行归一化处理。</p>
+<p>（4）最后将得到的每个cell的统计直方图进行连接成为一个特征向量，也就是整幅图的LBP纹理特征向量；</p>
+<p>(参考链接)[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qw12/p/9539582.html]">https://www.cnblogs.com/qw12/p/9539582.html]</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/%E8%A7%86%E9%A2%91%E8%A3%81%E5%88%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1059,7 +1267,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:29:43" itemprop="dateModified" datetime="2026-08-06T11:29:43+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-13 08:47:18" itemprop="dateModified" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1159,7 +1367,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:29:43" itemprop="dateModified" datetime="2026-08-06T11:29:43+00:00">2026-08-06</time>
+      <time title="修改时间：2026-08-13 08:47:18" itemprop="dateModified" datetime="2026-08-13T08:47:18+00:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1193,94 +1401,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function [ ZI ] = interpolation( I,zmf )</span><br><span class="line"></span><br><span class="line">%% ----------------------双线性插值法处理图像---------------------------</span><br><span class="line"></span><br><span class="line">% Input：</span><br><span class="line"></span><br><span class="line">%       I：图像文件名或矩阵（整数值（0~255））</span><br><span class="line"></span><br><span class="line">%       zmf：缩放因子，即缩放的倍数</span><br><span class="line"></span><br><span class="line">% Output：</span><br><span class="line"></span><br><span class="line">%       对矩阵I进行zmf倍的缩放并显示</span><br><span class="line"></span><br><span class="line">%% 命令行中输入以下命令运行即可：</span><br><span class="line"></span><br><span class="line">%  interpolation(&#x27;flower2.png&#x27;, 4);</span><br><span class="line"></span><br><span class="line">%% Step1 对数据进行预处理</span><br><span class="line"></span><br><span class="line">if ~exist(&#x27;I&#x27;,&#x27;var&#x27;) || isempty(I)</span><br><span class="line"></span><br><span class="line">    error(&#x27;输入图像I未定义或为空！&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if ~exist(&#x27;zmf&#x27;,&#x27;var&#x27;) || isempty(zmf) || numel(zmf) ~= 1</span><br><span class="line"></span><br><span class="line">     error(&#x27;位移矢量zmf未定义或为空或zmf中的元素超过2！&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if ischar(I)</span><br><span class="line"></span><br><span class="line">    [I,M] = imread(I);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">if zmf &amp;lt;= 0</span><br><span class="line"></span><br><span class="line">     error(&#x27;缩放倍数zmf的值应该大于0！&#x27;);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">%% Step2 通过原始图像和缩放因子得到新图像的大小，并创建新图像。</span><br><span class="line"></span><br><span class="line">[IH,IW,ID] = size(I);</span><br><span class="line"></span><br><span class="line">ZIH = round(IH*zmf);     % 计算缩放后的图像高度，最近取整</span><br><span class="line"></span><br><span class="line">ZIW = round(IW*zmf);     % 计算缩放后的图像宽度，最近取整</span><br><span class="line"></span><br><span class="line">ZI = zeros(ZIH,ZIW,ID);  % 创建新图像</span><br><span class="line"></span><br><span class="line">%% Step3 扩展矩阵I边缘</span><br><span class="line"></span><br><span class="line">%双线性插值是用待求值点周围四个点的值来计算的，当新图像上的像素点映射到原图像的边界时，边界扩展保证了计算能正确进行，而不会溢出。</span><br><span class="line"></span><br><span class="line">IT = zeros(IH+2,IW+2,ID);</span><br><span class="line"></span><br><span class="line">IT(2:IH+1,2:IW+1,:) = I;</span><br><span class="line"></span><br><span class="line">IT(1,2:IW+1,:)=I(1,:,:);</span><br><span class="line"></span><br><span class="line">IT(IH+2,2:IW+1,:)=I(IH,:,:);</span><br><span class="line"></span><br><span class="line">IT(2:IH+1,1,:)=I(:,1,:);</span><br><span class="line"></span><br><span class="line">IT(2:IH+1,IW+2,:)=I(:,IW,:);</span><br><span class="line"></span><br><span class="line">IT(1,1,:) = I(1,1,:);</span><br><span class="line"></span><br><span class="line">IT(1,IW+2,:) = I(1,IW,:);</span><br><span class="line"></span><br><span class="line">IT(IH+2,1,:) = I(IH,1,:);</span><br><span class="line"></span><br><span class="line">IT(IH+2,IW+2,:) = I(IH,IW,:);</span><br><span class="line"></span><br><span class="line">%% Step4 由新图像的某个像素（zi，zj）映射到原始图像(ii，jj)处，并插值。</span><br><span class="line"></span><br><span class="line">for zj = 1:ZIW         % 对图像进行按列逐元素扫描</span><br><span class="line"></span><br><span class="line">    for zi = 1:ZIH</span><br><span class="line"></span><br><span class="line">        ii = (zi-1)/zmf; jj = (zj-1)/zmf;</span><br><span class="line"></span><br><span class="line">        i = floor(ii); j = floor(jj);    % 向下取整</span><br><span class="line"></span><br><span class="line">        u = ii - i; v = jj - j;</span><br><span class="line"></span><br><span class="line">        i = i + 1; j = j + 1;</span><br><span class="line"></span><br><span class="line">        ZI(zi,zj,:) = (1-u)*(1-v)*IT(i,j,:) + (1-u)*v*IT(i,j+1,:) + u*(1-v)*IT(i+1,j,:) + u*v*IT(i+1,j+1,:);</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">ZI = uint8(ZI);</span><br><span class="line"></span><br><span class="line">%% 显示处理前后的图像</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line"></span><br><span class="line">imshow(I,M);</span><br><span class="line"></span><br><span class="line">axis on;</span><br><span class="line"></span><br><span class="line">title([&#x27;original image（&#x27;,num2str(IH),&#x27;*&#x27;,num2str(IW),&#x27;*&#x27;,num2str(ID),&#x27;)&#x27;]);</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line"></span><br><span class="line">imshow(ZI,M);</span><br><span class="line"></span><br><span class="line">axis on;</span><br><span class="line"></span><br><span class="line">title([&#x27;interpolated resultant image（&#x27;,num2str(ZIH),&#x27;*&#x27;,num2str(ZIW),&#x27;*&#x27;,num2str(ID)&#x27;,&#x27;)&#x27;]);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>[内容来源] (<a target="_blank" rel="noopener" href="https://www.cnblogs.com/mickeyyang/p/13262493.html">https://www.cnblogs.com/mickeyyang/p/13262493.html</a>)</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%94/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%941/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%94/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%941/" class="post-title-link" itemprop="url">日常随笔1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-30T00:00:00+00:00">2026-07-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-06 11:29:43" itemprop="dateModified" datetime="2026-08-06T11:29:43+00:00">2026-08-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">日常随笔</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>** 光源光谱设计 **</p>
-<p>1、分别对单色光源采用相等的光通量，照射标准白色块；采集R、G、B上的原始Raw数据</p>
-<p>2、对 Sensor R&#x2F;G&#x2F;B上的咯噔数据进行组合，获取符合预期的数据</p>
-<p>3、反向拟合各灯的比重，获得光谱。</p>
 
       
     </div>
