@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/long.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="需要安装库： &nbsp;pip install requests beautifulsoup4 html2text 代码  import sys  import os  import re  import json  import requests  from bs4 import BeautifulSoup  import html2text  def clean_filename(title">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fetch_chat">
+<meta property="og:url" content="https://long-drong.github.io/posts/Tools/fetch_chat/index.html">
+<meta property="og:site_name" content="🌈青龙小栈">
+<meta property="og:description" content="需要安装库： &nbsp;pip install requests beautifulsoup4 html2text 代码  import sys  import os  import re  import json  import requests  from bs4 import BeautifulSoup  import html2text  def clean_filename(title">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-14T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-14T06:45:17.825Z">
+<meta property="article:author" content="Qing Long">
+<meta property="article:tag" content="Tools">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://long-drong.github.io/posts/Tools/fetch_chat/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Tools/fetch_chat/","path":"posts/Tools/fetch_chat/","title":"fetch_chat"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>fetch_chat | 🌈青龙小栈</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">🌈青龙小栈</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qing Long"
+      src="/images/avs.png">
+  <p class="site-author-name" itemprop="name">Qing Long</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/fetch_chat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="fetch_chat | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          fetch_chat
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-14 00:00:00 / 修改时间：06:45:17" itemprop="dateCreated datePublished" datetime="2026-08-14T00:00:00+00:00">2026-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>需要安装库：</p>
+<p>&nbsp;pip install requests beautifulsoup4 html2text</p>
+<p>代码</p>
+<pre><code>
+import sys
+
+import os
+
+import re
+
+import json
+
+import requests
+
+from bs4 import BeautifulSoup
+
+import html2text
+
+def clean_filename(title):
+
+    &quot;&quot;&quot;清理文件名中的非法字符&quot;&quot;&quot;
+
+    return re.sub(r&#39;[\\/:*?&quot;&amp;lt;&amp;gt;|]&#39;, &#39;_&#39;, title).strip()
+
+def clean_html_content(content_soup):
+
+    &quot;&quot;&quot;
+
+    清理正文中的广告、公众号卡片、赞赏区，并根据关键字切断文末推送内容
+
+    &quot;&quot;&quot;
+
+    # 1. 移除微信/知乎常见的标准广告与名片组件
+
+    unwanted_selectors = [
+
+        &#39;.js_ad_area&#39;, &#39;#js_ad_area&#39;,  # 微信底部广告
+
+        &#39;#js_profile_qrcode&#39;, &#39;.qr_code_pc&#39;,  # 微信二维码
+
+        &#39;mp-common-profile&#39;, &#39;.mp-common-profile&#39;,  # 微信公众号名片卡片
+
+        &#39;.rich_media_tool&#39;, &#39;#js_to_user_profile&#39;,  # 关注/阅读原文工具栏
+
+        &#39;.reward_area&#39;, &#39;#js_reward_area&#39;,  # 赞赏区域
+
+        &#39;.rich_media_area_extra&#39;,  # 微信底部推荐区
+
+        &#39;[class*=&quot;Card&quot;]&#39;, &#39;[class*=&quot;McnLink&quot;]&#39;,  # 知乎/微信营销卡片
+
+        &#39;[class*=&quot;LinkCard&quot;]&#39;
+
+    ]
+
+    for selector in unwanted_selectors:
+
+        for tag in content_soup.select(selector):
+
+            tag.decompose()
+
+    # 2. 尾部截断机制：遇到以下关键字时，直接斩断该节点及其后面的所有 DOM 节点
+
+    cutoff_keywords = [
+
+        &#39;搜索公众号添加&#39;,
+
+        &#39;扫码关注&#39;,
+
+        &#39;往期推荐&#39;,
+
+        &#39;推荐阅读&#39;,
+
+        &#39;往期精彩&#39;,
+
+        &#39;长按识别二维码&#39;,
+
+        &#39;送礼物&#39;,
+
+        &#39;发布于&#39;
+
+    ]
+
+    for tag in content_soup.find_all([&#39;p&#39;, &#39;section&#39;, &#39;div&#39;, &#39;h2&#39;, &#39;h3&#39;, &#39;span&#39;, &#39;strong&#39;]):
+
+        text = tag.get_text(strip=True)
+
+        # 判断节点文本较短（避免误删大容器）且包含截断关键字
+
+        if len(text) &amp;lt; 100 and any(kw in text for kw in cutoff_keywords):
+
+            print(f&quot;检测到尾部推送标记 [{text[:15]}...]，正在切断后续所有内容...&quot;)
+
+            # 获取该节点之后的所有 HTML 元素并彻底删除
+
+            next_elements = list(tag.find_all_next())
+
+            for elem in next_elements:
+
+                elem.decompose()
+
+            # 删除当前节点本身
+
+            tag.decompose()
+
+            break
+
+    # 3. 清理残余的二维码图片（通过 URL 特征过滤）
+
+    for img in content_soup.find_all(&#39;img&#39;):
+
+        src = (img.get(&#39;data-src&#39;) or img.get(&#39;src&#39;) or &#39;&#39;).lower()
+
+        if any(k in src for k in [&#39;qrcode&#39;, &#39;qr_code&#39;]):
+
+            img.decompose()
+
+    return content_soup
+
+def download_and_process_images(content_soup, safe_title, base_dir, headers):
+
+    &quot;&quot;&quot;
+
+    下载文章中的所有图片，保存到 notes/文件夹A/文件夹A 子文件夹中，
+
+    并修改 HTML 中的引用路径为相对路径
+
+    &quot;&quot;&quot;
+
+    img_dir = os.path.join(base_dir, safe_title)
+
+    os.makedirs(img_dir, exist_ok=True)
+
+    img_tags = content_soup.find_all(&#39;img&#39;)
+
+    img_count = 0
+
+    for img in img_tags:
+
+        img_url = img.get(&#39;data-src&#39;) or img.get(&#39;src&#39;) or img.get(&#39;data-original&#39;)
+
+        if not img_url or not img_url.startswith(&#39;http&#39;):
+
+            continue
+
+        img_count += 1
+
+        img_filename = f&quot;img_{img_count:02d}.png&quot;
+
+        img_save_path = os.path.join(img_dir, img_filename)
+
+        try:
+
+            print(f&quot;正在下载图片 [{img_count}]: {img_url}&quot;)
+
+            img_resp = requests.get(img_url, headers=headers, timeout=15)
+
+            if img_resp.status_code == 200:
+
+                with open(img_save_path, &#39;wb&#39;) as f:
+
+                    f.write(img_resp.content)
+
+                # 更新 Markdown 内引用的相对路径
+
+                relative_path = f&quot;{safe_title}/{img_filename}&quot;
+
+                img[&#39;src&#39;] = relative_path
+
+                # 清理多余属性
+
+                for attr in [&#39;data-src&#39;, &#39;data-original&#39;, &#39;srcset&#39;, &#39;style&#39;]:
+
+                    if attr in img.attrs:
+
+                        del img.attrs[attr]
+
+            else:
+
+                print(f&quot;图片下载失败 (HTTP {img_resp.status_code}): {img_url}&quot;)
+
+        except Exception as e:
+
+            print(f&quot;下载图片发生异常: {e}&quot;)
+
+    return content_soup
+
+def parse_zhihu(soup, url):
+
+    &quot;&quot;&quot;专门针对知乎专栏/回答的解析器&quot;&quot;&quot;
+
+    author = &quot;Unknown&quot;
+
+    content_html = &quot;&quot;
+
+    script_tag = soup.find(&#39;script&#39;, id=&#39;js-initialData&#39;)
+
+    if script_tag and script_tag.string:
+
+        try:
+
+            data = json.loads(script_tag.string)
+
+            article_id = url.split(&#39;/&#39;)[-1].split(&#39;?&#39;)[0]
+
+            articles = data.get(&#39;initialState&#39;, {}).get(&#39;entities&#39;, {}).get(&#39;articles&#39;, {})
+
+            if article_id in articles:
+
+                art = articles[article_id]
+
+                author = art.get(&#39;author&#39;, {}).get(&#39;name&#39;, author)
+
+                content_html = art.get(&#39;content&#39;, &#39;&#39;)
+
+                print(&quot;Successfully parsed Zhihu article via initialData JSON!&quot;)
+
+        except Exception as e:
+
+            print(f&quot;JSON parse fallback failed: {e}&quot;)
+
+    if not content_html:
+
+        author_node = soup.find(&#39;meta&#39;, {&#39;itemprop&#39;: &#39;name&#39;}) or soup.find(&#39;div&#39;, class_=&#39;AuthorInfo-name&#39;)
+
+        if author_node:
+
+            author = author_node.get(&#39;content&#39;) or author_node.get_text(strip=True)
+
+        content_node = soup.find(&#39;div&#39;, class_=&#39;Post-RichTextContainer&#39;) or \
+
+                       soup.find(&#39;div&#39;, class_=&#39;RichText&#39;) or \
+
+                       soup.find(&#39;article&#39;)
+
+        if content_node:
+
+            content_html = str(content_node)
+
+    return author, content_html
+
+def parse_article(url, custom_title):
+
+    headers = {
+
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1&#39;,
+
+        &#39;Accept&#39;: &#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;,
+
+        &#39;Accept-Language&#39;: &#39;zh-CN,zh-Hans;q=0.9&#39;,
+
+    }
+
+    print(f&quot;Requesting: {url}&quot;)
+
+    response = requests.get(url, headers=headers, timeout=15)
+
+    print(f&quot;Response Status Code: {response.status_code}&quot;)
+
+    if response.status_code != 200:
+
+        print(f&quot;Error: HTTP {response.status_code} returned by target site.&quot;)
+
+        sys.exit(1)
+
+    response.encoding = &#39;utf-8&#39;
+
+    soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
+
+    author = &quot;Unknown&quot;
+
+    content_html = &quot;&quot;
+
+    if &quot;zhihu.com&quot; in url:
+
+        author, content_html = parse_zhihu(soup, url)
+
+    elif &quot;mp.weixin.qq.com&quot; in url:
+
+        author_node = soup.find(&#39;a&#39;, id=&#39;js_name&#39;) or soup.find(&#39;span&#39;, class_=&#39;profile_meta_value&#39;)
+
+        if author_node:
+
+            author = author_node.get_text(strip=True)
+
+        content_node = soup.find(&#39;div&#39;, class_=&#39;rich_media_content&#39;) or soup.find(&#39;div&#39;, id=&#39;js_content&#39;)
+
+        if content_node:
+
+            content_html = str(content_node)
+
+    else:
+
+        content_node = soup.find(&#39;article&#39;) or soup.find(&#39;main&#39;)
+
+        content_html = str(content_node) if content_node else &quot;&quot;
+
+    if not content_html:
+
+        print(f&quot;Error: Could not extract content HTML from {url}&quot;)
+
+        sys.exit(1)
+
+    safe_title = clean_filename(custom_title)
+
+    base_dir = os.path.join(&quot;notes&quot;, safe_title)
+
+    os.makedirs(base_dir, exist_ok=True)
+
+    # 1. 解析 DOM
+
+    content_soup = BeautifulSoup(content_html, &#39;html.parser&#39;)
+
+    # 2. 执行【尾部截断与净化】（在此步就会彻底砍掉“搜索添加公众号”及之后的所有内容）
+
+    content_soup = clean_html_content(content_soup)
+
+    # 3. 下载保留下来的正文图片（广告与引流图因已被删除，不会被下载）
+
+    content_soup = download_and_process_images(content_soup, safe_title, base_dir, headers)
+
+    # 4. HTML 转 Markdown
+
+    h = html2text.HTML2Text()
+
+    h.ignore_links = False
+
+    h.ignore_images = False
+
+    h.body_width = 0
+
+    markdown_body = h.handle(str(content_soup))
+
+    markdown_content = f&quot;&quot;&quot;---
+
+title: &quot;{custom_title}&quot;
+
+author: &quot;{author}&quot;
+
+source_url: &quot;{url}&quot;
+
+---
+
+# {custom_title}
+
+&amp;gt; **作者:** {author}  
+
+&amp;gt; **原文链接:** [{url}]({url})
+
+---
+
+{markdown_body}
+
+&quot;&quot;&quot;
+
+    return safe_title, base_dir, markdown_content
+
+def main():
+
+    if len(sys.argv) &amp;lt; 3:
+
+        print(&quot;Usage: python fetch_wechat.py &amp;lt;url&amp;gt; &amp;lt;custom_title&amp;gt;&quot;)
+
+        sys.exit(1)
+
+    url = sys.argv[1]
+
+    custom_title = sys.argv[2]
+
+    safe_title, base_dir, md_content = parse_article(url, custom_title)
+
+    filepath = os.path.join(base_dir, f&quot;{safe_title}.md&quot;)
+
+    with open(filepath, &#39;w&#39;, encoding=&#39;utf-8&#39;) as f:
+
+        f.write(md_content)
+
+    print(f&quot;\n成功完成！Markdown 文件已保存至: {filepath}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+
+    main()
+
+```&amp;nbsp;&amp;nbsp;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Tools/" rel="tag"><i class="fa fa-tag"></i> Tools</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E8%87%AA%E9%80%82%E5%BA%94%E5%B0%8F%E6%B3%A2%E9%98%88%E5%8E%BB%E5%99%AA-Adaptive%20Wavelet%20Thresholding%20for%20Image%20Denoising%20and%20Compression/" rel="prev" title="自适应小波阈去噪-Adaptive Wavelet Thresholding for Image Denoising and Compression">
+                  <i class="fa fa-angle-left"></i> 自适应小波阈去噪-Adaptive Wavelet Thresholding for Image Denoising and Compression
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/" rel="next" title="ISP初探">
+                  ISP初探 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qing Long</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
