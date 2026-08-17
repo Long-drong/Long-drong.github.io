@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,106 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/%E8%A7%86%E9%A2%91%E8%A3%81%E5%88%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Tools/%E8%A7%86%E9%A2%91%E8%A3%81%E5%88%87/" class="post-title-link" itemprop="url">视频裁切</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-08-05 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-05T00:00:00+00:00">2026-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用 ffmpeg 进行无损且快速的切割，最核心的方法是使用 <b>-c:v copy</b>（直接复制视频流，不重新编码），同时加上 <b>-an</b> 参数直接丢弃音频。</p>
+<p>&nbsp;&nbsp;</p>
+<p>运行以下命令即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ffmpeg -ss 00:00:00 -to 00:05:00 -i input.mov -c:v copy -an output_part1.mov</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h3><ul>
+<li><strong><code>-ss 00:00:00</code></strong>：起始时间（时:分:秒）。放在 <code>-i</code> 之前可以极大提升寻找切点的速度。<br>    <br>*   <strong><code>-to 00:05:00</code></strong>：结束时间（或改用 <code>-t 300</code> 指定切切时长为 300 秒）。<br>    <br>*   <strong><code>-i input.mov</code></strong>：输入的 MOV 文件名称。<br>    <br>*   <strong><code>-c:v copy</code></strong>：关键参数。指示视频流直接复制，<strong>不重新编码，画质 100% 毫无损失，且处理速度极快</strong>（受限于硬盘读写速度，通常几秒内完成）。<br>    <br>*   <strong><code>-an</code></strong>：丢弃音频（No Audio），满足不保留音频的需求。<br>    <br>*   <strong><code>output_part1.mov</code></strong>：输出片段的文件名。</li>
+</ul>
+<p>文件名包含空格时，处理方式非常简单，有两种最常用且标准的方法：</p>
+<h3 id="方法-1：用双引号将文件名括起来（推荐）"><a href="#方法-1：用双引号将文件名括起来（推荐）" class="headerlink" title="方法 1：用双引号将文件名括起来（推荐）"></a>方法 1：用双引号将文件名括起来（推荐）</h3><p>在文件名两侧加上双引号 <code>&quot;</code>，操作系统和 FFmpeg 就会将其视为一个整体：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ffmpeg -ss 00:00:00 -to 00:05:00 -i &quot;Video port_in_01.mov&quot; -c:v copy -an output_part1.mov</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="方法-2：使用反斜杠-进行转义（仅适用于-Linux-macOS-终端）"><a href="#方法-2：使用反斜杠-进行转义（仅适用于-Linux-macOS-终端）" class="headerlink" title="方法 2：使用反斜杠 \ 进行转义（仅适用于 Linux &#x2F; macOS 终端）"></a>方法 2：使用反斜杠 <code>\</code> 进行转义（仅适用于 Linux &#x2F; macOS 终端）</h3><p>在空格前面加上反斜杠 <code>\</code>，告诉命令行“空格是文件名的一部分”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ffmpeg -ss 00:00:00 -to 00:05:00 -i Video\ port_in_01.mov -c:v copy -an output_part1.mov</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>方法1，测试ok.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -240,7 +340,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,7 +436,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -424,7 +524,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -522,7 +622,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -636,7 +736,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -701,190 +801,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">LCI原理解析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LCI的实现原理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/python%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -921,7 +837,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1034,6 +950,190 @@ if __name__ == &#39;__main__&#39;:
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">LCI原理解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LCI的实现原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1070,7 +1170,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
+      <time title="修改时间：2026-08-17 08:19:16" itemprop="dateModified" datetime="2026-08-17T08:19:16+00:00">2026-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1203,98 +1303,6 @@ if __name__ == &#39;__main__&#39;:
 <p>基本上传统的去噪算法都是从噪音图像中找出规律后再进行相对应的去噪处理。那么如果从有噪音的图片本身无法找到规律，我们是否也可以借助其他类似但又没有噪音的图片，来总结图片具有的固有属性呢？</p>
 <p>深度学习方法是数据驱动的方法，在仿真图像去噪上，数据（也就是干净图像）是非常充足的，所以当前深度学习方法在高斯白噪声假设条件下的滤波问题中已经达到甚至超过BM3D算法。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/Matlab%E4%B8%8Elinux%E7%B3%BB%E7%BB%9Fssh%E9%80%9A%E4%BF%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Tools/Matlab%E4%B8%8Elinux%E7%B3%BB%E7%BB%9Fssh%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">Matlab与linux系统ssh通信</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-27T00:00:00+00:00">2026-07-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-08-15 01:19:08" itemprop="dateModified" datetime="2026-08-15T01:19:08+00:00">2026-08-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/Tools/Matlab%E4%B8%8Elinux%E7%B3%BB%E7%BB%9Fssh%E9%80%9A%E4%BF%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
