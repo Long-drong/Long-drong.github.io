@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/long.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="文章来源 自动曝光可以分为亮度获取、亮度分析、曝光调节三个步骤。从实现方式上，自动曝光又可以分为光学方式与电子学方式。一般具有测光功能的摄像机都有至少三种基本的测光方式：中央重点平均测光、中央部分测光和点测光。事实上，无论哪种测光方式都很难兼顾整个画面的亮度。当光照条件是背光（逆光）或是强正面光时，由于场景中最亮和最暗区域具有强烈的对比度，如果仍然采用 上述的常用测光方法，虽然整体的图像亮度仍然是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动曝光技术">
+<meta property="og:url" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="🌈青龙小栈">
+<meta property="og:description" content="文章来源 自动曝光可以分为亮度获取、亮度分析、曝光调节三个步骤。从实现方式上，自动曝光又可以分为光学方式与电子学方式。一般具有测光功能的摄像机都有至少三种基本的测光方式：中央重点平均测光、中央部分测光和点测光。事实上，无论哪种测光方式都很难兼顾整个画面的亮度。当光照条件是背光（逆光）或是强正面光时，由于场景中最亮和最暗区域具有强烈的对比度，如果仍然采用 上述的常用测光方法，虽然整体的图像亮度仍然是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_1.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_2.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_3.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_4.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_5.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_6.png">
+<meta property="article:published_time" content="2026-09-03T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-03T07:37:38.527Z">
+<meta property="article:author" content="Qing Long">
+<meta property="article:tag" content="ISP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_1.png">
+
+
+<link rel="canonical" href="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/","path":"posts/ISP/自动曝光技术/","title":"自动曝光技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>自动曝光技术 | 🌈青龙小栈</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">🌈青龙小栈</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%85%89%E5%AD%A6%E6%96%B9%E5%BC%8F%E7%9A%84%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89"><span class="nav-number">1.1.</span> <span class="nav-text">（1）光学方式的自动曝光</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E7%94%B5%E5%AD%90%E5%AD%A6%E6%96%B9%E5%BC%8F%E7%9A%84%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89"><span class="nav-number">1.2.</span> <span class="nav-text">（2）电子学方式的自动曝光</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E7%94%A8%E6%B5%8B%E5%85%89%E6%8A%80%E6%9C%AF"><span class="nav-number">2.</span> <span class="nav-text">二、常用测光技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89%E4%B8%AD%E5%A4%AE%E5%B9%B3%E5%9D%87%E6%B5%8B%E5%85%89"><span class="nav-number">2.1.</span> <span class="nav-text">1）中央平均测光</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%B8%AD%E5%A4%AE%E9%83%A8%E5%88%86%E6%B5%8B%E5%85%89"><span class="nav-number">2.2.</span> <span class="nav-text">（2）中央部分测光</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E7%82%B9%E6%B5%8B%E5%85%89"><span class="nav-number">2.3.</span> <span class="nav-text">（3）点测光</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9B%B4%E5%85%88%E8%BF%9B%E7%9A%84%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">三、更先进的自动曝光控制</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qing Long"
+      src="/images/avs.png">
+  <p class="site-author-name" itemprop="name">Qing Long</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="自动曝光技术 | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          自动曝光技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-09-03 00:00:00 / 修改时间：07:37:38" itemprop="dateCreated datePublished" datetime="2026-09-03T00:00:00+00:00">2026-09-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ISP/" itemprop="url" rel="index"><span itemprop="name">ISP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/676538937">文章来源</a></p>
+<p>自动曝光可以分为亮度获取、亮度分析、曝光调节三个步骤。从实现方式上，自动曝光又可以分为光学方式与电子学方式。一般具有测光功能的摄像机都有至少三种基本的<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=%E6%B5%8B%E5%85%89%E6%96%B9%E5%BC%8F&amp;zhida_source=entity">测光方式</a>：中央重点平均测光、中央部分测光和<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=%E7%82%B9%E6%B5%8B%E5%85%89&amp;zhida_source=entity">点测光</a>。事实上，无论哪种测光方式都很难兼顾整个画面的亮度。当光照条件是背光（逆光）或是强正面光时，由于场景中最亮和最暗区域具有强烈的对比度，如果仍然采用 上述的常用测光方法，虽然整体的图像亮度仍然是“中间灰度”，但是图像中重要的主体区域就肯定遭遇曝光不足或者曝光过度，所以必须采用更先进的<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8E%A7%E5%88%B6&amp;zhida_source=entity">自动曝光控制</a>方法。</p>
+<h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>自动曝光可以分为亮度获取、亮度分析、曝光调节三个步骤。从实现方式上，自动曝光又可以分为光学方式与电子学方式。</p>
+<h3 id="（1）光学方式的自动曝光"><a href="#（1）光学方式的自动曝光" class="headerlink" title="（1）光学方式的自动曝光"></a>（1）光学方式的自动曝光</h3><p>光学方式的自动曝光需要使用单独的光照传感器来测量光照度，从而进行场景亮度获取。获取亮度后，再结合图像信息与当前光圈值、曝光时间和感光度值ISO信息进行分析，判断当前曝光参数是否合适。如果不合适则进行曝光调节，也就是调节光圈、曝光时间和感光度ISO这三个曝光相关参数。传统的<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=%E8%83%B6%E7%89%87%E6%91%84%E5%83%8F%E6%9C%BA&amp;zhida_source=entity">胶片摄像机</a>以及部分数码摄像机采用的就是这种方式。</p>
+<h3 id="（2）电子学方式的自动曝光"><a href="#（2）电子学方式的自动曝光" class="headerlink" title="（2）电子学方式的自动曝光"></a>（2）电子学方式的自动曝光</h3><p>电子学方式会直接从图像传感器输出的图像信号中获取亮度信息，还能够额外提供对场景的分析能力。相比于光学方式，它节省了测光设备，目前已经被绝大多数数码摄像机采用。由于电子学方式是直接通过摄像机镜头测光，因此这种方式也被称为 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=TTL&amp;zhida_source=entity">TTL</a> (through the lens）方式。我们将会重点讨论这种方式。</p>
+<p>对于彩色图像，图像传感器获得的信号属于 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=RGB+%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4&amp;zhida_source=entity">RGB 色彩空间</a>。通过下式的色彩空间转换，可以得到 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=YUV+%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4&amp;zhida_source=entity">YUV 色彩空间</a>：</p>
+<p>Y &#x3D; 0.299R + 0.578G + 0.114B  <br>U &#x3D; -0.147R - 0.289G + 0.436B  <br>V &#x3D; 0.615R - 0.515G - 0.100B</p>
+<p>亮度分量Y包含了 93%的图像能量。在获取了每个像素的亮度后，需要对图像的整体亮度情况进行分析，判断其是否过曝或欠曝。</p>
+<p>如何判断其是否过曝或欠曝呢？我们需要设置一个理想的视觉亮度作为目标。那么，究竟什么样的亮度才是理想的视觉亮度呢？可假设被摄物体具有18%的固定反光率，这是因为人眼产生的视觉效果中，18%刚好是中间灰度。对于8位的摄像机系统，具有255个灰度级，那么128 就是它的中间灰度。数码摄像机在执行自动曝光时需要使曝光后的图像具有接近中间灰度的整体亮度水平，这也就是理想视觉亮度了。</p>
+<p>但需要指出的是，虽然18%的固定反光率或者中间灰度的假设在大多数情况下是可行的，但是不可避免也有失效的时候，这时就需要采用曝光补偿技术了。将得到的图像亮度和目标亮度进行比较后，就可以根据分析结果进行曝光调节了。</p>
+<p>曝光调节需要遵循一定的优先原则，包括光圈优先、快门优先等，详细内容可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/668863570">如下链接</a></p>
+<p>摄像机厂商一般会提供若干模式，供用户自行选择。如果已知需要的曝光量，那么根据用户选择的调节策略进行调节己经是一件非常成熟的技术了。现在问题的重点集中在：</p>
+<ul>
+<li>如何对环境亮度（即当前图像的亮度）进行分析，从而确定正确的曝光量？<br>*   如何判断当前曝光值是否过曝或欠曝？<br>*   是针对整个图像，还是图像中的某一块区域？</li>
+</ul>
+<p>除了常用的测光技术之外，会重点讨论一些考虑了背光及正面强光等特殊场景的嚗光控制算法。这些算法较之常用测光技术研究性更强，而常用测光技术基本已经应用于商业摄像机中。</p>
+<h2 id="二、常用测光技术"><a href="#二、常用测光技术" class="headerlink" title="二、常用测光技术"></a>二、常用测光技术</h2><p>一般具有测光功能的摄像机都有至少三种基本的测光方式：中央重点平均测光、中央部分测光和点测光。</p>
+<p><img src="/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_1.png"></p>
+<h3 id="1）中央平均测光"><a href="#1）中央平均测光" class="headerlink" title="1）中央平均测光"></a>1）中央平均测光</h3><p>中央平均测光也叫中央重点平均测光。中央平均测光主要是考虑到一般摄影者习惯将需要准确曝光的拍摄主体放在取景器的中间，所以这部分拍摄内容往往是最重要的。在进行亮度分析时将中央部分亮度的权重分配较大的比例（约70%）、周围部分则分配较小的比例（约 30%）进行平均亮度计算：</p>
+<p><img src="/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_2.png"></p>
+<p>式中：</p>
+<p>Best为估计的场景亮度；i 为图像中的像素位置。I（i）为整个图像范围；N 为图像中像素的总数目；Yi为各像素的亮度；Wi为每个像素点被赋予的权重。在中央平均测光法中，越靠近中央的像素，权重Wi则越大。显然，当各点的Wi相等时，中央平均测光退化为全局平均测光。</p>
+<p><img src="/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_3.png"></p>
+<p>中央重点平均测光的方式简单实用，但是如果画面主体不在中央，以及取景范围内明暗分布不均时，这种方式确定的曝光量往往不够准确。</p>
+<h3 id="（2）中央部分测光"><a href="#（2）中央部分测光" class="headerlink" title="（2）中央部分测光"></a>（2）中央部分测光</h3><p>中央部分测光又称为局部测光，测量取景框中央长方形或圆形（椭圆形）范围内的平均亮度为：</p>
+<p><img src="/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_4.png"></p>
+<p>式中，C（i）在I（i）中的部分为选取的中央测光范围，大约占整个画面的 3%~12%。Nc为测光范用内的像素总数。在C（i）范围内，各像素权重Wi相等。中央部分测光可以得到拍摄主题准确曝光的照片，避免了环境光线的能响，能够确保主要表现对象所需的曝光量。</p>
+<h3 id="（3）点测光"><a href="#（3）点测光" class="headerlink" title="（3）点测光"></a>（3）点测光</h3><p>点测光的测光方式与中央部分测光类似，但是测光范围C（i）更小，选取画面的1%~3%的范围求取平均亮度。测光范围的选取也不完全局限于中央部分。点测光基本不受测光区域外其他景物亮度的影响，能够做到对表现主体的准确曝光。</p>
+<p><img src="/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_5.png"></p>
+<p>三种<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238472179&amp;content_type=Article&amp;match_order=1&amp;q=%E6%B5%8B%E5%85%89%E6%A8%A1%E5%BC%8F&amp;zhida_source=entity">测光模式</a>各有所长，在不同的拍摄场景下，需要灵活使用。中央平均测光保持了明亮与暗淡区域的平衡；中央部分测光使画面中央区域正确曝光；点测光使被曝光主体正确曝光。</p>
+<h2 id="三、更先进的自动曝光控制"><a href="#三、更先进的自动曝光控制" class="headerlink" title="三、更先进的自动曝光控制"></a>三、更先进的自动曝光控制</h2><p>事实上，无论哪种测光方式都很难兼顾整个画面的亮度。当光照条件是背光（逆光）或是强正面光时，由于场景中最亮和最暗区域具有强烈的对比度，如果仍然采用 上述的常用测光方法，虽然整体的图像亮度仍然是“中间灰度”，但是图像中重要的主体区域就肯定遭遇曝光不足或者曝光过度，所以必须采用更先进的自动曝光控制方法。</p>
+<p><img src="/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/img_6.png"></p>
+<p>一种常用的方法是使用人工反光板进行光照补偿，这种方式常见于各种艺术照拍摄中。这种方式简单实用，但是对于个人摄影爱好者来说，由于需要携带额外的设备，就显得较为麻烦。除了人工光照补偿外，还可以采用手动设置曝光补偿的方式。</p>
+<p>现在大部分数码摄像机都有曝光补偿设罝。曝光补偿是指在现有的曝光参数基础上再对其施加一定的补偿值，常见的是对曝光时间的补偿。在背光情况下，为突出正面主体可增加曝光时间，在正面强光下，可减少曝光时间。除了曝光参数的补偿外，还可以采取目标亮度补偿，即在“中间灰度”的基础上增加一个补偿值，达到相同的效果。</p>
+<p>除了手动的曝光补偿外，另一种是自动的曝光补偿，目前使用的多是在自动曝光时能够主动识别主体的曝光控制算法。除了工业界已经商业化使用的一些算法外，学术界也有许多研究成果。例如，分区加权测光、基于亮度直方图的测光等。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ISP/" rel="tag"><i class="fa fa-tag"></i> ISP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/Tools/%E7%A1%AE%E8%AE%A4%E6%96%87%E4%BB%B6%E5%A4%B9%E5%A4%A7%E5%B0%8F/" rel="prev" title="确认文件夹大小">
+                  <i class="fa fa-angle-left"></i> 确认文件夹大小
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/" rel="next" title="ISP初探">
+                  ISP初探 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qing Long</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
