@@ -20,29 +20,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"long-drong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="安装 Hexo所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。$ npm install -g hexo-cli 进阶安装和使用对于熟悉 npm 的进阶用户，可以仅局部安装 hexo 包。 $ npm install hexo 建议永远安装 最新版本 的 Hexo，以及 推荐的 Node.js 版本。">
+    <meta name="description" content="绝对色温和相关色温什么意思？怎么计算色温？ 作者：Tilo天友利标准光源 · 2023-11-10 色温是表示光源光色的尺度，是光源除显色性以外另一个重要的颜色指标。光源色温可以分为绝对色温和相关色温​，其中绝对色温一般用 T 表示，相关色温一般用 Tc 来表示，它们的单位都是开尔文（K）。那么，绝对色温和相关色温什么意思？怎么计算色温？下文为大家作了介绍。  绝对色温和相关色温什么意思？ 色温是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo部署">
-<meta property="og:url" content="https://long-drong.github.io/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:title" content="绝对色温和相关色温">
+<meta property="og:url" content="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/index.html">
 <meta property="og:site_name" content="🌈青龙小栈">
-<meta property="og:description" content="安装 Hexo所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。$ npm install -g hexo-cli 进阶安装和使用对于熟悉 npm 的进阶用户，可以仅局部安装 hexo 包。 $ npm install hexo 建议永远安装 最新版本 的 Hexo，以及 推荐的 Node.js 版本。">
+<meta property="og:description" content="绝对色温和相关色温什么意思？怎么计算色温？ 作者：Tilo天友利标准光源 · 2023-11-10 色温是表示光源光色的尺度，是光源除显色性以外另一个重要的颜色指标。光源色温可以分为绝对色温和相关色温​，其中绝对色温一般用 T 表示，相关色温一般用 Tc 来表示，它们的单位都是开尔文（K）。那么，绝对色温和相关色温什么意思？怎么计算色温？下文为大家作了介绍。  绝对色温和相关色温什么意思？ 色温是">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://long-drong.github.io/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/img_01.png">
-<meta property="article:published_time" content="2026-09-11T07:23:08.269Z">
-<meta property="article:modified_time" content="2026-09-11T07:23:08.269Z">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_1.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_2.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_3.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_4.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_5.png">
+<meta property="article:published_time" content="2026-09-11T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-11T07:23:08.265Z">
 <meta property="article:author" content="Qing Long">
-<meta property="article:tag" content="Tools">
+<meta property="article:tag" content="Optics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://long-drong.github.io/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/img_01.png">
+<meta name="twitter:image" content="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_1.png">
 
 
-<link rel="canonical" href="https://long-drong.github.io/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/">
+<link rel="canonical" href="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/","path":"posts/Tools/Hexo部署/","title":"Hexo部署"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/","path":"posts/Optics/绝对色温和相关色温/","title":"绝对色温和相关色温"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hexo部署 | 🌈青龙小栈</title>
+<title>绝对色温和相关色温 | 🌈青龙小栈</title>
   
 
 
@@ -147,7 +151,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -160,7 +164,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Hexo"><span class="nav-number">1.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">进阶安装和使用</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -213,7 +216,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -226,12 +229,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hexo部署 | 🌈青龙小栈">
+      <meta itemprop="name" content="绝对色温和相关色温 | 🌈青龙小栈">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo部署
+          绝对色温和相关色温
         </h1>
 
         <div class="post-meta-container">
@@ -241,8 +244,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-09-11 07:23:08" itemprop="dateCreated datePublished" datetime="2026-09-11T07:23:08+00:00">2026-09-11</time>
+      <time title="创建时间：2026-09-11 00:00:00 / 修改时间：07:23:08" itemprop="dateCreated datePublished" datetime="2026-09-11T00:00:00+00:00">2026-09-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -250,7 +254,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+          <a href="/categories/Optics/" itemprop="url" rel="index"><span itemprop="name">Optics</span></a>
         </span>
     </span>
 
@@ -263,9 +267,40 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。<br>$ npm install -g hexo-cli</p>
-<h3 id="进阶安装和使用"><a href="#进阶安装和使用" class="headerlink" title="进阶安装和使用"></a>进阶安装和使用</h3><p>对于熟悉 npm 的进阶用户，可以仅局部安装 hexo 包。<br> $ npm install hexo</p>
-<p>建议永远安装 最新版本 的 Hexo，以及 推荐的 Node.js 版本。<br><img src="/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/img_01.png"></p>
+    <div class="post-body" itemprop="articleBody"><p>绝对色温和相关色温什么意思？怎么计算色温？</p>
+<p>作者：Tilo天友利标准光源 · 2023-11-10</p>
+<p>色温是表示光源光色的尺度，是光源除显色性以外另一个重要的颜色指标。光源色温可以分为绝对色温和相关色温​，其中绝对色温一般用 T 表示，相关色温一般用 Tc 来表示，它们的单位都是开尔文（K）。那么，绝对色温和相关色温什么意思？怎么计算色温？下文为大家作了介绍。</p>
+<p><img src="/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_1.png"></p>
+<p>绝对色温和相关色温什么意思？</p>
+<p>色温是光源的重要颜色指标，色温分为绝对色温与相关色温。</p>
+<p>当光源发出的光谱与加热一个黑体使其产生同样光谱时，加热黑体所需要的温度就是该光源的绝对色温​。绝对色温的概念是在 1911 年由 Hyde 提出的，一般用 T 表示，单位为开尔文（K），是表示光源特性最基本的参数之一。这里的黑体是指对外来辐射或光线完全吸收的一种理想物体，是不存在的。</p>
+<p>绝对色温虽然可以准确地描述光源的颜色，然而对于大部分光源来说，光源的色品坐标不可能与某一绝对温度下的黑体辐射色品坐标完全相同。为此，Raymond Davis 等人提出了相关色温的概念，一般用 Tc 来表示，单位为开尔文（K），它表示与光源具有最相似颜色刺激的黑体辐射的温度。</p>
+<p>绝对色温和相关色温计算方法</p>
+<ol>
+<li>绝对色温计算方法</li>
+</ol>
+<p>绝对色温在 CIE-1931 色品图上是一条连续的弧形轨迹，这条轨迹称为黑体轨迹线​。光源的色品坐标如果落于黑体轨迹上，则对应的黑体温度就为此光源的绝对色温。</p>
+<p>绝对色温的计算公式为：</p>
+<p><img src="/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_2.png"></p>
+<p>式中：n&#x3D;（x-0.3320）&#x2F;（y-0.1858）；x、y 为 CIE-1931 的色坐标。</p>
+<ol start="2">
+<li>相关色温计算方法</li>
+</ol>
+<p>为了快速准确地计算出光源的相关色温，目前已经提出了几种比较典型的计算方法，包括：​三角垂足插值法​、​黑体轨迹法和模拟黑体轨迹法等。这几种方法虽然计算精确，但计算过程复杂，计算量大。</p>
+<p>为了更加高效准确地计算出相关色温，J.Smith、Macadam 和 Tamaru 等人提出了几种计算相关色温的经验公式​。</p>
+<p>① J.Smith 等人提出的公式</p>
+<p><img src="/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_3.png"></p>
+<p>式中：n&#x3D;（x-0.3320）&#x2F;（0.1858-y），</p>
+<p>x、y 为 CIE-1931 的色坐标。</p>
+<p>② Macadam 等人提出的公式</p>
+<p><img src="/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_4.png"></p>
+<p>式中：n&#x3D;（x-0.329）&#x2F;（y-0.187），</p>
+<p>x、y 为 CIE-1931 的色坐标。</p>
+<p>③ Tamaru 等人提出的公式</p>
+<p><img src="/posts/Optics/%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%B8%A9%E5%92%8C%E7%9B%B8%E5%85%B3%E8%89%B2%E6%B8%A9/img_5.png"></p>
+<p>式中：n&#x3D;（x-0.332）&#x2F;（y-0.1858），</p>
+<p>x、y 为 CIE-1931 的色坐标。</p>
+<p>上述三种经验公式均可以直接计算出已知色品坐标光源的相关色温，且计算快速、准确。对于多基色混合光，其色品坐标只能落在混合光围成的色品坐标的连线区域内，故上述经验公式也可以用于混合光相关色温的计算。</p>
 
     </div>
 
@@ -275,20 +310,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Tools/" rel="tag"><i class="fa fa-tag"></i> Tools</a>
+              <a href="/tags/Optics/" rel="tag"><i class="fa fa-tag"></i> Optics</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/" rel="prev" title="ISP初探">
-                  <i class="fa fa-angle-left"></i> ISP初探
+                <a href="/posts/ISP/%E8%87%AA%E5%8A%A8%E6%9B%9D%E5%85%89%E6%8A%80%E6%9C%AF/" rel="prev" title="自动曝光技术">
+                  <i class="fa fa-angle-left"></i> 自动曝光技术
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/RGB%E8%BD%ACYUV/" rel="next" title="RGB转YUV">
-                  RGB转YUV <i class="fa fa-angle-right"></i>
+                <a href="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/" rel="next" title="ISP初探">
+                  ISP初探 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
