@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -178,7 +178,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -222,7 +222,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LCI的实现原理</a>
+          <a href="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">Excel实现矩阵乘法，及其转置矩阵计算</a>
         </h2>
 
         <div class="post-meta-container">
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
         </span>
     </span>
 
@@ -262,15 +262,173 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h2><p>给出两个2*2的矩阵A、B，如下所示：</p>
+<p>A&#x3D;[1 2; 2 3];</p>
+<p>B&#x3D;[1 2; 1 4];</p>
+<p>矩阵A✖B在excel中函数表示为：MMULT(a00:a11,b00:b11),</p>
+<p>如下图，表格A4&#x3D;MMULT(A1:B2,D1:E2)&#x3D;矩阵A第一行✖矩阵B第一列&#x3D;1*2+2*1&#x3D;4，同理可得余下各行计算:</p>
+<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_1.png"></p>
+<p>快捷指令：选中表格中经过计算出的A4附近2*2的表格，键盘F2，Ctrl+Shift+enter得出剩下计算结果</p>
+<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_2.png"></p>
+<h2 id="二、转置矩阵"><a href="#二、转置矩阵" class="headerlink" title="二、转置矩阵"></a>二、转置矩阵</h2><p>转置矩阵公式：TRANSPOSE(a00:a01)</p>
+<p>D4表示矩阵C的第一行第一列（即C00）经过转置后的值，则有D4&#x3D;TRANSPOSE(A4:B5)&#x3D;4,其余各行同理。</p>
+<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_3.png"></p>
+<p>快捷键：选中表格中经过计算出的D4附近2*2的表格，键盘F2，Ctrl+Shift+enter得出剩下计算结果，如下图所示：</p>
+<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_4.png"></p>
+<p>三、矩阵的逆</p>
+<p>excel中矩阵的逆的函数表示&#x3D;MINVERSE(D4:E5)</p>
+<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_5.png"></p>
+<p>初步测试可行</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/python%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Tools/python%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99/" class="post-title-link" itemprop="url">python工具编写</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>1、色差计算工具的编写</p>
+<ul>
+<li><p>虚拟环境创建</p>
+<ul>
+<li><p>python -m venv temp_env</p>
+</li>
+<li><p>temp_env\Scripts\activate   #退出虚拟环境 deactive</p>
+</li>
+</ul>
+</li>
+<li><p>安装需求库</p>
+<ul>
+<li><p>pip install colormath  #计算色差的</p>
+</li>
+<li><p>pip install numpy&#x3D;&#x3D;1.19.5</p>
+</li>
+<li><p>pip install pyside6  #UI界面工具</p>
+</li>
+<li><p>pip install pyinstaller  #程序打包工具</p>
+</li>
+</ul>
+</li>
+<li><p>编写主程序代码</p>
+<ul>
+<li><pre><code>
+from PySide6.QtWidgets import QApplication, QMainWindow
+
+from CEI2000 import Ui_Dialog
+
+class MainWindow(QMainWindow):
+
+    def __init__(self):
+
+        super(MainWindow, self).__init__()
+
+        self.ui = Ui_Dialog()  # UI类的实例化
+
+        self.ui.setupUi(self)
+
+if __name__ == &#39;__main__&#39;:
+
+    app = QApplication([])  # 启动一个应用
+
+    window = MainWindow()  # 实例化主窗口
+
+    window.show()  # 展示主窗口
+
+    app.exec()  # 避免程序执行到这一行后直接退出
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 执行命令</span><br><span class="line"></span><br><span class="line">	- ```</span><br><span class="line"></span><br><span class="line">	  pyi-makespec --onefile --windowed --name Colordiff main.py</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>配置 Colordiff.spec</p>
+</li>
+</ul>
+</li>
+<li><p>执行命令</p>
+<ul>
+<li>pyinstaller Colordiff.spec</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -332,7 +490,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -526,7 +684,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -618,7 +776,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -710,7 +868,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -804,7 +962,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -897,7 +1055,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -986,7 +1144,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1073,7 +1231,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
+      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1124,113 +1282,6 @@
 </li>
 </ol>
 <p>通过上述方式，MATLAB可以与Zemax紧密配合，实现光学模型的建立、分析和高级仿真。这种结合充分利用了Zemax的专业光学设计能力与MATLAB的强大编程和分析环境，适用于复杂的光学系统设计、优化和控制问题。请注意，使用ZOS-API需要具备相应的授权，并熟悉MATLAB编程。具体的编程细节和功能实现应参考ZOS-API的官方文档和示例代码。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">平面干涉仪设计</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-04-06 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-06T00:00:00+00:00">2026-04-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-11 07:23:55" itemprop="dateModified" datetime="2026-09-11T07:23:55+00:00">2026-09-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Optics/" itemprop="url" rel="index"><span itemprop="name">Optics</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="平面干涉仪设计"><a href="#平面干涉仪设计" class="headerlink" title="平面干涉仪设计"></a>平面干涉仪设计</h1><h3 id="1-zemax设计方法"><a href="#1-zemax设计方法" class="headerlink" title="1.zemax设计方法"></a>1.zemax设计方法</h3><p>基于菲索干涉的基本原理，仿真平面干涉仪器；</p>
-<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F.png"></p>
-<p>点光源经过准直透镜， 分束镜， 经过参考面反射产生参考光，待测物体产生反射光，两者在分束镜上同时反射到探测器上，此时两束光有一定的光程差，存在干涉，于探测器产生干涉条纹。 </p>
-<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_%E6%96%90%E7%B4%A2%E7%90%83%E9%9D%A2%E5%B9%B2%E6%B6%89.png"></p>
-<h3 id="2-仿真测试"><a href="#2-仿真测试" class="headerlink" title="2.仿真测试"></a>2.仿真测试</h3><p>一、仿真测试目标：<br>1、实现斐索平面干涉仪的光学系统设计；<br>2、通过探测器检测图案，计算待测物表面的PV值，测试精度达到λ&#x2F;20;</p>
-<p>二、仿真测试流程：<br>1、调制光学系统下各部件参数，使得探测器成像结果相对较好，减少光学系统对后期图像提取的干扰；<br>2、提取图像探测器图像,进行图像预处理，减少背景噪声的干扰；<br>3、基于光的波动性，通过四步相移法，解包裹，恢复待测物体表面形貌计算PV值。</p>
-<p>三、仿真原理：<br>理想情况下，等厚干涉形成的是平行的等间距的条纹；光程差每变化λ&#x2F;2 的距离，条纹平移一个周期；</p>
-<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F2.png"></p>
-<p>干涉在本质上可以看作两束光能量的重新分布，分布遵循余弦函数。这种形态是由条纹之间的相位差决定，相位差由光程差决定；<br>当待测面存在瑕疵，突起，导致光程差呈现非线性变化，条纹就会发生弯曲；同时相位差也会发生对应变化。</p>
-<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F3.png"></p>
-<p>四、移相干涉的原理：<br>移相干涉测量过程中，干涉图像中的条纹分布是由参考光束和测试光束叠加形成的干涉场导致，干涉场的光强信息与干涉图中像素点的灰度信息相关，其分布函数公式可表示为： </p>
-<figure class="image"><img style="aspect-ratio:369/20;" src="平面干涉仪设计_zemax-公式1.png" width="369" height="20"></figure>
-![](平面干涉仪设计_zemax-公式1.png)
-  
-<p>其中：A(x,y)是干涉图的背景光强，B(x,y)是调制度，φ(x,y)是待测物的波面初始相位信息，δ_i 是移相量，(x,y)是干涉图中像素点的坐标信息。<br>参考镜和被测镜间的面形差P(x,y)与位相分布的关系可表示为公式</p>
-<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F2.png"></p>
-<p>λ为激光器波长（本文为He-Ne激光器——632.8nm），在移相干涉测量技术中，测量单位为λ。当通过解相算法处理干涉图组的像素数据，可计算出I_i (x,y)，并进一步得到面形信息φ(x,y)以完成检测工作。</p>
-<p>四步移相法可以有效计算出理想移相图组的相位分布。先获取无移相的干涉图像，再进行三次移相间隔为π&#x2F;2的移相，每次移相完成采集1帧图像，共得到4帧相位相差π&#x2F;2的干涉图像，其图像光强信息分别为：</p>
-<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F3.png"></p>
-<p>将上面4个式子进行公式变换消去A和B可得到和四帧图像像素信息的关系式：</p>
-<p><img src="/posts/Optics/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F4.png"></p>
-<p>四步移相算法求解速度快，适合对理想干涉图组进行求解。</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaitianbao/article/details/116115786">枝切法</a></p>
 
       
     </div>
