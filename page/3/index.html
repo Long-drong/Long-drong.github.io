@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -222,7 +222,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">Excel实现矩阵乘法，及其转置矩阵计算</a>
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">LCI原理解析</a>
         </h2>
 
         <div class="post-meta-container">
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
         </span>
     </span>
 
@@ -262,24 +262,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h2><p>给出两个2*2的矩阵A、B，如下所示：</p>
-<p>A&#x3D;[1 2; 2 3];</p>
-<p>B&#x3D;[1 2; 1 4];</p>
-<p>矩阵A✖B在excel中函数表示为：MMULT(a00:a11,b00:b11),</p>
-<p>如下图，表格A4&#x3D;MMULT(A1:B2,D1:E2)&#x3D;矩阵A第一行✖矩阵B第一列&#x3D;1*2+2*1&#x3D;4，同理可得余下各行计算:</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_1.png"></p>
-<p>快捷指令：选中表格中经过计算出的A4附近2*2的表格，键盘F2，Ctrl+Shift+enter得出剩下计算结果</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_2.png"></p>
-<h2 id="二、转置矩阵"><a href="#二、转置矩阵" class="headerlink" title="二、转置矩阵"></a>二、转置矩阵</h2><p>转置矩阵公式：TRANSPOSE(a00:a01)</p>
-<p>D4表示矩阵C的第一行第一列（即C00）经过转置后的值，则有D4&#x3D;TRANSPOSE(A4:B5)&#x3D;4,其余各行同理。</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_3.png"></p>
-<p>快捷键：选中表格中经过计算出的D4附近2*2的表格，键盘F2，Ctrl+Shift+enter得出剩下计算结果，如下图所示：</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_4.png"></p>
-<p>三、矩阵的逆</p>
-<p>excel中矩阵的逆的函数表示&#x3D;MINVERSE(D4:E5)</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_5.png"></p>
-<p>初步测试可行</p>
-
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -305,7 +296,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/python%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -323,7 +314,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Tools/python%E5%B7%A5%E5%85%B7%E7%BC%96%E5%86%99/" class="post-title-link" itemprop="url">python工具编写</a>
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LCI的实现原理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -341,7 +332,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -349,7 +340,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
         </span>
     </span>
 
@@ -363,72 +354,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><p>1、色差计算工具的编写</p>
-<ul>
-<li><p>虚拟环境创建</p>
-<ul>
-<li><p>python -m venv temp_env</p>
-</li>
-<li><p>temp_env\Scripts\activate   #退出虚拟环境 deactive</p>
-</li>
-</ul>
-</li>
-<li><p>安装需求库</p>
-<ul>
-<li><p>pip install colormath  #计算色差的</p>
-</li>
-<li><p>pip install numpy&#x3D;&#x3D;1.19.5</p>
-</li>
-<li><p>pip install pyside6  #UI界面工具</p>
-</li>
-<li><p>pip install pyinstaller  #程序打包工具</p>
-</li>
-</ul>
-</li>
-<li><p>编写主程序代码</p>
-<ul>
-<li><pre><code>
-from PySide6.QtWidgets import QApplication, QMainWindow
-
-from CEI2000 import Ui_Dialog
-
-class MainWindow(QMainWindow):
-
-    def __init__(self):
-
-        super(MainWindow, self).__init__()
-
-        self.ui = Ui_Dialog()  # UI类的实例化
-
-        self.ui.setupUi(self)
-
-if __name__ == &#39;__main__&#39;:
-
-    app = QApplication([])  # 启动一个应用
-
-    window = MainWindow()  # 实例化主窗口
-
-    window.show()  # 展示主窗口
-
-    app.exec()  # 避免程序执行到这一行后直接退出
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 执行命令</span><br><span class="line"></span><br><span class="line">	- ```</span><br><span class="line"></span><br><span class="line">	  pyi-makespec --onefile --windowed --name Colordiff main.py</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p>配置 Colordiff.spec</p>
-</li>
-</ul>
-</li>
-<li><p>执行命令</p>
-<ul>
-<li>pyinstaller Colordiff.spec</li>
-</ul>
-</li>
-</ul>
-
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -490,7 +424,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -684,7 +618,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -776,7 +710,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -868,7 +802,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -962,7 +896,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1055,7 +989,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1144,7 +1078,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1231,7 +1165,7 @@ if __name__ == &#39;__main__&#39;:
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-20 07:17:37" itemprop="dateModified" datetime="2026-09-20T07:17:37+00:00">2026-09-20</time>
+      <time title="修改时间：2026-09-20 07:26:27" itemprop="dateModified" datetime="2026-09-20T07:26:27+00:00">2026-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
