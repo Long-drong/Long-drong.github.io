@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-21 10:59:33" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-21 10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,7 +395,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-21 10:59:33" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-21 10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -475,7 +475,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-21 10:59:33" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-21 10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -560,7 +560,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-09-21 00:00:00 / 修改时间：10:59:33" itemprop="dateCreated datePublished" datetime="2026-09-21T00:00:00+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-21 00:00:00 / 修改时间：10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T00:00:00+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -582,15 +582,35 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/Tools/%E6%89%8B%E6%9C%BA%E4%BD%9C%E4%B8%BA%E8%BD%BB%E9%87%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="先备份"><a href="#先备份" class="headerlink" title="先备份"></a>先备份</h2><h3 id="一、-最完美的实现方案：NANDROID-备份（镜像级）"><a href="#一、-最完美的实现方案：NANDROID-备份（镜像级）" class="headerlink" title="一、 最完美的实现方案：NANDROID 备份（镜像级）"></a>一、 最完美的实现方案：NANDROID 备份（镜像级）</h3><p>这是唯一能做到“一键恢复到完全一模一样”的方法。</p>
+<h4 id="1-工作原理"><a href="#1-工作原理" class="headerlink" title="1. 工作原理"></a>1. 工作原理</h4><p>在给手机刷入真正的 Linux 系统之前，先刷入一个第三方 Recovery（如 <strong>TWRP</strong> 或 <strong>OrangeFox</strong>）。 在 TWRP 界面中，有一个 <strong>Backup（备份）</strong> 功能，它可以把手机内部的整个存储结构打包成镜像，包括：</p>
+<ul>
+<li><strong>System &#x2F; Super</strong>（系统分区）<br>    <br>*   <strong>Boot &#x2F; Vendor</strong>（内核与底层驱动分区）<br>    <br>*   <strong>Data</strong>（你的所有应用、应用数据、系统设置、桌面布局等）<br>    <br>*   <strong>EFS &#x2F; Persist</strong>（基带、Wi-Fi&#x2F;蓝牙 MAC 地址、IMEI 码等核心参数）</li>
+</ul>
+<h4 id="2-操作流程"><a href="#2-操作流程" class="headerlink" title="2. 操作流程"></a>2. 操作流程</h4><ol>
+<li><strong>备份</strong>：<br>    <br>    *   手机进入 TWRP 界面 -&gt; 点击 <code>Backup</code> -&gt; 勾选所有分区（尤其是 <code>System</code>, <code>Data</code>, <code>Boot</code>, <code>EFS</code>）。<br>        <br>    *   将备份生成的文件<strong>拷贝到电脑或 U 盘</strong>中妥善保存（手机刷 Linux 时本地存储会被清空）。<br>        <br>2.  <strong>体验 Linux</strong>：<br>    <br>    *   抹除 Android 分区，刷入 PostmarketOS 或 Ubuntu Touch 等 Linux 系统。<br>        <br>3.  <strong>一键恢复</strong>：<br>    <br>    *   当你不想用 Linux 时，再次进入 TWRP 界面。<br>        <br>    *   把电脑上的备份文件夹放回手机或插上 OTG U 盘。<br>        <br>    *   点击 <code>Restore</code>（恢复），选择之前保存的备份，刷入恢复。<br>        <br>    *   重启后，<strong>手机会瞬间变回你备份那一刻的模样，连微信记录、墙纸和打开的标签页都原封不动。</strong></li>
+</ol>
+<h3 id="二、-镜像备份的关键限制与“坑点”"><a href="#二、-镜像备份的关键限制与“坑点”" class="headerlink" title="二、 镜像备份的关键限制与“坑点”"></a>二、 镜像备份的关键限制与“坑点”</h3><p>虽然 NANDROID 备份很强大，但有以下几点必须注意：</p>
+<ol>
+<li><strong>硬件安全密钥与指纹&#x2F;锁屏密码（重中之重）</strong><br>    <br>    *   <strong>坑点</strong>：现代 Android 系统（Android 10 及以上）采用了极严格的硬件加密（FBE - File-Based Encryption）。如果在备份前<strong>没有取消锁屏密码&#x2F;指纹&#x2F;人脸识别</strong>，直接进行备份，后续恢复系统时可能会遇到：<br>        <br>        *   无法进入系统（卡在开机界面）。<br>            <br>        *   提示“密码错误”，或者提示“数据无法解密”。<br>            <br>    *   <strong>解法</strong>：在进入 TWRP 进行备份<strong>之前</strong>，必须先在 Android 设置里<strong>移除所有锁屏密码、指纹和人脸识别</strong>，并将 Google&#x2F;手机厂商账号（如小米账号、华为账号）退出，然后再重启进 TWRP 进行备份。<br>        <br>2.  <strong>存储空间要求大</strong><br>    <br>    *   包含用户数据的打包文件通常很大（10GB ~ 50GB 不等，取决于你的应用数量）。<br>        <br>    *   必须确保有 OTG U 盘或电脑磁盘空间来接收备份文件。<br>        <br>3.  <strong>专机专用</strong><br>    <br>    *   NANDROID 备份是基于特定手机型号甚至固件版本的镜像，<strong>绝对不能</strong>恢复到另一台不同型号的手机上，否则会导致永久变砖。</li>
+</ol>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><p>安装完整 Linux 系统</p>
+<p>如果需要运行 Docker 或复杂的 Linux 服务，可以通过工具将手机彻底改造成纯粹的 Linux 设备。</p>
+<ul>
+<li><strong>轻度方案（Linux Deploy &#x2F; proot-distro）</strong>：在 Android 系统内部以容器&#x2F;Proot 形式运行 Linux 系统（无需刷机）。在 Termux 中运行 <code>proot-distro install ubuntu</code> 即可一键获得 Ubuntu 环境。<br>    <br>*   <strong>深度方案（刷入 PostmarketOS &#x2F; Ubuntu Touch）</strong>：直接抹除 Android 系统，刷入专为手机设计的纯 Linux 内核系统（需要手机解锁 Bootloader 且有适配固件）。</li>
+</ul>
+<h2 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h2><p>手机连接家里的 Wi-Fi 后，获得的只是<strong>局域网 IP</strong>（例如 <code>192.168.1.X</code>），外网是无法直接访问的。要成为真正的“云服务器”，需要解决外网连通问题：</p>
+<ol>
+<li><strong>内网穿透工具（最简单，无需公网 IP）</strong><br>    <br>    *   <strong>免费&#x2F;现成方案</strong>：使用 <strong>cpolar</strong>、<strong>花生壳</strong> 或 <strong>Ngrok</strong>，在 Termux 中运行客户端，直接将本地端口映射为一个公网 URL。<br>        <br>    *   <strong>自建方案（推荐）</strong>：如果你拥有另一台带公网 IP 的云服务器（如阿里云&#x2F;腾讯云），可以使用 <strong>FRP</strong> 或 <strong>Rathole</strong> 进行点对点穿透。<br>        <br>2.  <strong>虚拟局域网（组网方案）</strong><br>    <br>    *   使用 <strong>Tailscale</strong> 或 <strong>ZeroTier</strong>。手机和你的电脑&#x2F;随身设备都安装客户端后，无论身在何处，都可以像在同一局域网内一样通过固定 IP 访问手机服务器（适合个人私有服务）。<br>        <br>3.  <strong>路由器 DDNS + 端口映射</strong><br>    <br>    *   如果你家里的宽带带有公网 IPv4 或 IPv6 地址，可以在路由器端配置 DDNS（动态域名解析）并开启端口映射（Port Forwarding），直接通过域名访问手机。</li>
+</ol>
+<p>##&nbsp;旧手机改造服务器的“优势”与“坑点”</p>
+<h4 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h4><ul>
+<li><strong>自带 USP（不间断电源）</strong>：手机电池就是天然的 UPS，断电后依然能维持运行数小时。<br>    <br>*   <strong>低功耗</strong>：相比 PC，手机芯片（ARM 架构）待机功耗极低，24 小时开机电费基本可以忽略。<br>    <br>*   <strong>硬件集成度高</strong>：自带 Wi-Fi 模块、蓝牙、甚至蜂窝网络（可作为双网络备用）。</li>
+</ul>
+<h4 id="需要注意的“坑点”及优化措施："><a href="#需要注意的“坑点”及优化措施：" class="headerlink" title="需要注意的“坑点”及优化措施："></a>需要注意的“坑点”及优化措施：</h4><ol>
+<li><strong>电池膨胀&#x2F;安全隐患（最关键）</strong><br>    <br>    *   <strong>风险</strong>：长期插电源线 24 小时运行，电池极易膨胀鼓包甚至起火。<br>        <br>    *   <strong>解法</strong>：<br>        <br>        *   尽量配合智能插座设置定时断电（如电量 80% 停止，20% 恢复）。<br>            <br>        *   有条件或有动手能力的，可以拆除电池，改为<strong>直供电模块</strong>（假电池直接接 5V&#x2F;4.2V 电源）。<br>            <br>        *   在系统内开启“电池保护模式”（限制充电上限至 60%-80%）。<br>            <br>2.  <strong>Android 系统的后台杀进程机制</strong><br>    <br>    *   Android 系统为了省电，会自动关闭后台运行的 Termux 或服务。<br>        <br>    *   <strong>解法</strong>：必须在手机设置中将 Termux 等应用设为<strong>允许后台运行</strong>、<strong>关闭电池优化</strong>，并在 Termux 内开启 <code>termux-wake-lock</code>（防止 CPU 休眠）。<br>        <br>3.  <strong>散热问题</strong><br>    <br>    *   手机没有主动散热风扇，如果高负载运行（如编译代码、视频转码），会导致降频甚至关机。<br>        <br>    *   <strong>解法</strong>：放置在通风处，或加装一个几块钱的 USB 小散热风扇&#x2F;贴贴散热片。</li>
+</ol>
+
       
     </div>
 
@@ -652,7 +672,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:33" itemprop="dateModified" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -739,7 +759,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:33" itemprop="dateModified" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -857,7 +877,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:33" itemprop="dateModified" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -981,7 +1001,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:33" itemprop="dateModified" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1072,7 +1092,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:33" itemprop="dateModified" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1160,7 +1180,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:33" itemprop="dateModified" datetime="2026-09-21T10:59:33+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
