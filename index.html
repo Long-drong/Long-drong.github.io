@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-21 10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-22 03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,7 +395,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-21 10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-22 03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -475,7 +475,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-21 10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-22 03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -530,6 +530,216 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE%E4%B8%80/" class="post-title-link" itemprop="url">图像去雾一</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-09-22 00:00:00 / 修改时间：03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T00:00:00+00:00">2026-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>何恺明博士于 CVPR 2009 提出的论文 <b>《Single Image Haze Removal Using Dark Channel Prior》</b> 是图像去雾领域的开山之作。&nbsp;</p>
+<h2 id="一、-核心物理原理与统计先验"><a href="#一、-核心物理原理与统计先验" class="headerlink" title="一、 核心物理原理与统计先验"></a>一、 核心物理原理与统计先验</h2><p>算法的核心在于巧妙地将<strong>物理成像模型</strong>与<strong>真实世界图像的统计规律</strong>结合起来。</p>
+<h3 id="1-经典大气光散射模型（Atmospheric-Optics-Model）"><a href="#1-经典大气光散射模型（Atmospheric-Optics-Model）" class="headerlink" title="1. 经典大气光散射模型（Atmospheric Optics Model）"></a>1. 经典大气光散射模型（Atmospheric Optics Model）</h3><p>在有雾天气下，摄像机接收到的光线主要由两部分组成：</p>
+<p>I(x)=J(x)t(x)+A(1−t(x))</p>
+<ul>
+<li><p><strong>I(x)</strong>：观测到的有雾图像像素值。</p>
+</li>
+<li><p><strong>J(x)</strong>：待恢复的无雾真实场景反射光强（目标输出）。</p>
+</li>
+<li><p><strong>A</strong>：全球大气光值（Global Atmospheric Light，通常为 RGB 三通道常数矢量）。</p>
+</li>
+<li><p><strong>t(x)</strong>：介质透射率（Transmission Map），且 t(x)=e−βd(x)。β 是大气消光系数，d(x) 是场景深度。</p>
+</li>
+<li><p><strong>物理含义</strong>：</p>
+</li>
+<li><p><strong>J(x)t(x)</strong> 是<strong>直接衰减项（Direct Attenuation）</strong>，表示目标发出的光穿过大气后的剩余量；</p>
+</li>
+<li><p><strong>A(1−t(x))</strong> 是<strong>空气光项（Airlight）</strong>，表示环境光（如太阳光）被悬浮颗粒散射到镜头里的光量。</p>
+</li>
+</ul>
+<p>去雾的目标就是：已知 I(x)，求解出 A 和 t(x)，进而反推出无雾图像 J(x)。</p>
+<h3 id="2-暗通道先验（Dark-Channel-Prior-DCP）"><a href="#2-暗通道先验（Dark-Channel-Prior-DCP）" class="headerlink" title="2. 暗通道先验（Dark Channel Prior, DCP）"></a>2. 暗通道先验（Dark Channel Prior, DCP）</h3><p>何博士对数千张户外无雾图像进行了统计分析，发现了一个极为坚固的经验规律：</p>
+<p>&gt; <strong>暗通道先验</strong>：在绝大多数非天空区域的无雾图像中，总有一些像素在至少一个颜色通道（R, G, B）上的强度非常低，其像素值趋近于零。</p>
+<p>定义暗通道图像 Jdark 的计算公式为：</p>
+<p>Jdark(x)=y∈Ω(x)min​(c∈{r,g,b}min​Jc(y))≈0</p>
+<ul>
+<li><p>Ω(x) 是以像素点 x 为中心的局部滤波窗口（原论文中通常取 15×15）。</p>
+</li>
+<li><p>c∈{r,g,b} 表示红、绿、蓝三个颜色通道。</p>
+</li>
+</ul>
+<p><strong>暗通道趋近于 0 的三要素</strong>：</p>
+<ol>
+<li><p><strong>阴影</strong>：建筑物、树叶、车轮等的投影。</p>
+</li>
+<li><p><strong>高饱和度彩色物体</strong>：如红花（R 通道高，G&#x2F;B 通道极低）、绿叶（G 通道高，R&#x2F;B 通道极低）。</p>
+</li>
+<li><p><strong>深色或黑色物体</strong>：树干、黑色地面等。</p>
+</li>
+</ol>
+<h2 id="二、-算法推导与详细实现步骤"><a href="#二、-算法推导与详细实现步骤" class="headerlink" title="二、 算法推导与详细实现步骤"></a>二、 算法推导与详细实现步骤</h2><p>基于大气模型和暗通道先验，去雾算法主要分为 5 个清晰的步骤：</p>
+<p>1</p>
+<p>计算暗通道图 (Dark Channel Generation)</p>
+<p>Step 1</p>
+<p>**1.计算暗通道图 (Dark Channel Generation)：**Step 1。</p>
+<p>对输入的有雾图像 I(x)，先在 RGB 3 个通道中取每像素的最小值，随后使用大小为 r×r（通常 15×15）的最小值滤波器进行空间平滑：</p>
+<p>Idark(x)=y∈Ω(x)min​(c∈{r,g,b}min​Ic(y))</p>
+<p>2</p>
+<p>估计全球大气光值 A (Atmospheric Light Estimation)</p>
+<p>Step 2</p>
+<p>**2.估计全球大气光值 A (Atmospheric Light Estimation)：**Step 2。</p>
+<p>直接找图像中最亮的像素往往会被白色的建筑物或白色车身干扰。何博士利用暗通道图来进行稳健的定位：</p>
+<ol>
+<li><p>从暗通道图 Idark 中挑出亮度排名前 <strong>0.1%</strong> 的像素位置集合。</p>
+</li>
+<li><p>找到这些像素点在<strong>原始有雾图像 I(x)</strong> 中对应的位置。</p>
+</li>
+<li><p>取原图这些位置中 RGB 亮度和最高的那个像素点的值，作为大气光向量 A=(Ar​,Ag​,Ab​)。</p>
+</li>
+</ol>
+<p>3</p>
+<p>粗略估计透射率 t(x) (Initial Transmission)</p>
+<p>Step 3</p>
+<p>**3.粗略估计透射率 t(x) (Initial Transmission)：**Step 3。</p>
+<p>将大气模型方程 I(x)=J(x)t(x)+A(1−t(x)) 两边同时除以大气光常数 Ac：</p>
+<p>AcIc(x)​=AcJc(x)​t(x)+1−t(x)</p>
+<p>假设局部窗口 Ω(x) 内的透射率 t~(x) 是常数，在两边同时施加暗通道运算（先取 RGB 最小值，再取局部最小值）：</p>
+<p>y∈Ω(x)min​(cmin​AcIc(y)​)=t<del>(x)y∈Ω(x)min​(cmin​AcJc(y)​)+1−t</del>(x)</p>
+<p>根据暗通道先验，无雾图像 J 的暗通道 miny∈Ω(x)​(minc​AcJc(y)​)≈0，因此中间项消去，得出粗估透射率：</p>
+<p>t~(x)=1−ωy∈Ω(x)min​(cmin​AcIc(y)​)</p>
+<p><em>注：引入参数 ω∈(0,1]（论文中通常取 ω=0.95）是为了保留极少量的远景雾气，使图像保持自然的景深感和真实感。</em></p>
+<p>4</p>
+<p>透射率图细化 (Transmission Refinement)</p>
+<p>Step 4</p>
+<p>**4.透射率图细化 (Transmission Refinement)：**Step 4。</p>
+<p>因为 Step 3 中的 t~(x) 采用了块状的最小值滤波（Ω(x)），导致透射率图在物体边缘处存在<strong>块效应</strong>和<strong>边缘模糊</strong>（景深突变边缘会出现 Halo 晕轮效应）。</p>
+<p>原论文采用了 <strong>Soft Matting（软切割）</strong> 算法，利用原图的边缘信息对透射率图进行导向修正，使 t(x) 的边缘与原图结构精确对齐：</p>
+<p>tmin​(∥t−t~∥2+λtTLt)</p>
+<p><em>（注：在何博士 2010 年提出 <strong>引导滤波 (Guided Filter)</strong> 后，通常使用 Guided Filter 替代 Soft Matting，可以在保持高精度的同时将计算速度提升数个数量级。）</em></p>
+<p>5</p>
+<p>场景光复原 (Scene Radiance Recovery)</p>
+<p>Step 5</p>
+<p>**5.场景光复原 (Scene Radiance Recovery)：**Step 5。</p>
+<p>已知大气光 A 和精确的透射率 t(x)，对物理模型求逆变换即可得到无雾图像：</p>
+<p>J(x)=max(t(x),t0​)I(x)−A​+A</p>
+<p><em>注：为防止当透射率 t(x)→0 时导致除法溢出或噪声剧烈放大，设定了一个下限阀值 t0​（通常取 t0​=0.1）。</em></p>
+<h2 id="三、-算法的局限性与失效场景"><a href="#三、-算法的局限性与失效场景" class="headerlink" title="三、 算法的局限性与失效场景"></a>三、 算法的局限性与失效场景</h2><p>虽然 Dark Channel Prior 效果惊艳，但在以下场景中该先验前提会失效：</p>
+<ol>
+<li><strong>大面积白色&#x2F;浅色高亮区域（如白色建筑、雪地、白色车辆）</strong>：</li>
+</ol>
+<ul>
+<li><p>这些区域在无雾状态下 RGB 三通道的值都很高，不满足暗通道为 0 的假设。</p>
+</li>
+<li><p><strong>结果</strong>：算法会错误地认为这些区域“雾很重”，导致估计的透射率 t(x) 偏小，还原后这些区域会出现<strong>色彩过度饱和、失真或偏色</strong>。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>天空区域（Sky Region）</strong>：</li>
+</ol>
+<ul>
+<li><p>天空本身不含暗像素，且与大气光 A 十分接近。</p>
+</li>
+<li><p><strong>结果</strong>：透射率计算失效，常导致复原后的天空出现斑块、高频噪声或严重的色带现象（Noise Artifacts）。</p>
+</li>
+</ul>
+<h2 id="滤波窗口的作用"><a href="#滤波窗口的作用" class="headerlink" title="滤波窗口的作用"></a>滤波窗口的作用</h2><p><strong>当滤波窗口 Ω(x) 尺寸变小时，暗通道图会产生明显的颗粒感、噪声抖动以及“离散点”（Spurious isolated points &#x2F; Noise）。</strong></p>
+<p><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE%E4%B8%80/img_1.png"></p>
+<h4 id="根本原因分析："><a href="#根本原因分析：" class="headerlink" title="根本原因分析："></a>根本原因分析：</h4><h4 id="根本原因分析：-1"><a href="#根本原因分析：-1" class="headerlink" title="根本原因分析："></a>根本原因分析：</h4><ol>
+<li><strong>先验统计失效（失去了“局部最小值”的保护作用）</strong></li>
+</ol>
+<p>暗通道先验成立的前提是<strong>窗口内必须包含暗像素</strong>（如阴影、高饱和度色彩、深色物体边缘）。</p>
+<ul>
+<li><p><strong>窗口较大时（如 $15 \times 15$）</strong>：窗口跨越的像素多，抓取到至少一个黑色&#x2F;阴影像素的概率非常高，符合 $J^{dark} \approx 0$。</p>
+</li>
+<li><p><strong>窗口极小时（如 $3 \times 3$ 或单像素 $1 \times 1$）</strong>：窗口很难覆盖到暗色像素。在一个相对均匀的浅色区域，如果 $3 \times 3$ 框内全是高亮元素，最小值依然很大，导致 DCP 失效，估计出的暗通道值过高。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>噪声与高频细节被放大（高频抖动&#x2F;离散斑点）</strong></li>
+</ol>
+<p>传感器噪声（Sensor Noise）通常表现为高频离散点。</p>
+<ul>
+<li><p>最小值滤波（Min-filtering）对极小值敏感。若窗口太小，单像素的噪声或孤立的暗点无法被窗口平滑，直接反映在透射率图 $\tilde{t}(x)$ 上，造成透射率空间的不连续。</p>
+</li>
+<li><p>在复原公式 $J(x) &#x3D; \frac{I(x) - A}{t(x)} + A$ 中，由于 $t(x)$ 在这些离散点处发生骤变，除法放大了高频跳变，复原出的画面就会出现<strong>点状斑痕（Noise Amplification &amp; Blotchy Artifacts）</strong>。</p>
+</li>
+</ul>
+<h4 id="窗口大小（-Omega-）的选择权衡（Trade-off）："><a href="#窗口大小（-Omega-）的选择权衡（Trade-off）：" class="headerlink" title="窗口大小（$\Omega$）的选择权衡（Trade-off）："></a>窗口大小（$\Omega$）的选择权衡（Trade-off）：</h4><p>| 窗口大小 | 优点 | 缺点 &#x2F; 瑕疵 |</p>
+<p>| — | — | — |</p>
+<p>| <strong>小窗口</strong> (如 $3 \times 3$) | 边缘细节清晰，残影&#x2F;光晕（Halo Effect）较少 | 暗通道先验失效概率高，产生<strong>离散噪声点&#x2F;块状斑纹</strong>，透射率被高估导致去雾不彻底。 |</p>
+<p>| <strong>大窗口</strong> (如 $15 \times 15$) | 先验统计稳定性高，$J^{dark} \approx 0$ 更可靠，去雾彻底 | 景深突变边缘（如建筑物与天空交界处）出现严重的<strong>光晕现象（Halo Artifacts）</strong>，必须依赖后续引导滤波&#x2F;软切割进行高代价修正。 |</p>
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/%E6%89%8B%E6%9C%BA%E4%BD%9C%E4%B8%BA%E8%BD%BB%E9%87%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -558,9 +768,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-09-21 00:00:00 / 修改时间：10:59:47" itemprop="dateCreated datePublished" datetime="2026-09-21T00:00:00+00:00">2026-09-21</time>
+      <time title="创建时间：2026-09-21 00:00:00" itemprop="dateCreated datePublished" datetime="2026-09-21T00:00:00+00:00">2026-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -672,7 +888,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -759,7 +975,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -877,7 +1093,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1001,7 +1217,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1092,7 +1308,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1118,196 +1334,6 @@
 <p>&nbsp;pip install requests beautifulsoup4 html2text</p>
 <p>代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">import html2text</span><br><span class="line"></span><br><span class="line">def clean_filename(title):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;清理文件名中的非法字符&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    return re.sub(r&#x27;[\\/:*?&quot;&amp;lt;&amp;gt;|]&#x27;, &#x27;_&#x27;, title).strip()</span><br><span class="line"></span><br><span class="line">def clean_html_content(content_soup):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    清理正文中的广告、公众号卡片、赞赏区，并根据关键字切断文末推送内容</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    # 1. 移除微信/知乎常见的标准广告与名片组件</span><br><span class="line"></span><br><span class="line">    unwanted_selectors = [</span><br><span class="line"></span><br><span class="line">        &#x27;.js_ad_area&#x27;, &#x27;#js_ad_area&#x27;,  # 微信底部广告</span><br><span class="line"></span><br><span class="line">        &#x27;#js_profile_qrcode&#x27;, &#x27;.qr_code_pc&#x27;,  # 微信二维码</span><br><span class="line"></span><br><span class="line">        &#x27;mp-common-profile&#x27;, &#x27;.mp-common-profile&#x27;,  # 微信公众号名片卡片</span><br><span class="line"></span><br><span class="line">        &#x27;.rich_media_tool&#x27;, &#x27;#js_to_user_profile&#x27;,  # 关注/阅读原文工具栏</span><br><span class="line"></span><br><span class="line">        &#x27;.reward_area&#x27;, &#x27;#js_reward_area&#x27;,  # 赞赏区域</span><br><span class="line"></span><br><span class="line">        &#x27;.rich_media_area_extra&#x27;,  # 微信底部推荐区</span><br><span class="line"></span><br><span class="line">        &#x27;[class*=&quot;Card&quot;]&#x27;, &#x27;[class*=&quot;McnLink&quot;]&#x27;,  # 知乎/微信营销卡片</span><br><span class="line"></span><br><span class="line">        &#x27;[class*=&quot;LinkCard&quot;]&#x27;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    for selector in unwanted_selectors:</span><br><span class="line"></span><br><span class="line">        for tag in content_soup.select(selector):</span><br><span class="line"></span><br><span class="line">            tag.decompose()</span><br><span class="line"></span><br><span class="line">    # 2. 尾部截断机制：遇到以下关键字时，直接斩断该节点及其后面的所有 DOM 节点</span><br><span class="line"></span><br><span class="line">    cutoff_keywords = [</span><br><span class="line"></span><br><span class="line">        &#x27;搜索公众号添加&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;扫码关注&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;往期推荐&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;推荐阅读&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;往期精彩&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;长按识别二维码&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;送礼物&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;发布于&#x27;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    for tag in content_soup.find_all([&#x27;p&#x27;, &#x27;section&#x27;, &#x27;div&#x27;, &#x27;h2&#x27;, &#x27;h3&#x27;, &#x27;span&#x27;, &#x27;strong&#x27;]):</span><br><span class="line"></span><br><span class="line">        text = tag.get_text(strip=True)</span><br><span class="line"></span><br><span class="line">        # 判断节点文本较短（避免误删大容器）且包含截断关键字</span><br><span class="line"></span><br><span class="line">        if len(text) &amp;lt; 100 and any(kw in text for kw in cutoff_keywords):</span><br><span class="line"></span><br><span class="line">            print(f&quot;检测到尾部推送标记 [&#123;text[:15]&#125;...]，正在切断后续所有内容...&quot;)</span><br><span class="line"></span><br><span class="line">            # 获取该节点之后的所有 HTML 元素并彻底删除</span><br><span class="line"></span><br><span class="line">            next_elements = list(tag.find_all_next())</span><br><span class="line"></span><br><span class="line">            for elem in next_elements:</span><br><span class="line"></span><br><span class="line">                elem.decompose()</span><br><span class="line"></span><br><span class="line">            # 删除当前节点本身</span><br><span class="line"></span><br><span class="line">            tag.decompose()</span><br><span class="line"></span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    # 3. 清理残余的二维码图片（通过 URL 特征过滤）</span><br><span class="line"></span><br><span class="line">    for img in content_soup.find_all(&#x27;img&#x27;):</span><br><span class="line"></span><br><span class="line">        src = (img.get(&#x27;data-src&#x27;) or img.get(&#x27;src&#x27;) or &#x27;&#x27;).lower()</span><br><span class="line"></span><br><span class="line">        if any(k in src for k in [&#x27;qrcode&#x27;, &#x27;qr_code&#x27;]):</span><br><span class="line"></span><br><span class="line">            img.decompose()</span><br><span class="line"></span><br><span class="line">    return content_soup</span><br><span class="line"></span><br><span class="line">def download_and_process_images(content_soup, safe_title, base_dir, headers):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    下载文章中的所有图片，保存到 notes/文件夹A/文件夹A 子文件夹中，</span><br><span class="line"></span><br><span class="line">    并修改 HTML 中的引用路径为相对路径</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    img_dir = os.path.join(base_dir, safe_title)</span><br><span class="line"></span><br><span class="line">    os.makedirs(img_dir, exist_ok=True)</span><br><span class="line"></span><br><span class="line">    img_tags = content_soup.find_all(&#x27;img&#x27;)</span><br><span class="line"></span><br><span class="line">    img_count = 0</span><br><span class="line"></span><br><span class="line">    for img in img_tags:</span><br><span class="line"></span><br><span class="line">        img_url = img.get(&#x27;data-src&#x27;) or img.get(&#x27;src&#x27;) or img.get(&#x27;data-original&#x27;)</span><br><span class="line"></span><br><span class="line">        if not img_url or not img_url.startswith(&#x27;http&#x27;):</span><br><span class="line"></span><br><span class="line">            continue</span><br><span class="line"></span><br><span class="line">        img_count += 1</span><br><span class="line"></span><br><span class="line">        img_filename = f&quot;img_&#123;img_count:02d&#125;.png&quot;</span><br><span class="line"></span><br><span class="line">        img_save_path = os.path.join(img_dir, img_filename)</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line"></span><br><span class="line">            print(f&quot;正在下载图片 [&#123;img_count&#125;]: &#123;img_url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">            img_resp = requests.get(img_url, headers=headers, timeout=15)</span><br><span class="line"></span><br><span class="line">            if img_resp.status_code == 200:</span><br><span class="line"></span><br><span class="line">                with open(img_save_path, &#x27;wb&#x27;) as f:</span><br><span class="line"></span><br><span class="line">                    f.write(img_resp.content)</span><br><span class="line"></span><br><span class="line">                # 更新 Markdown 内引用的相对路径</span><br><span class="line"></span><br><span class="line">                relative_path = f&quot;&#123;safe_title&#125;/&#123;img_filename&#125;&quot;</span><br><span class="line"></span><br><span class="line">                img[&#x27;src&#x27;] = relative_path</span><br><span class="line"></span><br><span class="line">                # 清理多余属性</span><br><span class="line"></span><br><span class="line">                for attr in [&#x27;data-src&#x27;, &#x27;data-original&#x27;, &#x27;srcset&#x27;, &#x27;style&#x27;]:</span><br><span class="line"></span><br><span class="line">                    if attr in img.attrs:</span><br><span class="line"></span><br><span class="line">                        del img.attrs[attr]</span><br><span class="line"></span><br><span class="line">            else:</span><br><span class="line"></span><br><span class="line">                print(f&quot;图片下载失败 (HTTP &#123;img_resp.status_code&#125;): &#123;img_url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">        except Exception as e:</span><br><span class="line"></span><br><span class="line">            print(f&quot;下载图片发生异常: &#123;e&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    return content_soup</span><br><span class="line"></span><br><span class="line">def parse_zhihu(soup, url):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;专门针对知乎专栏/回答的解析器&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    author = &quot;Unknown&quot;</span><br><span class="line"></span><br><span class="line">    content_html = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    script_tag = soup.find(&#x27;script&#x27;, id=&#x27;js-initialData&#x27;)</span><br><span class="line"></span><br><span class="line">    if script_tag and script_tag.string:</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line"></span><br><span class="line">            data = json.loads(script_tag.string)</span><br><span class="line"></span><br><span class="line">            article_id = url.split(&#x27;/&#x27;)[-1].split(&#x27;?&#x27;)[0]</span><br><span class="line"></span><br><span class="line">            articles = data.get(&#x27;initialState&#x27;, &#123;&#125;).get(&#x27;entities&#x27;, &#123;&#125;).get(&#x27;articles&#x27;, &#123;&#125;)</span><br><span class="line"></span><br><span class="line">            if article_id in articles:</span><br><span class="line"></span><br><span class="line">                art = articles[article_id]</span><br><span class="line"></span><br><span class="line">                author = art.get(&#x27;author&#x27;, &#123;&#125;).get(&#x27;name&#x27;, author)</span><br><span class="line"></span><br><span class="line">                content_html = art.get(&#x27;content&#x27;, &#x27;&#x27;)</span><br><span class="line"></span><br><span class="line">                print(&quot;Successfully parsed Zhihu article via initialData JSON!&quot;)</span><br><span class="line"></span><br><span class="line">        except Exception as e:</span><br><span class="line"></span><br><span class="line">            print(f&quot;JSON parse fallback failed: &#123;e&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    if not content_html:</span><br><span class="line"></span><br><span class="line">        author_node = soup.find(&#x27;meta&#x27;, &#123;&#x27;itemprop&#x27;: &#x27;name&#x27;&#125;) or soup.find(&#x27;div&#x27;, class_=&#x27;AuthorInfo-name&#x27;)</span><br><span class="line"></span><br><span class="line">        if author_node:</span><br><span class="line"></span><br><span class="line">            author = author_node.get(&#x27;content&#x27;) or author_node.get_text(strip=True)</span><br><span class="line"></span><br><span class="line">        content_node = soup.find(&#x27;div&#x27;, class_=&#x27;Post-RichTextContainer&#x27;) or \</span><br><span class="line"></span><br><span class="line">                       soup.find(&#x27;div&#x27;, class_=&#x27;RichText&#x27;) or \</span><br><span class="line"></span><br><span class="line">                       soup.find(&#x27;article&#x27;)</span><br><span class="line"></span><br><span class="line">        if content_node:</span><br><span class="line"></span><br><span class="line">            content_html = str(content_node)</span><br><span class="line"></span><br><span class="line">    return author, content_html</span><br><span class="line"></span><br><span class="line">def parse_article(url, custom_title):</span><br><span class="line"></span><br><span class="line">    headers = &#123;</span><br><span class="line"></span><br><span class="line">        &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;Accept&#x27;: &#x27;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;Accept-Language&#x27;: &#x27;zh-CN,zh-Hans;q=0.9&#x27;,</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(f&quot;Requesting: &#123;url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    response = requests.get(url, headers=headers, timeout=15)</span><br><span class="line"></span><br><span class="line">    print(f&quot;Response Status Code: &#123;response.status_code&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    if response.status_code != 200:</span><br><span class="line"></span><br><span class="line">        print(f&quot;Error: HTTP &#123;response.status_code&#125; returned by target site.&quot;)</span><br><span class="line"></span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    response.encoding = &#x27;utf-8&#x27;</span><br><span class="line"></span><br><span class="line">    soup = BeautifulSoup(response.text, &#x27;html.parser&#x27;)</span><br><span class="line"></span><br><span class="line">    author = &quot;Unknown&quot;</span><br><span class="line"></span><br><span class="line">    content_html = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    if &quot;zhihu.com&quot; in url:</span><br><span class="line"></span><br><span class="line">        author, content_html = parse_zhihu(soup, url)</span><br><span class="line"></span><br><span class="line">    elif &quot;mp.weixin.qq.com&quot; in url:</span><br><span class="line"></span><br><span class="line">        author_node = soup.find(&#x27;a&#x27;, id=&#x27;js_name&#x27;) or soup.find(&#x27;span&#x27;, class_=&#x27;profile_meta_value&#x27;)</span><br><span class="line"></span><br><span class="line">        if author_node:</span><br><span class="line"></span><br><span class="line">            author = author_node.get_text(strip=True)</span><br><span class="line"></span><br><span class="line">        content_node = soup.find(&#x27;div&#x27;, class_=&#x27;rich_media_content&#x27;) or soup.find(&#x27;div&#x27;, id=&#x27;js_content&#x27;)</span><br><span class="line"></span><br><span class="line">        if content_node:</span><br><span class="line"></span><br><span class="line">            content_html = str(content_node)</span><br><span class="line"></span><br><span class="line">    else:</span><br><span class="line"></span><br><span class="line">        content_node = soup.find(&#x27;article&#x27;) or soup.find(&#x27;main&#x27;)</span><br><span class="line"></span><br><span class="line">        content_html = str(content_node) if content_node else &quot;&quot;</span><br><span class="line"></span><br><span class="line">    if not content_html:</span><br><span class="line"></span><br><span class="line">        print(f&quot;Error: Could not extract content HTML from &#123;url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    safe_title = clean_filename(custom_title)</span><br><span class="line"></span><br><span class="line">    base_dir = os.path.join(&quot;notes&quot;, safe_title)</span><br><span class="line"></span><br><span class="line">    os.makedirs(base_dir, exist_ok=True)</span><br><span class="line"></span><br><span class="line">    # 1. 解析 DOM</span><br><span class="line"></span><br><span class="line">    content_soup = BeautifulSoup(content_html, &#x27;html.parser&#x27;)</span><br><span class="line"></span><br><span class="line">    # 2. 执行【尾部截断与净化】（在此步就会彻底砍掉“搜索添加公众号”及之后的所有内容）</span><br><span class="line"></span><br><span class="line">    content_soup = clean_html_content(content_soup)</span><br><span class="line"></span><br><span class="line">    # 3. 下载保留下来的正文图片（广告与引流图因已被删除，不会被下载）</span><br><span class="line"></span><br><span class="line">    content_soup = download_and_process_images(content_soup, safe_title, base_dir, headers)</span><br><span class="line"></span><br><span class="line">    # 4. HTML 转 Markdown</span><br><span class="line"></span><br><span class="line">    h = html2text.HTML2Text()</span><br><span class="line"></span><br><span class="line">    h.ignore_links = False</span><br><span class="line"></span><br><span class="line">    h.ignore_images = False</span><br><span class="line"></span><br><span class="line">    h.body_width = 0</span><br><span class="line"></span><br><span class="line">    markdown_body = h.handle(str(content_soup))</span><br><span class="line"></span><br><span class="line">    markdown_content = f&quot;&quot;&quot;---</span><br><span class="line"></span><br><span class="line">title: &quot;&#123;custom_title&#125;&quot;</span><br><span class="line"></span><br><span class="line">author: &quot;&#123;author&#125;&quot;</span><br><span class="line"></span><br><span class="line">source_url: &quot;&#123;url&#125;&quot;</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"># &#123;custom_title&#125;</span><br><span class="line"></span><br><span class="line">&amp;gt; **作者:** &#123;author&#125;  </span><br><span class="line"></span><br><span class="line">&amp;gt; **原文链接:** [&#123;url&#125;](&#123;url&#125;)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">&#123;markdown_body&#125;</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    return safe_title, base_dir, markdown_content</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line"></span><br><span class="line">    if len(sys.argv) &amp;lt; 3:</span><br><span class="line"></span><br><span class="line">        print(&quot;Usage: python fetch_wechat.py &amp;lt;url&amp;gt; &amp;lt;custom_title&amp;gt;&quot;)</span><br><span class="line"></span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    url = sys.argv[1]</span><br><span class="line"></span><br><span class="line">    custom_title = sys.argv[2]</span><br><span class="line"></span><br><span class="line">    safe_title, base_dir, md_content = parse_article(url, custom_title)</span><br><span class="line"></span><br><span class="line">    filepath = os.path.join(base_dir, f&quot;&#123;safe_title&#125;.md&quot;)</span><br><span class="line"></span><br><span class="line">    with open(filepath, &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line"></span><br><span class="line">        f.write(md_content)</span><br><span class="line"></span><br><span class="line">    print(f&quot;\n成功完成！Markdown 文件已保存至: &#123;filepath&#125;&quot;)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E8%87%AA%E9%80%82%E5%BA%94%E5%B0%8F%E6%B3%A2%E9%98%88%E5%8E%BB%E5%99%AA-Adaptive%20Wavelet%20Thresholding%20for%20Image%20Denoising%20and%20Compression/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E8%87%AA%E9%80%82%E5%BA%94%E5%B0%8F%E6%B3%A2%E9%98%88%E5%8E%BB%E5%99%AA-Adaptive%20Wavelet%20Thresholding%20for%20Image%20Denoising%20and%20Compression/" class="post-title-link" itemprop="url">自适应小波阈去噪-Adaptive Wavelet Thresholding for Image Denoising and Compression</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-13T00:00:00+00:00">2026-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>这篇论文《Adaptive Wavelet Thresholding for Image Denoising and Compression》提出了一种自适应的小波阈值去噪方法，称为 <strong>BayesShrink</strong>。它通过贝叶斯框架和广义高斯分布（GGD）建模小波系数的统计特性，实现了对每个子带的自适应阈值选择。下面我为你详细讲解其算法原理和实现步骤。</p>
-<hr>
-<h2 id="一、核心思想"><a href="#一、核心思想" class="headerlink" title="一、核心思想"></a>一、核心思想</h2><p>图像去噪的目标是从带噪图像中恢复出原始图像：</p>
-<p>[</p>
-<p>g_{ij} &#x3D; f_{ij} + \epsilon_{ij}, \quad \epsilon_{ij} \sim N(0, \sigma^2)</p>
-<p>]</p>
-<p>在正交小波变换域中，带噪小波系数为：</p>
-<p>[</p>
-<p>Y &#x3D; X + V</p>
-<p>]</p>
-<p>其中 (X) 是原始信号的小波系数，(V) 是高斯噪声。<strong>阈值去噪</strong>的核心是：对小波系数进行非线性处理，保留大系数（代表信号），将小系数（代表噪声）置零。</p>
-<p>BayesShrink 的核心贡献是：<strong>为每个子带推导出一个接近最优的闭式阈值</strong>。</p>
-<hr>
-<h2 id="二、BayesShrink-阈值的推导"><a href="#二、BayesShrink-阈值的推导" class="headerlink" title="二、BayesShrink 阈值的推导"></a>二、BayesShrink 阈值的推导</h2><h3 id="1-假设小波系数服从-GGD"><a href="#1-假设小波系数服从-GGD" class="headerlink" title="1. 假设小波系数服从 GGD"></a>1. 假设小波系数服从 GGD</h3><p>广义高斯分布（GGD）定义为：</p>
-<p>[</p>
-<p>GG_{\sigma_X, \beta}(x) &#x3D; C(\sigma_X, \beta) \exp\left( -[\alpha(\sigma_X, \beta)|x|]^\beta \right)</p>
-<p>]</p>
-<p>其中 (\sigma_X) 是标准差，(\beta) 是形状参数（自然图像中通常 (\beta \in [0.5, 1])）。</p>
-<h3 id="2-贝叶斯风险最小化"><a href="#2-贝叶斯风险最小化" class="headerlink" title="2. 贝叶斯风险最小化"></a>2. 贝叶斯风险最小化</h3><p>定义软阈值函数：</p>
-<p>[</p>
-<p>\eta_T(y) &#x3D; \text{sgn}(y) \cdot \max(|y| - T, 0)</p>
-<p>]</p>
-<p>贝叶斯风险为：</p>
-<p>[</p>
-<p>r(T) &#x3D; E_X E_{Y|X} \left[ (\eta_T(Y) - X)^2 \right]</p>
-<p>]</p>
-<p>目标是找到最小化 (r(T)) 的 (T^*)。</p>
-<h3 id="3-近似闭式解"><a href="#3-近似闭式解" class="headerlink" title="3. 近似闭式解"></a>3. 近似闭式解</h3><p>通过数值计算发现，对于高斯（(\beta&#x3D;2)）和拉普拉斯（(\beta&#x3D;1)）先验，最优阈值可以近似为：</p>
-<p>[</p>
-<p>T_B &#x3D; \frac{\sigma^2}{\sigma_X}</p>
-<p>]</p>
-<p>对于 (\beta \in [0.5, 1])，该阈值的风险与最优阈值相差不超过 5%。因此，<strong>BayesShrink 阈值</strong>为：</p>
-<p>[</p>
-<p>\hat{T}_B &#x3D; \frac{\hat{\sigma}^2}{\hat{\sigma}_X}</p>
-<p>]</p>
-<hr>
-<h2 id="三、参数估计（数据驱动）"><a href="#三、参数估计（数据驱动）" class="headerlink" title="三、参数估计（数据驱动）"></a>三、参数估计（数据驱动）</h2><p>为了实现自适应，需要从观测数据中估计 (\sigma) 和 (\sigma_X)。</p>
-<h3 id="1-估计噪声标准差-sigma"><a href="#1-估计噪声标准差-sigma" class="headerlink" title="1. 估计噪声标准差 (\sigma)"></a>1. 估计噪声标准差 (\sigma)</h3><p>使用最细尺度子带 (HH_1) 的中位数估计：</p>
-<p>[</p>
-<p>\hat{\sigma} &#x3D; \frac{\text{Median}(|Y_{ij}|)}{0.6745}, \quad Y_{ij} \in HH_1</p>
-<p>]</p>
-<h3 id="2-估计信号标准差-sigma-X"><a href="#2-估计信号标准差-sigma-X" class="headerlink" title="2. 估计信号标准差 (\sigma_X)"></a>2. 估计信号标准差 (\sigma_X)</h3><p>由于 (Y &#x3D; X + V)，且两者独立，有：</p>
-<p>[</p>
-<p>\sigma_Y^2 &#x3D; \sigma_X^2 + \sigma^2</p>
-<p>]</p>
-<p>其中：</p>
-<p>[</p>
-<p>\hat{\sigma}<em>Y^2 &#x3D; \frac{1}{n^2} \sum</em>{i,j} Y_{ij}^2</p>
-<p>]</p>
-<p>因此：</p>
-<p>[</p>
-<p>\hat{\sigma}_X &#x3D; \sqrt{\max(\hat{\sigma}_Y^2 - \hat{\sigma}^2, 0)}</p>
-<p>]</p>
-<p>若 (\hat{\sigma}^2 \geq \hat{\sigma}_Y^2)，则 (\hat{\sigma}_X &#x3D; 0)，此时阈值设为无穷大（所有系数置零）。</p>
-<hr>
-<h2 id="四、阈值处理流程"><a href="#四、阈值处理流程" class="headerlink" title="四、阈值处理流程"></a>四、阈值处理流程</h2><ol>
-<li><p>对带噪图像进行正交小波变换（如 Daubechies 小波，8 个消失矩，4 层分解）。</p>
-</li>
-<li><p>对每个细节子带（(HH_k, HL_k, LH_k)）：</p>
-<ul>
-<li><p>估计 (\hat{\sigma}) 和 (\hat{\sigma}_X)</p>
-</li>
-<li><p>计算阈值 (\hat{T}_B &#x3D; \hat{\sigma}^2 &#x2F; \hat{\sigma}_X)</p>
-</li>
-<li><p>应用软阈值函数处理系数</p>
-</li>
-</ul>
-</li>
-<li><p>保留最低频子带 (LL_J) 不变。</p>
-</li>
-<li><p>执行逆小波变换，得到去噪图像。</p>
-</li>
-</ol>
-<hr>
-<h2 id="五、与-SureShrink-的比较"><a href="#五、与-SureShrink-的比较" class="headerlink" title="五、与 SureShrink 的比较"></a>五、与 SureShrink 的比较</h2><ul>
-<li><p><strong>SureShrink</strong>：基于 Stein 无偏风险估计（SURE），在某些子带可能选择过大的通用阈值（(\sigma\sqrt{2\log M})），导致过度平滑。</p>
-</li>
-<li><p><strong>BayesShrink</strong>：阈值仅依赖 (\sigma) 和 (\sigma_X)，不依赖子带大小，更适应图像特性。</p>
-</li>
-<li><p>实验表明，BayesShrink 的 MSE 通常比 SureShrink 低 1%~8%，并且接近 OracleShrink（已知原始图像的最优软阈值）的 5% 以内。</p>
-</li>
-</ul>
-<hr>
-<h2 id="六、扩展：结合压缩的去噪（MDLQ）"><a href="#六、扩展：结合压缩的去噪（MDLQ）" class="headerlink" title="六、扩展：结合压缩的去噪（MDLQ）"></a>六、扩展：结合压缩的去噪（MDLQ）</h2><p>论文还提出了一种基于最小描述长度（MDL）的量化方法，用于同时实现去噪和压缩：</p>
-<ul>
-<li><p>使用 BayesShrink 阈值作为量化器的“零区”</p>
-</li>
-<li><p>对非零系数进行均匀量化，量化参数（(m, \Delta)）通过 MDLQ 准则选择</p>
-</li>
-<li><p>MDLQ 平衡了失真和编码长度：</p>
-<p>[</p>
-<p>\text{MDLQ} &#x3D; \frac{1}{2\sigma^2 \log 2} \sum (Y_{ij} - \hat{X}^Q_{ij})^2 + L(\hat{X}^Q | m, \Delta)</p>
-<p>]</p>
-</li>
-<li><p>实验表明，压缩确实能去噪（尤其当 (\sigma) 较大时），但会引入量化噪声。</p>
-</li>
-</ul>
-<hr>
-<h2 id="七、总结：BayesShrink-的优势"><a href="#七、总结：BayesShrink-的优势" class="headerlink" title="七、总结：BayesShrink 的优势"></a>七、总结：BayesShrink 的优势</h2><p>| 特点 | 说明 |</p>
-<p>|——|——|</p>
-<p>| <strong>自适应</strong> | 每个子带独立估计阈值 |</p>
-<p>| <strong>闭式解</strong> | (T_B &#x3D; \sigma^2 &#x2F; \sigma_X)，计算高效 |</p>
-<p>| <strong>数据驱动</strong> | 参数完全从观测图像估计 |</p>
-<p>| <strong>近最优</strong> | 风险接近 OracleShrink |</p>
-<p>| <strong>鲁棒</strong> | 对 GGD 形状参数不敏感（(\beta \in [0.5,1])） |</p>
-<hr>
 
       
     </div>

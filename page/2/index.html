@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,196 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E8%87%AA%E9%80%82%E5%BA%94%E5%B0%8F%E6%B3%A2%E9%98%88%E5%8E%BB%E5%99%AA-Adaptive%20Wavelet%20Thresholding%20for%20Image%20Denoising%20and%20Compression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E8%87%AA%E9%80%82%E5%BA%94%E5%B0%8F%E6%B3%A2%E9%98%88%E5%8E%BB%E5%99%AA-Adaptive%20Wavelet%20Thresholding%20for%20Image%20Denoising%20and%20Compression/" class="post-title-link" itemprop="url">自适应小波阈去噪-Adaptive Wavelet Thresholding for Image Denoising and Compression</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-13T00:00:00+00:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这篇论文《Adaptive Wavelet Thresholding for Image Denoising and Compression》提出了一种自适应的小波阈值去噪方法，称为 <strong>BayesShrink</strong>。它通过贝叶斯框架和广义高斯分布（GGD）建模小波系数的统计特性，实现了对每个子带的自适应阈值选择。下面我为你详细讲解其算法原理和实现步骤。</p>
+<hr>
+<h2 id="一、核心思想"><a href="#一、核心思想" class="headerlink" title="一、核心思想"></a>一、核心思想</h2><p>图像去噪的目标是从带噪图像中恢复出原始图像：</p>
+<p>[</p>
+<p>g_{ij} &#x3D; f_{ij} + \epsilon_{ij}, \quad \epsilon_{ij} \sim N(0, \sigma^2)</p>
+<p>]</p>
+<p>在正交小波变换域中，带噪小波系数为：</p>
+<p>[</p>
+<p>Y &#x3D; X + V</p>
+<p>]</p>
+<p>其中 (X) 是原始信号的小波系数，(V) 是高斯噪声。<strong>阈值去噪</strong>的核心是：对小波系数进行非线性处理，保留大系数（代表信号），将小系数（代表噪声）置零。</p>
+<p>BayesShrink 的核心贡献是：<strong>为每个子带推导出一个接近最优的闭式阈值</strong>。</p>
+<hr>
+<h2 id="二、BayesShrink-阈值的推导"><a href="#二、BayesShrink-阈值的推导" class="headerlink" title="二、BayesShrink 阈值的推导"></a>二、BayesShrink 阈值的推导</h2><h3 id="1-假设小波系数服从-GGD"><a href="#1-假设小波系数服从-GGD" class="headerlink" title="1. 假设小波系数服从 GGD"></a>1. 假设小波系数服从 GGD</h3><p>广义高斯分布（GGD）定义为：</p>
+<p>[</p>
+<p>GG_{\sigma_X, \beta}(x) &#x3D; C(\sigma_X, \beta) \exp\left( -[\alpha(\sigma_X, \beta)|x|]^\beta \right)</p>
+<p>]</p>
+<p>其中 (\sigma_X) 是标准差，(\beta) 是形状参数（自然图像中通常 (\beta \in [0.5, 1])）。</p>
+<h3 id="2-贝叶斯风险最小化"><a href="#2-贝叶斯风险最小化" class="headerlink" title="2. 贝叶斯风险最小化"></a>2. 贝叶斯风险最小化</h3><p>定义软阈值函数：</p>
+<p>[</p>
+<p>\eta_T(y) &#x3D; \text{sgn}(y) \cdot \max(|y| - T, 0)</p>
+<p>]</p>
+<p>贝叶斯风险为：</p>
+<p>[</p>
+<p>r(T) &#x3D; E_X E_{Y|X} \left[ (\eta_T(Y) - X)^2 \right]</p>
+<p>]</p>
+<p>目标是找到最小化 (r(T)) 的 (T^*)。</p>
+<h3 id="3-近似闭式解"><a href="#3-近似闭式解" class="headerlink" title="3. 近似闭式解"></a>3. 近似闭式解</h3><p>通过数值计算发现，对于高斯（(\beta&#x3D;2)）和拉普拉斯（(\beta&#x3D;1)）先验，最优阈值可以近似为：</p>
+<p>[</p>
+<p>T_B &#x3D; \frac{\sigma^2}{\sigma_X}</p>
+<p>]</p>
+<p>对于 (\beta \in [0.5, 1])，该阈值的风险与最优阈值相差不超过 5%。因此，<strong>BayesShrink 阈值</strong>为：</p>
+<p>[</p>
+<p>\hat{T}_B &#x3D; \frac{\hat{\sigma}^2}{\hat{\sigma}_X}</p>
+<p>]</p>
+<hr>
+<h2 id="三、参数估计（数据驱动）"><a href="#三、参数估计（数据驱动）" class="headerlink" title="三、参数估计（数据驱动）"></a>三、参数估计（数据驱动）</h2><p>为了实现自适应，需要从观测数据中估计 (\sigma) 和 (\sigma_X)。</p>
+<h3 id="1-估计噪声标准差-sigma"><a href="#1-估计噪声标准差-sigma" class="headerlink" title="1. 估计噪声标准差 (\sigma)"></a>1. 估计噪声标准差 (\sigma)</h3><p>使用最细尺度子带 (HH_1) 的中位数估计：</p>
+<p>[</p>
+<p>\hat{\sigma} &#x3D; \frac{\text{Median}(|Y_{ij}|)}{0.6745}, \quad Y_{ij} \in HH_1</p>
+<p>]</p>
+<h3 id="2-估计信号标准差-sigma-X"><a href="#2-估计信号标准差-sigma-X" class="headerlink" title="2. 估计信号标准差 (\sigma_X)"></a>2. 估计信号标准差 (\sigma_X)</h3><p>由于 (Y &#x3D; X + V)，且两者独立，有：</p>
+<p>[</p>
+<p>\sigma_Y^2 &#x3D; \sigma_X^2 + \sigma^2</p>
+<p>]</p>
+<p>其中：</p>
+<p>[</p>
+<p>\hat{\sigma}<em>Y^2 &#x3D; \frac{1}{n^2} \sum</em>{i,j} Y_{ij}^2</p>
+<p>]</p>
+<p>因此：</p>
+<p>[</p>
+<p>\hat{\sigma}_X &#x3D; \sqrt{\max(\hat{\sigma}_Y^2 - \hat{\sigma}^2, 0)}</p>
+<p>]</p>
+<p>若 (\hat{\sigma}^2 \geq \hat{\sigma}_Y^2)，则 (\hat{\sigma}_X &#x3D; 0)，此时阈值设为无穷大（所有系数置零）。</p>
+<hr>
+<h2 id="四、阈值处理流程"><a href="#四、阈值处理流程" class="headerlink" title="四、阈值处理流程"></a>四、阈值处理流程</h2><ol>
+<li><p>对带噪图像进行正交小波变换（如 Daubechies 小波，8 个消失矩，4 层分解）。</p>
+</li>
+<li><p>对每个细节子带（(HH_k, HL_k, LH_k)）：</p>
+<ul>
+<li><p>估计 (\hat{\sigma}) 和 (\hat{\sigma}_X)</p>
+</li>
+<li><p>计算阈值 (\hat{T}_B &#x3D; \hat{\sigma}^2 &#x2F; \hat{\sigma}_X)</p>
+</li>
+<li><p>应用软阈值函数处理系数</p>
+</li>
+</ul>
+</li>
+<li><p>保留最低频子带 (LL_J) 不变。</p>
+</li>
+<li><p>执行逆小波变换，得到去噪图像。</p>
+</li>
+</ol>
+<hr>
+<h2 id="五、与-SureShrink-的比较"><a href="#五、与-SureShrink-的比较" class="headerlink" title="五、与 SureShrink 的比较"></a>五、与 SureShrink 的比较</h2><ul>
+<li><p><strong>SureShrink</strong>：基于 Stein 无偏风险估计（SURE），在某些子带可能选择过大的通用阈值（(\sigma\sqrt{2\log M})），导致过度平滑。</p>
+</li>
+<li><p><strong>BayesShrink</strong>：阈值仅依赖 (\sigma) 和 (\sigma_X)，不依赖子带大小，更适应图像特性。</p>
+</li>
+<li><p>实验表明，BayesShrink 的 MSE 通常比 SureShrink 低 1%~8%，并且接近 OracleShrink（已知原始图像的最优软阈值）的 5% 以内。</p>
+</li>
+</ul>
+<hr>
+<h2 id="六、扩展：结合压缩的去噪（MDLQ）"><a href="#六、扩展：结合压缩的去噪（MDLQ）" class="headerlink" title="六、扩展：结合压缩的去噪（MDLQ）"></a>六、扩展：结合压缩的去噪（MDLQ）</h2><p>论文还提出了一种基于最小描述长度（MDL）的量化方法，用于同时实现去噪和压缩：</p>
+<ul>
+<li><p>使用 BayesShrink 阈值作为量化器的“零区”</p>
+</li>
+<li><p>对非零系数进行均匀量化，量化参数（(m, \Delta)）通过 MDLQ 准则选择</p>
+</li>
+<li><p>MDLQ 平衡了失真和编码长度：</p>
+<p>[</p>
+<p>\text{MDLQ} &#x3D; \frac{1}{2\sigma^2 \log 2} \sum (Y_{ij} - \hat{X}^Q_{ij})^2 + L(\hat{X}^Q | m, \Delta)</p>
+<p>]</p>
+</li>
+<li><p>实验表明，压缩确实能去噪（尤其当 (\sigma) 较大时），但会引入量化噪声。</p>
+</li>
+</ul>
+<hr>
+<h2 id="七、总结：BayesShrink-的优势"><a href="#七、总结：BayesShrink-的优势" class="headerlink" title="七、总结：BayesShrink 的优势"></a>七、总结：BayesShrink 的优势</h2><p>| 特点 | 说明 |</p>
+<p>|——|——|</p>
+<p>| <strong>自适应</strong> | 每个子带独立估计阈值 |</p>
+<p>| <strong>闭式解</strong> | (T_B &#x3D; \sigma^2 &#x2F; \sigma_X)，计算高效 |</p>
+<p>| <strong>数据驱动</strong> | 参数完全从观测图像估计 |</p>
+<p>| <strong>近最优</strong> | 风险接近 OracleShrink |</p>
+<p>| <strong>鲁棒</strong> | 对 GGD 形状参数不敏感（(\beta \in [0.5,1])） |</p>
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -240,7 +430,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -369,7 +559,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -503,7 +693,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -644,7 +834,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -757,7 +947,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -857,7 +1047,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -953,7 +1143,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1041,7 +1231,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1139,7 +1329,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
+      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1191,107 +1381,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">img = im2double(imread(&#x27;cameraman.tif&#x27;));</span><br><span class="line">noisy_img = imnoise(img, &#x27;gaussian&#x27;, 0, 0.005); % 加噪</span><br><span class="line"></span><br><span class="line">% 1. 普通梯度幅值 Map</span><br><span class="line">[gx, gy] = imgradientxy(noisy_img);</span><br><span class="line">G = sqrt(gx.^2 + gy.^2);</span><br><span class="line"></span><br><span class="line">% 2. 各向异性 Map</span><br><span class="line">A_map = compute_anisotropy_map(noisy_img, 1.5);</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line">subplot(1,3,1); imshow(noisy_img); title(&#x27;含噪图像&#x27;);</span><br><span class="line">subplot(1,3,2); imshow(G, []); title(&#x27;梯度幅值 Map (噪声很亮，容易误判)&#x27;);</span><br><span class="line">subplot(1,3,3); imshow(A_map, []); title(&#x27;各向异性 Map (噪声被抑制，仅保留边缘)&#x27;);</span><br><span class="line">colormap(gca, &#x27;jet&#x27;); colorbar;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><strong>在梯度图里，平坦区会有大量由噪声引起的亮点；但在各向异性图里，平坦区几乎全蓝（接近 0），只有真正的长线条边缘才会发红（接近 1）</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">Excel实现矩阵乘法，及其转置矩阵计算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-21 10:59:47" itemprop="dateModified" datetime="2026-09-21T10:59:47+00:00">2026-09-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h2><p>给出两个2*2的矩阵A、B，如下所示：</p>
-<p>A&#x3D;[1 2; 2 3];</p>
-<p>B&#x3D;[1 2; 1 4];</p>
-<p>矩阵A✖B在excel中函数表示为：MMULT(a00:a11,b00:b11),</p>
-<p>如下图，表格A4&#x3D;MMULT(A1:B2,D1:E2)&#x3D;矩阵A第一行✖矩阵B第一列&#x3D;1*2+2*1&#x3D;4，同理可得余下各行计算:</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_1.png"></p>
-<p>快捷指令：选中表格中经过计算出的A4附近2*2的表格，键盘F2，Ctrl+Shift+enter得出剩下计算结果</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_2.png"></p>
-<h2 id="二、转置矩阵"><a href="#二、转置矩阵" class="headerlink" title="二、转置矩阵"></a>二、转置矩阵</h2><p>转置矩阵公式：TRANSPOSE(a00:a01)</p>
-<p>D4表示矩阵C的第一行第一列（即C00）经过转置后的值，则有D4&#x3D;TRANSPOSE(A4:B5)&#x3D;4,其余各行同理。</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_3.png"></p>
-<p>快捷键：选中表格中经过计算出的D4附近2*2的表格，键盘F2，Ctrl+Shift+enter得出剩下计算结果，如下图所示：</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_4.png"></p>
-<p>三、矩阵的逆</p>
-<p>excel中矩阵的逆的函数表示&#x3D;MINVERSE(D4:E5)</p>
-<p><img src="/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/img_5.png"></p>
-<p>初步测试可行</p>
 
       
     </div>
