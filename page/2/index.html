@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,94 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/fetch_chat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Tools/fetch_chat/" class="post-title-link" itemprop="url">fetch_chat</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-08-14 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-14T00:00:00+00:00">2026-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>需要安装库：</p>
+<p>&nbsp;pip install requests beautifulsoup4 html2text</p>
+<p>代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">import html2text</span><br><span class="line"></span><br><span class="line">def clean_filename(title):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;清理文件名中的非法字符&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    return re.sub(r&#x27;[\\/:*?&quot;&amp;lt;&amp;gt;|]&#x27;, &#x27;_&#x27;, title).strip()</span><br><span class="line"></span><br><span class="line">def clean_html_content(content_soup):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    清理正文中的广告、公众号卡片、赞赏区，并根据关键字切断文末推送内容</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    # 1. 移除微信/知乎常见的标准广告与名片组件</span><br><span class="line"></span><br><span class="line">    unwanted_selectors = [</span><br><span class="line"></span><br><span class="line">        &#x27;.js_ad_area&#x27;, &#x27;#js_ad_area&#x27;,  # 微信底部广告</span><br><span class="line"></span><br><span class="line">        &#x27;#js_profile_qrcode&#x27;, &#x27;.qr_code_pc&#x27;,  # 微信二维码</span><br><span class="line"></span><br><span class="line">        &#x27;mp-common-profile&#x27;, &#x27;.mp-common-profile&#x27;,  # 微信公众号名片卡片</span><br><span class="line"></span><br><span class="line">        &#x27;.rich_media_tool&#x27;, &#x27;#js_to_user_profile&#x27;,  # 关注/阅读原文工具栏</span><br><span class="line"></span><br><span class="line">        &#x27;.reward_area&#x27;, &#x27;#js_reward_area&#x27;,  # 赞赏区域</span><br><span class="line"></span><br><span class="line">        &#x27;.rich_media_area_extra&#x27;,  # 微信底部推荐区</span><br><span class="line"></span><br><span class="line">        &#x27;[class*=&quot;Card&quot;]&#x27;, &#x27;[class*=&quot;McnLink&quot;]&#x27;,  # 知乎/微信营销卡片</span><br><span class="line"></span><br><span class="line">        &#x27;[class*=&quot;LinkCard&quot;]&#x27;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    for selector in unwanted_selectors:</span><br><span class="line"></span><br><span class="line">        for tag in content_soup.select(selector):</span><br><span class="line"></span><br><span class="line">            tag.decompose()</span><br><span class="line"></span><br><span class="line">    # 2. 尾部截断机制：遇到以下关键字时，直接斩断该节点及其后面的所有 DOM 节点</span><br><span class="line"></span><br><span class="line">    cutoff_keywords = [</span><br><span class="line"></span><br><span class="line">        &#x27;搜索公众号添加&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;扫码关注&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;往期推荐&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;推荐阅读&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;往期精彩&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;长按识别二维码&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;送礼物&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;发布于&#x27;</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    for tag in content_soup.find_all([&#x27;p&#x27;, &#x27;section&#x27;, &#x27;div&#x27;, &#x27;h2&#x27;, &#x27;h3&#x27;, &#x27;span&#x27;, &#x27;strong&#x27;]):</span><br><span class="line"></span><br><span class="line">        text = tag.get_text(strip=True)</span><br><span class="line"></span><br><span class="line">        # 判断节点文本较短（避免误删大容器）且包含截断关键字</span><br><span class="line"></span><br><span class="line">        if len(text) &amp;lt; 100 and any(kw in text for kw in cutoff_keywords):</span><br><span class="line"></span><br><span class="line">            print(f&quot;检测到尾部推送标记 [&#123;text[:15]&#125;...]，正在切断后续所有内容...&quot;)</span><br><span class="line"></span><br><span class="line">            # 获取该节点之后的所有 HTML 元素并彻底删除</span><br><span class="line"></span><br><span class="line">            next_elements = list(tag.find_all_next())</span><br><span class="line"></span><br><span class="line">            for elem in next_elements:</span><br><span class="line"></span><br><span class="line">                elem.decompose()</span><br><span class="line"></span><br><span class="line">            # 删除当前节点本身</span><br><span class="line"></span><br><span class="line">            tag.decompose()</span><br><span class="line"></span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    # 3. 清理残余的二维码图片（通过 URL 特征过滤）</span><br><span class="line"></span><br><span class="line">    for img in content_soup.find_all(&#x27;img&#x27;):</span><br><span class="line"></span><br><span class="line">        src = (img.get(&#x27;data-src&#x27;) or img.get(&#x27;src&#x27;) or &#x27;&#x27;).lower()</span><br><span class="line"></span><br><span class="line">        if any(k in src for k in [&#x27;qrcode&#x27;, &#x27;qr_code&#x27;]):</span><br><span class="line"></span><br><span class="line">            img.decompose()</span><br><span class="line"></span><br><span class="line">    return content_soup</span><br><span class="line"></span><br><span class="line">def download_and_process_images(content_soup, safe_title, base_dir, headers):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    下载文章中的所有图片，保存到 notes/文件夹A/文件夹A 子文件夹中，</span><br><span class="line"></span><br><span class="line">    并修改 HTML 中的引用路径为相对路径</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    img_dir = os.path.join(base_dir, safe_title)</span><br><span class="line"></span><br><span class="line">    os.makedirs(img_dir, exist_ok=True)</span><br><span class="line"></span><br><span class="line">    img_tags = content_soup.find_all(&#x27;img&#x27;)</span><br><span class="line"></span><br><span class="line">    img_count = 0</span><br><span class="line"></span><br><span class="line">    for img in img_tags:</span><br><span class="line"></span><br><span class="line">        img_url = img.get(&#x27;data-src&#x27;) or img.get(&#x27;src&#x27;) or img.get(&#x27;data-original&#x27;)</span><br><span class="line"></span><br><span class="line">        if not img_url or not img_url.startswith(&#x27;http&#x27;):</span><br><span class="line"></span><br><span class="line">            continue</span><br><span class="line"></span><br><span class="line">        img_count += 1</span><br><span class="line"></span><br><span class="line">        img_filename = f&quot;img_&#123;img_count:02d&#125;.png&quot;</span><br><span class="line"></span><br><span class="line">        img_save_path = os.path.join(img_dir, img_filename)</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line"></span><br><span class="line">            print(f&quot;正在下载图片 [&#123;img_count&#125;]: &#123;img_url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">            img_resp = requests.get(img_url, headers=headers, timeout=15)</span><br><span class="line"></span><br><span class="line">            if img_resp.status_code == 200:</span><br><span class="line"></span><br><span class="line">                with open(img_save_path, &#x27;wb&#x27;) as f:</span><br><span class="line"></span><br><span class="line">                    f.write(img_resp.content)</span><br><span class="line"></span><br><span class="line">                # 更新 Markdown 内引用的相对路径</span><br><span class="line"></span><br><span class="line">                relative_path = f&quot;&#123;safe_title&#125;/&#123;img_filename&#125;&quot;</span><br><span class="line"></span><br><span class="line">                img[&#x27;src&#x27;] = relative_path</span><br><span class="line"></span><br><span class="line">                # 清理多余属性</span><br><span class="line"></span><br><span class="line">                for attr in [&#x27;data-src&#x27;, &#x27;data-original&#x27;, &#x27;srcset&#x27;, &#x27;style&#x27;]:</span><br><span class="line"></span><br><span class="line">                    if attr in img.attrs:</span><br><span class="line"></span><br><span class="line">                        del img.attrs[attr]</span><br><span class="line"></span><br><span class="line">            else:</span><br><span class="line"></span><br><span class="line">                print(f&quot;图片下载失败 (HTTP &#123;img_resp.status_code&#125;): &#123;img_url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">        except Exception as e:</span><br><span class="line"></span><br><span class="line">            print(f&quot;下载图片发生异常: &#123;e&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    return content_soup</span><br><span class="line"></span><br><span class="line">def parse_zhihu(soup, url):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;专门针对知乎专栏/回答的解析器&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    author = &quot;Unknown&quot;</span><br><span class="line"></span><br><span class="line">    content_html = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    script_tag = soup.find(&#x27;script&#x27;, id=&#x27;js-initialData&#x27;)</span><br><span class="line"></span><br><span class="line">    if script_tag and script_tag.string:</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line"></span><br><span class="line">            data = json.loads(script_tag.string)</span><br><span class="line"></span><br><span class="line">            article_id = url.split(&#x27;/&#x27;)[-1].split(&#x27;?&#x27;)[0]</span><br><span class="line"></span><br><span class="line">            articles = data.get(&#x27;initialState&#x27;, &#123;&#125;).get(&#x27;entities&#x27;, &#123;&#125;).get(&#x27;articles&#x27;, &#123;&#125;)</span><br><span class="line"></span><br><span class="line">            if article_id in articles:</span><br><span class="line"></span><br><span class="line">                art = articles[article_id]</span><br><span class="line"></span><br><span class="line">                author = art.get(&#x27;author&#x27;, &#123;&#125;).get(&#x27;name&#x27;, author)</span><br><span class="line"></span><br><span class="line">                content_html = art.get(&#x27;content&#x27;, &#x27;&#x27;)</span><br><span class="line"></span><br><span class="line">                print(&quot;Successfully parsed Zhihu article via initialData JSON!&quot;)</span><br><span class="line"></span><br><span class="line">        except Exception as e:</span><br><span class="line"></span><br><span class="line">            print(f&quot;JSON parse fallback failed: &#123;e&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    if not content_html:</span><br><span class="line"></span><br><span class="line">        author_node = soup.find(&#x27;meta&#x27;, &#123;&#x27;itemprop&#x27;: &#x27;name&#x27;&#125;) or soup.find(&#x27;div&#x27;, class_=&#x27;AuthorInfo-name&#x27;)</span><br><span class="line"></span><br><span class="line">        if author_node:</span><br><span class="line"></span><br><span class="line">            author = author_node.get(&#x27;content&#x27;) or author_node.get_text(strip=True)</span><br><span class="line"></span><br><span class="line">        content_node = soup.find(&#x27;div&#x27;, class_=&#x27;Post-RichTextContainer&#x27;) or \</span><br><span class="line"></span><br><span class="line">                       soup.find(&#x27;div&#x27;, class_=&#x27;RichText&#x27;) or \</span><br><span class="line"></span><br><span class="line">                       soup.find(&#x27;article&#x27;)</span><br><span class="line"></span><br><span class="line">        if content_node:</span><br><span class="line"></span><br><span class="line">            content_html = str(content_node)</span><br><span class="line"></span><br><span class="line">    return author, content_html</span><br><span class="line"></span><br><span class="line">def parse_article(url, custom_title):</span><br><span class="line"></span><br><span class="line">    headers = &#123;</span><br><span class="line"></span><br><span class="line">        &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;Accept&#x27;: &#x27;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#x27;,</span><br><span class="line"></span><br><span class="line">        &#x27;Accept-Language&#x27;: &#x27;zh-CN,zh-Hans;q=0.9&#x27;,</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(f&quot;Requesting: &#123;url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    response = requests.get(url, headers=headers, timeout=15)</span><br><span class="line"></span><br><span class="line">    print(f&quot;Response Status Code: &#123;response.status_code&#125;&quot;)</span><br><span class="line"></span><br><span class="line">    if response.status_code != 200:</span><br><span class="line"></span><br><span class="line">        print(f&quot;Error: HTTP &#123;response.status_code&#125; returned by target site.&quot;)</span><br><span class="line"></span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    response.encoding = &#x27;utf-8&#x27;</span><br><span class="line"></span><br><span class="line">    soup = BeautifulSoup(response.text, &#x27;html.parser&#x27;)</span><br><span class="line"></span><br><span class="line">    author = &quot;Unknown&quot;</span><br><span class="line"></span><br><span class="line">    content_html = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    if &quot;zhihu.com&quot; in url:</span><br><span class="line"></span><br><span class="line">        author, content_html = parse_zhihu(soup, url)</span><br><span class="line"></span><br><span class="line">    elif &quot;mp.weixin.qq.com&quot; in url:</span><br><span class="line"></span><br><span class="line">        author_node = soup.find(&#x27;a&#x27;, id=&#x27;js_name&#x27;) or soup.find(&#x27;span&#x27;, class_=&#x27;profile_meta_value&#x27;)</span><br><span class="line"></span><br><span class="line">        if author_node:</span><br><span class="line"></span><br><span class="line">            author = author_node.get_text(strip=True)</span><br><span class="line"></span><br><span class="line">        content_node = soup.find(&#x27;div&#x27;, class_=&#x27;rich_media_content&#x27;) or soup.find(&#x27;div&#x27;, id=&#x27;js_content&#x27;)</span><br><span class="line"></span><br><span class="line">        if content_node:</span><br><span class="line"></span><br><span class="line">            content_html = str(content_node)</span><br><span class="line"></span><br><span class="line">    else:</span><br><span class="line"></span><br><span class="line">        content_node = soup.find(&#x27;article&#x27;) or soup.find(&#x27;main&#x27;)</span><br><span class="line"></span><br><span class="line">        content_html = str(content_node) if content_node else &quot;&quot;</span><br><span class="line"></span><br><span class="line">    if not content_html:</span><br><span class="line"></span><br><span class="line">        print(f&quot;Error: Could not extract content HTML from &#123;url&#125;&quot;)</span><br><span class="line"></span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    safe_title = clean_filename(custom_title)</span><br><span class="line"></span><br><span class="line">    base_dir = os.path.join(&quot;notes&quot;, safe_title)</span><br><span class="line"></span><br><span class="line">    os.makedirs(base_dir, exist_ok=True)</span><br><span class="line"></span><br><span class="line">    # 1. 解析 DOM</span><br><span class="line"></span><br><span class="line">    content_soup = BeautifulSoup(content_html, &#x27;html.parser&#x27;)</span><br><span class="line"></span><br><span class="line">    # 2. 执行【尾部截断与净化】（在此步就会彻底砍掉“搜索添加公众号”及之后的所有内容）</span><br><span class="line"></span><br><span class="line">    content_soup = clean_html_content(content_soup)</span><br><span class="line"></span><br><span class="line">    # 3. 下载保留下来的正文图片（广告与引流图因已被删除，不会被下载）</span><br><span class="line"></span><br><span class="line">    content_soup = download_and_process_images(content_soup, safe_title, base_dir, headers)</span><br><span class="line"></span><br><span class="line">    # 4. HTML 转 Markdown</span><br><span class="line"></span><br><span class="line">    h = html2text.HTML2Text()</span><br><span class="line"></span><br><span class="line">    h.ignore_links = False</span><br><span class="line"></span><br><span class="line">    h.ignore_images = False</span><br><span class="line"></span><br><span class="line">    h.body_width = 0</span><br><span class="line"></span><br><span class="line">    markdown_body = h.handle(str(content_soup))</span><br><span class="line"></span><br><span class="line">    markdown_content = f&quot;&quot;&quot;---</span><br><span class="line"></span><br><span class="line">title: &quot;&#123;custom_title&#125;&quot;</span><br><span class="line"></span><br><span class="line">author: &quot;&#123;author&#125;&quot;</span><br><span class="line"></span><br><span class="line">source_url: &quot;&#123;url&#125;&quot;</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"># &#123;custom_title&#125;</span><br><span class="line"></span><br><span class="line">&amp;gt; **作者:** &#123;author&#125;  </span><br><span class="line"></span><br><span class="line">&amp;gt; **原文链接:** [&#123;url&#125;](&#123;url&#125;)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">&#123;markdown_body&#125;</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    return safe_title, base_dir, markdown_content</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line"></span><br><span class="line">    if len(sys.argv) &amp;lt; 3:</span><br><span class="line"></span><br><span class="line">        print(&quot;Usage: python fetch_wechat.py &amp;lt;url&amp;gt; &amp;lt;custom_title&amp;gt;&quot;)</span><br><span class="line"></span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    url = sys.argv[1]</span><br><span class="line"></span><br><span class="line">    custom_title = sys.argv[2]</span><br><span class="line"></span><br><span class="line">    safe_title, base_dir, md_content = parse_article(url, custom_title)</span><br><span class="line"></span><br><span class="line">    filepath = os.path.join(base_dir, f&quot;&#123;safe_title&#125;.md&quot;)</span><br><span class="line"></span><br><span class="line">    with open(filepath, &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line"></span><br><span class="line">        f.write(md_content)</span><br><span class="line"></span><br><span class="line">    print(f&quot;\n成功完成！Markdown 文件已保存至: &#123;filepath&#125;&quot;)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -240,7 +328,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -430,7 +518,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -559,7 +647,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -693,7 +781,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -834,7 +922,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -947,7 +1035,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1047,7 +1135,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1143,7 +1231,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1231,7 +1319,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 08:58:58" itemprop="dateModified" datetime="2026-09-22T08:58:58+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1267,120 +1355,6 @@
 <p>Matlab</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">% UIFigure的键盘按下回调</span><br><span class="line">function UIFigureKeyPress(app, event)</span><br><span class="line">    % 检测用户是否按下了 Ctrl + V</span><br><span class="line">    if strcmp(event.Key, &#x27;v&#x27;) &amp;&amp; any(strcmp(event.Modifier, &#x27;control&#x27;))</span><br><span class="line">        </span><br><span class="line">        % 读取剪贴板数据</span><br><span class="line">        rawText = clipboard(&#x27;paste&#x27;);</span><br><span class="line">        if isempty(rawText), return; end</span><br><span class="line">        </span><br><span class="line">        % 解析行和列</span><br><span class="line">        rows = splitlines(strtrim(rawText));</span><br><span class="line">        tempData = cell(numel(rows), 1); % 假设你只有一列</span><br><span class="line">        </span><br><span class="line">        for i = 1:numel(rows)</span><br><span class="line">            val = str2double(rows&#123;i&#125;);</span><br><span class="line">            if isnan(val)</span><br><span class="line">                tempData&#123;i, 1&#125; = rows&#123;i&#125;;</span><br><span class="line">            else</span><br><span class="line">                tempData&#123;i, 1&#125; = val;</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">        </span><br><span class="line">        % 自动填充到表格中</span><br><span class="line">        app.UITable.Data = tempData;</span><br><span class="line">        </span><br><span class="line">        % 重新应用居中样式</span><br><span class="line">        s = uistyle(&#x27;HorizontalAlignment&#x27;, &#x27;center&#x27;);</span><br><span class="line">        addStyle(app.UITable, s, &#x27;table&#x27;, &#x27;&#x27;);</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <p>方案一测试OK</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%90%84%E9%A1%B9%E5%BC%82%E6%80%A7%E6%A3%80%E6%B5%8B%E5%9B%BE%E5%83%8Fmap%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%90%84%E9%A1%B9%E5%BC%82%E6%80%A7%E6%A3%80%E6%B5%8B%E5%9B%BE%E5%83%8Fmap%E5%9B%BE/" class="post-title-link" itemprop="url">各项异性检测图像map图</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-29T00:00:00+00:00">2026-07-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>“各向异性（Anisotropy）”往往比单纯用梯度幅值更精准、更抗噪！</p>
-<p>理由如下：</p>
-<ol>
-<li><strong>梯度幅值（Gradient Magnitude）容易被噪声误判</strong>： 噪声在图像平坦区会导致梯度突然变大，产生假边缘，导致 ϕ(G) 误判，去噪不彻底。<br>    <br>2.  <strong>各向异性描述的是“结构一致性”</strong>：<br>    <br>    *   <strong>平坦区 &#x2F; 纯噪声区</strong>：各个方向的变化率差不多，表现为<strong>各向同性（Isotropic，各向异性指标趋近于 0）</strong>。<br>        <br>    *   <strong>真实边缘 &#x2F; 纹理区</strong>：沿着边缘方向灰度变化极小，垂直于边缘方向灰度变化极大，表现为<strong>高各向异性（Anisotropic，各向异性指标趋近于 1）</strong>。</li>
-</ol>
-<p>因此，<strong>利用各向异性度量（Anisotropy Measure）作为 Map 图，可以完美抵御平坦区的噪声干扰，只在真正的线条&#x2F;边缘处保留 NLM 的结构识别能力</strong>。</p>
-<h3 id="一、-如何计算各向异性-Map？（基于结构张量）"><a href="#一、-如何计算各向异性-Map？（基于结构张量）" class="headerlink" title="一、 如何计算各向异性 Map？（基于结构张量）"></a>一、 如何计算各向异性 Map？（基于结构张量）</h3><p>计算局部各向异性最经典、稳健的方法是利用<strong>结构张量（Structure Tensor &#x2F; Second Moment Matrix）</strong>：</p>
-<ol>
-<li><strong>计算图像梯度</strong>：Jx​=∂x∂I​,Jy​=∂y∂I​</li>
-<li><strong>构建结构张量矩阵</strong>（对梯度外积进行高斯高斯滤波平滑以抵御噪声）：   <br>   $S &#x3D; \begin{bmatrix} J_{xx} &amp; J_{xy} \ J_{xy} &amp; J_{yy} \end{bmatrix}$<br></li>
-<li><strong>求解特征值 λ1​,λ2​ (λ1​≥λ2​≥0)</strong>：<br>  *   λ1​ 代表最大变化率方向的能量；</li>
-</ol>
-<p><br>  *   λ2​ 代表最小变化率方向的能量。</p>
-<ol start="4">
-<li><strong>计算各向异性指标 A</strong>： 常用的各向异性度量函数有：<br>    <br>    $A &#x3D; \frac{\lambda_1 - \lambda_2}{\lambda_1 + \lambda_2 + \epsilon}$​<br>    <br>    &gt; <strong>物理意义</strong>：<br>     <br>    &gt; *   <strong>平坦区或噪声区</strong>：λ1​≈λ2​→A≈0 （各向同性，Patch diff 缩放归零，退化为均值&#x2F;高斯，去噪极强）。<br>        <br>    &gt; *   <strong>单向强边缘&#x2F;纹理</strong>：λ1​≫λ2​→A≈1 （高各向异性，Patch diff 保持不变，开启 NLM 边缘保护）。<br></li>
-</ol>
-<h3 id="二、-将各向异性-Map-代入-NLM-的-Patch-差异"><a href="#二、-将各向异性-Map-代入-NLM-的-Patch-差异" class="headerlink" title="二、 将各向异性 Map 代入 NLM 的 Patch 差异"></a>二、 将各向异性 Map 代入 NLM 的 Patch 差异</h3><p>用各向异性指标 A(x,y)∈[0,1] 替换原来的 ϕ(G)，直接调控 Patch 的原始差异：</p>
-<p>$D_{adj}(i,j) &#x3D; A(i) \cdot D_{raw}(i,j)$</p>
-<ul>
-<li><strong>当 A(i)→0（平坦区&#x2F;噪声）</strong>：Dadj​→0，所有 Patch 权重 exp(0)=1，退化为均值滤波。<br>    <br>*   <strong>当 A(i)→1（真实边缘）</strong>：Dadj​→Draw​，恢复标准 NLM 灰度匹配。</li>
-</ul>
-<h3 id="三、-MATLAB-实现代码"><a href="#三、-MATLAB-实现代码" class="headerlink" title="三、 MATLAB 实现代码"></a>三、 MATLAB 实现代码</h3><p>以下是在 MATLAB 中利用结构张量计算各向异性 Map 并调控 Patch 距离的核心代码：</p>
-<p>Matlab</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">function phi_map = compute_anisotropy_map(img, sigma_tensor)</span><br><span class="line">    % img: 输入图像 (double 格式 [0,1])</span><br><span class="line">    % sigma_tensor: 结构张量的高斯平滑半径 (推荐 1.0 ~ 2.0，用于抗噪)</span><br><span class="line">    if nargin &lt; 2</span><br><span class="line">        sigma_tensor = 1.5;</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    % 1. 计算图像梯度</span><br><span class="line">    [Ix, Iy] = imgradientxy(img, &#x27;CentralDifference&#x27;);</span><br><span class="line"></span><br><span class="line">    % 2. 构建结构张量的三个分量并进行高斯平滑 (抑制噪声的关键步骤)</span><br><span class="line">    Jxx = imgaussfilt(Ix.^2, sigma_tensor);</span><br><span class="line">    Jyy = imgaussfilt(Iy.^2, sigma_tensor);</span><br><span class="line">    Jxy = imgaussfilt(Ix.*Iy, sigma_tensor);</span><br><span class="line"></span><br><span class="line">    % 3. 解析求解 2x2 对称矩阵的两个特征值 lambda1 和 lambda2</span><br><span class="line">    % 行列式与迹公式：</span><br><span class="line">    % trace = Jxx + Jyy</span><br><span class="line">    % det = Jxx*Jyy - Jxy^2</span><br><span class="line">    % lambda = (trace ± sqrt(trace^2 - 4*det)) / 2</span><br><span class="line">    </span><br><span class="line">    trace_S = Jxx + Jyy;</span><br><span class="line">    det_S = Jxx .* Jyy - Jxy.^2;</span><br><span class="line">    </span><br><span class="line">    % 防止开方出现负微小值</span><br><span class="line">    delta = max(0, trace_S.^2 - 4 * det_S); </span><br><span class="line">    </span><br><span class="line">    lambda1 = 0.5 * (trace_S + sqrt(delta));</span><br><span class="line">    lambda2 = 0.5 * (trace_S - sqrt(delta));</span><br><span class="line"></span><br><span class="line">    % 4. 计算各向异性 Map A = (lambda1 - lambda2) / (lambda1 + lambda2 + eps)</span><br><span class="line">    eps_val = 1e-5; % 防止除以零</span><br><span class="line">    A = (lambda1 - lambda2) ./ (lambda1 + lambda2 + eps_val);</span><br><span class="line"></span><br><span class="line">    % 5. 可选：用 Sigmoid/指数平滑映射，增强对比度</span><br><span class="line">    % 使得弱结构区更彻底趋近于 0，强结构区趋近于 1</span><br><span class="line">    phi_map = A.^2; % 进一步压制低各向异性的噪声区</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h3 id="效果对比演示："><a href="#效果对比演示：" class="headerlink" title="效果对比演示："></a>效果对比演示：</h3><p>你可以在 MATLAB 中运行以下代码直观对比：</p>
-<p>Matlab</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">img = im2double(imread(&#x27;cameraman.tif&#x27;));</span><br><span class="line">noisy_img = imnoise(img, &#x27;gaussian&#x27;, 0, 0.005); % 加噪</span><br><span class="line"></span><br><span class="line">% 1. 普通梯度幅值 Map</span><br><span class="line">[gx, gy] = imgradientxy(noisy_img);</span><br><span class="line">G = sqrt(gx.^2 + gy.^2);</span><br><span class="line"></span><br><span class="line">% 2. 各向异性 Map</span><br><span class="line">A_map = compute_anisotropy_map(noisy_img, 1.5);</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line">subplot(1,3,1); imshow(noisy_img); title(&#x27;含噪图像&#x27;);</span><br><span class="line">subplot(1,3,2); imshow(G, []); title(&#x27;梯度幅值 Map (噪声很亮，容易误判)&#x27;);</span><br><span class="line">subplot(1,3,3); imshow(A_map, []); title(&#x27;各向异性 Map (噪声被抑制，仅保留边缘)&#x27;);</span><br><span class="line">colormap(gca, &#x27;jet&#x27;); colorbar;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>在梯度图里，平坦区会有大量由噪声引起的亮点；但在各向异性图里，平坦区几乎全蓝（接近 0），只有真正的长线条边缘才会发红（接近 1）</strong>。</p>
 
       
     </div>
