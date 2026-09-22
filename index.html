@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-22 03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="创建时间：2026-09-22 07:42:36" itemprop="dateCreated datePublished" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,7 +395,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-22 03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="创建时间：2026-09-22 07:42:36" itemprop="dateCreated datePublished" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -475,7 +475,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-09-22 03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="创建时间：2026-09-22 07:42:36" itemprop="dateCreated datePublished" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -560,7 +560,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-09-22 00:00:00 / 修改时间：03:42:55" itemprop="dateCreated datePublished" datetime="2026-09-22T00:00:00+00:00">2026-09-22</time>
+      <time title="创建时间：2026-09-22 00:00:00 / 修改时间：07:42:36" itemprop="dateCreated datePublished" datetime="2026-09-22T00:00:00+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -623,14 +623,12 @@
 </li>
 </ol>
 <h2 id="二、-算法推导与详细实现步骤"><a href="#二、-算法推导与详细实现步骤" class="headerlink" title="二、 算法推导与详细实现步骤"></a>二、 算法推导与详细实现步骤</h2><p>基于大气模型和暗通道先验，去雾算法主要分为 5 个清晰的步骤：</p>
-<p>1</p>
-<p>计算暗通道图 (Dark Channel Generation)</p>
+<p>1 计算暗通道图 (Dark Channel Generation)</p>
 <p>Step 1</p>
 <p>**1.计算暗通道图 (Dark Channel Generation)：**Step 1。</p>
 <p>对输入的有雾图像 I(x)，先在 RGB 3 个通道中取每像素的最小值，随后使用大小为 r×r（通常 15×15）的最小值滤波器进行空间平滑：</p>
 <p>Idark(x)=y∈Ω(x)min​(c∈{r,g,b}min​Ic(y))</p>
-<p>2</p>
-<p>估计全球大气光值 A (Atmospheric Light Estimation)</p>
+<p>2 估计全球大气光值 A (Atmospheric Light Estimation)</p>
 <p>Step 2</p>
 <p>**2.估计全球大气光值 A (Atmospheric Light Estimation)：**Step 2。</p>
 <p>直接找图像中最亮的像素往往会被白色的建筑物或白色车身干扰。何博士利用暗通道图来进行稳健的定位：</p>
@@ -642,8 +640,7 @@
 <li><p>取原图这些位置中 RGB 亮度和最高的那个像素点的值，作为大气光向量 A=(Ar​,Ag​,Ab​)。</p>
 </li>
 </ol>
-<p>3</p>
-<p>粗略估计透射率 t(x) (Initial Transmission)</p>
+<p>3 粗略估计透射率 t(x) (Initial Transmission)</p>
 <p>Step 3</p>
 <p>**3.粗略估计透射率 t(x) (Initial Transmission)：**Step 3。</p>
 <p>将大气模型方程 I(x)=J(x)t(x)+A(1−t(x)) 两边同时除以大气光常数 Ac：</p>
@@ -653,16 +650,14 @@
 <p>根据暗通道先验，无雾图像 J 的暗通道 miny∈Ω(x)​(minc​AcJc(y)​)≈0，因此中间项消去，得出粗估透射率：</p>
 <p>t~(x)=1−ωy∈Ω(x)min​(cmin​AcIc(y)​)</p>
 <p><em>注：引入参数 ω∈(0,1]（论文中通常取 ω=0.95）是为了保留极少量的远景雾气，使图像保持自然的景深感和真实感。</em></p>
-<p>4</p>
-<p>透射率图细化 (Transmission Refinement)</p>
+<p>4 透射率图细化 (Transmission Refinement)</p>
 <p>Step 4</p>
 <p>**4.透射率图细化 (Transmission Refinement)：**Step 4。</p>
 <p>因为 Step 3 中的 t~(x) 采用了块状的最小值滤波（Ω(x)），导致透射率图在物体边缘处存在<strong>块效应</strong>和<strong>边缘模糊</strong>（景深突变边缘会出现 Halo 晕轮效应）。</p>
 <p>原论文采用了 <strong>Soft Matting（软切割）</strong> 算法，利用原图的边缘信息对透射率图进行导向修正，使 t(x) 的边缘与原图结构精确对齐：</p>
 <p>tmin​(∥t−t~∥2+λtTLt)</p>
 <p><em>（注：在何博士 2010 年提出 <strong>引导滤波 (Guided Filter)</strong> 后，通常使用 Guided Filter 替代 Soft Matting，可以在保持高精度的同时将计算速度提升数个数量级。）</em></p>
-<p>5</p>
-<p>场景光复原 (Scene Radiance Recovery)</p>
+<p>5 场景光复原 (Scene Radiance Recovery)</p>
 <p>Step 5</p>
 <p>**5.场景光复原 (Scene Radiance Recovery)：**Step 5。</p>
 <p>已知大气光 A 和精确的透射率 t(x)，对物理模型求逆变换即可得到无雾图像：</p>
@@ -709,12 +704,7 @@
 <li><p>在复原公式 $J(x) &#x3D; \frac{I(x) - A}{t(x)} + A$ 中，由于 $t(x)$ 在这些离散点处发生骤变，除法放大了高频跳变，复原出的画面就会出现<strong>点状斑痕（Noise Amplification &amp; Blotchy Artifacts）</strong>。</p>
 </li>
 </ul>
-<h4 id="窗口大小（-Omega-）的选择权衡（Trade-off）："><a href="#窗口大小（-Omega-）的选择权衡（Trade-off）：" class="headerlink" title="窗口大小（$\Omega$）的选择权衡（Trade-off）："></a>窗口大小（$\Omega$）的选择权衡（Trade-off）：</h4><p>| 窗口大小 | 优点 | 缺点 &#x2F; 瑕疵 |</p>
-<p>| — | — | — |</p>
-<p>| <strong>小窗口</strong> (如 $3 \times 3$) | 边缘细节清晰，残影&#x2F;光晕（Halo Effect）较少 | 暗通道先验失效概率高，产生<strong>离散噪声点&#x2F;块状斑纹</strong>，透射率被高估导致去雾不彻底。 |</p>
-<p>| <strong>大窗口</strong> (如 $15 \times 15$) | 先验统计稳定性高，$J^{dark} \approx 0$ 更可靠，去雾彻底 | 景深突变边缘（如建筑物与天空交界处）出现严重的<strong>光晕现象（Halo Artifacts）</strong>，必须依赖后续引导滤波&#x2F;软切割进行高代价修正。 |</p>
-<hr>
-
+<h4 id="窗口大小（-Omega-）的选择权衡（Trade-off）：—-窗口大小-优点-缺点-瑕疵-—-—-—-小窗口-如-3-times-3-边缘细节清晰，残影-光晕（Halo-Effect）较少-暗通道先验失效概率高，产生离散噪声点-块状斑纹，透射率被高估导致去雾不彻底。-大窗口-如-15-times-15-先验统计稳定性高，-J-dark-approx-0-更可靠，去雾彻底-景深突变边缘（如建筑物与天空交界处）出现严重的光晕现象（Halo-Artifacts），必须依赖后续引导滤波-软切割进行高代价修正。-—"><a href="#窗口大小（-Omega-）的选择权衡（Trade-off）：—-窗口大小-优点-缺点-瑕疵-—-—-—-小窗口-如-3-times-3-边缘细节清晰，残影-光晕（Halo-Effect）较少-暗通道先验失效概率高，产生离散噪声点-块状斑纹，透射率被高估导致去雾不彻底。-大窗口-如-15-times-15-先验统计稳定性高，-J-dark-approx-0-更可靠，去雾彻底-景深突变边缘（如建筑物与天空交界处）出现严重的光晕现象（Halo-Artifacts），必须依赖后续引导滤波-软切割进行高代价修正。-—" class="headerlink" title="窗口大小（$\Omega$）的选择权衡（Trade-off）：—| 窗口大小 | 优点 | 缺点 &#x2F; 瑕疵 || — | — | — || 小窗口 (如 $3 \times 3$) | 边缘细节清晰，残影&#x2F;光晕（Halo Effect）较少 | 暗通道先验失效概率高，产生离散噪声点&#x2F;块状斑纹，透射率被高估导致去雾不彻底。 || 大窗口 (如 $15 \times 15$) | 先验统计稳定性高，$J^{dark} \approx 0$ 更可靠，去雾彻底 | 景深突变边缘（如建筑物与天空交界处）出现严重的光晕现象（Halo Artifacts），必须依赖后续引导滤波&#x2F;软切割进行高代价修正。 |—"></a>窗口大小（$\Omega$）的选择权衡（Trade-off）：<br>—<br>| 窗口大小 | 优点 | 缺点 &#x2F; 瑕疵 |<br>| — | — | — |<br>| <strong>小窗口</strong> (如 $3 \times 3$) | 边缘细节清晰，残影&#x2F;光晕（Halo Effect）较少 | 暗通道先验失效概率高，产生<strong>离散噪声点&#x2F;块状斑纹</strong>，透射率被高估导致去雾不彻底。 |<br>| <strong>大窗口</strong> (如 $15 \times 15$) | 先验统计稳定性高，$J^{dark} \approx 0$ 更可靠，去雾彻底 | 景深突变边缘（如建筑物与天空交界处）出现严重的<strong>光晕现象（Halo Artifacts）</strong>，必须依赖后续引导滤波&#x2F;软切割进行高代价修正。 |<br>—</h4>
       
     </div>
 
@@ -776,7 +766,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -888,7 +878,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -975,7 +965,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1093,7 +1083,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1217,7 +1207,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1308,7 +1298,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-22 03:42:55" itemprop="dateModified" datetime="2026-09-22T03:42:55+00:00">2026-09-22</time>
+      <time title="修改时间：2026-09-22 07:42:36" itemprop="dateModified" datetime="2026-09-22T07:42:36+00:00">2026-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
