@@ -28,7 +28,7 @@
 <meta property="og:description" content="这篇论文《Adaptive Wavelet Thresholding for Image Denoising and Compression》提出了一种自适应的小波阈值去噪方法，称为 BayesShrink。它通过贝叶斯框架和广义高斯分布（GGD）建模小波系数的统计特性，实现了对每个子带的自适应阈值选择。下面我为你详细讲解其算法原理和实现步骤。  一、核心思想图像去噪的目标是从带噪图像中恢复出原始">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-08-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-28T07:23:42.782Z">
+<meta property="article:modified_time" content="2026-10-01T10:25:01.737Z">
 <meta property="article:author" content="Qing Long">
 <meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary">
@@ -247,7 +247,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-09-28 07:23:42" itemprop="dateModified" datetime="2026-09-28T07:23:42+00:00">2026-09-28</time>
+      <time title="修改时间：2026-10-01 10:25:01" itemprop="dateModified" datetime="2026-10-01T10:25:01+00:00">2026-10-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,56 +271,34 @@
     <div class="post-body" itemprop="articleBody"><p>这篇论文《Adaptive Wavelet Thresholding for Image Denoising and Compression》提出了一种自适应的小波阈值去噪方法，称为 <strong>BayesShrink</strong>。它通过贝叶斯框架和广义高斯分布（GGD）建模小波系数的统计特性，实现了对每个子带的自适应阈值选择。下面我为你详细讲解其算法原理和实现步骤。</p>
 <hr>
 <h2 id="一、核心思想"><a href="#一、核心思想" class="headerlink" title="一、核心思想"></a>一、核心思想</h2><p>图像去噪的目标是从带噪图像中恢复出原始图像：</p>
-<p>[</p>
-<p>g_{ij} &#x3D; f_{ij} + \epsilon_{ij}, \quad \epsilon_{ij} \sim N(0, \sigma^2)</p>
-<p>]</p>
+<p>[<br>g_{ij} &#x3D; f_{ij} + \epsilon_{ij}, \quad \epsilon_{ij} \sim N(0, \sigma^2)<br>]</p>
 <p>在正交小波变换域中，带噪小波系数为：</p>
-<p>[</p>
-<p>Y &#x3D; X + V</p>
-<p>]</p>
+<p>[<br>Y &#x3D; X + V<br>]</p>
 <p>其中 (X) 是原始信号的小波系数，(V) 是高斯噪声。<strong>阈值去噪</strong>的核心是：对小波系数进行非线性处理，保留大系数（代表信号），将小系数（代表噪声）置零。</p>
 <p>BayesShrink 的核心贡献是：<strong>为每个子带推导出一个接近最优的闭式阈值</strong>。</p>
 <hr>
 <h2 id="二、BayesShrink-阈值的推导"><a href="#二、BayesShrink-阈值的推导" class="headerlink" title="二、BayesShrink 阈值的推导"></a>二、BayesShrink 阈值的推导</h2><h3 id="1-假设小波系数服从-GGD"><a href="#1-假设小波系数服从-GGD" class="headerlink" title="1. 假设小波系数服从 GGD"></a>1. 假设小波系数服从 GGD</h3><p>广义高斯分布（GGD）定义为：</p>
-<p>[</p>
-<p>GG_{\sigma_X, \beta}(x) &#x3D; C(\sigma_X, \beta) \exp\left( -[\alpha(\sigma_X, \beta)|x|]^\beta \right)</p>
-<p>]</p>
+<p>[<br>GG_{\sigma_X, \beta}(x) &#x3D; C(\sigma_X, \beta) \exp\left( -[\alpha(\sigma_X, \beta)|x|]^\beta \right)<br>]</p>
 <p>其中 (\sigma_X) 是标准差，(\beta) 是形状参数（自然图像中通常 (\beta \in [0.5, 1])）。</p>
 <h3 id="2-贝叶斯风险最小化"><a href="#2-贝叶斯风险最小化" class="headerlink" title="2. 贝叶斯风险最小化"></a>2. 贝叶斯风险最小化</h3><p>定义软阈值函数：</p>
-<p>[</p>
-<p>\eta_T(y) &#x3D; \text{sgn}(y) \cdot \max(|y| - T, 0)</p>
-<p>]</p>
+<p>[<br>\eta_T(y) &#x3D; \text{sgn}(y) \cdot \max(|y| - T, 0)<br>]</p>
 <p>贝叶斯风险为：</p>
-<p>[</p>
-<p>r(T) &#x3D; E_X E_{Y|X} \left[ (\eta_T(Y) - X)^2 \right]</p>
-<p>]</p>
+<p>[<br>r(T) &#x3D; E_X E_{Y|X} \left[ (\eta_T(Y) - X)^2 \right]<br>]</p>
 <p>目标是找到最小化 (r(T)) 的 (T^*)。</p>
 <h3 id="3-近似闭式解"><a href="#3-近似闭式解" class="headerlink" title="3. 近似闭式解"></a>3. 近似闭式解</h3><p>通过数值计算发现，对于高斯（(\beta&#x3D;2)）和拉普拉斯（(\beta&#x3D;1)）先验，最优阈值可以近似为：</p>
-<p>[</p>
-<p>T_B &#x3D; \frac{\sigma^2}{\sigma_X}</p>
-<p>]</p>
+<p>[<br>T_B &#x3D; \frac{\sigma^2}{\sigma_X}<br>]</p>
 <p>对于 (\beta \in [0.5, 1])，该阈值的风险与最优阈值相差不超过 5%。因此，<strong>BayesShrink 阈值</strong>为：</p>
-<p>[</p>
-<p>\hat{T}_B &#x3D; \frac{\hat{\sigma}^2}{\hat{\sigma}_X}</p>
-<p>]</p>
+<p>[<br>\hat{T}_B &#x3D; \frac{\hat{\sigma}^2}{\hat{\sigma}_X}<br>]</p>
 <hr>
 <h2 id="三、参数估计（数据驱动）"><a href="#三、参数估计（数据驱动）" class="headerlink" title="三、参数估计（数据驱动）"></a>三、参数估计（数据驱动）</h2><p>为了实现自适应，需要从观测数据中估计 (\sigma) 和 (\sigma_X)。</p>
 <h3 id="1-估计噪声标准差-sigma"><a href="#1-估计噪声标准差-sigma" class="headerlink" title="1. 估计噪声标准差 (\sigma)"></a>1. 估计噪声标准差 (\sigma)</h3><p>使用最细尺度子带 (HH_1) 的中位数估计：</p>
-<p>[</p>
-<p>\hat{\sigma} &#x3D; \frac{\text{Median}(|Y_{ij}|)}{0.6745}, \quad Y_{ij} \in HH_1</p>
-<p>]</p>
+<p>[<br>\hat{\sigma} &#x3D; \frac{\text{Median}(|Y_{ij}|)}{0.6745}, \quad Y_{ij} \in HH_1<br>]</p>
 <h3 id="2-估计信号标准差-sigma-X"><a href="#2-估计信号标准差-sigma-X" class="headerlink" title="2. 估计信号标准差 (\sigma_X)"></a>2. 估计信号标准差 (\sigma_X)</h3><p>由于 (Y &#x3D; X + V)，且两者独立，有：</p>
-<p>[</p>
-<p>\sigma_Y^2 &#x3D; \sigma_X^2 + \sigma^2</p>
-<p>]</p>
+<p>[<br>\sigma_Y^2 &#x3D; \sigma_X^2 + \sigma^2<br>]</p>
 <p>其中：</p>
-<p>[</p>
-<p>\hat{\sigma}<em>Y^2 &#x3D; \frac{1}{n^2} \sum</em>{i,j} Y_{ij}^2</p>
-<p>]</p>
+<p>[<br>\hat{\sigma}<em>Y^2 &#x3D; \frac{1}{n^2} \sum</em>{i,j} Y_{ij}^2<br>]</p>
 <p>因此：</p>
-<p>[</p>
-<p>\hat{\sigma}_X &#x3D; \sqrt{\max(\hat{\sigma}_Y^2 - \hat{\sigma}^2, 0)}</p>
-<p>]</p>
+<p>[<br>\hat{\sigma}_X &#x3D; \sqrt{\max(\hat{\sigma}_Y^2 - \hat{\sigma}^2, 0)}<br>]</p>
 <p>若 (\hat{\sigma}^2 \geq \hat{\sigma}_Y^2)，则 (\hat{\sigma}_X &#x3D; 0)，此时阈值设为无穷大（所有系数置零）。</p>
 <hr>
 <h2 id="四、阈值处理流程"><a href="#四、阈值处理流程" class="headerlink" title="四、阈值处理流程"></a>四、阈值处理流程</h2><ol>
@@ -358,21 +336,41 @@
 <li><p>对非零系数进行均匀量化，量化参数（(m, \Delta)）通过 MDLQ 准则选择</p>
 </li>
 <li><p>MDLQ 平衡了失真和编码长度：</p>
-<p>[</p>
-<p>\text{MDLQ} &#x3D; \frac{1}{2\sigma^2 \log 2} \sum (Y_{ij} - \hat{X}^Q_{ij})^2 + L(\hat{X}^Q | m, \Delta)</p>
+<p>[<br>\text{MDLQ} &#x3D; \frac{1}{2\sigma^2 \log 2} \sum (Y_{ij} - \hat{X}^Q_{ij})^2 + L(\hat{X}^Q | m, \Delta)</p>
 <p>]</p>
 </li>
 <li><p>实验表明，压缩确实能去噪（尤其当 (\sigma) 较大时），但会引入量化噪声。</p>
 </li>
 </ul>
 <hr>
-<h2 id="七、总结：BayesShrink-的优势"><a href="#七、总结：BayesShrink-的优势" class="headerlink" title="七、总结：BayesShrink 的优势"></a>七、总结：BayesShrink 的优势</h2><p>| 特点 | 说明 |</p>
-<p>|——|——|</p>
-<p>| <strong>自适应</strong> | 每个子带独立估计阈值 |</p>
-<p>| <strong>闭式解</strong> | (T_B &#x3D; \sigma^2 &#x2F; \sigma_X)，计算高效 |</p>
-<p>| <strong>数据驱动</strong> | 参数完全从观测图像估计 |</p>
-<p>| <strong>近最优</strong> | 风险接近 OracleShrink |</p>
-<p>| <strong>鲁棒</strong> | 对 GGD 形状参数不敏感（(\beta \in [0.5,1])） |</p>
+<h2 id="七、总结：BayesShrink-的优势"><a href="#七、总结：BayesShrink-的优势" class="headerlink" title="七、总结：BayesShrink 的优势"></a>七、总结：BayesShrink 的优势</h2><table>
+<thead>
+<tr>
+<th>特点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>自适应</strong></td>
+<td>每个子带独立估计阈值</td>
+</tr>
+<tr>
+<td><strong>闭式解</strong></td>
+<td>(T_B &#x3D; \sigma^2 &#x2F; \sigma_X)，计算高效</td>
+</tr>
+<tr>
+<td><strong>数据驱动</strong></td>
+<td>参数完全从观测图像估计</td>
+</tr>
+<tr>
+<td><strong>近最优</strong></td>
+<td>风险接近 OracleShrink</td>
+</tr>
+<tr>
+<td><strong>鲁棒</strong></td>
+<td>对 GGD 形状参数不敏感（(\beta \in [0.5,1])）</td>
+</tr>
+</tbody></table>
 <hr>
 
     </div>
@@ -390,8 +388,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/ISP/ISP-LSC/" rel="prev" title="ISP-LSC">
-                  <i class="fa fa-angle-left"></i> ISP-LSC
+                <a href="/posts/Matalb/excel%E8%B0%83%E7%94%A8Matalb%E5%87%BD%E6%95%B0/" rel="prev" title="excel调用Matalb函数">
+                  <i class="fa fa-angle-left"></i> excel调用Matalb函数
                 </a>
             </div>
             <div class="post-nav-item">
