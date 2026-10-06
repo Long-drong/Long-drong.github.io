@@ -23,26 +23,26 @@
     <meta name="description" content="以下为双线性插值算法matlab实现的简单总结 Bilinear interpolation is a more important interpolation method, especially in the field of digital image processing. Now I introduce the algorithm derivation of bilinear inter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于MATLAB实现输入图像的双线性插值">
-<meta property="og:url" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/index.html">
+<meta property="og:url" content="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/index.html">
 <meta property="og:site_name" content="🌈青龙小栈">
 <meta property="og:description" content="以下为双线性插值算法matlab实现的简单总结 Bilinear interpolation is a more important interpolation method, especially in the field of digital image processing. Now I introduce the algorithm derivation of bilinear inter">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_1.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_2.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_3.png">
-<meta property="og:image" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_4.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_1.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_2.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_3.png">
+<meta property="og:image" content="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_4.png">
 <meta property="article:published_time" content="2026-08-04T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-10-06T03:26:02.603Z">
+<meta property="article:modified_time" content="2026-10-06T04:09:17.790Z">
 <meta property="article:author" content="Qing Long">
-<meta property="article:tag" content="Matalb">
+<meta property="article:tag" content="public">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_1.png">
+<meta name="twitter:image" content="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_1.png">
 
 
-<link rel="canonical" href="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/">
+<link rel="canonical" href="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/","path":"posts/Matalb/基于MATLAB实现输入图像的双线性插值/","title":"基于MATLAB实现输入图像的双线性插值"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/","path":"posts/Matlab/基于MATLAB实现输入图像的双线性插值/","title":"基于MATLAB实现输入图像的双线性插值"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>基于MATLAB实现输入图像的双线性插值 | 🌈青龙小栈</title>
@@ -188,7 +188,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -215,7 +215,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -251,7 +251,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:26:02" itemprop="dateModified" datetime="2026-10-06T03:26:02+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 04:09:17" itemprop="dateModified" datetime="2026-10-06T04:09:17+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -259,7 +259,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Matalb/" itemprop="url" rel="index"><span itemprop="name">Matalb</span></a>
+          <a href="/categories/Matlab/" itemprop="url" rel="index"><span itemprop="name">Matlab</span></a>
         </span>
     </span>
 
@@ -274,12 +274,12 @@
     
     <div class="post-body" itemprop="articleBody"><p>以下为双线性插值算法matlab实现的简单总结</p>
 <p>Bilinear interpolation is a more important interpolation method, especially in the field of digital image processing. Now I introduce the algorithm derivation of bilinear interpolation, and use MATLAB to implement the algorithm. Bilinear interpolation is also called quadratic linear interpolation. Its main idea is to use the four pixels around a pixel to calculate floating-point coordinate pixel values.</p>
-<p><img src="/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_1.png"></p>
+<p><img src="/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_1.png"></p>
 <p>As shown in FIG, the pixel values of f1 and f2 are respectively obtained by a linear interpolation, and then the pixel values of f are obtained by linear interpolation for f1 and f2. This is the principle of bilinear interpolation. We can use the following formula to show the process of solving:</p>
-<p><img src="/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_2.png"></p>
+<p><img src="/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_2.png"></p>
 <p>The original image and interpolated resultant image are as follows:</p>
-<p><img src="/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_3.png"></p>
-<p><img src="/posts/Matalb/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_4.png"></p>
+<p><img src="/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_3.png"></p>
+<p><img src="/posts/Matlab/%E5%9F%BA%E4%BA%8EMATLAB%E5%AE%9E%E7%8E%B0%E8%BE%93%E5%85%A5%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/img_4.png"></p>
 <p>参考代码见下：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ ZI ]</span> = <span class="title">interpolation</span><span class="params">( I,zmf )</span></span></span><br><span class="line"><span class="comment">%% ----------------------双线性插值法处理图像---------------------------</span></span><br><span class="line"><span class="comment">% Input：</span></span><br><span class="line"><span class="comment">%       I：图像文件名或矩阵（整数值（0~255））</span></span><br><span class="line"><span class="comment">%       zmf：缩放因子，即缩放的倍数</span></span><br><span class="line"><span class="comment">% Output：</span></span><br><span class="line"><span class="comment">%       对矩阵I进行zmf倍的缩放并显示</span></span><br><span class="line"><span class="comment">%% 命令行中输入以下命令运行即可：</span></span><br><span class="line"><span class="comment">%  interpolation(&#x27;flower2.png&#x27;, 4);</span></span><br><span class="line"><span class="comment">%% Step1 对数据进行预处理</span></span><br><span class="line"><span class="keyword">if</span> ~exist(<span class="string">&#x27;I&#x27;</span>,<span class="string">&#x27;var&#x27;</span>) || <span class="built_in">isempty</span>(I)</span><br><span class="line">    error(<span class="string">&#x27;输入图像I未定义或为空！&#x27;</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> ~exist(<span class="string">&#x27;zmf&#x27;</span>,<span class="string">&#x27;var&#x27;</span>) || <span class="built_in">isempty</span>(zmf) || <span class="built_in">numel</span>(zmf) ~= <span class="number">1</span></span><br><span class="line">     error(<span class="string">&#x27;位移矢量zmf未定义或为空或zmf中的元素超过2！&#x27;</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> ischar(I)</span><br><span class="line">    [I,M] = imread(I);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> zmf &lt;= <span class="number">0</span></span><br><span class="line">     error(<span class="string">&#x27;缩放倍数zmf的值应该大于0！&#x27;</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% Step2 通过原始图像和缩放因子得到新图像的大小，并创建新图像。</span></span><br><span class="line">[IH,IW,ID] = <span class="built_in">size</span>(I);</span><br><span class="line">ZIH = <span class="built_in">round</span>(IH*zmf);     <span class="comment">% 计算缩放后的图像高度，最近取整</span></span><br><span class="line">ZIW = <span class="built_in">round</span>(IW*zmf);     <span class="comment">% 计算缩放后的图像宽度，最近取整</span></span><br><span class="line">ZI = <span class="built_in">zeros</span>(ZIH,ZIW,ID);  <span class="comment">% 创建新图像</span></span><br><span class="line"><span class="comment">%% Step3 扩展矩阵I边缘</span></span><br><span class="line"><span class="comment">%双线性插值是用待求值点周围四个点的值来计算的，当新图像上的像素点映射到原图像的边界时，边界扩展保证了计算能正确进行，而不会溢出。</span></span><br><span class="line">IT = <span class="built_in">zeros</span>(IH+<span class="number">2</span>,IW+<span class="number">2</span>,ID);</span><br><span class="line">IT(<span class="number">2</span>:IH+<span class="number">1</span>,<span class="number">2</span>:IW+<span class="number">1</span>,:) = I;</span><br><span class="line">IT(<span class="number">1</span>,<span class="number">2</span>:IW+<span class="number">1</span>,:)=I(<span class="number">1</span>,:,:);</span><br><span class="line">IT(IH+<span class="number">2</span>,<span class="number">2</span>:IW+<span class="number">1</span>,:)=I(IH,:,:);</span><br><span class="line">IT(<span class="number">2</span>:IH+<span class="number">1</span>,<span class="number">1</span>,:)=I(:,<span class="number">1</span>,:);</span><br><span class="line">IT(<span class="number">2</span>:IH+<span class="number">1</span>,IW+<span class="number">2</span>,:)=I(:,IW,:);</span><br><span class="line">IT(<span class="number">1</span>,<span class="number">1</span>,:) = I(<span class="number">1</span>,<span class="number">1</span>,:);</span><br><span class="line">IT(<span class="number">1</span>,IW+<span class="number">2</span>,:) = I(<span class="number">1</span>,IW,:);</span><br><span class="line">IT(IH+<span class="number">2</span>,<span class="number">1</span>,:) = I(IH,<span class="number">1</span>,:);</span><br><span class="line">IT(IH+<span class="number">2</span>,IW+<span class="number">2</span>,:) = I(IH,IW,:);</span><br><span class="line"><span class="comment">%% Step4 由新图像的某个像素（zi，zj）映射到原始图像(ii，jj)处，并插值。</span></span><br><span class="line"><span class="keyword">for</span> zj = <span class="number">1</span>:ZIW         <span class="comment">% 对图像进行按列逐元素扫描</span></span><br><span class="line">    <span class="keyword">for</span> zi = <span class="number">1</span>:ZIH</span><br><span class="line">        ii = (zi<span class="number">-1</span>)/zmf; jj = (zj<span class="number">-1</span>)/zmf;</span><br><span class="line">        <span class="built_in">i</span> = <span class="built_in">floor</span>(ii); <span class="built_in">j</span> = <span class="built_in">floor</span>(jj);    <span class="comment">% 向下取整</span></span><br><span class="line">        u = ii - <span class="built_in">i</span>; v = jj - <span class="built_in">j</span>;</span><br><span class="line">        <span class="built_in">i</span> = <span class="built_in">i</span> + <span class="number">1</span>; <span class="built_in">j</span> = <span class="built_in">j</span> + <span class="number">1</span>;</span><br><span class="line">        ZI(zi,zj,:) = (<span class="number">1</span>-u)*(<span class="number">1</span>-v)*IT(<span class="built_in">i</span>,<span class="built_in">j</span>,:) + (<span class="number">1</span>-u)*v*IT(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>,:) + u*(<span class="number">1</span>-v)*IT(<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>,:) + u*v*IT(<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>+<span class="number">1</span>,:);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ZI = uint8(ZI);</span><br><span class="line"><span class="comment">%% 显示处理前后的图像</span></span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">imshow(I,M);</span><br><span class="line">axis on;</span><br><span class="line">title([<span class="string">&#x27;original image（&#x27;</span>,num2str(IH),<span class="string">&#x27;*&#x27;</span>,num2str(IW),<span class="string">&#x27;*&#x27;</span>,num2str(ID),<span class="string">&#x27;)&#x27;</span>]);</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">imshow(ZI,M);</span><br><span class="line">axis on;</span><br><span class="line">title([<span class="string">&#x27;interpolated resultant image（&#x27;</span>,num2str(ZIH),<span class="string">&#x27;*&#x27;</span>,num2str(ZIW),<span class="string">&#x27;*&#x27;</span>,num2str(ID),<span class="string">&#x27;)&#x27;</span>]);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -293,7 +293,7 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Matalb/" rel="tag"><i class="fa fa-tag"></i> Matalb</a>
+              <a href="/tags/public/" rel="tag"><i class="fa fa-tag"></i> public</a>
           </div>
 
         
