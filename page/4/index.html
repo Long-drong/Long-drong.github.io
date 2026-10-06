@@ -209,7 +209,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/zemax%E4%B8%8Ematlab%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Optics/%E5%85%89%E5%AD%A6%E6%95%B0%E5%AD%97%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BB%BA%E7%AB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avs.png">
@@ -227,7 +227,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Optics/zemax%E4%B8%8Ematlab%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">zemax与matlab常用的交互命令</a>
+          <a href="/posts/Optics/%E5%85%89%E5%AD%A6%E6%95%B0%E5%AD%97%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BB%BA%E7%AB%8B/" class="post-title-link" itemprop="url">光学数字仿真模型的建立</a>
         </h2>
 
         <div class="post-meta-container">
@@ -245,7 +245,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:13" itemprop="dateModified" datetime="2026-10-06T09:38:13+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,10 +267,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>1、ZEMAX中-&gt;编程-&gt;MATLAB-&gt;交互拓展,生成 MATLABZOSConnection.m ， 并点击”交互拓展“</p>
-<p>2、matlab中切换路径到存储MATLABZOSConnection.m；</p>
-<p>3、Matlab中的调试，常用的一些命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">%%在zemax交互拓展，与matlab进行来连接,定义变量app_inf</span><br><span class="line">app_inf=MATLABZOSConnection;</span><br><span class="line">%一些常用命令</span><br><span class="line">%app_inf.CloseApplication(); %关闭应用程序</span><br><span class="line">app_inf.LicenseStatus %检查授权版本</span><br><span class="line">app_inf.Mode %检查授权模式</span><br><span class="line">sample_dir = app_inf.SamplesDir; %获取实例文件夹完整路径</span><br><span class="line">%%</span><br><span class="line">%%获取PrimarySysterm属性，PrimarySysterm提供对当前加载的 zemax文件的访问权限</span><br><span class="line">%.LDE用于镜头数据编辑器(Lens Data Editor)</span><br><span class="line">% .MCE用于多重结构编辑器(Multi Configuration Editor)</span><br><span class="line">% .MFE用于评价函数编辑器(Merit Function Editor)</span><br><span class="line">% .TDE用于公差数据编辑器(Tolerance Data Editor)</span><br><span class="line">% .NCE用于非序列编辑器(Non-Seqential Editor)</span><br><span class="line">% 还可以使用 .Analysis 对分析进行访问和使用 .Tools 对工具进行访问。</span><br><span class="line">app_Pri=app_inf.PrimarySystem;</span><br><span class="line">% 一些关于TheSystem（PrimarySysterm）进行的实用操作如下所示：</span><br><span class="line">% app_Pri.MakeNonSequential(); %转换至非序列模式(Non-sequential Mode)： </span><br><span class="line">% app_Pri.MakeSequential(); %转换至序列模式(Sequential Mode)： </span><br><span class="line">% 加载.ZMX文件： </span><br><span class="line">% testFile = System.String.Concat(sampleDir, &#x27;\Sequential\Objectives\Double Gauss 28 degree field.zmx&#x27;);</span><br><span class="line">% app_Pri.LoadFile(testFile, false);</span><br><span class="line">% app_Pri.Save();  %保存已存在的系统(.ZMX)： </span><br><span class="line">% TheSystem.SaveAs(copyFile); %将当前系统保存为一个新的文件： </span><br><span class="line">% TheSystem.New(false); %创建新的（默认的）镜头数据文件(LENS.ZMX)：</span><br><span class="line">% TheSystem.Close(false); %关闭当前已打开的系统且不保存： </span><br><span class="line">%%</span><br><span class="line">%TheSystemData 包含系统所有的基本数据，可以对系统选项(System Explorer)进行设置。</span><br><span class="line">% 可以对孔径(Aperture)、视场(Fields)、波长(Wavelengths)、环境(Environment)、光线瞄准(RayAiming)，</span><br><span class="line">% 非序列数据(NonSequentialData)、偏振(Polarization) 等特性进行访问。 </span><br><span class="line">TheSystemData=app_Pri.SystemData;</span><br><span class="line">%TheSystemData常用的操作</span><br><span class="line">%设置系统孔径类型为入瞳直径（Entrance Pupil Diameter）</span><br><span class="line">%TheSystemData.Aperture.ApertureType=ZOSAPI.SystemData.ZemaxApertureType.EntrancePupilDiameter;</span><br><span class="line">% TheSystemData.Aperture.ApertureValue=20; % 更改数值设置：</span><br><span class="line">% sysTitleNotes = TheSystem.SystemData.TitleNotes;% 更改字符设置：</span><br><span class="line">% 设置膜层文件并重新载入： </span><br><span class="line">% sysFiles = TheSystem.SystemData.Files; sysFiles.CoatingFile = &#x27;COATING.DAT&#x27;;TheSystem.SystemData.Files.ReloadFiles();</span><br><span class="line">% sysTitleNotes.Title = &#x27;Add here the title&#x27;; % 添加标题： </span><br><span class="line">% TheSystemData.Aperture.AFocalImageSpace = true; % 勾选或不勾选复选框。True代表着勾选这个选项，False代表不勾选：</span><br><span class="line">%%</span><br><span class="line">% 如下为一些可改变视场和波长的实用选项：</span><br><span class="line">% sysField = app_Pri.SystemData.Fields; % 访问视场：</span><br><span class="line">% sysWave= app_Pri.SystemData.Wavelengths; % 访问波长：</span><br><span class="line">% NewField_2 = sysField.AddField(0,5.0,1.0); % 添加新的视场X=0,Y=5.0，视场权重为1.0：</span><br><span class="line">% NewWave_2 = sysWave.AddWavelength(0.6328,1.0); % 添加新的波长0.6328mm，权重为1.0：</span><br><span class="line">% 将视场1 的值改为X=1,Y=2.0，视场权重为0.5：</span><br><span class="line">% field1 = sysField.GetField(1); field1.X = 1.0; field1.Y = 2.0; field1.Weight = 0.5;</span><br><span class="line">% TheSystemData.Wavelengths.GetWavelength(1).Wavelength = 0.55; % 将波长1改为0.55mm：</span><br><span class="line">% TheSystemData.Wavelengths.GetWavelength(1).MakePrimary(); % 设置波长1 为主波长：</span><br><span class="line">% 将视场类型 (Field Type) 改为物高 (Object Height)：</span><br><span class="line">% sysField.SetFieldType(ZOSAPI.SystemData.FieldType.ObjectHeight);</span><br><span class="line">% 将归一化 (Normalization) 改为径向(Radial)： </span><br><span class="line">% sysField.Normalization= ZOSAPI.SystemData.FieldNormalizationType.Radial;</span><br><span class="line">% 使用视场向导 (Field Wizard) 从0到10添加3个等效的Y视场，</span><br><span class="line">% 最后三个参数 (1,true, false)表示：从第1行开始，分别检查覆盖 (Overwrite) 是否选中和使用拾取 (Use pickups) 是否取消选中。</span><br><span class="line">% sysField.ApplyFieldWizard(ZOSAPI.SystemData.FieldPattern.EqualAreaY,3,10,0,0,1,true,false);</span><br><span class="line">% 使用正交算法 (Quadrature) 从0.486mm到0.656mm范围内定义6个波长：</span><br><span class="line">% TheSystemData.Wavelengths.GaussianQuadrature(0.486,0.656,ZOSAPI.SystemData.QuadratureSteps.S6);</span><br><span class="line">% 使用预置 (Preset) 选项定义波长：</span><br><span class="line">% TheSystemData.Wavelengths.SelectWavelengthPreset(ZOSAPI.SystemData.WavelengthPreset.FdC_Visible);</span><br><span class="line">% num_fields=TheSystem.SystemData.Fields.NumberOfFields;% 读取视场的数目： </span><br><span class="line">%%</span><br><span class="line">%分析（the analyess）</span><br><span class="line">TheAnalyeses=app_Pri.Analyses;</span><br><span class="line">     </span><br><span class="line">    %TheSystem.Analyses.New_Analysis(ZOSAPI.Analysis.AnalysisIDM AnalysisType)  %执行一次分析： </span><br><span class="line">    % TheRayFan = TheSystem.Analyses.New_Analysis(ZOSAPI.Analysis.AnalysisIDM.RayFan);% 执行一次光线光扇图分析：</span><br><span class="line">    TheRayFan_Settings = TheRayFan.GetSettings(); %获取设置： </span><br><span class="line">        %更改获取的应用设置</span><br><span class="line">        TheRayFan_Settings.NumberOfRays = 100; %更改光线数目： </span><br><span class="line">       TheRayFan_Settings.Wavelength.SetWavelengthNumber(0); %改变波长</span><br><span class="line">    %使用 ModifySettings 更改还未应用的设置：</span><br><span class="line">    % analysisSettings.SaveTo(cfgFile);   </span><br><span class="line">    % analysisSettings.ModifySettings(cfgFile, &#x27;SHA_ROTX&#x27;, &#x27;90&#x27;);   </span><br><span class="line">    % analysisSettings.LoadFrom(cfgFile);   </span><br><span class="line">    % System.IO.File.Delete(cfgFile); </span><br><span class="line">    TheRayFan.ApplyAndWaitForCompletion(); %应用设置： </span><br><span class="line">    TheRayFan_Results = TheRayFan.GetResults(); %获取结果：</span><br><span class="line">%%</span><br><span class="line">%编辑器，如何使用编辑器</span><br><span class="line">%编辑器包括镜头数据编辑器(LDE,表面信息)、非序列元件编辑器(NCE 物体信息)、评价函数编辑器(MFE)、</span><br><span class="line">%多重结构编辑器(MCE)、公差数据编辑器(TDE)。</span><br><span class="line">TheLDE = app_Pri.LDE;</span><br><span class="line">    %常见功能</span><br><span class="line">    TheLDE.AddSurface(); %添加新表面</span><br><span class="line">    TheLDE.InsertNewSurfaceAt(1);%在特定表面前插入新表面</span><br><span class="line">    TheLDE.RemoveSurfaceAt(1,3); %删除一个或多个指定表面</span><br><span class="line">    TheLDE.CopySurfaces(1,3,3); %将指定数量（第二个数3）的表面从一个位置（第一个数1）复制粘贴到另一个位置（第三个数3）</span><br><span class="line">    TheLDE.GetSurfaceAt(1); %访问特定的表面： </span><br><span class="line">%更改表面类型</span><br><span class="line">surf1_type=surf1.GetSurfaceTypeSettings(ZOSAPI.Editors.LDE.SurfaceType.EvenAspheric); surf1.ChangeType(surf1_type);</span><br><span class="line">% 获取或设置半径(Radius)、厚度(Thickness)、半口径(SemiDiameter)、延伸区(ChipZone), 圆锥系数(Conic)、热膨胀系数(TCE)、</span><br><span class="line">% 标注(Comment)、材料(Material)、膜层(Coating)的值: </span><br><span class="line">surf1.Comment=  &#x27;Add comment here&#x27;; </span><br><span class="line">%添加求解(Solve):</span><br><span class="line">solve_MarginalRayHeight= surf1.ThicknessCell.CreateSolveType(ZOSAPI.Editors.SolveType.MarginalRayHeight); </span><br><span class="line">solve_MarginalRayHeight.PupilZone=0.5;</span><br><span class="line">surf1.ThicknessCell.SetSolveData(solve_MarginalRayHeight);</span><br><span class="line">surf1.RadiusCell.MakeSolveVariable();</span><br><span class="line">%改变参数的值：</span><br><span class="line">par2= surf1.GetSurfaceCell(ZOSAPI.Editors.LDE.SurfaceColumn.Par2); par2.DoubleValue= 0.0005;</span><br><span class="line">%将孔径属性改为圆形孔径(Circular Aperture)：</span><br><span class="line">aperdata=surf1.ApertureData;</span><br><span class="line">circular_aper=aperdata.CreateApertureTypeSettings(ZOSAPI.Editors.LDE.SurfaceApertureTypes.CircularAperture);</span><br><span class="line">circular_aper.MaximumRadius=0.5;</span><br><span class="line">aperdata.ChangeApertureTypeSettings(circular_aper);</span><br><span class="line">RunTool_ConvertLocalToGlobalCoordinates(int, int, int) %访问编辑器工具栏的工具</span><br><span class="line">%%</span><br><span class="line">%访问光学系统的系统工具（System tools）</span><br><span class="line">app_Pri.Tools;</span><br><span class="line">%基本执行语句， 打开工具-&gt;定义设置-&gt;运行工具</span><br><span class="line">% testFile = System.String.Concat(sampleDir, &#x27;\Sequential\Objectives\Cooke 40 degree field.zar&#x27;);</span><br><span class="line">% testFolder = System.String.Concat(sampleDir, &#x27;\test\&#x27;);</span><br><span class="line">% loadZAR=TheSystem.Tools.OpenRestoreZAR();</span><br><span class="line">% loadZAR.SetFileName(testFile);</span><br><span class="line">% loadZAR.SetOutputFolder(testFolder);</span><br><span class="line">% loadZAR.SetFilesAllOverwrite();</span><br><span class="line">% loadZAR.RunAndWaitForCompletion();</span><br><span class="line">% loadZAR.Close();</span><br><span class="line">%一些常用工具</span><br><span class="line">creatZAR=app_Pri.Tools.OpenCreateZAR(); %创建存储文档</span><br><span class="line">ToolExportCAD = app_Pri.Tools.OpenExportCAD(); %将当前透镜数据输出为CAD文件；</span><br><span class="line">convertNSmode = app_Pri.Tools.OpenConvertToNSCGroup(); %将文件转为非序列文件；</span><br><span class="line">quickFocus = app_Pri.Tools.OpenQuickFocus(); %执行快速聚焦；</span><br><span class="line">app_Pri.Tools.RemoveAllVariables(); %移除所有变量</span><br><span class="line">LocalOpt = app_Pri.Tools.OpenLocalOptimization(); %执行一次局部优化</span><br><span class="line">raytrace = app_Pri.Tools.OpenBatchRayTrace(); %运行一次批量光线追迹(Batch ray trace)</span><br><span class="line">tol = app_Pri.Tools.OpenTolerancing(); %打开公差分析 (Tolerancing)</span><br><span class="line">MFcalculator=app_Pri.Tools.OpenMeritFunctionCalculator(); %计算评价函数 (Merit Function)</span><br><span class="line">SpotCalculator= app_Pri.Tools.OpenRMSSpotRadiusCalculator(); %计算光斑半径 (Spot Radius)</span><br><span class="line">NSCRayTrace = app_Pri.Tools.OpenNSCRayTrace(); %执行光线追迹(RayTrace)， 非序列模式（NSC）</span><br><span class="line">OpenRayDatabaseReader() % 从光线数据库(RayDataBase) 中读取数据</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>MATLAB可以与Zemax进行配合，实现光学模型的建立和联合仿真。Zemax是一款专业级的光学设计与分析软件，而MATLAB则提供强大的数值计算、数据分析和编程环境。两者结合使用，可以充分发挥各自的优势，实现复杂的光学系统建模与仿真任务。以下是如何配合使用MATLAB和Zemax进行光学模型建立的方式：</p>
+<ol>
+<li>使用Zemax进行光学设计：
+<ul>
+<li>在Zemax环境中，利用其内置的光学元件库、优化算法和分析工具，进行光学系统的详细设计和优化。</li>
+<li>设计完成后，保存光学模型（.ZMX文件）以及相关的分析结果（如MTF、PSF、波前误差等）。</li>
+</ul>
+</li>
+<li>通过ZOS-API（Zemax Optical System Application Programming Interface）与MATLAB交互：
+<ul>
+<li>ZOS-API是Zemax提供的编程接口，允许用户使用其他编程语言（如MATLAB）直接操控Zemax软件，进行光学模型的读取、修改、分析和结果提取。</li>
+<li>在MATLAB中安装并配置ZOS-API，通过编写MATLAB脚本调用ZOS-API函数与Zemax进行通信。</li>
+</ul>
+</li>
+<li>MATLAB中调用Zemax进行模型建立与分析：
+<ul>
+<li>使用ZOS-API的MATLAB接口函数，加载已保存的.ZMX文件到MATLAB环境中，作为MATLAB仿真中的光学模型。</li>
+<li>在MATLAB中编写脚本，通过ZOS-API发送指令给Zemax，进行光学模型的参数修改、光线追迹、性能分析等操作。</li>
+<li>从Zemax中提取所需的分析结果（如像差、MTF、PSF等），保存在MATLAB变量中，供进一步的计算和数据分析使用。</li>
+</ul>
+</li>
+<li>在MATLAB中进行高级分析与控制逻辑仿真：
+<ul>
+<li>利用MATLAB的高级分析工具（如Signal Processing Toolbox、Statistics and Machine Learning Toolbox等）对Zemax返回的光学性能数据进行深入分析。</li>
+<li>在MATLAB的Simulink环境中设计和仿真光学系统的控制逻辑（如自动对焦、波前校正等），并与Zemax模型进行交互，实现闭环控制仿真。</li>
+</ul>
+</li>
+<li>结合其他MATLAB功能进行扩展：
+<ul>
+<li>结合MATLAB的其他功能，如数据可视化（使用Plotting Tools）、多物理场仿真（如Simscape）、外部数据接口（如Data Acquisition Toolbox）等，进一步丰富和扩展光学模型的仿真功能。</li>
+</ul>
+</li>
+</ol>
+<p>通过上述方式，MATLAB可以与Zemax紧密配合，实现光学模型的建立、分析和高级仿真。这种结合充分利用了Zemax的专业光学设计能力与MATLAB的强大编程和分析环境，适用于复杂的光学系统设计、优化和控制问题。请注意，使用ZOS-API需要具备相应的授权，并熟悉MATLAB编程。具体的编程细节和功能实现应参考ZOS-API的官方文档和示例代码。</p>
+
       
     </div>
 
@@ -332,7 +363,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:13" itemprop="dateModified" datetime="2026-10-06T09:38:13+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -354,29 +385,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="平面干涉仪设计"><a href="#平面干涉仪设计" class="headerlink" title="平面干涉仪设计"></a>平面干涉仪设计</h1><h3 id="1-zemax设计方法"><a href="#1-zemax设计方法" class="headerlink" title="1.zemax设计方法"></a>1.zemax设计方法</h3><p>基于菲索干涉的基本原理，仿真平面干涉仪器；</p>
-<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F.png"></p>
-<p>点光源经过准直透镜， 分束镜， 经过参考面反射产生参考光，待测物体产生反射光，两者在分束镜上同时反射到探测器上，此时两束光有一定的光程差，存在干涉，于探测器产生干涉条纹。 </p>
-<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_%E6%96%90%E7%B4%A2%E7%90%83%E9%9D%A2%E5%B9%B2%E6%B6%89.png"></p>
-<h3 id="2-仿真测试"><a href="#2-仿真测试" class="headerlink" title="2.仿真测试"></a>2.仿真测试</h3><p>一、仿真测试目标：<br>1、实现斐索平面干涉仪的光学系统设计；<br>2、通过探测器检测图案，计算待测物表面的PV值，测试精度达到λ&#x2F;20;</p>
-<p>二、仿真测试流程：<br>1、调制光学系统下各部件参数，使得探测器成像结果相对较好，减少光学系统对后期图像提取的干扰；<br>2、提取图像探测器图像,进行图像预处理，减少背景噪声的干扰；<br>3、基于光的波动性，通过四步相移法，解包裹，恢复待测物体表面形貌计算PV值。</p>
-<p>三、仿真原理：<br>理想情况下，等厚干涉形成的是平行的等间距的条纹；光程差每变化λ&#x2F;2 的距离，条纹平移一个周期；</p>
-<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F2.png"></p>
-<p>干涉在本质上可以看作两束光能量的重新分布，分布遵循余弦函数。这种形态是由条纹之间的相位差决定，相位差由光程差决定；<br>当待测面存在瑕疵，突起，导致光程差呈现非线性变化，条纹就会发生弯曲；同时相位差也会发生对应变化。</p>
-<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F3.png"></p>
-<p>四、移相干涉的原理：<br>移相干涉测量过程中，干涉图像中的条纹分布是由参考光束和测试光束叠加形成的干涉场导致，干涉场的光强信息与干涉图中像素点的灰度信息相关，其分布函数公式可表示为： </p>
+          <h1>平面干涉仪设计</h1>
+<h3 id="1-zemax设计方法">1.zemax设计方法</h3>
+<p>基于菲索干涉的基本原理，仿真平面干涉仪器；</p>
+<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F.png" alt=""></p>
+<p>点光源经过准直透镜， 分束镜， 经过参考面反射产生参考光，待测物体产生反射光，两者在分束镜上同时反射到探测器上，此时两束光有一定的光程差，存在干涉，于探测器产生干涉条纹。</p>
+<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_%E6%96%90%E7%B4%A2%E7%90%83%E9%9D%A2%E5%B9%B2%E6%B6%89.png" alt=""></p>
+<h3 id="2-仿真测试">2.仿真测试</h3>
+<p>一、仿真测试目标：<br>
+1、实现斐索平面干涉仪的光学系统设计；<br>
+2、通过探测器检测图案，计算待测物表面的PV值，测试精度达到λ/20;</p>
+<p>二、仿真测试流程：<br>
+1、调制光学系统下各部件参数，使得探测器成像结果相对较好，减少光学系统对后期图像提取的干扰；<br>
+2、提取图像探测器图像,进行图像预处理，减少背景噪声的干扰；<br>
+3、基于光的波动性，通过四步相移法，解包裹，恢复待测物体表面形貌计算PV值。</p>
+<p>三、仿真原理：<br>
+理想情况下，等厚干涉形成的是平行的等间距的条纹；光程差每变化λ/2 的距离，条纹平移一个周期；</p>
+<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F2.png" alt=""></p>
+<p>干涉在本质上可以看作两束光能量的重新分布，分布遵循余弦函数。这种形态是由条纹之间的相位差决定，相位差由光程差决定；<br>
+当待测面存在瑕疵，突起，导致光程差呈现非线性变化，条纹就会发生弯曲；同时相位差也会发生对应变化。</p>
+<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%BF%E7%9C%9F3.png" alt=""></p>
+<p>四、移相干涉的原理：<br>
+移相干涉测量过程中，干涉图像中的条纹分布是由参考光束和测试光束叠加形成的干涉场导致，干涉场的光强信息与干涉图中像素点的灰度信息相关，其分布函数公式可表示为：</p>
 <figure class="image"><img style="aspect-ratio:369/20;" src="平面干涉仪设计_zemax-公式1.png" width="369" height="20"></figure>
 ![](平面干涉仪设计_zemax-公式1.png)
-  
-<p>其中：A(x,y)是干涉图的背景光强，B(x,y)是调制度，φ(x,y)是待测物的波面初始相位信息，δ_i 是移相量，(x,y)是干涉图中像素点的坐标信息。<br>参考镜和被测镜间的面形差P(x,y)与位相分布的关系可表示为公式</p>
-<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F2.png"></p>
+<p>其中：A(x,y)是干涉图的背景光强，B(x,y)是调制度，φ(x,y)是待测物的波面初始相位信息，δ_i 是移相量，(x,y)是干涉图中像素点的坐标信息。<br>
+参考镜和被测镜间的面形差P(x,y)与位相分布的关系可表示为公式</p>
+<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F2.png" alt=""></p>
 <p>λ为激光器波长（本文为He-Ne激光器——632.8nm），在移相干涉测量技术中，测量单位为λ。当通过解相算法处理干涉图组的像素数据，可计算出I_i (x,y)，并进一步得到面形信息φ(x,y)以完成检测工作。</p>
-<p>四步移相法可以有效计算出理想移相图组的相位分布。先获取无移相的干涉图像，再进行三次移相间隔为π&#x2F;2的移相，每次移相完成采集1帧图像，共得到4帧相位相差π&#x2F;2的干涉图像，其图像光强信息分别为：</p>
-<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F3.png"></p>
+<p>四步移相法可以有效计算出理想移相图组的相位分布。先获取无移相的干涉图像，再进行三次移相间隔为π/2的移相，每次移相完成采集1帧图像，共得到4帧相位相差π/2的干涉图像，其图像光强信息分别为：</p>
+<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F3.png" alt=""></p>
 <p>将上面4个式子进行公式变换消去A和B可得到和四帧图像像素信息的关系式：</p>
-<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F4.png"></p>
+<p><img src="/%E5%B9%B3%E9%9D%A2%E5%B9%B2%E6%B6%89%E4%BB%AA%E8%AE%BE%E8%AE%A1_zemax-%E5%85%AC%E5%BC%8F4.png" alt=""></p>
 <p>四步移相算法求解速度快，适合对理想干涉图组进行求解。</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaitianbao/article/details/116115786">枝切法</a></p>
+<h3 id="参考资料">参考资料</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaitianbao/article/details/116115786">枝切法</a></p>
 
       
     </div>
@@ -439,7 +482,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:14" itemprop="dateModified" datetime="2026-10-06T09:38:14+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -463,10 +506,18 @@
     <div class="post-body" itemprop="articleBody">
           <p>双边滤波（Bilateral Filtering）是一种非线性的图像处理方法，主要用于图像的平滑同时保持边缘清晰。与传统的低通滤波器（如均值滤波或高斯滤波）不同，双边滤波不仅考虑了空间上的邻近性，还考虑了像素值的相似性，这使得它能够在去除噪声的同时较好地保留图像的边界和细节。</p>
 <p>双边滤波可以这样理解，在高斯滤波的基础上添加了像素值的权重项，既要考虑距离因素，也要考虑像素值差异的影响。将像素值权重表示为，空间距离权重表示为。</p>
-<p>$$G_{pix} &#x3D; \exp \left(-\frac{|I_{p}-I_{q}|^{2}}{2 \sigma_{pix}^{2}}\right)<br>$$<br>$$<br>G_{dis} &#x3D; \exp \left(-\frac{|p-q|^{2}}{2 \sigma_{dis}^{2}}\right)$$</p>
-<p>BF滤波器可表示为：<br><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/img_1.png"></p>
-<p>其中Wq 为滤波窗口内每个像素值的权重和，用于权重的归一化； <img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/img_2.png"></p>
-<p>实现过程:<br>1.确定滤波窗口：选择一个中心像素，并确定其邻域范围，这个范围通常是一个 N×N的窗口。<br>2.计算权重：对于窗口内的每一个像素，计算其空间高斯权重和值高斯权重，并将两者相乘得到最终的权重。<br>3.归一化权重：为了保证滤波后像素值的有效性，需要对所有权重进行归一化处理。<br>4.应用滤波：将窗口内所有像素值与其对应的权重相乘，然后求和，最后除以归一化因子 ，得到中心像素的新值。<br>5.遍历整个图像：重复步骤1至4，直到所有像素都被处理完毕。</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>G</mi><mrow><mi>p</mi><mi>i</mi><mi>x</mi></mrow></msub><mo>=</mo><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mo>−</mo><mfrac><mrow><mi mathvariant="normal">∥</mi><msub><mi>I</mi><mi>p</mi></msub><mo>−</mo><msub><mi>I</mi><mi>q</mi></msub><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup></mrow><mrow><mn>2</mn><msubsup><mi>σ</mi><mrow><mi>p</mi><mi>i</mi><mi>x</mi></mrow><mn>2</mn></msubsup></mrow></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">G_{pix} = \exp \left(-\frac{\|I_{p}-I_{q}\|^{2}}{2 \sigma_{pix}^{2}}\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4231em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">x</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.413em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∥</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.099em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span></span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>G</mi><mrow><mi>d</mi><mi>i</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mo>−</mo><mfrac><mrow><mi mathvariant="normal">∥</mi><mi>p</mi><mo>−</mo><mi>q</mi><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup></mrow><mrow><mn>2</mn><msubsup><mi>σ</mi><mrow><mi>d</mi><mi>i</mi><mi>s</mi></mrow><mn>2</mn></msubsup></mrow></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">G_{dis} = \exp \left(-\frac{\|p-q\|^{2}}{2 \sigma_{dis}^{2}}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4784em;vertical-align:-0.9873em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.3987em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">s</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3013em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∥</span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9873em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span></p>
+<p>BF滤波器可表示为：<br>
+<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/img_1.png" alt=""></p>
+<p>其中Wq 为滤波窗口内每个像素值的权重和，用于权重的归一化； <img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E5%99%A8/img_2.png" alt=""></p>
+<p>实现过程:<br>
+1.确定滤波窗口：选择一个中心像素，并确定其邻域范围，这个范围通常是一个 N×N的窗口。<br>
+2.计算权重：对于窗口内的每一个像素，计算其空间高斯权重和值高斯权重，并将两者相乘得到最终的权重。<br>
+3.归一化权重：为了保证滤波后像素值的有效性，需要对所有权重进行归一化处理。<br>
+4.应用滤波：将窗口内所有像素值与其对应的权重相乘，然后求和，最后除以归一化因子 ，得到中心像素的新值。<br>
+5.遍历整个图像：重复步骤1至4，直到所有像素都被处理完毕。</p>
 <p>双边滤波由于其复杂性，在实际应用中可能会比简单的滤波器运行得更慢，但它能更好地保持图像的结构和细节。在计算机视觉和图像处理领域，双边滤波被广泛应用于去噪、边缘保护、纹理分离等任务。</p>
 
       
@@ -530,7 +581,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:13" itemprop="dateModified" datetime="2026-10-06T09:38:13+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -552,51 +603,77 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul>
+          <h4 id="简介">简介</h4>
+<ul>
 <li>ISP是Image signal Processor的简写，也叫图像信号处理器。</li>
-<li>DSP是Digital Signal Processor 的缩写，也就是<a target="_blank" rel="noopener" href="https://gitcode.com/open-source-toolkit/e4d36?utm_source=highlight_word_gitcode&word=%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86">数字信号处理器</a>。</li>
+<li>DSP是Digital Signal Processor 的缩写，也就是<a target="_blank" rel="noopener" href="https://gitcode.com/open-source-toolkit/e4d36?utm_source=highlight_word_gitcode&amp;word=%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86">数字信号处理器</a>。</li>
 <li>ISP一般用来处理Image Sensor（图像传感器）的输出数据，如做AEC（自动曝光控制）、AGC（自动增益控制）、AWB（自动白平衡）、色彩校正、Lens Shading、Gamma 校正、祛除坏点、Auto Black Level、Auto White Level等等功能的处理。</li>
 </ul>
-<h4 id="ISP处理流程"><a href="#ISP处理流程" class="headerlink" title="ISP处理流程"></a>ISP处理流程</h4><p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/ISP-%E6%9E%B6%E6%9E%84_ISP%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg"></p>
-<p>图像产生过程：景物通过 Lens 生成的光学图像投射到 sensor 表面上， 经过光电转换为模拟电信号， 消噪声后经过 A&#x2F;D 转换后变为数字图像信号， 再送到数字信号处理芯片（ DSP） 中加工处理。</p>
-<p>所以，从 sensor 端过来的图像是 Bayer 图像，经过黑电平补偿 （black level compensation）、镜头矫正（lens shading correction）、坏像素矫正（bad pixel correction）、颜色插值 （demosaic）、Bayer 噪声去除、 白平衡（awb） 矫正、 色彩矫正（color correction）、gamma 矫正、色彩空间转换（RGB 转换为 YUV）、在YUV 色彩空间上彩噪去除与边缘加强、色彩与对比度加强，中间还要进行自动曝光控制等， 然后输出 YUV（或者RGB） 格式的数据， 再通过 I&#x2F;O 接口传输到 CPU 中处理。</p>
-<p><strong>1.Bayer（拜耳滤波器得到彩色）</strong><br>图像在将实际的景物转换为图像数据时， 通常是将传感器分别接收红、 绿、 蓝三个分量的信息， 然后将红、 绿、 蓝三个分量的信息合成彩色图像。 该方案需要三块滤镜， 这样价格昂贵，且不好制造， 因为三块滤镜都必须保证每一个像素点都对齐。 通过在黑白 cmos 图像传感器的基础上， 增加彩色滤波结构和彩色信息处理模块就可以获得图像的彩色信息， 再对该彩色信息进行处理， 就可以获得色彩逼真的彩色图像。通常把彩色图像传感器表面覆盖的滤波称为彩色滤波阵列（<strong>Color Filter Arrays</strong>，CFA）。<br>目前最常用的滤镜阵列是棋盘格式的， 已经有很多种类的， 其中绝大多数的摄像产品采用的是原色贝尔模板彩色滤波阵列（Bayer Pattern CFA）。R、G、B 分别表示透红色、透绿色和透蓝色的滤镜阵列单元。由于人的视觉对绿色最为敏感，所以在 Bayer CFA 中G分量是 R和B 的二倍，在每个像素点上只能获取一种色彩分量的信息，然后根据该色彩分量的信息通过插值算法得到全色彩图像。</p>
-<p><strong>2.BLC(Black level Correction)（黑电平补偿）</strong><br>a.暗电流 物理器件不可能是理想的， 由于杂质、 受热等其他原因的影响， 即使没有光照射到象素，象素单元也会产生电荷， 这些电荷产生了暗电流。 而且， 暗电流与光照产生的电荷很难进行区分。</p>
+<h4 id="ISP处理流程">ISP处理流程</h4>
+<p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/ISP-%E6%9E%B6%E6%9E%84_ISP%E6%B5%81%E7%A8%8B%E5%9B%BE.jpeg" alt=""></p>
+<p>图像产生过程：景物通过 Lens 生成的光学图像投射到 sensor 表面上， 经过光电转换为模拟电信号， 消噪声后经过 A/D 转换后变为数字图像信号， 再送到数字信号处理芯片（ DSP） 中加工处理。</p>
+<p>所以，从 sensor 端过来的图像是 Bayer 图像，经过黑电平补偿 （black level compensation）、镜头矫正（lens shading correction）、坏像素矫正（bad pixel correction）、颜色插值 （demosaic）、Bayer 噪声去除、 白平衡（awb） 矫正、 色彩矫正（color correction）、gamma 矫正、色彩空间转换（RGB 转换为 YUV）、在YUV 色彩空间上彩噪去除与边缘加强、色彩与对比度加强，中间还要进行自动曝光控制等， 然后输出 YUV（或者RGB） 格式的数据， 再通过 I/O 接口传输到 CPU 中处理。</p>
+<p><strong>1.Bayer（拜耳滤波器得到彩色）</strong><br>
+图像在将实际的景物转换为图像数据时， 通常是将传感器分别接收红、 绿、 蓝三个分量的信息， 然后将红、 绿、 蓝三个分量的信息合成彩色图像。 该方案需要三块滤镜， 这样价格昂贵，且不好制造， 因为三块滤镜都必须保证每一个像素点都对齐。 通过在黑白 cmos 图像传感器的基础上， 增加彩色滤波结构和彩色信息处理模块就可以获得图像的彩色信息， 再对该彩色信息进行处理， 就可以获得色彩逼真的彩色图像。通常把彩色图像传感器表面覆盖的滤波称为彩色滤波阵列（<strong>Color Filter Arrays</strong>，CFA）。<br>
+目前最常用的滤镜阵列是棋盘格式的， 已经有很多种类的， 其中绝大多数的摄像产品采用的是原色贝尔模板彩色滤波阵列（Bayer Pattern CFA）。R、G、B 分别表示透红色、透绿色和透蓝色的滤镜阵列单元。由于人的视觉对绿色最为敏感，所以在 Bayer CFA 中G分量是 R和B 的二倍，在每个像素点上只能获取一种色彩分量的信息，然后根据该色彩分量的信息通过插值算法得到全色彩图像。</p>
+<p><strong>2.BLC(Black level Correction)（黑电平补偿）</strong><br>
+a.暗电流 物理器件不可能是理想的， 由于杂质、 受热等其他原因的影响， 即使没有光照射到象素，象素单元也会产生电荷， 这些电荷产生了暗电流。 而且， 暗电流与光照产生的电荷很难进行区分。</p>
 <p>b.Black Level Black Level 是用来定义图像数据为0时对应的信号电平。由于暗电流的影响， 传感器出来的实际原始数据并不是我们需要的黑平衡（数据不为0）。所以，为减少暗电流对图像信号的影响，可以采用的有效的方法是从已获得的图像信号中减去参考暗电流信号。一般情况下， 在传感器中，实际像素要比有效像素多， 如下图所示， 像素区头几行作为不感光区（ 实际上，这部分区域也做了RGB 的 color filter），用于自动黑电平校正，其平均值作为校正值， 然后在下面区域的像素都减去此矫正值，那么就可以将黑电平矫正过来了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R&#x27;=R-R_offset  %需要注意统一bit位数</span><br><span class="line">Gr&#x27;=Gr-Gr_offset</span><br><span class="line">Gb&#x27;=Gb-Gb_offset</span><br><span class="line">B&#x27;=B-B_offset </span><br></pre></td></tr></table></figure>
-
 <p>做了black level 矫正与没做black level 矫正的对比，没做black level矫正的图片会比较亮，影响图像的对比度。</p>
-<p><strong>3.LSC(Lens Shading Correction)（镜头矫正）</strong><br>由于镜头本身的物理性质， 造成图像四周亮度相对中心亮度逐渐降低，以及，由于图像光照在透过镜头照射到 pixel 上时，边角处的焦点夹角大于中心焦点夹角，造成边角失光。表现在图像上的效果就是亮度从图像中心到四周逐渐衰减， 且离图像中心越远亮度越暗。 为了补偿四周的亮度， 需要进行 Lens Shading 的矫正。</p>
-<p>Lens Shading 的矫正的方法是根据一定的算法计算每个像素对应的亮度矫正值，从而补偿周边衰减的亮度。<br>矫正方法有二次项矫正、 四次项矫正。</p>
-<p><strong>4.BPC(Bad Pixel Correction)（坏点矫正）</strong><br>a.坏点 坏点为全黑环境下输出图像中的白点，高亮环境下输出图像中的黑点。</p>
+<p><strong>3.LSC(Lens Shading Correction)（镜头矫正）</strong><br>
+由于镜头本身的物理性质， 造成图像四周亮度相对中心亮度逐渐降低，以及，由于图像光照在透过镜头照射到 pixel 上时，边角处的焦点夹角大于中心焦点夹角，造成边角失光。表现在图像上的效果就是亮度从图像中心到四周逐渐衰减， 且离图像中心越远亮度越暗。 为了补偿四周的亮度， 需要进行 Lens Shading 的矫正。</p>
+<p>Lens Shading 的矫正的方法是根据一定的算法计算每个像素对应的亮度矫正值，从而补偿周边衰减的亮度。<br>
+矫正方法有二次项矫正、 四次项矫正。</p>
+<p><strong>4.BPC(Bad Pixel Correction)（坏点矫正）</strong><br>
+a.坏点 坏点为全黑环境下输出图像中的白点，高亮环境下输出图像中的黑点。</p>
 <p>b.坏点修复方法 一般情况下， RGB 信号应与景物亮度呈线性响应关系， 但由于 Senor 部分 pixel 不良导致输出的信号不正常， 出现白点或黑点。</p>
 <p>坏点修复方法通常有两种： 一种是自动检测坏点并自动修复， 另一种是建立坏点像素链表进行固定位置的坏像素点修复， 这种方式是 OTP 的方式。</p>
-<p><strong>5.Bayer Denoise（去噪声）</strong><br>使用 cmos sensor获取图像，光照程度和传感器问题是生成图像中大量噪声的主要因素。同时， 当信号经过ADC 时， 又会引入其他一些噪声。 这些噪声会使图像整体变得模糊， 而且丢失很多细节， 所以需要对图像进行去噪处理空间去噪传统的方法有均值滤波、 高斯滤波等。</p>
+<p><strong>5.Bayer Denoise（去噪声）</strong><br>
+使用 cmos sensor获取图像，光照程度和传感器问题是生成图像中大量噪声的主要因素。同时， 当信号经过ADC 时， 又会引入其他一些噪声。 这些噪声会使图像整体变得模糊， 而且丢失很多细节， 所以需要对图像进行去噪处理空间去噪传统的方法有均值滤波、 高斯滤波等。</p>
 <p>但是， 一般的高斯滤波在进行采样时主要考虑了像素间的空间距离关系， 并没有考虑像素值之间的相似程度， 因此这样得到的模糊结果通常是整张图片一团模糊。 所以， 一般采用非线性去噪算法， 例如双边滤波器， 在采样时不仅考虑像素在空间距离上的关系， 同时加入了像素间的相似程度考虑， 因而可以保持原始图像的大体分块， 进而保持边缘。</p>
 <ul>
 <li>先进行Bayer denoise，再进行Demosaic；原因是 在Raw域未经过demosaic, 此时的噪声模型较为简单； 进过Demosaic后， 会导致原本各通道分布均匀的噪声，在不同的Gain值下变得不再均匀，导致噪声模型复杂化。</li>
 </ul>
-<p><strong>6.Demosaic颜色插值 （去马赛克）</strong><br>当光线通过 Bayer型 CFA（Color Filter Arrays） 阵列之后， 单色光线打在传感器上，每个像素都为单色光，从而理想的Bayer 图是一个较为昏暗的马赛克图。</p>
+<p><strong>6.Demosaic颜色插值 （去马赛克）</strong><br>
+当光线通过 Bayer型 CFA（Color Filter Arrays） 阵列之后， 单色光线打在传感器上，每个像素都为单色光，从而理想的Bayer 图是一个较为昏暗的马赛克图。</p>
 <p>首先需要说明的就是demosaiced并不是和字面的意思一样是为了去除电影中的一些打马赛克的图像，而是数字图像处理中用来从不完整的color samples插值生成完整的color samples的方法(因为bayer pattern看起来像一个个马赛克，因此称为去马赛克)。在sensor端通常需要使用CFA滤镜来得到Bayer pattern，而在后面的处理中需要把bayer pattern变成完整的RGB444(真彩色)图像。在ISP中需要有这么一个模块来做。</p>
 <p>在传统的ISP中有很多算法可以来做这个插值，包括最近邻域法，bilinear 插值，cubic 插值等。</p>
 <ul>
-<li>常用的demosiac方法的汇总介绍，当前采用的是 <strong>梯度矫正线性插值法</strong><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/686883055">Image-Demosaic</a></li>
+<li>常用的demosiac方法的汇总介绍，当前采用的是 <strong>梯度矫正线性插值法</strong><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/686883055">Image-Demosaic</a></li>
 </ul>
-<p><strong>7.AWB(Automatic White Balance)（自动白平衡）</strong><br>白平衡的基本原理是在任意环境下， 把白色物体还原成白色物体， 也就是通过找到图像中的白块， 然后调整R&#x2F;G&#x2F;B 的比例， 如下关系：</p>
+<p><strong>7.AWB(Automatic White Balance)（自动白平衡）</strong><br>
+白平衡的基本原理是在任意环境下， 把白色物体还原成白色物体， 也就是通过找到图像中的白块， 然后调整R/G/B 的比例， 如下关系：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R′=R∗RGain  </span><br><span class="line">G′=G∗GGain  </span><br><span class="line">B′=B∗BGain  </span><br><span class="line">R′=G′=B′  </span><br></pre></td></tr></table></figure>
-<p>AWB 算法通常包括的步骤如下：<br>(1)色温统计： 根据图像统计出色温；<br>(2)计算通道增益： 计算出R 和B 通道的增益；<br>(3)进行偏色的矫正： 根据给出的增益， 算出偏色图像的矫正。</p>
-<p><strong>8.Color Correction（颜色矫正）</strong><br>由于人类眼睛可见光的频谱响应度和半导体传感器频谱响应度之间存在差别，还有透镜等的影响， 得到的RGB 值颜色会存在偏差， 因此必须对颜色进行校正， 通常的做法是通过一个3x3 的颜色变化矩阵来进行颜色矫正。</p>
-<p><strong>9.Gamma Correction（伽马矫正）</strong><br>人眼对外界光源的感光值与输入光强不是呈线性关系的， 而是呈指数型关系的。 在低照度下，人眼更容易分辨出亮度的变化， 随着照度的增加，人眼不易分辨出亮度的变化。而摄像机感光与输入光强呈线性关系， 为方便人眼辨识图像， 需要将摄像机采集的图像进行gamma 矫正。<br>Gamma 矫正是对输入图像灰度值进行的非线性操作， 使输出图像灰度值与输入图像灰度值呈指数关系：<br>out &#x3D; Vin ^ gamma</p>
+<p>AWB 算法通常包括的步骤如下：<br>
+(1)色温统计： 根据图像统计出色温；<br>
+(2)计算通道增益： 计算出R 和B 通道的增益；<br>
+(3)进行偏色的矫正： 根据给出的增益， 算出偏色图像的矫正。</p>
+<p><strong>8.Color Correction（颜色矫正）</strong><br>
+由于人类眼睛可见光的频谱响应度和半导体传感器频谱响应度之间存在差别，还有透镜等的影响， 得到的RGB 值颜色会存在偏差， 因此必须对颜色进行校正， 通常的做法是通过一个3x3 的颜色变化矩阵来进行颜色矫正。</p>
+<p><strong>9.Gamma Correction（伽马矫正）</strong><br>
+人眼对外界光源的感光值与输入光强不是呈线性关系的， 而是呈指数型关系的。 在低照度下，人眼更容易分辨出亮度的变化， 随着照度的增加，人眼不易分辨出亮度的变化。而摄像机感光与输入光强呈线性关系， 为方便人眼辨识图像， 需要将摄像机采集的图像进行gamma 矫正。<br>
+Gamma 矫正是对输入图像灰度值进行的非线性操作， 使输出图像灰度值与输入图像灰度值呈指数关系：<br>
+out = Vin ^ gamma</p>
 <p><img src="/posts/ISP/ISP-%E6%9E%B6%E6%9E%84/gamma_curve.png" alt="ISP架构Gamma曲线"></p>
 <p>这个指数就是 gamma， 横坐标是输入灰度值， 纵坐标是输出灰度值， 蓝色曲线是 gamma 值小于 1 时的输入输出关系， 红色曲线是 gamma 值大于 1 时的输入输出关系。 可以观察到， 当 gamma 值小于 1 时(蓝色曲线)， 图像的整体亮度值得到提升， 同时低灰度处的对比度得到增加， 更利于分辩低灰度值时的图像细节。</p>
-<p><strong>10.色彩空间转换</strong><br>YUV 是一种基本色彩空间， 人眼对亮度改变的敏感性远比对色彩变化大很多， 因此， 对于人眼而言， 亮度分量Y 要比色度分量U、V 重要得多。 所以， 可以适当地抛弃部分U、V分量， 达到压缩数据的目的。 YCbCr 其实是YUV 经过缩放和偏移的改动版，Y 表示亮度，Cr、Cb 表示色彩的色差，RGB信号亮度值之间的差异，分别是红色和蓝色的分量。 在YUV 家族中，YCbCr 是在计算机系统中应用最多的成员， 其应用领域很广泛，JPEG、MPEG 均采用此格式。 一般人们所讲的YUV 大多是指YCbCr。 YCbCr有许多取样格式，如 4∶4∶4，4∶2∶2， 4∶1∶1和 4∶2∶0。<br>Cb：反映的是RGB输入信号蓝色部分与RGB信号亮度值之间的差异。<br>Cr：反映了RGB输入信号红色部分与RGB信号亮度值之间的差异。</p>
+<p><strong>10.色彩空间转换</strong><br>
+YUV 是一种基本色彩空间， 人眼对亮度改变的敏感性远比对色彩变化大很多， 因此， 对于人眼而言， 亮度分量Y 要比色度分量U、V 重要得多。 所以， 可以适当地抛弃部分U、V分量， 达到压缩数据的目的。 YCbCr 其实是YUV 经过缩放和偏移的改动版，Y 表示亮度，Cr、Cb 表示色彩的色差，RGB信号亮度值之间的差异，分别是红色和蓝色的分量。 在YUV 家族中，YCbCr 是在计算机系统中应用最多的成员， 其应用领域很广泛，JPEG、MPEG 均采用此格式。 一般人们所讲的YUV 大多是指YCbCr。 YCbCr有许多取样格式，如 4∶4∶4，4∶2∶2， 4∶1∶1和 4∶2∶0。<br>
+Cb：反映的是RGB输入信号蓝色部分与RGB信号亮度值之间的差异。<br>
+Cr：反映了RGB输入信号红色部分与RGB信号亮度值之间的差异。</p>
 <p>在以下两个公式中RGB和YCbCr各分量的值的范围均为0-255。</p>
 <p>RGB转换为Ycbcr公式：</p>
-<p>Y &#x3D; 0.257R+0.564G+0.098B+16<br>Cb &#x3D; -0.148R-0.291G+0.439B+128<br>Cr &#x3D; 0.439R-0.368G-0.071*B+128</p>
+<p>Y = 0.257R+0.564G+0.098B+16<br>
+Cb = -0.148R-0.291G+0.439B+128<br>
+Cr = 0.439R-0.368G-0.071*B+128</p>
 <p>YCbCr转换为RGB公式：</p>
-<p>R &#x3D; 1.164(Y-16)+1.596(Cr-128)<br>G &#x3D; 1.164(Y-16)-0.392(Cb-128)-0.813(Cr-128)<br>B &#x3D;1.164(Y-16)+2.017*(Cb-128)</p>
+<p>R = 1.164(Y-16)+1.596(Cr-128)<br>
+G = 1.164(Y-16)-0.392(Cb-128)-0.813(Cr-128)<br>
+B =1.164(Y-16)+2.017*(Cb-128)</p>
 <p>色彩空间转换这个模块， 是将RGB 转换为 YUV444， 然后在YUV 色彩空间上进行后续的彩色噪声去除、 边缘增强等， 也为后续输出转换为jpeg 图片提供方便。</p>
-<p><strong>11.Color Denoise</strong><br>为了抑制图像的彩色噪声， 一般采用低通滤波器进行处理。 例如使用M×N的高斯低通滤波器在色度通道上进行处理。</p>
+<p><strong>11.Color Denoise</strong><br>
+为了抑制图像的彩色噪声， 一般采用低通滤波器进行处理。 例如使用M×N的高斯低通滤波器在色度通道上进行处理。</p>
 
       
     </div>
@@ -659,7 +736,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:13" itemprop="dateModified" datetime="2026-10-06T09:38:13+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -681,11 +758,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png"></p>
+          <p>如果你使用过老式相机，你很可能在照片中看到过“迷宫格子”。尤其是在一些相当平滑的背景当中，突然出现一些弯弯绕绕的纹理，显得非常不自然，也很影响视觉效果。这种现象其实来源于传感器内部的“绿失衡”，也是绿平衡模块需要面对的问题。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_1.png" alt=""></p>
 <p>绿失衡的来源在大多数数字成像系统中，传感器使用Bayer阵列捕获原始图像数据。由于人眼对绿色光最敏感，Bayer阵列中的绿色像素占总像素数量的一半。理想情况下，这些绿色像素对光线的响应应当是均匀的，但在实际传感器中，绿色像素可能由于光线不均或工艺缺陷等原因导致像素响应不一致。</p>
-<p>举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png"></p>
+<p>举个例子，由于阵列分布以及入射光角度的原因，部分绿色像素可能接收到了一些红光，另一部分接收到了一些蓝光，由于这种光学串扰的存在，最终导致了Gr、Gb两种通道像素的响应失衡，也就是所谓的绿失衡现象。<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_2.png" alt=""></p>
 <p>绿平衡算法那如何通过ISP的处理，去规避绿失衡现象的影响呢？</p>
-<p>最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加&#x2F;减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png"></p>
+<p>最简单直接的思路就是，通过算法对绿色通道的像素值进行调整，来消除这个偏差，让原本不够均匀的绿色像素，变得均匀，以提升图像的细节表现和颜色还原。这个任务其实并不困难，常见的绿平衡算法基本都是基于均值算法改进而来的。均值算法就是在当前像素的一个邻域内，统计所有Gr、Gb像素对的差值，并累加求平均，获取一个delta。这个delta将根据当前像素的类型，加/减到当前像素上，这样就完成了最基本的绿平衡操作。但这样的问题在于，如果当前像素处于细节纹理区域，那很容易就会把纹理平滑掉，这是我们不想要的，所以在均值算法的基础上，还会衍生出一系列改进的绿平衡算法，这些算法或用到阈值处理，或用到纹理检测，最终目的都是为了在减轻绿失衡的同时，尽可能地保留纹理部分。对图1使用均值算法效果如下：<img src="/posts/ISP/ISP-%E7%BB%BF%E5%B9%B3%E8%A1%A1/img_3.png" alt=""></p>
 <p>在ISP中绿平衡 (Green Balance) 是一个重要模块，通常以均值算法及其衍生形式实现，主要用于优化图像中的绿色像素值的均匀性和准确性，以确保最终的图像质量。通过绿平衡的优化，ISP能够修复Sensor的绿失衡，生成更自然、细腻的图像，有效提升用户的视觉体验。</p>
 
       
@@ -749,7 +826,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:14" itemprop="dateModified" datetime="2026-10-06T09:38:14+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -771,15 +848,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="1-边缘判别插值简介"><a href="#1-边缘判别插值简介" class="headerlink" title="1. 边缘判别插值简介"></a>1. 边缘判别插值简介</h2><p>在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png"></p>
+          <h2 id="1-边缘判别插值简介">1. 边缘判别插值简介</h2>
+<p>在bayer demosaic时，G通道的插值中边缘产生的错误导致最终估计的彩色图像出现伪彩色和锯齿。无论是之前提到的色差法还是色比法，由于G通道的插值通常都作为demosaic算法的第一步，因此G通道插值的准确性对后续R、B通道的重建精度有着至关重要的影响。<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_1.png" alt=""></p>
 <p>边缘判别方法在基础插值方法的基础上不仅考虑了空间相关性和光谱相关性，还考虑了边缘效应。边缘判别法通过指定策略判断边缘的方向去控制G通道插值时的邻域采样选择使得插值沿着边缘方向进行，避免了边缘两侧成分的混叠。主要的插值策略依靠双线性插值和色差恒定法，对于伪彩色、拉链效应有着明显的改善。</p>
-<h2 id="2-边缘判别插值算法详解"><a href="#2-边缘判别插值算法详解" class="headerlink" title="2. 边缘判别插值算法详解"></a>2. 边缘判别插值算法详解</h2><p>2.1 梯度矫正线性插值法参考论文：Malvar-He-Cutler Linear Image Demosaicking</p>
-<p>基础的色差和色比方法将G通道看作亮度成分， R、B通道看成色度成分。由于G通道的采样是R、B通道的两倍，所以G通道能代表图像中大部分高频信息。R、B通道作为色度成分变化比较缓慢，因此插值后的G分量图像能够更准确地反映图像中的轮廓。通常先在双线性插值的基础上对G通道进行重建，然后再利用色差或者色比恒定的假设重建R、B通道。<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_2.png">以一个R像素位置为例（图中标记+号的位置），可以看到当计算这个位置G像素的插值时，色差和色比法会丢弃这个位置的R值仅对邻域的G值做平均，但很明显它是有价值的信息。在梯度矫正线性插值法中，引入了R这一点的观测信息控制边缘处的叠加分量以进行梯度修正，将R值与R邻域的双线性插值估计进行比较。如果它与估计值不同，这可能意味着在这个像素处有一个剧烈的亮度变化（即处于边缘位置）。具体来说，作者提出了一组矫正计算公式，假设在一个像素点上已知A通道需要插值C通道，那么插值结果为：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_3.png">可以看到C通道的插值结果不仅由C通道邻域的加权平均表示，还由A通道在该点的边缘响应的增益分量控制，该分量为A通道与水平和垂直方向最近的4个A通道的差乘一个增益系数表示。类似于对于边缘部分的插值结果进行了一个锐化的过程。设定三通道对应的增益系数为α、β、r.</p>
-<p>作者通过kodak数据集进行大量测试得到一组经验性系数α&#x3D;0.5、β&#x3D;0.625、r&#x3D;0.75，最终表示为各通道之间的5X5插值滤波核如下：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_4.png">目前大家熟知的图像画质评测软件Imatest中，demosaic算法就是用的这篇论文。</p>
-<h3 id="2-2-Adam-Hamilton梯度自适应插值"><a href="#2-2-Adam-Hamilton梯度自适应插值" class="headerlink" title="2.2 Adam-Hamilton梯度自适应插值"></a>2.2 Adam-Hamilton梯度自适应插值</h3><p>参考论文：Self-similarity driven color demosaicking</p>
+<h2 id="2-边缘判别插值算法详解">2. 边缘判别插值算法详解</h2>
+<p>2.1 梯度矫正线性插值法参考论文：Malvar-He-Cutler Linear Image Demosaicking</p>
+<p>基础的色差和色比方法将G通道看作亮度成分， R、B通道看成色度成分。由于G通道的采样是R、B通道的两倍，所以G通道能代表图像中大部分高频信息。R、B通道作为色度成分变化比较缓慢，因此插值后的G分量图像能够更准确地反映图像中的轮廓。通常先在双线性插值的基础上对G通道进行重建，然后再利用色差或者色比恒定的假设重建R、B通道。<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_2.png" alt="">以一个R像素位置为例（图中标记+号的位置），可以看到当计算这个位置G像素的插值时，色差和色比法会丢弃这个位置的R值仅对邻域的G值做平均，但很明显它是有价值的信息。在梯度矫正线性插值法中，引入了R这一点的观测信息控制边缘处的叠加分量以进行梯度修正，将R值与R邻域的双线性插值估计进行比较。如果它与估计值不同，这可能意味着在这个像素处有一个剧烈的亮度变化（即处于边缘位置）。具体来说，作者提出了一组矫正计算公式，假设在一个像素点上已知A通道需要插值C通道，那么插值结果为：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_3.png" alt="">可以看到C通道的插值结果不仅由C通道邻域的加权平均表示，还由A通道在该点的边缘响应的增益分量控制，该分量为A通道与水平和垂直方向最近的4个A通道的差乘一个增益系数表示。类似于对于边缘部分的插值结果进行了一个锐化的过程。设定三通道对应的增益系数为α、β、r.</p>
+<p>作者通过kodak数据集进行大量测试得到一组经验性系数α=0.5、β=0.625、r=0.75，最终表示为各通道之间的5X5插值滤波核如下：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_4.png" alt="">目前大家熟知的图像画质评测软件Imatest中，demosaic算法就是用的这篇论文。</p>
+<h3 id="2-2-Adam-Hamilton梯度自适应插值">2.2 Adam-Hamilton梯度自适应插值</h3>
+<p>参考论文：Self-similarity driven color demosaicking</p>
 <p>从2.2开始会介绍严格意义上通过边缘方向进行插值的方法，在介绍亚当-汉密尔顿插值算法前，首先介绍一阶微分和二阶微分的边缘插值。一阶微分边缘敏感性插值算法通过亮度分量(G通道)确定各像素位置可能的边缘方向，通过计算出水平和竖直方向的梯度判断插值方向，具体流程如下：</p>
-<p>(1) 在G通道缺失值的像素位置（i，j）处用G通道邻域像素计算水平和垂直方向梯度：<br><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_5.png"></p>
-<p>(2) 定义阈值T，表示水平和垂直梯度分量的均值，对G通道进行插值：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_6.png"></p>
+<p>(1) 在G通道缺失值的像素位置（i，j）处用G通道邻域像素计算水平和垂直方向梯度：
+<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_5.png" alt=""></p>
+<p>(2) 定义阈值T，表示水平和垂直梯度分量的均值，对G通道进行插值：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/demosaic%E7%AE%97%E6%B3%95%E4%B9%8B%E8%BE%B9%E7%BC%98%E5%88%A4%E5%88%AB%E6%8F%92%E5%80%BC/img_6.png" alt=""></p>
 
       
     </div>
@@ -842,7 +923,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:14" itemprop="dateModified" datetime="2026-10-06T09:38:14+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -864,9 +945,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>膨胀和腐蚀运算的问题：边缘形状发生了变化，膨胀发生了扩张，腐蚀发生了收缩 目标物体变形，对识别时的特征提取会造成影响解决方法：开操作:<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_1.png"></p>
-<p>B对A的开操作就是先B对A腐蚀，紧接着用B对结果进行膨胀<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_2.png"></p>
-<p>先腐蚀再膨胀的结果并不是恢复原状，而是会消除黏连部分，同时不影响其他部分的形状. 平滑物体的轮廓，断开较窄的狭颈并消除较细的突出。<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_3.png"><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_4.png"><br>先膨胀再腐蚀的结果并不是恢复原状，而是填充小的裂缝、孔隙，且不影响形状. 平滑物体的轮廓，弥合较窄的间断和细小的沟壑，消除小的孔洞，填充轮廓中的断痕。 效果：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_5.png"></p>
+          <p>膨胀和腐蚀运算的问题：边缘形状发生了变化，膨胀发生了扩张，腐蚀发生了收缩 目标物体变形，对识别时的特征提取会造成影响解决方法：开操作:<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_1.png" alt=""></p>
+<p>B对A的开操作就是先B对A腐蚀，紧接着用B对结果进行膨胀<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_2.png" alt=""></p>
+<p>先腐蚀再膨胀的结果并不是恢复原状，而是会消除黏连部分，同时不影响其他部分的形状. 平滑物体的轮廓，断开较窄的狭颈并消除较细的突出。<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_3.png" alt=""><img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_4.png" alt="">
+先膨胀再腐蚀的结果并不是恢复原状，而是填充小的裂缝、孔隙，且不影响形状. 平滑物体的轮廓，弥合较窄的间断和细小的沟壑，消除小的孔洞，填充轮廓中的断痕。 效果：<img src="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-%E5%BC%80%E9%97%AD%E8%BF%90%E7%AE%97/img_5.png" alt=""></p>
 
       
     </div>
@@ -929,7 +1011,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:13" itemprop="dateModified" datetime="2026-10-06T09:38:13+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -951,13 +1033,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>凡是在图像领域工作的人，都会经常听到ISP (Image Signal Process, 图像信号处理)，知道ISP对图像质量非常重要。比如华为和小米竞争手机拍照和录像效果，主要的竞争领域就是ISP；做AI (Artificial Intelligence, 人工智能) 的人也知道，如果ISP不给力，后续的AI处理效果会受到影响。<img src="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/img_1.png"></p>
-<h3 id="ISP模块参数调整"><a href="#ISP模块参数调整" class="headerlink" title="ISP模块参数调整"></a>ISP模块参数调整</h3><p>在ISP图像调试中，调整的依据主要包括以下几个方面：</p>
-<h4 id="图像质量要求："><a href="#图像质量要求：" class="headerlink" title="图像质量要求："></a>图像质量要求：</h4><p>不同的应用场景对图像质量的要求不同，例如在低光环境下拍摄时，需要优先考虑降噪和亮度调整，以确保图像清晰可见。</p>
-<h4 id="处理流程："><a href="#处理流程：" class="headerlink" title="处理流程："></a>处理流程：</h4><p>通常的处理流程是先进行亮度调整；<br>然后进行降噪和锐化；<br>最后进行颜色调整。<br>这是因为亮度调整可以为后续处理提供基础，而降噪可以消除影响锐化和颜色调整的噪声，从而提高最终图像的质量。</p>
-<h4 id="人眼感知："><a href="#人眼感知：" class="headerlink" title="人眼感知："></a>人眼感知：</h4><p>人眼对亮度和对比度的敏感度较高，因此在图像处理时，首先调整亮度可以更好地满足人眼的视觉需求。</p>
-<h4 id="技术标准："><a href="#技术标准：" class="headerlink" title="技术标准："></a>技术标准：</h4><p>在图像处理领域，通常会参考行业标准和技术文献，以确保处理流程的科学性和有效性。例如，使用标准色卡进行颜色校正，确保颜色的准确性和一致性。</p>
-<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/york-zhou/p/18055197">深入了解ISP-Sensor</a></p>
+          <h3 id="简介">简介</h3>
+<p>凡是在图像领域工作的人，都会经常听到ISP (Image Signal Process, 图像信号处理)，知道ISP对图像质量非常重要。比如华为和小米竞争手机拍照和录像效果，主要的竞争领域就是ISP；做AI (Artificial Intelligence, 人工智能) 的人也知道，如果ISP不给力，后续的AI处理效果会受到影响。<img src="/posts/ISP/ISP%E5%88%9D%E6%8E%A2/img_1.png" alt=""></p>
+<h3 id="ISP模块参数调整">ISP模块参数调整</h3>
+<p>在ISP图像调试中，调整的依据主要包括以下几个方面：</p>
+<h4 id="图像质量要求：">图像质量要求：</h4>
+<p>不同的应用场景对图像质量的要求不同，例如在低光环境下拍摄时，需要优先考虑降噪和亮度调整，以确保图像清晰可见。</p>
+<h4 id="处理流程：">处理流程：</h4>
+<p>通常的处理流程是先进行亮度调整；<br>
+然后进行降噪和锐化；<br>
+最后进行颜色调整。<br>
+这是因为亮度调整可以为后续处理提供基础，而降噪可以消除影响锐化和颜色调整的噪声，从而提高最终图像的质量。</p>
+<h4 id="人眼感知：">人眼感知：</h4>
+<p>人眼对亮度和对比度的敏感度较高，因此在图像处理时，首先调整亮度可以更好地满足人眼的视觉需求。</p>
+<h4 id="技术标准：">技术标准：</h4>
+<p>在图像处理领域，通常会参考行业标准和技术文献，以确保处理流程的科学性和有效性。例如，使用标准色卡进行颜色校正，确保颜色的准确性和一致性。</p>
+<h3 id="Ref">Ref</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/york-zhou/p/18055197">深入了解ISP-Sensor</a></p>
 
       
     </div>
@@ -1020,7 +1112,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:14" itemprop="dateModified" datetime="2026-10-06T09:38:14+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1042,9 +1134,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>首先说一说YUV颜色模型，单单就YUV颜色模型来说，就有很多中叫法，而且总是让人颇感困惑。一般来讲，我们把YUV、Y`UV、YCbCr, YPbPr包含在YUV颜色模型的范围内，其中Y都表示亮度，UV表示两个色度分量，但是具体的颜色模型的用途又各不相同，当然，他们与RGB的互转公式也就不尽相同。那就先说说这些不同叫法的YUV的用途和由来。在电视系统发展的早期，YUV和Y`UV都是颜色信息的模拟信号编码形式，虽然Y和Y`都表示亮度，但是两种亮度的意义却天差地别，Y用来代指luminance,表示的是自然颜色的亮度，而Y`代指luma，表示的是经过伽马压缩之后电信号的强度。在现在的计算机系统中，YUV一般用来代指YCbCr,用来表示文件的编码格式，用于数字视频的编码，而YPbPr颜色模型常常用在模拟分量视频中。所以YUV颜色模型到RGB颜色模型的转换，应该对应两种方式，分别是模拟YUV-&gt;模拟RGB、数字YUV-&gt;数字RGB。不过因为标清、高清、以及超清幅面，YUV转RGB的权重值各不相同，需要将模拟信号和数字信号再做一次幅面划分，就出现了2*3 &#x3D; 6，6中转换公式。</p>
+          <p>首先说一说YUV颜色模型，单单就YUV颜色模型来说，就有很多中叫法，而且总是让人颇感困惑。一般来讲，我们把YUV、Y`UV、YCbCr, YPbPr包含在YUV颜色模型的范围内，其中Y都表示亮度，UV表示两个色度分量，但是具体的颜色模型的用途又各不相同，当然，他们与RGB的互转公式也就不尽相同。那就先说说这些不同叫法的YUV的用途和由来。在电视系统发展的早期，YUV和Y`UV都是颜色信息的模拟信号编码形式，虽然Y和Y`都表示亮度，但是两种亮度的意义却天差地别，Y用来代指luminance,表示的是自然颜色的亮度，而Y`代指luma，表示的是经过伽马压缩之后电信号的强度。在现在的计算机系统中，YUV一般用来代指YCbCr,用来表示文件的编码格式，用于数字视频的编码，而YPbPr颜色模型常常用在模拟分量视频中。所以YUV颜色模型到RGB颜色模型的转换，应该对应两种方式，分别是模拟YUV-&gt;模拟RGB、数字YUV-&gt;数字RGB。不过因为标清、高清、以及超清幅面，YUV转RGB的权重值各不相同，需要将模拟信号和数字信号再做一次幅面划分，就出现了2*3 = 6，6中转换公式。</p>
 <p>1.模拟YUV-&gt;模拟RGB</p>
-<p>　　1) BT601(标清国际定义)</p>
+<p>1) BT601(标清国际定义)</p>
 <table>
 <thead>
 <tr>
@@ -1052,12 +1144,14 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1<br><br>2<br><br>3<br><br>4<br><br>5<br><br>6<br><br>7<br><br>8</td>
 <td><code>//*********************BT601***********************************//</code><br><br><code>//  Y = 0.299 * R + 0.587 * G + 0.114 * B          　　　　 //</code><br><br><code>// Pb =-0.169 * R - 0.331 * G + 0.500 * B                  //</code><br><br><code>// Pr = 0.500 * R - 0.439 * G - 0.081 * B                  //</code><br><br><code>//  R = Y + 1.402* Pr                    　　　　　　　　　　　　　//</code><br><br><code>//  G = Y - 0.344 * Pb  - 0.792* Pr　　 　　　　　　　　　　　　　　//</code><br><br><code>//  B = Y + 1.772 * Pb                    　　　　　　　　　　　　 //</code><br><br><code>//*********************BT601***********************************//</code></td>
 </tr>
-</tbody></table>
-<p>　　2)BT709(高清)</p>
+</tbody>
+</table>
+<p>2)BT709(高清)</p>
 <table>
 <thead>
 <tr>
@@ -1065,13 +1159,15 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1<br><br>2<br><br>3<br><br>4<br><br>5<br><br>6<br><br>7<br><br>8</td>
 <td><code>//*********************BT601***********************************//</code><br><br><code>//  Y = 0.213 * R + 0.715 * G + 0.072 * B         　　　　  //</code><br><br><code>// Pb =-0.115 * R - 0.385 * G + 0.500 * B                  //</code><br><br><code>// Pr = 0.500 * R - 0.454 * G - 0.046 * B                  //</code><br><br><code>//  R = Y + 1.402* Cr                    　　　　　　　　　　　　　//</code><br><br><code>//  G = Y - 0.344 * Cb  - 0.792* Cr　　 　　　　　　　　　　　　　　//</code><br><br><code>//  B = Y + 1.772 * Cb                    　　　　　　　　　　　　 //</code><br><br><code>//*********************BT601***********************************//</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>2 数字YUV-&gt;数字RGB</p>
-<p>　　1)BT601</p>
+<p>1)BT601</p>
 <table>
 <thead>
 <tr>
@@ -1079,12 +1175,14 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1<br><br>2<br><br>3<br><br>4<br><br>5<br><br>6<br><br>7<br><br>8</td>
 <td><code>//*********************BT601***********************************//</code><br><br><code>//  Y = 16  + 0.257 * R + 0.504 * g + 0.098 * b                //</code><br><br><code>// Cb = 128 - 0.148 * R - 0.291 * g + 0.439 * b                //</code><br><br><code>// Cr = 128 + 0.439 * R - 0.368 * g - 0.071 * b                //</code><br><br><code>//  R = 1.164 *(Y - 16) + 1.596 *(Cr - 128)                    //</code><br><br><code>//  G = 1.164 *(Y - 16) - 0.392 *(Cb - 128) - 0.812 *(Cr - 128)//</code><br><br><code>//  B = 1.164 *(Y - 16) + 2.016 *(Cb - 128)                    //</code><br><br><code>//*********************BT601***********************************//</code></td>
 </tr>
-</tbody></table>
-<p>　　2)BT709</p>
+</tbody>
+</table>
+<p>2)BT709</p>
 <table>
 <thead>
 <tr>
@@ -1092,13 +1190,15 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1<br><br>2<br><br>3<br><br>4<br><br>5<br><br>6<br><br>7<br><br>8</td>
 <td><code>//*********************BT709***********************************//</code><br><br><code>//  Y = 16  + 0.183 * R + 0.614 * g + 0.062 * b                //</code><br><br><code>// Cb = 128 - 0.101 * R - 0.339 * g + 0.439 * b                //</code><br><br><code>// Cr = 128 + 0.439 * R - 0.399 * g - 0.040 * b                //</code><br><br><code>//  R = 1.164 *(Y - 16) + 1.792 *(Cr - 128)                    //</code><br><br><code>//  G = 1.164 *(Y - 16) - 0.213 *(Cb - 128) - 0.534 *(Cr - 128)//</code><br><br><code>//  B = 1.164 *(Y - 16) + 2.114 *(Cb - 128)                    //</code><br><br><code>//*********************BT709***********************************//</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>至于超清幅面的计算公式，大家可以按照下面的推导方式自己推导一下。</p>
-<p>模拟RGB转YUV的推导公式 ： </p>
+<p>模拟RGB转YUV的推导公式 ：</p>
 <table>
 <thead>
 <tr>
@@ -1106,12 +1206,14 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1<br><br>2<br><br>3<br><br>4</td>
 <td><code>Wr + Wg + Wb = 1; UMax = 0.5; VMax = 0.5</code><br><br><code>Y  = Wr * R + Wg * G + Wb * B;</code><br><br><code>Pb = Umax * (B - Y) / (1 - Wb);</code><br><br><code>Pr = Vmax * (R - Y) / (1 - Wr);</code></td>
 </tr>
-</tbody></table>
-<p>　　数字RGB转YUV的推导公式：</p>
+</tbody>
+</table>
+<p>数字RGB转YUV的推导公式：</p>
 <table>
 <thead>
 <tr>
@@ -1119,14 +1221,16 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1<br><br>2<br><br>3<br><br>4</td>
 <td><code>Wr + Wg + Wb = 1; Umax = Vmax = 0.5;</code><br><br><code>Y = 16 + 219 * (Wr * R  + Wg * G + Wb * B)   / 255;</code><br><br><code>Cb = 128 + 224 * (Umax * (B - Y) / (1 - Wb)) / 255;</code><br><br><code>Cr = 128 + 224 * (Vmax * (R - Y) / (1 - Wr)) / 255;</code></td>
 </tr>
-</tbody></table>
-<p>BT601 Wr &#x3D; 0.299 Wg &#x3D; 0.587 Wb &#x3D; 0.114</p>
-<p>BT709 Wr  &#x3D; 0.2126 Wg &#x3D; 0.7152 Wb &#x3D; 0.0722</p>
-<p>BT2020 Wr &#x3D; 0.2627 Wg &#x3D; 0.678 Wb &#x3D; 0.0593</p>
+</tbody>
+</table>
+<p>BT601 Wr = 0.299 Wg = 0.587 Wb = 0.114</p>
+<p>BT709 Wr  = 0.2126 Wg = 0.7152 Wb = 0.0722</p>
+<p>BT2020 Wr = 0.2627 Wg = 0.678 Wb = 0.0593</p>
 
       
     </div>
@@ -1189,7 +1293,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 09:38:13" itemprop="dateModified" datetime="2026-10-06T09:38:13+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 09:49:53" itemprop="dateModified" datetime="2026-10-06T09:49:53+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1211,9 +1315,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。<br>$ npm install -g hexo-cli</p>
-<h3 id="进阶安装和使用"><a href="#进阶安装和使用" class="headerlink" title="进阶安装和使用"></a>进阶安装和使用</h3><p>对于熟悉 npm 的进阶用户，可以仅局部安装 hexo 包。<br> $ npm install hexo</p>
-<p>建议永远安装 最新版本 的 Hexo，以及 推荐的 Node.js 版本。<br><img src="/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/img_01.png"></p>
+          <h3 id="安装-Hexo">安装 Hexo</h3>
+<p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。
+$ npm install -g hexo-cli</p>
+<h3 id="进阶安装和使用">进阶安装和使用</h3>
+<p>对于熟悉 npm 的进阶用户，可以仅局部安装 hexo 包。
+$ npm install hexo</p>
+<p>建议永远安装 最新版本 的 Hexo，以及 推荐的 Node.js 版本。
+<img src="/posts/Tools/Hexo%E9%83%A8%E7%BD%B2/img_01.png" alt=""></p>
 
       
     </div>
