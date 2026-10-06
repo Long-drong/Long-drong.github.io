@@ -204,330 +204,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%90%84%E9%A1%B9%E5%BC%82%E6%80%A7%E6%A3%80%E6%B5%8B%E5%9B%BE%E5%83%8Fmap%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%90%84%E9%A1%B9%E5%BC%82%E6%80%A7%E6%A3%80%E6%B5%8B%E5%9B%BE%E5%83%8Fmap%E5%9B%BE/" class="post-title-link" itemprop="url">各项异性检测图像map图</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-29T00:00:00+00:00">2026-07-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>“各向异性（Anisotropy）”往往比单纯用梯度幅值更精准、更抗噪！</p>
-<p>理由如下：</p>
-<ol>
-<li><p><strong>梯度幅值（Gradient Magnitude）容易被噪声误判</strong>：噪声在图像平坦区会导致梯度突然变大，产生假边缘，导致 ϕ(G) 误判，去噪不彻底。</p>
-</li>
-<li><p><strong>各向异性描述的是“结构一致性”</strong>：</p>
-<ul>
-<li><p><strong>平坦区 &#x2F; 纯噪声区</strong>：各个方向的变化率差不多，表现为<strong>各向同性（Isotropic，各向异性指标趋近于 0）</strong>。</p>
-</li>
-<li><p><strong>真实边缘 &#x2F; 纹理区</strong>：沿着边缘方向灰度变化极小，垂直于边缘方向灰度变化极大，表现为<strong>高各向异性（Anisotropic，各向异性指标趋近于 1）</strong>。</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>因此，<strong>利用各向异性度量（Anisotropy Measure）作为 Map 图，可以完美抵御平坦区的噪声干扰，只在真正的线条&#x2F;边缘处保留 NLM 的结构识别能力</strong>。</p>
-<h3 id="一、-如何计算各向异性-Map？（基于结构张量）"><a href="#一、-如何计算各向异性-Map？（基于结构张量）" class="headerlink" title="一、 如何计算各向异性 Map？（基于结构张量）"></a>一、 如何计算各向异性 Map？（基于结构张量）</h3><p>计算局部各向异性最经典、稳健的方法是利用<strong>结构张量（Structure Tensor &#x2F; Second Moment Matrix）</strong>：</p>
-<ol>
-<li><p><strong>计算图像梯度</strong>：$J_x&#x3D;\frac{\partial I}{\partial x}, J_y&#x3D;\frac{\partial I}{\partial y}$</p>
-</li>
-<li><p><strong>构建结构张量矩阵</strong>（对梯度外积进行高斯高斯滤波平滑以抵御噪声）：</p>
-<p>$$S &#x3D; \begin{bmatrix} J_{xx} &amp; J_{xy} \ J_{xy} &amp; J_{yy} \end{bmatrix}$$</p>
-</li>
-<li><p><strong>求解特征值 $\lambda_1,\lambda_2$（$\lambda_1\geq\lambda_2\geq 0$）</strong>：</p>
-<ul>
-<li><p>$\lambda_1$ 代表最大变化率方向的能量；</p>
-</li>
-<li><p>$\lambda_2$ 代表最小变化率方向的能量。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>计算各向异性指标 A</strong>：常用的各向异性度量函数有：</p>
-<p>$$A &#x3D; \frac{\lambda_1 - \lambda_2}{\lambda_1 + \lambda_2 + \epsilon}$$</p>
-<blockquote>
-<p><strong>物理意义</strong>：</p>
-<ul>
-<li><strong>平坦区或噪声区</strong>：$\lambda_1\approx\lambda_2 \Rightarrow A\approx 0$（各向同性，Patch diff 缩放归零，退化为均值&#x2F;高斯，去噪极强）。</li>
-<li><strong>单向强边缘&#x2F;纹理</strong>：$\lambda_1\gg\lambda_2 \Rightarrow A\approx 1$（高各向异性，Patch diff 保持不变，开启 NLM 边缘保护）。</li>
-</ul>
-</blockquote>
-</li>
-</ol>
-<h3 id="二、-将各向异性-Map-代入-NLM-的-Patch-差异"><a href="#二、-将各向异性-Map-代入-NLM-的-Patch-差异" class="headerlink" title="二、 将各向异性 Map 代入 NLM 的 Patch 差异"></a>二、 将各向异性 Map 代入 NLM 的 Patch 差异</h3><p>用各向异性指标 $A(x,y)\in[0,1]$ 替换原来的 ϕ(G)，直接调控 Patch 的原始差异：</p>
-<p>$$D_{adj}(i,j) &#x3D; A(i) \cdot D_{raw}(i,j)$$</p>
-<ul>
-<li><p><strong>当 A(i)→0（平坦区&#x2F;噪声）</strong>：$D_{adj}\to 0$，所有 Patch 权重 $\exp(0)&#x3D;1$，退化为均值滤波。</p>
-</li>
-<li><p><strong>当 A(i)→1（真实边缘）</strong>：$D_{adj}\to D_{raw}$，恢复标准 NLM 灰度匹配。</p>
-</li>
-</ul>
-<h3 id="三、-MATLAB-实现代码"><a href="#三、-MATLAB-实现代码" class="headerlink" title="三、 MATLAB 实现代码"></a>三、 MATLAB 实现代码</h3><p>以下是在 MATLAB 中利用结构张量计算各向异性 Map 并调控 Patch 距离的核心代码：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">phi_map</span> = <span class="title">compute_anisotropy_map</span><span class="params">(img, sigma_tensor)</span></span></span><br><span class="line">    <span class="comment">% img: 输入图像 (double 格式 [0,1])</span></span><br><span class="line">    <span class="comment">% sigma_tensor: 结构张量的高斯平滑半径 (推荐 1.0 ~ 2.0，用于抗噪)</span></span><br><span class="line">    <span class="keyword">if</span> nargin &lt; <span class="number">2</span></span><br><span class="line">        sigma_tensor = <span class="number">1.5</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">% 1. 计算图像梯度</span></span><br><span class="line">    [Ix, Iy] = imgradientxy(img, <span class="string">&#x27;CentralDifference&#x27;</span>);</span><br><span class="line">    <span class="comment">% 2. 构建结构张量的三个分量并进行高斯平滑 (抑制噪声的关键步骤)</span></span><br><span class="line">    Jxx = imgaussfilt(Ix.^<span class="number">2</span>, sigma_tensor);</span><br><span class="line">    Jyy = imgaussfilt(Iy.^<span class="number">2</span>, sigma_tensor);</span><br><span class="line">    Jxy = imgaussfilt(Ix.*Iy, sigma_tensor);</span><br><span class="line">    <span class="comment">% 3. 解析求解 2x2 对称矩阵的两个特征值 lambda1 和 lambda2</span></span><br><span class="line">    <span class="comment">% 行列式与迹公式：</span></span><br><span class="line">    <span class="comment">% trace = Jxx + Jyy</span></span><br><span class="line">    <span class="comment">% det = Jxx*Jyy - Jxy^2</span></span><br><span class="line">    <span class="comment">% lambda = (trace ± sqrt(trace^2 - 4*det)) / 2</span></span><br><span class="line">    trace_S = Jxx + Jyy;</span><br><span class="line">    det_S = Jxx .* Jyy - Jxy.^<span class="number">2</span>;</span><br><span class="line">    <span class="comment">% 防止开方出现负微小值</span></span><br><span class="line">    delta = <span class="built_in">max</span>(<span class="number">0</span>, trace_S.^<span class="number">2</span> - <span class="number">4</span> * det_S); </span><br><span class="line">    lambda1 = <span class="number">0.5</span> * (trace_S + <span class="built_in">sqrt</span>(delta));</span><br><span class="line">    lambda2 = <span class="number">0.5</span> * (trace_S - <span class="built_in">sqrt</span>(delta));</span><br><span class="line">    <span class="comment">% 4. 计算各向异性 Map A = (lambda1 - lambda2) / (lambda1 + lambda2 + eps)</span></span><br><span class="line">    eps_val = <span class="number">1e-5</span>; <span class="comment">% 防止除以零</span></span><br><span class="line">    A = (lambda1 - lambda2) ./ (lambda1 + lambda2 + eps_val);</span><br><span class="line">    <span class="comment">% 5. 可选：用 Sigmoid/指数平滑映射，增强对比度</span></span><br><span class="line">    <span class="comment">% 使得弱结构区更彻底趋近于 0，强结构区趋近于 1</span></span><br><span class="line">    phi_map = A.^<span class="number">2</span>; <span class="comment">% 进一步压制低各向异性的噪声区</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="效果对比演示："><a href="#效果对比演示：" class="headerlink" title="效果对比演示："></a>效果对比演示：</h3><p>你可以在 MATLAB 中运行以下代码直观对比：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">img = im2double(imread(<span class="string">&#x27;cameraman.tif&#x27;</span>));</span><br><span class="line">noisy_img = imnoise(img, <span class="string">&#x27;gaussian&#x27;</span>, <span class="number">0</span>, <span class="number">0.005</span>); <span class="comment">% 加噪</span></span><br><span class="line"><span class="comment">% 1. 普通梯度幅值 Map</span></span><br><span class="line">[gx, gy] = imgradientxy(noisy_img);</span><br><span class="line">G = <span class="built_in">sqrt</span>(gx.^<span class="number">2</span> + gy.^<span class="number">2</span>);</span><br><span class="line"><span class="comment">% 2. 各向异性 Map</span></span><br><span class="line">A_map = compute_anisotropy_map(noisy_img, <span class="number">1.5</span>);</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>); imshow(noisy_img); title(<span class="string">&#x27;含噪图像&#x27;</span>);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>); imshow(G, []); title(<span class="string">&#x27;梯度幅值 Map (噪声很亮，容易误判)&#x27;</span>);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>); imshow(A_map, []); title(<span class="string">&#x27;各向异性 Map (噪声被抑制，仅保留边缘)&#x27;</span>);</span><br><span class="line">colormap(gca, <span class="string">&#x27;jet&#x27;</span>); colorbar;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在梯度图里，平坦区会有大量由噪声引起的亮点；但在各向异性图里，平坦区几乎全蓝（接近 0），只有真正的长线条边缘才会发红（接近 1）</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">LCI原理解析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avs.png">
-      <meta itemprop="name" content="Qing Long">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 🌈青龙小栈">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LCI的实现原理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/Excel%E5%AE%9E%E7%8E%B0%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%EF%BC%8C%E5%8F%8A%E5%85%B6%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -564,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -664,7 +340,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -730,6 +406,190 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">LCI原理解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LCI的实现原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-28T00:00:00+00:00">2026-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">原理总结</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/LCI%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -766,7 +626,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -951,7 +811,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1043,7 +903,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1135,7 +995,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1229,7 +1089,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-06 03:25:06" itemprop="dateModified" datetime="2026-10-06T03:25:06+00:00">2026-10-06</time>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1260,6 +1120,95 @@
 <h1 id="matlab打包exe"><a href="#matlab打包exe" class="headerlink" title="matlab打包exe"></a>matlab打包exe</h1><p><img src="/posts/Tools/matlab%E4%B8%ADexe%E6%89%93%E5%8C%85/img_10.png" alt="步骤1"></p>
 <p><img src="/posts/Tools/matlab%E4%B8%ADexe%E6%89%93%E5%8C%85/img_11.png" alt="步骤2"></p>
 <p>&nbsp; 1、添加主文件，2、打包runtime环境 3、exe名字 4、依赖脚本文件配置完之后，点击右上角的package即可打包exe&nbsp;&nbsp;</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://long-drong.github.io/posts/Tools/Side%20Note%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avs.png">
+      <meta itemprop="name" content="Qing Long">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 🌈青龙小栈">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Tools/Side%20Note%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">Side Note使用说明</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-05-16 00:00:00" itemprop="dateCreated datePublished" datetime="2026-05-16T00:00:00+00:00">2026-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-10-06 03:25:38" itemprop="dateModified" datetime="2026-10-06T03:25:38+00:00">2026-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>SideNote是一个测试浏览器插件 Side Note的同步笔记的文档;</p>
+<p>确认插件是否能将文件夹同步到github仓库；</p>
+<p>主要流程如下， 文件同步到github 仓库 A 的Note文件夹；</p>
+<p>仓库A通过action同步到仓库B, 仓库B通过Hexo编译到 github.io；</p>
+<p>此时可以在github查看同步的文档了！</p>
 
       
     </div>
